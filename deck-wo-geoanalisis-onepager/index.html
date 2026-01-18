@@ -34,6 +34,13 @@
   
   <!-- Workalógico Particles System -->
   <link rel="stylesheet" href="../wo-particles.css">
+  
+  <!-- Workalógico Map Component -->
+  <link rel="stylesheet" href="../wo-components/wo-mapbox.css">
+  
+  <!-- Mapbox GL JS -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
 </head>
 <body>
   <!-- tsParticles Container -->
@@ -171,7 +178,27 @@
       </section>
 
       <!-- ═══════════════════════════════════════════════════════════════
-           SLIDE 5: SECCIÓN - MOTOR
+           SLIDE 5: DEMO INTERACTIVO - MAPA DE COLIMA
+           ═══════════════════════════════════════════════════════════════ -->
+      <section data-background-color="#0F0F1A" data-state="map-slide" aria-label="Demo interactivo">
+        <h2 style="margin-bottom: 0.5em;">Así se ve tu <span class="accent">Análisis</span></h2>
+        <p style="color: var(--wo-text-secondary); font-size: 0.85em; margin-bottom: 1em;">Mapa interactivo de Colima — Activa las capas para explorar</p>
+        
+        <div id="wo-map-demo" style="height: 420px;"></div>
+        
+        <aside class="notes">
+          SLIDE DE DEMO - Interactuar con el mapa:
+          1. Activar "Scoring" para ver colores por zona
+          2. Activar "Competencia" para ver puntos rojos
+          3. Activar "Isócronas" para ver tiempos de traslado
+          4. Click en una zona para ver métricas detalladas
+          
+          Este es el tipo de entregable que recibe el cliente.
+        </aside>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           SLIDE 6: SECCIÓN - MOTOR
            ═══════════════════════════════════════════════════════════════ -->
       <section data-background-gradient="linear-gradient(135deg, #252542 0%, #0F0F1A 100%)" data-particles="true" aria-label="Motor de inteligencia">
         <h1 class="wo-section__title">Motor de <span class="accent">Inteligencia</span></h1>
@@ -335,7 +362,12 @@
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
   <script src="../wo-particles.js"></script>
   
+  <!-- Workalógico Map Component -->
+  <script src="../wo-components/wo-mapbox.js"></script>
+  
   <script>
+    let mapInitialized = false;
+    
     Reveal.initialize({
       width: 1280,
       height: 720,
@@ -367,6 +399,45 @@
     }).then(() => {
       // Inicializar partículas con variante 'geo' (más data points)
       setupWoParticles('geo');
+    });
+    
+    // ═══════════════════════════════════════════════════════════════
+    // INTEGRACIÓN MAPA INTERACTIVO
+    // ═══════════════════════════════════════════════════════════════
+    
+    // Inicializar mapa cuando el slide está visible
+    Reveal.on('slidechanged', (event) => {
+      const currentState = event.currentSlide.dataset.state;
+      
+      if (currentState === 'map-slide' && !mapInitialized) {
+        // Inicializar mapa de Colima
+        setTimeout(() => {
+          initWoMap('wo-map-demo', {
+            center: [-103.7250, 19.2433], // Centro de Colima
+            zoom: 12,
+            showControls: true,
+            showLegend: true
+          });
+          mapInitialized = true;
+          
+          // Auto-activar capa de scoring después de 1 segundo
+          setTimeout(() => {
+            if (window.woMapInstance) {
+              revealMapLayers(['scoring'], 0);
+            }
+          }, 1000);
+        }, 300);
+      }
+    });
+    
+    // Destruir mapa al salir del slide (liberar memoria)
+    Reveal.on('slidetransitionend', (event) => {
+      const previousState = event.previousSlide?.dataset?.state;
+      if (previousState === 'map-slide') {
+        // Opcional: destruir para liberar recursos
+        // destroyWoMap();
+        // mapInitialized = false;
+      }
     });
     
     // Keyboard shortcuts info

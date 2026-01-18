@@ -34,6 +34,9 @@
   
   <!-- Workalógico Particles System -->
   <link rel="stylesheet" href="../wo-particles.css">
+  
+  <!-- Workalógico Chatbot Component -->
+  <link rel="stylesheet" href="../wo-components/wo-chatbot.css">
 </head>
 <body>
   <!-- tsParticles Container -->
@@ -153,7 +156,43 @@
       </section>
 
       <!-- ═══════════════════════════════════════════════════════════════
-           SLIDE 5: AGENTES DE IA
+           SLIDE 5: DEMO INTERACTIVO - CHATBOT
+           ═══════════════════════════════════════════════════════════════ -->
+      <section data-background-color="#0F0F1A" data-state="chatbot-slide" aria-label="Demo de Agente">
+        <div style="display: flex; gap: 2rem; align-items: flex-start;">
+          <div style="flex: 1;">
+            <h2 style="margin-bottom: 0.5em;">Prueba un <span class="accent">Agente</span></h2>
+            <p style="color: var(--wo-text-secondary); font-size: 0.8em; margin-bottom: 1em;">
+              Este es un demo real. Selecciona un modelo y pregunta sobre nuestros servicios.
+            </p>
+            <div style="font-size: 0.7em; color: var(--wo-text-muted); line-height: 1.6;">
+              <p><strong>Sugerencias:</strong></p>
+              <ul style="margin: 0.5em 0; padding-left: 1.2em;">
+                <li>¿Qué servicios ofrecen?</li>
+                <li>¿Cuánto cuesta un agente de IA?</li>
+                <li>¿Cómo funciona la geointeligencia?</li>
+              </ul>
+            </div>
+          </div>
+          <div id="wo-chatbot-demo" style="flex: 0 0 550px;"></div>
+        </div>
+        
+        <aside class="notes">
+          SLIDE DE DEMO - Interactuar con el chatbot:
+          1. Mostrar el selector de modelos (GPT-4, Claude, Gemini)
+          2. Hacer preguntas sobre servicios de Workalógico
+          3. Mostrar cómo el agente califica leads
+          4. Explicar que esto es lo que el cliente recibe
+          
+          Tips:
+          - El chatbot responde con información real de servicios
+          - Tiene conocimiento de precios, tiempos y metodologías
+          - Puede agendar llamadas de descubrimiento
+        </aside>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           SLIDE 6: AGENTES DE IA
            ═══════════════════════════════════════════════════════════════ -->
       <section data-background-color="#0F0F1A" aria-label="Agentes de IA">
         <h2>Agentes de <span class="accent">IA</span></h2>
@@ -379,7 +418,12 @@
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
   <script src="../wo-particles.js"></script>
   
+  <!-- Workalógico Chatbot Component -->
+  <script src="../wo-components/wo-chatbot.js"></script>
+  
   <script>
+    let chatbotInitialized = false;
+    
     Reveal.initialize({
       width: 1280,
       height: 720,
@@ -409,6 +453,54 @@
     }).then(() => {
       // Inicializar partículas con variante 'ai' (más amarillo)
       setupWoParticles('ai');
+    });
+    
+    // ═══════════════════════════════════════════════════════════════
+    // INTEGRACIÓN CHATBOT DEMO
+    // ═══════════════════════════════════════════════════════════════
+    
+    // Inicializar chatbot cuando el slide está visible
+    Reveal.on('slidechanged', (event) => {
+      const currentState = event.currentSlide.dataset.state;
+      
+      if (currentState === 'chatbot-slide' && !chatbotInitialized) {
+        setTimeout(() => {
+          initWoChatbot('wo-chatbot-demo', {
+            defaultModel: 'gpt-4',
+            showModelSelector: true,
+            showSuggestions: true,
+            welcomeMessage: '¡Hola! Soy el asistente de Workalógico. Puedo responder preguntas sobre nuestros servicios de Geointeligencia, Marketing, CRM, Automatización e IA. ¿En qué puedo ayudarte?',
+            placeholder: 'Pregunta sobre nuestros servicios...',
+            // API keys opcionales (para demo real con APIs)
+            // apiKeys: {
+            //   openai: 'sk-...',
+            //   anthropic: 'sk-ant-...',
+            //   google: 'AIza...'
+            // }
+          });
+          chatbotInitialized = true;
+        }, 300);
+      }
+    });
+    
+    // Prevenir que Reveal.js capture el teclado cuando el input está focused
+    Reveal.configure({
+      keyboard: {
+        13: null // Disable Enter key for Reveal
+      }
+    });
+    
+    // Re-enable keyboard when input loses focus
+    document.addEventListener('focusin', (e) => {
+      if (e.target.classList.contains('wo-chat-input')) {
+        Reveal.configure({ keyboard: false });
+      }
+    });
+    
+    document.addEventListener('focusout', (e) => {
+      if (e.target.classList.contains('wo-chat-input')) {
+        Reveal.configure({ keyboard: true });
+      }
     });
   </script>
 </body>
