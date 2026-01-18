@@ -32,39 +32,8 @@
   <!-- Workalógico Design System -->
   <link rel="stylesheet" href="../wo-design-system.css">
   
-  <!-- tsParticles Styles -->
-  <style>
-    /* ═══════════════════════════════════════════════════════════════
-       TSPARTICLES - Data Network Background
-       ═══════════════════════════════════════════════════════════════ */
-    
-    #tsparticles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.8s ease;
-    }
-    
-    #tsparticles.visible {
-      opacity: 1;
-    }
-    
-    /* Ensure reveal content is above particles */
-    .reveal {
-      position: relative;
-      z-index: 1;
-    }
-    
-    /* Reduce grid-background opacity when particles are active */
-    .particles-active .grid-background {
-      opacity: 0.3 !important;
-    }
-  </style>
+  <!-- Workalógico Particles System -->
+  <link rel="stylesheet" href="../wo-particles.css">
 </head>
 <body>
   <!-- tsParticles Container -->
@@ -399,201 +368,43 @@
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/notes/notes.js"></script>
   
-  <!-- tsParticles -->
+  <!-- tsParticles + Workalógico Particles System -->
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+  <script src="../wo-particles.js"></script>
   
   <script>
-    // ═══════════════════════════════════════════════════════════════
-    // TSPARTICLES CONFIGURATION - Workalógico Data Network
-    // ═══════════════════════════════════════════════════════════════
-    
-    const particlesConfig = {
-      fullScreen: {
-        enable: false
-      },
-      background: {
-        color: {
-          value: "transparent"
-        }
-      },
-      fpsLimit: 60,
-      particles: {
-        // Colores de marca Workalógico
-        color: {
-          value: ["#5968EA", "#5968EA", "#5968EA", "#FFCB00"], // 75% azul, 25% amarillo
-        },
-        links: {
-          color: "#5968EA",
-          distance: 140,
-          enable: true,
-          opacity: 0.12,
-          width: 1,
-          triangles: {
-            enable: false
-          }
-        },
-        move: {
-          enable: true,
-          speed: 0.6, // Movimiento lento y elegante
-          direction: "none",
-          random: true,
-          straight: false,
-          outModes: {
-            default: "out"
-          },
-          attract: {
-            enable: false
-          }
-        },
-        number: {
-          value: 50, // Cantidad moderada para no distraer
-          density: {
-            enable: true,
-            area: 900
-          }
-        },
-        opacity: {
-          value: {
-            min: 0.2,
-            max: 0.6
-          },
-          animation: {
-            enable: true,
-            speed: 0.4,
-            minimumValue: 0.15,
-            sync: false
-          }
-        },
-        shape: {
-          type: "circle"
-        },
-        size: {
-          value: {
-            min: 1,
-            max: 3
-          },
-          animation: {
-            enable: true,
-            speed: 1.5,
-            minimumValue: 0.5,
-            sync: false
-          }
-        }
-      },
-      interactivity: {
-        detectsOn: "window",
-        events: {
-          onHover: {
-            enable: true,
-            mode: "grab",
-            parallax: {
-              enable: true,
-              force: 15,
-              smooth: 25
-            }
-          },
-          onClick: {
-            enable: false // Desactivado para no interferir con navegación
-          },
-          resize: true
-        },
-        modes: {
-          grab: {
-            distance: 180,
-            links: {
-              opacity: 0.35,
-              color: "#FFCB00" // Amarillo al interactuar
-            }
-          }
-        }
-      },
-      detectRetina: true
-    };
-    
-    // Initialize particles
-    let particlesInstance = null;
-    
-    async function initParticles() {
-      particlesInstance = await tsParticles.load("tsparticles", particlesConfig);
-    }
-    
-    // ═══════════════════════════════════════════════════════════════
-    // REVEAL.JS INITIALIZATION
-    // ═══════════════════════════════════════════════════════════════
-    
     Reveal.initialize({
-      // Dimensions
       width: 1280,
       height: 720,
-      margin: 0.08,
+      margin: 0.1,
       minScale: 0.2,
       maxScale: 2.0,
-      
-      // Navigation
       hash: true,
       center: true,
       navigationMode: 'default',
-      
-      // Transitions
       transition: 'fade',
       transitionSpeed: 'default',
       backgroundTransition: 'fade',
-      
-      // Display
       slideNumber: 'c/t',
       showSlideNumber: 'all',
       progress: true,
       controls: true,
       controlsTutorial: false,
       controlsLayout: 'bottom-right',
-      
-      // Performance optimization
       viewDistance: 3,
       mobileViewDistance: 2,
       preloadIframes: false,
       autoPlayMedia: false,
-      
-      // Mobile & Touch
       touch: true,
       hideInactiveCursor: true,
       hideCursorTime: 3000,
-      
-      // Accessibility
       help: true,
-      
-      // Speaker notes
       showNotes: false,
-      
-      // Plugins
       plugins: [RevealNotes]
     }).then(() => {
-      // Initialize particles after Reveal is ready
-      initParticles();
-      
-      // Check initial slide for particles
-      updateParticlesVisibility();
+      // Inicializar partículas con variante 'geo' (más data points)
+      setupWoParticles('geo');
     });
-    
-    // ═══════════════════════════════════════════════════════════════
-    // PARTICLES VISIBILITY CONTROL
-    // ═══════════════════════════════════════════════════════════════
-    
-    function updateParticlesVisibility() {
-      const currentSlide = Reveal.getCurrentSlide();
-      const particlesContainer = document.getElementById('tsparticles');
-      const body = document.body;
-      
-      if (currentSlide && currentSlide.dataset.particles === 'true') {
-        particlesContainer.classList.add('visible');
-        body.classList.add('particles-active');
-      } else {
-        particlesContainer.classList.remove('visible');
-        body.classList.remove('particles-active');
-      }
-    }
-    
-    // Update particles on slide change
-    Reveal.on('slidechanged', updateParticlesVisibility);
     
     // Keyboard shortcuts info
     Reveal.addKeyBinding({ keyCode: 72, key: 'H', description: 'Mostrar ayuda' }, () => {

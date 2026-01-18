@@ -1,0 +1,139 @@
+/* ═══════════════════════════════════════════════════════════════
+   WORKALÓGICO PARTICLES SYSTEM v1.0
+   Sistema de Fondos Animados para Presentaciones Reveal.js
+   
+   CONCEPTO VISUAL: "Data Network"
+   Red de nodos conectados que representa la inteligencia de datos.
+   Alineado con el Perfil Editorial Wo (80% técnico / 20% emocional).
+   
+   USO:
+   1. Incluir este CSS después de wo-design-system.css
+   2. Agregar <div id="tsparticles"></div> antes de <div class="reveal">
+   3. Agregar data-particles="true" a las secciones donde se desea mostrar
+   4. Incluir tsParticles JS y configuración al final del body
+   
+   SLIDES RECOMENDADOS PARA PARTÍCULAS:
+   - Portada (slide 1)
+   - Slides de sección/transición
+   - CTA de cierre (último slide)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────
+   CONTENEDOR DE PARTÍCULAS
+   ───────────────────────────────────────── */
+#tsparticles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#tsparticles.visible {
+  opacity: 1;
+}
+
+/* ─────────────────────────────────────────
+   CAPAS Z-INDEX (Orden de renderizado)
+   ───────────────────────────────────────── */
+   
+/* 1. Backgrounds de Reveal.js - Capa más baja */
+.reveal .backgrounds {
+  z-index: 1 !important;
+}
+
+/* 2. Partículas - Entre backgrounds y contenido */
+/* Ya definido arriba: z-index: 10 */
+
+/* 3. Contenido de slides - Capa superior */
+.reveal .slides {
+  position: relative;
+  z-index: 20;
+}
+
+/* ─────────────────────────────────────────
+   COMPORTAMIENTO DEL GRID BACKGROUND
+   ───────────────────────────────────────── */
+
+/* Grid base más sutil */
+.grid-background {
+  opacity: 0.4;
+  transition: opacity 0.6s ease;
+}
+
+/* Cuando las partículas están activas, ocultar el grid */
+.particles-active .grid-background {
+  opacity: 0 !important;
+}
+
+/* ─────────────────────────────────────────
+   VARIANTES DE PARTÍCULAS POR SERVICIO
+   (Colores alternativos manteniendo coherencia Wo)
+   ───────────────────────────────────────── */
+
+/* Variante: Geointeligencia (default - azul dominante) */
+.particles-geo #tsparticles {
+  /* Configuración estándar en JS */
+}
+
+/* Variante: AI Experts (acento amarillo aumentado) */
+.particles-ai #tsparticles {
+  filter: contrast(1.05);
+}
+
+/* Variante: Marketing (más dinámico) */
+.particles-marketing #tsparticles {
+  filter: saturate(1.1);
+}
+
+/* ─────────────────────────────────────────
+   EFECTOS ADICIONALES DE PROFUNDIDAD
+   ───────────────────────────────────────── */
+
+/* Gradiente de viñeta sutil sobre las partículas */
+.particles-active::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    transparent 50%,
+    rgba(15, 15, 26, 0.3) 100%
+  );
+  pointer-events: none;
+  z-index: 11;
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE: Reducir partículas en móvil
+   ───────────────────────────────────────── */
+@media (max-width: 768px) {
+  #tsparticles {
+    /* Se ajusta la densidad via JS, pero aquí garantizamos rendimiento */
+    filter: blur(0.3px);
+  }
+}
+
+/* ─────────────────────────────────────────
+   MODO PRINT/PDF: Ocultar partículas
+   ───────────────────────────────────────── */
+@media print {
+  #tsparticles,
+  .particles-active::after {
+    display: none !important;
+  }
+  
+  .grid-background {
+    opacity: 0.15 !important;
+  }
+}

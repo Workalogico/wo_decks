@@ -32,49 +32,8 @@
   <!-- Workalógico Design System -->
   <link rel="stylesheet" href="../wo-design-system.css">
   
-  <!-- tsParticles Styles -->
-  <style>
-    /* ═══════════════════════════════════════════════════════════════
-       TSPARTICLES - Data Network Background
-       ═══════════════════════════════════════════════════════════════ */
-    
-    #tsparticles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 10;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.8s ease;
-    }
-    
-    #tsparticles.visible {
-      opacity: 1;
-    }
-    
-    /* Reveal backgrounds should be behind particles */
-    .reveal .backgrounds {
-      z-index: 1 !important;
-    }
-    
-    /* Reveal content should be above particles */
-    .reveal .slides {
-      position: relative;
-      z-index: 20;
-    }
-    
-    /* Ocultar grid-background cuando las partículas están activas */
-    .particles-active .grid-background {
-      opacity: 0 !important;
-    }
-    
-    /* Reducir opacidad del grid en general para que no compita con partículas */
-    .grid-background {
-      opacity: 0.3 !important;
-    }
-  </style>
+  <!-- Workalógico Particles System -->
+  <link rel="stylesheet" href="../wo-particles.css">
 </head>
 <body>
   <!-- tsParticles Container -->
@@ -372,300 +331,48 @@
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/notes/notes.js"></script>
   
-  <!-- tsParticles -->
+  <!-- tsParticles + Workalógico Particles System -->
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+  <script src="../wo-particles.js"></script>
   
   <script>
-    // ═══════════════════════════════════════════════════════════════
-    // TSPARTICLES CONFIGURATION - Workalógico Data Network
-    // ═══════════════════════════════════════════════════════════════
-    
-    const particlesConfig = {
-      fullScreen: {
-        enable: false
-      },
-      background: {
-        color: {
-          value: "transparent"
-        }
-      },
-      fpsLimit: 60,
-      particles: {
-        // Colores de marca Workalógico
-        color: {
-          value: ["#5968EA", "#5968EA", "#5968EA", "#FFCB00"], // 75% azul, 25% amarillo
-        },
-        links: {
-          color: "#5968EA",
-          distance: 140,
-          enable: true,
-          opacity: 0.12,
-          width: 1,
-          triangles: {
-            enable: false
-          }
-        },
-        move: {
-          enable: true,
-          speed: 0.6, // Movimiento lento y elegante
-          direction: "none",
-          random: true,
-          straight: false,
-          outModes: {
-            default: "out"
-          },
-          attract: {
-            enable: false
-          }
-        },
-        number: {
-          value: 50, // Cantidad moderada para no distraer
-          density: {
-            enable: true,
-            area: 900
-          }
-        },
-        opacity: {
-          value: {
-            min: 0.2,
-            max: 0.6
-          },
-          animation: {
-            enable: true,
-            speed: 0.4,
-            minimumValue: 0.15,
-            sync: false
-          }
-        },
-        shape: {
-          type: "circle"
-        },
-        size: {
-          value: {
-            min: 1,
-            max: 3
-          },
-          animation: {
-            enable: true,
-            speed: 1.5,
-            minimumValue: 0.5,
-            sync: false
-          }
-        }
-      },
-      interactivity: {
-        detectsOn: "window",
-        events: {
-          onHover: {
-            enable: true,
-            mode: "grab",
-            parallax: {
-              enable: true,
-              force: 15,
-              smooth: 25
-            }
-          },
-          onClick: {
-            enable: false // Desactivado para no interferir con navegación
-          },
-          resize: true
-        },
-        modes: {
-          grab: {
-            distance: 180,
-            links: {
-              opacity: 0.35,
-              color: "#FFCB00" // Amarillo al interactuar
-            }
-          }
-        }
-      },
-      detectRetina: true
-    };
-    
-    // Initialize particles
-    let particlesInstance = null;
-    
-    async function initParticles() {
-      particlesInstance = await tsParticles.load("tsparticles", particlesConfig);
-    }
-    
-    // ═══════════════════════════════════════════════════════════════
-    // REVEAL.JS INITIALIZATION
-    // ═══════════════════════════════════════════════════════════════
-    
     Reveal.initialize({
-      // Dimensions - Reveal.js best practices
       width: 1280,
       height: 720,
-      margin: 0.15,      // 15% margin para que escale correctamente
+      margin: 0.1,
       minScale: 0.2,
       maxScale: 2.0,
-      
-      // Navigation
       hash: true,
       center: true,
       navigationMode: 'default',
-      
-      // Transitions
       transition: 'fade',
       transitionSpeed: 'default',
       backgroundTransition: 'fade',
-      
-      // Display
       slideNumber: 'c/t',
       showSlideNumber: 'all',
       progress: true,
       controls: true,
       controlsTutorial: false,
       controlsLayout: 'bottom-right',
-      
-      // Performance optimization
       viewDistance: 3,
       mobileViewDistance: 2,
       preloadIframes: false,
       autoPlayMedia: false,
-      
-      // Mobile & Touch
       touch: true,
       hideInactiveCursor: true,
       hideCursorTime: 3000,
-      
-      // Accessibility
       help: true,
-      
-      // Speaker notes
       showNotes: false,
-      
-      // Plugins
       plugins: [RevealNotes]
     }).then(() => {
-      // Initialize particles after Reveal is ready
-      initParticles();
-      
-      // Check initial slide for particles
-      updateParticlesVisibility();
+      // Inicializar partículas con variante 'geo' (más data points)
+      setupWoParticles('geo');
     });
-    
-    // ═══════════════════════════════════════════════════════════════
-    // PARTICLES VISIBILITY CONTROL
-    // ═══════════════════════════════════════════════════════════════
-    
-    function updateParticlesVisibility() {
-      const currentSlide = Reveal.getCurrentSlide();
-      const particlesContainer = document.getElementById('tsparticles');
-      const body = document.body;
-      
-      if (currentSlide && currentSlide.dataset.particles === 'true') {
-        particlesContainer.classList.add('visible');
-        body.classList.add('particles-active');
-      } else {
-        particlesContainer.classList.remove('visible');
-        body.classList.remove('particles-active');
-      }
-    }
-    
-    // Update particles on slide change
-    Reveal.on('slidechanged', updateParticlesVisibility);
     
     // Keyboard shortcuts info
     Reveal.addKeyBinding({ keyCode: 72, key: 'H', description: 'Mostrar ayuda' }, () => {
       Reveal.toggleHelp();
     });
-
-    // #region agent log - DEBUG INSTRUMENTATION
-    function debugSlideOverflow() {
-      const slide = Reveal.getCurrentSlide();
-      const slideIndex = Reveal.getIndices().h;
-      const slideRect = slide.getBoundingClientRect();
-      
-      // Get Reveal.js scale and config
-      const revealScale = Reveal.getScale();
-      const revealConfig = Reveal.getConfig();
-      
-      // Get viewport dimensions
-      const viewportWidth = window.innerWidth;
-      const viewportHeight = window.innerHeight;
-      
-      // Get all container positions for centering analysis
-      const revealEl = document.querySelector('.reveal');
-      const slidesEl = document.querySelector('.reveal .slides');
-      const revealRect = revealEl.getBoundingClientRect();
-      const slidesRect = slidesEl.getBoundingClientRect();
-      
-      // Calculate centering offsets
-      const revealLeftOffset = revealRect.left;
-      const revealRightOffset = viewportWidth - revealRect.right;
-      const slidesLeftOffset = slidesRect.left;
-      const slidesRightOffset = viewportWidth - slidesRect.right;
-      const slideLeftOffset = slideRect.left;
-      const slideRightOffset = viewportWidth - slideRect.right;
-      
-      // Check if horizontally centered (offsets should be equal)
-      const revealCentered = Math.abs(revealLeftOffset - revealRightOffset) < 5;
-      const slidesCentered = Math.abs(slidesLeftOffset - slidesRightOffset) < 5;
-      const slideCentered = Math.abs(slideLeftOffset - slideRightOffset) < 5;
-      
-      // Check for overflow and scrollbar
-      const hasHorizontalScroll = document.documentElement.scrollWidth > document.documentElement.clientWidth;
-      const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
-      
-      // Get computed styles that affect centering
-      const slidesComputedStyle = window.getComputedStyle(slidesEl);
-      const revealComputedStyle = window.getComputedStyle(revealEl);
-      
-      const debugData = {
-        slideIndex,
-        viewport: { width: viewportWidth, height: viewportHeight },
-        scale: revealScale.toFixed(3),
-        scrollState: {
-          hasHorizontalScroll,
-          scrollLeft: Math.round(scrollLeft),
-          docScrollWidth: document.documentElement.scrollWidth,
-          docClientWidth: document.documentElement.clientWidth
-        },
-        slidesComputedStyle: {
-          position: slidesComputedStyle.position,
-          left: slidesComputedStyle.left,
-          transform: slidesComputedStyle.transform,
-          width: slidesComputedStyle.width
-        },
-        slidesContainer: {
-          left: Math.round(slidesLeftOffset),
-          right: Math.round(slidesRightOffset),
-          width: Math.round(slidesRect.width),
-          centered: slidesCentered
-        },
-        currentSlide: {
-          left: Math.round(slideLeftOffset),
-          right: Math.round(slideRightOffset),
-          width: Math.round(slideRect.width),
-          centered: slideCentered
-        },
-        diagnosis: !slideCentered ? 
-          `Slide NOT centered: left=${Math.round(slideLeftOffset)}px, right=${Math.round(slideRightOffset)}px, diff=${Math.round(Math.abs(slideLeftOffset-slideRightOffset))}px` : 
-          'Slide is centered'
-      };
-      
-      fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({
-          location:'index.html:debugCentering',
-          message:'Centering analysis',
-          data: debugData,
-          timestamp:Date.now(),
-          sessionId:'debug-session',
-          runId:'centering-debug-1'
-        })
-      }).catch(()=>{});
-    }
-    
-    // Run on slide change, resize, and initial load
-    Reveal.on('slidechanged', debugSlideOverflow);
-    Reveal.on('ready', () => setTimeout(debugSlideOverflow, 500));
-    window.addEventListener('resize', () => setTimeout(debugSlideOverflow, 300));
-    // #endregion
   </script>
 </body>
 </html>
