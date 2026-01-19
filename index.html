@@ -161,15 +161,55 @@
       font-weight: 600;
     }
     
-    /* Section Title */
+    /* Section Header - Centrado con ícono encima */
+    .section-header {
+      text-align: center;
+      margin: 4rem 0 2rem;
+    }
+    
+    .section-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(89, 104, 234, 0.15) 0%, rgba(37, 37, 66, 0.8) 100%);
+      border: 1px solid rgba(89, 104, 234, 0.3);
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+    
+    .section-header:hover .section-icon {
+      transform: scale(1.05);
+      border-color: var(--wo-blue-lab);
+      box-shadow: 0 8px 32px rgba(89, 104, 234, 0.2);
+    }
+    
+    .section-icon svg {
+      width: 32px;
+      height: 32px;
+      stroke: var(--wo-blue-lab);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    
     .section-title {
       font-family: var(--font-heading);
       font-size: 1.5rem;
       font-weight: 600;
-      margin: 3rem 0 1.5rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--wo-blue-lab);
-      display: inline-block;
+      margin-bottom: 0.5rem;
+      color: var(--wo-text);
+    }
+    
+    .section-description {
+      font-size: 0.9rem;
+      color: var(--wo-text-secondary);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.5;
     }
     
     /* Decks Grid - Centrado */
@@ -401,7 +441,26 @@
     </header>
     
     <main>
-      <h2 class="section-title">🌍 Geointeligencia</h2>
+      <!-- GEOINTELIGENCIA -->
+      <div class="section-header">
+        <div class="section-icon">
+          <!-- PLACEHOLDER: Ícono de red geoespacial / nodos conectados sobre mapa -->
+          <!-- Descripción: Representa la arquitectura de datos territoriales. 
+               Nodos interconectados que simbolizan el análisis de variables 
+               geográficas para decisiones de ubicación con método verificable. -->
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="2"/>
+            <circle cx="6" cy="6" r="1.5"/>
+            <circle cx="18" cy="6" r="1.5"/>
+            <circle cx="6" cy="18" r="1.5"/>
+            <circle cx="18" cy="18" r="1.5"/>
+            <path d="M12 10V7.5M12 14v2.5M10 12H7.5M14 12h2.5"/>
+            <path d="M10.5 10.5L7.5 7.5M13.5 10.5l3-3M10.5 13.5l-3 3M13.5 13.5l3 3"/>
+          </svg>
+        </div>
+        <h2 class="section-title">Geointeligencia</h2>
+        <p class="section-description">Arquitectura de datos territoriales para decisiones de ubicación. Análisis con 500M+ variables.</p>
+      </div>
       <div class="decks-grid">
         <a href="deck-wo-analisis-vocacion/" class="deck-card">
           <span class="deck-card__badge">Técnico</span>
@@ -424,7 +483,23 @@
         </a>
       </div>
       
-      <h2 class="section-title">📈 Marketing & Ventas</h2>
+      <!-- MARKETING & VENTAS -->
+      <div class="section-header">
+        <div class="section-icon">
+          <!-- PLACEHOLDER: Ícono de gráfico ascendente con embudo -->
+          <!-- Descripción: Representa el sistema de crecimiento comercial.
+               Estructura que ordena la adquisición, conversión y retención
+               de clientes. Progresión medible de resultados. -->
+          <svg viewBox="0 0 24 24">
+            <path d="M3 3v18h18"/>
+            <path d="M7 14l4-4 4 4 5-6"/>
+            <circle cx="20" cy="8" r="1.5"/>
+            <path d="M18 10l2-2"/>
+          </svg>
+        </div>
+        <h2 class="section-title">Marketing & Ventas</h2>
+        <p class="section-description">Sistema de crecimiento comercial. Estrategia, ejecución y métricas con resultados verificables.</p>
+      </div>
       <div class="decks-grid">
         <a href="deck-wo-marketing-digital/" class="deck-card">
           <span class="deck-card__badge deck-card__badge--yellow">PyMEs</span>
@@ -447,7 +522,26 @@
         </a>
       </div>
       
-      <h2 class="section-title">⚡ Tecnología & AI</h2>
+      <!-- TECNOLOGÍA & AI -->
+      <div class="section-header">
+        <div class="section-icon">
+          <!-- PLACEHOLDER: Ícono de circuito / red neuronal -->
+          <!-- Descripción: Representa la orquestación tecnológica.
+               Sistema de conexiones que automatiza procesos y ejecuta
+               decisiones con IA. Infraestructura para escala. -->
+          <svg viewBox="0 0 24 24">
+            <rect x="9" y="9" width="6" height="6" rx="1"/>
+            <path d="M12 3v3M12 18v3M3 12h3M18 12h3"/>
+            <path d="M5.5 5.5l2 2M16.5 16.5l2 2M5.5 18.5l2-2M16.5 7.5l2-2"/>
+            <circle cx="12" cy="3" r="1"/>
+            <circle cx="12" cy="21" r="1"/>
+            <circle cx="3" cy="12" r="1"/>
+            <circle cx="21" cy="12" r="1"/>
+          </svg>
+        </div>
+        <h2 class="section-title">Tecnología & AI</h2>
+        <p class="section-description">Orquestación de sistemas y automatización. Implementación de IA con método y valor medible.</p>
+      </div>
       <div class="decks-grid">
         <a href="deck-wo-automatizacion/" class="deck-card">
           <span class="deck-card__badge deck-card__badge--enterprise">Enterprise</span>
