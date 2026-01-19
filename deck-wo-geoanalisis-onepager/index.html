@@ -35,12 +35,129 @@
   <!-- Workalógico Particles System -->
   <link rel="stylesheet" href="../wo-particles.css">
   
-  <!-- Workalógico Map Component -->
-  <link rel="stylesheet" href="../wo-components/wo-mapbox.css">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   
-  <!-- Mapbox GL JS -->
-  <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
-  <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+  <!-- Custom styles for Houston map -->
+  <style>
+    .houston-map-container {
+      height: 420px;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(89, 104, 234, 0.3);
+      position: relative;
+    }
+    
+    .houston-map-legend {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(15, 15, 26, 0.95);
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(89, 104, 234, 0.3);
+      z-index: 1000;
+      font-size: 11px;
+      color: #fff;
+    }
+    
+    .houston-map-legend h4 {
+      margin: 0 0 8px 0;
+      font-size: 12px;
+      color: var(--wo-blue-lab);
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 4px 0;
+    }
+    
+    .legend-color {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    
+    .houston-map-controls {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      z-index: 1000;
+    }
+    
+    .map-layer-btn {
+      padding: 8px 14px;
+      background: rgba(15, 15, 26, 0.9);
+      border: 1px solid rgba(89, 104, 234, 0.4);
+      border-radius: 6px;
+      color: #94A3B8;
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: var(--font-body);
+    }
+    
+    .map-layer-btn:hover {
+      border-color: var(--wo-blue-lab);
+      color: #fff;
+    }
+    
+    .map-layer-btn.active {
+      background: rgba(89, 104, 234, 0.2);
+      border-color: var(--wo-blue-lab);
+      color: #fff;
+    }
+    
+    .leaflet-popup-content-wrapper {
+      background: rgba(15, 15, 26, 0.95);
+      color: #fff;
+      border-radius: 8px;
+      border: 1px solid rgba(89, 104, 234, 0.3);
+    }
+    
+    .leaflet-popup-tip {
+      background: rgba(15, 15, 26, 0.95);
+    }
+    
+    .leaflet-popup-content {
+      margin: 12px 14px;
+    }
+    
+    .zone-popup h3 {
+      margin: 0 0 8px 0;
+      color: var(--wo-blue-lab);
+      font-size: 14px;
+    }
+    
+    .zone-popup .score {
+      font-size: 28px;
+      font-weight: 700;
+      color: #10B981;
+      text-align: center;
+      margin: 8px 0;
+    }
+    
+    .zone-popup table {
+      font-size: 11px;
+      width: 100%;
+    }
+    
+    .zone-popup td {
+      padding: 3px 0;
+    }
+    
+    .zone-popup td:last-child {
+      text-align: right;
+      font-weight: 600;
+    }
+  </style>
 </head>
 <body>
   <!-- tsParticles Container -->
@@ -178,22 +295,55 @@
       </section>
 
       <!-- ═══════════════════════════════════════════════════════════════
-           SLIDE 5: DEMO INTERACTIVO - MAPA DE COLIMA
+           SLIDE 5: DEMO INTERACTIVO - MAPA DE HOUSTON (PASTES KIKOS)
            ═══════════════════════════════════════════════════════════════ -->
       <section data-background-color="#0F0F1A" data-state="map-slide" aria-label="Demo interactivo">
-        <h2 style="margin-bottom: 0.5em;">Así se ve tu <span class="accent">Análisis</span></h2>
-        <p style="color: var(--wo-text-secondary); font-size: 0.85em; margin-bottom: 1em;">Mapa interactivo de Colima — Activa las capas para explorar</p>
+        <h2 style="margin-bottom: 0.3em;">Caso Real: <span class="accent">Pastes Kikos Houston</span></h2>
+        <p style="color: var(--wo-text-secondary); font-size: 0.7em; margin-bottom: 0.8em;">Top 5 ubicaciones seleccionadas mediante análisis multicriterio — Soft Landing en USA</p>
         
-        <div id="wo-map-demo" style="height: 420px;"></div>
+        <div class="houston-map-container">
+          <div id="houston-map" style="height: 100%; width: 100%;"></div>
+          
+          <div class="houston-map-controls">
+            <button class="map-layer-btn active" data-layer="zones">🎯 Zonas Top 5</button>
+            <button class="map-layer-btn" data-layer="cells">📊 Celdas H3</button>
+            <button class="map-layer-btn" data-layer="competition">🔴 Competencia</button>
+          </div>
+          
+          <div class="houston-map-legend">
+            <h4>Scoring (0-100)</h4>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #22c55e;"></div>
+              <span>80+ Excelente</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #eab308;"></div>
+              <span>60-80 Bueno</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #f97316;"></div>
+              <span>40-60 Moderado</span>
+            </div>
+          </div>
+        </div>
         
         <aside class="notes">
-          SLIDE DE DEMO - Interactuar con el mapa:
-          1. Activar "Scoring" para ver colores por zona
-          2. Activar "Competencia" para ver puntos rojos
-          3. Activar "Isócronas" para ver tiempos de traslado
-          4. Click en una zona para ver métricas detalladas
+          CASO REAL: Pastes Kikos - Soft Landing en Houston
           
-          Este es el tipo de entregable que recibe el cliente.
+          Metodología aplicada:
+          - 40% Población Anglosajona (target market)
+          - 30% Aptitud Drive-Through 
+          - 20% Ocasión de Consumo (POIs cercanos)
+          - 10% Oportunidad Precio/Valor
+          
+          Zonas seleccionadas:
+          1. Energy Corridor / Memorial (Score: 73.5)
+          2. Spring Branch / Long Point (Score: 70.8)
+          3. Pasadena / Clear Lake (Score: 64.5)
+          4. Westchase / Gessner (Score: 80.8) ← TOP
+          5. Humble / IAH Area (Score: 78.0)
+          
+          Click en cada zona para ver métricas detalladas.
         </aside>
       </section>
 
@@ -362,11 +512,157 @@
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
   <script src="../wo-particles.js"></script>
   
-  <!-- Workalógico Map Component -->
-  <script src="../wo-components/wo-mapbox.js"></script>
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   
   <script>
+    let houstonMap = null;
     let mapInitialized = false;
+    let layerGroups = {};
+    
+    // Datos de las zonas (nombres descriptivos)
+    const areaNames = {
+      1: "Energy Corridor / Memorial",
+      2: "Spring Branch / Long Point", 
+      3: "Pasadena / Clear Lake",
+      4: "Westchase / Gessner",
+      5: "Humble / IAH Area"
+    };
+    
+    // Función de color por score
+    function getScoreColor(score) {
+      if (score >= 80) return '#22c55e';
+      if (score >= 70) return '#84cc16';
+      if (score >= 60) return '#eab308';
+      if (score >= 50) return '#f97316';
+      return '#ef4444';
+    }
+    
+    // Inicializar mapa de Houston
+    async function initHoustonMap() {
+      if (houstonMap) return;
+      
+      const container = document.getElementById('houston-map');
+      if (!container) return;
+      
+      // Crear mapa centrado en Houston
+      houstonMap = L.map(container, {
+        center: [29.76, -95.36],
+        zoom: 10,
+        zoomControl: true
+      });
+      
+      // Capa base oscura (CartoDB Dark)
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap, &copy; CartoDB',
+        maxZoom: 19
+      }).addTo(houstonMap);
+      
+      // Cargar GeoJSON
+      try {
+        const [zonesRes, cellsRes, competitionRes] = await Promise.all([
+          fetch('data/top5_locations.geojson'),
+          fetch('data/candidate_cells.geojson'),
+          fetch('data/competition_all.geojson')
+        ]);
+        
+        const zones = await zonesRes.json();
+        const cells = await cellsRes.json();
+        const competition = await competitionRes.json();
+        
+        // Crear layer groups
+        layerGroups.zones = L.layerGroup();
+        layerGroups.cells = L.layerGroup();
+        layerGroups.competition = L.layerGroup();
+        
+        // 1. Capa de Zonas Top 5
+        L.geoJSON(zones, {
+          style: (feature) => ({
+            color: getScoreColor(feature.properties.mean_score),
+            weight: 3,
+            fillColor: getScoreColor(feature.properties.mean_score),
+            fillOpacity: 0.35
+          }),
+          onEachFeature: (feature, layer) => {
+            const p = feature.properties;
+            const name = areaNames[p.zone_id] || `Zona ${p.zone_id}`;
+            layer.bindPopup(`
+              <div class="zone-popup">
+                <h3>Zona ${p.zone_id}: ${name}</h3>
+                <div class="score">${p.mean_score.toFixed(1)}/100</div>
+                <table>
+                  <tr><td>Anglo Score:</td><td>${p.anglo_score_pct.toFixed(1)}%</td></tr>
+                  <tr><td>Drive-Through:</td><td>${p.drive_score_pct.toFixed(1)}%</td></tr>
+                  <tr><td>Ocasión:</td><td>${p.occasion_score_pct.toFixed(1)}%</td></tr>
+                  <tr><td>Valor:</td><td>${p.value_opportunity_pct.toFixed(1)}%</td></tr>
+                  <tr><td>Competencia (2km):</td><td>${p.competition_2km}</td></tr>
+                </table>
+              </div>
+            `, {maxWidth: 280});
+          }
+        }).addTo(layerGroups.zones);
+        
+        // 2. Capa de Celdas H3 Candidatas
+        L.geoJSON(cells, {
+          style: (feature) => ({
+            color: '#64748B',
+            weight: 0.5,
+            fillColor: getScoreColor(feature.properties.final_score || 50),
+            fillOpacity: 0.5
+          }),
+          onEachFeature: (feature, layer) => {
+            const p = feature.properties;
+            layer.bindTooltip(`Score: ${(p.final_score || 0).toFixed(1)} | Rank: #${p.rank || 'N/A'}`, {
+              sticky: true,
+              className: 'leaflet-tooltip-dark'
+            });
+          }
+        }).addTo(layerGroups.cells);
+        
+        // 3. Capa de Competencia
+        L.geoJSON(competition, {
+          pointToLayer: (feature, latlng) => {
+            return L.circleMarker(latlng, {
+              radius: 4,
+              fillColor: '#ef4444',
+              color: '#dc2626',
+              weight: 1,
+              fillOpacity: 0.7
+            });
+          },
+          onEachFeature: (feature, layer) => {
+            const p = feature.properties;
+            const name = p.name || p.NAME || 'Competidor';
+            layer.bindTooltip(name, { sticky: true });
+          }
+        }).addTo(layerGroups.competition);
+        
+        // Mostrar zonas por defecto
+        layerGroups.zones.addTo(houstonMap);
+        
+        // Configurar botones de capas
+        document.querySelectorAll('.map-layer-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const layer = btn.dataset.layer;
+            btn.classList.toggle('active');
+            
+            if (btn.classList.contains('active')) {
+              layerGroups[layer].addTo(houstonMap);
+            } else {
+              houstonMap.removeLayer(layerGroups[layer]);
+            }
+          });
+        });
+        
+        // Fit bounds a las zonas
+        const bounds = L.geoJSON(zones).getBounds();
+        houstonMap.fitBounds(bounds, { padding: [30, 30] });
+        
+      } catch (error) {
+        console.error('Error loading GeoJSON:', error);
+        container.innerHTML = '<div style="color: #ef4444; text-align: center; padding: 2rem;">Error cargando datos del mapa</div>';
+      }
+    }
     
     Reveal.initialize({
       width: 1280,
@@ -397,50 +693,32 @@
       showNotes: false,
       plugins: [RevealNotes]
     }).then(() => {
-      // Inicializar partículas con variante 'geo' (más data points)
       setupWoParticles('geo');
     });
     
     // ═══════════════════════════════════════════════════════════════
-    // INTEGRACIÓN MAPA INTERACTIVO
+    // INTEGRACIÓN MAPA HOUSTON (LEAFLET)
     // ═══════════════════════════════════════════════════════════════
     
-    // Inicializar mapa cuando el slide está visible
     Reveal.on('slidechanged', (event) => {
       const currentState = event.currentSlide.dataset.state;
       
       if (currentState === 'map-slide' && !mapInitialized) {
-        // Inicializar mapa de Colima
         setTimeout(() => {
-          initWoMap('wo-map-demo', {
-            center: [-103.7250, 19.2433], // Centro de Colima
-            zoom: 12,
-            showControls: true,
-            showLegend: true
-          });
+          initHoustonMap();
           mapInitialized = true;
-          
-          // Auto-activar capa de scoring después de 1 segundo
-          setTimeout(() => {
-            if (window.woMapInstance) {
-              revealMapLayers(['scoring'], 0);
-            }
-          }, 1000);
-        }, 300);
+        }, 400);
       }
     });
     
-    // Destruir mapa al salir del slide (liberar memoria)
-    Reveal.on('slidetransitionend', (event) => {
-      const previousState = event.previousSlide?.dataset?.state;
-      if (previousState === 'map-slide') {
-        // Opcional: destruir para liberar recursos
-        // destroyWoMap();
-        // mapInitialized = false;
+    // Resize map when window resizes
+    window.addEventListener('resize', () => {
+      if (houstonMap) {
+        houstonMap.invalidateSize();
       }
     });
     
-    // Keyboard shortcuts info
+    // Keyboard shortcuts
     Reveal.addKeyBinding({ keyCode: 72, key: 'H', description: 'Mostrar ayuda' }, () => {
       Reveal.toggleHelp();
     });
