@@ -41,7 +41,7 @@
   <!-- Custom styles for Houston map -->
   <style>
     .houston-map-container {
-      height: 340px;
+      height: 300px;
       width: 100%;
       border-radius: 12px;
       overflow: hidden;
@@ -298,38 +298,42 @@
            SLIDE 5: DEMO INTERACTIVO - MAPA DE HOUSTON (PASTES KIKOS)
            ═══════════════════════════════════════════════════════════════ -->
       <section data-background-color="#0F0F1A" data-state="map-slide" aria-label="Demo interactivo">
-        <h2 style="margin-bottom: 0.2em;">Caso Real: <span class="accent">Pastes Kikos Houston</span></h2>
-        <p style="color: var(--wo-text-secondary); font-size: 0.55em; margin-bottom: 0.5em;">Análisis multicriterio para Soft Landing en USA — Todo este procesamiento se decanta en el mapa</p>
+        <h2 style="margin-bottom: 0.15em;">Caso Real: <span class="accent">Pastes Kikos Houston</span></h2>
+        <p style="color: var(--wo-text-secondary); font-size: 0.5em; margin-bottom: 0.4em;">Todo el análisis de datos, IA y geoestadística se decanta en este mapa interactivo</p>
         
-        <!-- NUMERALIA: Pipeline de procesamiento de datos -->
-        <div class="analysis-pipeline" style="display: flex; justify-content: center; gap: 8px; margin-bottom: 0.6em; flex-wrap: wrap;">
-          <div class="pipeline-stat" style="background: rgba(89, 104, 234, 0.15); border: 1px solid rgba(89, 104, 234, 0.3); border-radius: 6px; padding: 6px 12px; text-align: center;">
-            <div style="font-size: 0.85em; font-weight: 700; color: var(--wo-blue-lab);">1,024</div>
-            <div style="font-size: 0.45em; color: var(--wo-text-secondary);">Celdas H3 evaluadas</div>
+        <!-- NUMERALIA PRINCIPAL: Data dura del análisis -->
+        <div class="analysis-pipeline" style="display: flex; justify-content: center; gap: 6px; margin-bottom: 0.4em; flex-wrap: wrap;">
+          <div class="pipeline-stat" style="background: rgba(89, 104, 234, 0.15); border: 1px solid rgba(89, 104, 234, 0.3); border-radius: 6px; padding: 4px 10px; text-align: center;">
+            <div style="font-size: 0.75em; font-weight: 700; color: var(--wo-blue-lab);">7,300+</div>
+            <div style="font-size: 0.4em; color: var(--wo-text-secondary);">Restaurantes analizados</div>
           </div>
-          <div class="pipeline-stat" style="background: rgba(89, 104, 234, 0.15); border: 1px solid rgba(89, 104, 234, 0.3); border-radius: 6px; padding: 6px 12px; text-align: center;">
-            <div style="font-size: 0.85em; font-weight: 700; color: var(--wo-blue-lab);">4</div>
-            <div style="font-size: 0.45em; color: var(--wo-text-secondary);">Variables MCDA</div>
+          <div class="pipeline-stat" style="background: rgba(89, 104, 234, 0.15); border: 1px solid rgba(89, 104, 234, 0.3); border-radius: 6px; padding: 4px 10px; text-align: center;">
+            <div style="font-size: 0.75em; font-weight: 700; color: var(--wo-blue-lab);">195K</div>
+            <div style="font-size: 0.4em; color: var(--wo-text-secondary);">Reseñas procesadas (NLP)</div>
           </div>
-          <div class="pipeline-stat" style="background: rgba(89, 104, 234, 0.15); border: 1px solid rgba(89, 104, 234, 0.3); border-radius: 6px; padding: 6px 12px; text-align: center;">
-            <div style="font-size: 0.85em; font-weight: 700; color: var(--wo-blue-lab);">170+</div>
-            <div style="font-size: 0.45em; color: var(--wo-text-secondary);">Competidores mapeados</div>
+          <div class="pipeline-stat" style="background: rgba(89, 104, 234, 0.15); border: 1px solid rgba(89, 104, 234, 0.3); border-radius: 6px; padding: 4px 10px; text-align: center;">
+            <div style="font-size: 0.75em; font-weight: 700; color: var(--wo-blue-lab);">700+</div>
+            <div style="font-size: 0.4em; color: var(--wo-text-secondary);">Menús analizados (Vision)</div>
           </div>
-          <div class="pipeline-stat" style="background: rgba(89, 104, 234, 0.15); border: 1px solid rgba(89, 104, 234, 0.3); border-radius: 6px; padding: 6px 12px; text-align: center;">
-            <div style="font-size: 0.85em; font-weight: 700; color: #10B981;">5</div>
-            <div style="font-size: 0.45em; color: var(--wo-text-secondary);">Zonas Top seleccionadas</div>
+          <div class="pipeline-stat" style="background: rgba(89, 104, 234, 0.15); border: 1px solid rgba(89, 104, 234, 0.3); border-radius: 6px; padding: 4px 10px; text-align: center;">
+            <div style="font-size: 0.75em; font-weight: 700; color: var(--wo-blue-lab);">1,024</div>
+            <div style="font-size: 0.4em; color: var(--wo-text-secondary);">Celdas H3 evaluadas</div>
+          </div>
+          <div class="pipeline-stat" style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 6px; padding: 4px 10px; text-align: center;">
+            <div style="font-size: 0.75em; font-weight: 700; color: #10B981;">5</div>
+            <div style="font-size: 0.4em; color: var(--wo-text-secondary);">Zonas Top</div>
           </div>
         </div>
         
-        <!-- Metodología MCDA compacta -->
-        <div class="mcda-weights" style="display: flex; justify-content: center; gap: 16px; margin-bottom: 0.6em; font-size: 0.5em; color: var(--wo-text-muted);">
-          <span><strong style="color: var(--wo-yellow-spark);">40%</strong> Población Anglo</span>
-          <span><strong style="color: var(--wo-yellow-spark);">30%</strong> Drive-Through</span>
-          <span><strong style="color: var(--wo-yellow-spark);">20%</strong> Ocasión Consumo</span>
-          <span><strong style="color: var(--wo-yellow-spark);">10%</strong> Oportunidad Valor</span>
+        <!-- ANÁLISIS DETALLADO: Segunda fila -->
+        <div class="analysis-detail" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 0.35em; font-size: 0.42em; color: var(--wo-text-muted);">
+          <span>📍 <strong>Área:</strong> Houston Metro (26,420 km²)</span>
+          <span>🍽️ <strong>Productos:</strong> Ingredientes, sabores y precios</span>
+          <span>⭐ <strong>Sentiment:</strong> 67 aspectos evaluados</span>
+          <span>📊 <strong>MCDA:</strong> 4 variables ponderadas</span>
         </div>
         
-        <div class="houston-map-container" style="height: 340px;">
+        <div class="houston-map-container" style="height: 300px;">
           <div id="houston-map" style="height: 100%; width: 100%;"></div>
           
           <div class="houston-map-controls">
@@ -355,26 +359,56 @@
           </div>
           
           <!-- Data sources badge -->
-          <div style="position: absolute; bottom: 20px; right: 20px; background: rgba(15, 15, 26, 0.9); padding: 6px 10px; border-radius: 4px; font-size: 9px; color: var(--wo-text-muted); border: 1px solid rgba(89, 104, 234, 0.2);">
-            <strong>Fuentes:</strong> US Census · HERE API · Google Places · OSM
+          <div style="position: absolute; bottom: 15px; right: 15px; background: rgba(15, 15, 26, 0.95); padding: 5px 8px; border-radius: 4px; font-size: 8px; color: var(--wo-text-muted); border: 1px solid rgba(89, 104, 234, 0.2);">
+            <strong>Pipeline:</strong> GPT-4o-mini · LangGraph · Random Forest · Moran's I · DBSCAN<br>
+            <strong>Fuentes:</strong> Google Maps · US Census · HERE API · OSM
           </div>
         </div>
         
         <aside class="notes">
           CASO REAL: Pastes Kikos - Soft Landing en Houston
           
-          PIPELINE DE DATOS:
-          1. Recolección: US Census (demografía), HERE (tráfico), Google Places (POIs)
-          2. Procesamiento: 1,024 celdas H3 (resolución 8) evaluadas
-          3. MCDA: Análisis multicriterio con 4 variables ponderadas
-          4. Clustering: Agrupación espacial para identificar zonas coherentes
-          5. Ranking: Scoring final 0-100 para cada zona
+          PIPELINE COMPLETO DE DATOS:
           
-          METODOLOGÍA MCDA (Pesos):
-          - 40% Población Anglosajona (target market principal)
-          - 30% Aptitud Drive-Through (proximidad arteriales)
-          - 20% Ocasión de Consumo (densidad de POIs desayuno/almuerzo)
-          - 10% Oportunidad Precio/Valor (brecha vs mercado)
+          1. RECOLECCIÓN (Google Maps API + Apify):
+             - 7,348 restaurantes en Houston Metro
+             - POIs, horarios, precios, categorías
+             
+          2. ANÁLISIS DE RESEÑAS (NLP con GPT-4o-mini):
+             - 194,951 reseñas procesadas
+             - 67 aspectos únicos identificados (food, service, price, ambience...)
+             - Sentiment scoring (-1.0 a 1.0)
+             - Aspect-based sentiment analysis
+             
+          3. ANÁLISIS DE MENÚS (Vision AI + LangGraph):
+             - 700+ menús extraídos via OCR
+             - Análisis de productos, ingredientes, sabores
+             - Categorización: breakfast, tacos, burgers, seafood...
+             - Detección de perfiles de sabor: sweet, spicy, umami, salty...
+             - Análisis de pricing por categoría
+             
+          4. ANÁLISIS GEOESPACIAL:
+             - 1,024 celdas H3 (resolución 8) evaluadas
+             - Moran's I: Autocorrelación espacial de calidad
+             - DBSCAN: Clustering de hotspots de competencia
+             - Kernel Density Estimation: Hunger Index
+             
+          5. MCDA (Análisis Multicriterio):
+             - 40% Población Anglosajona (target market)
+             - 30% Aptitud Drive-Through (proximidad arteriales)
+             - 20% Ocasión de Consumo (densidad de POIs desayuno/almuerzo)
+             - 10% Oportunidad Precio/Valor (brecha vs mercado)
+             
+          6. MODELOS PREDICTIVOS:
+             - Random Forest: Feature importance para drivers de demanda
+             - K-means (k=4): Segmentación de mercado
+             - Isolation Forest: Detección de outliers
+          
+          HERRAMIENTAS USADAS:
+          - GPT-4o-mini (NLP + Vision)
+          - LangGraph (Orquestación multi-agente)
+          - Python (pandas, scikit-learn, geopandas)
+          - Observable Framework (Visualización)
           
           RESULTADOS:
           1. Energy Corridor / Memorial (73.5) - 59 celdas, 43 competidores
