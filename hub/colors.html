@@ -21,6 +21,84 @@
   
   <!-- Hub Styles -->
   <link rel="stylesheet" href="hub.css">
+  
+  <style>
+    /* Estilos mejorados para previsualizaciones de color */
+    .color-swatch__preview {
+      min-height: 100px;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Indicador de luminosidad para colores oscuros */
+    .color-swatch__preview--dark::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Patrón de cuadrícula para colores con transparencia */
+    .color-swatch__preview--transparent {
+      background-image: 
+        linear-gradient(45deg, #1a1a2e 25%, transparent 25%),
+        linear-gradient(-45deg, #1a1a2e 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #1a1a2e 75%),
+        linear-gradient(-45deg, transparent 75%, #1a1a2e 75%);
+      background-size: 16px 16px;
+      background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+      background-color: #0f0f1a;
+    }
+    
+    .color-swatch__preview--transparent::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    
+    /* Indicador de escala de grises/oscuros */
+    .color-scale-indicator {
+      display: flex;
+      gap: 4px;
+      margin-top: 0.5rem;
+    }
+    
+    .color-scale-indicator__bar {
+      height: 4px;
+      flex: 1;
+      border-radius: 2px;
+    }
+    
+    /* Comparación visual para fondos oscuros */
+    .dark-comparison {
+      display: flex;
+      gap: 2px;
+      height: 60px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-top: 1.5rem;
+      border: 1px solid var(--border-subtle);
+    }
+    
+    .dark-comparison__item {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 8px;
+      font-size: 0.65rem;
+      color: var(--wo-text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
 </head>
 <body>
   <div class="hub-layout">
@@ -57,6 +135,9 @@
         </a>
         <a href="mapbox.html">
           <span>&#x1F5FA;</span> Mapbox Theme
+        </a>
+        <a href="map-components.html">
+          <span>&#x1F4CD;</span> Map Components
         </a>
         
         <h4>Assets</h4>
@@ -166,9 +247,19 @@
         <h2>Fondos (Dark Theme)</h2>
         <p>Jerarquía de elevación para superficies y contenedores.</p>
         
-        <div class="hub-grid hub-grid--3">
+        <!-- Comparación visual de la escala de oscuros -->
+        <div class="dark-comparison">
+          <div class="dark-comparison__item" style="background: #0F0F1A;">Base</div>
+          <div class="dark-comparison__item" style="background: #1A1A2E;">Elevated</div>
+          <div class="dark-comparison__item" style="background: #252542;">Surface</div>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--wo-text-muted); margin-top: 0.5rem; text-align: center;">
+          ← Más oscuro (fondo) | Más claro (elevado) →
+        </p>
+        
+        <div class="hub-grid hub-grid--3" style="margin-top: 1.5rem;">
           <div class="color-swatch" data-copy="--wo-dark" onclick="copyColor(this)">
-            <div class="color-swatch__preview" style="background: var(--wo-dark);"></div>
+            <div class="color-swatch__preview color-swatch__preview--dark" style="background: #0F0F1A; border-left: 4px solid #5968EA;"></div>
             <div class="color-swatch__info">
               <div class="color-swatch__name">Dark (Base)</div>
               <div class="color-swatch__var">--wo-dark</div>
@@ -180,7 +271,7 @@
           </div>
           
           <div class="color-swatch" data-copy="--wo-dark-elevated" onclick="copyColor(this)">
-            <div class="color-swatch__preview" style="background: var(--wo-dark-elevated);"></div>
+            <div class="color-swatch__preview color-swatch__preview--dark" style="background: #1A1A2E; border-left: 4px solid #5968EA;"></div>
             <div class="color-swatch__info">
               <div class="color-swatch__name">Dark Elevated</div>
               <div class="color-swatch__var">--wo-dark-elevated</div>
@@ -192,7 +283,7 @@
           </div>
           
           <div class="color-swatch" data-copy="--wo-dark-surface" onclick="copyColor(this)">
-            <div class="color-swatch__preview" style="background: var(--wo-dark-surface);"></div>
+            <div class="color-swatch__preview color-swatch__preview--dark" style="background: #252542; border-left: 4px solid #5968EA;"></div>
             <div class="color-swatch__info">
               <div class="color-swatch__name">Dark Surface</div>
               <div class="color-swatch__var">--wo-dark-surface</div>
@@ -204,7 +295,9 @@
           </div>
           
           <div class="color-swatch" data-copy="--wo-accent-dim" onclick="copyColor(this)">
-            <div class="color-swatch__preview" style="background: var(--wo-accent-dim);"></div>
+            <div class="color-swatch__preview color-swatch__preview--transparent" style="border-left: 4px solid #5968EA;">
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(89, 104, 234, 0.15);"></div>
+            </div>
             <div class="color-swatch__info">
               <div class="color-swatch__name">Accent Dim</div>
               <div class="color-swatch__var">--wo-accent-dim</div>
@@ -216,7 +309,9 @@
           </div>
           
           <div class="color-swatch" data-copy="--wo-yellow-dim" onclick="copyColor(this)">
-            <div class="color-swatch__preview" style="background: var(--wo-yellow-dim);"></div>
+            <div class="color-swatch__preview color-swatch__preview--transparent" style="border-left: 4px solid #FFCB00;">
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255, 203, 0, 0.15);"></div>
+            </div>
             <div class="color-swatch__info">
               <div class="color-swatch__name">Yellow Dim</div>
               <div class="color-swatch__var">--wo-yellow-dim</div>

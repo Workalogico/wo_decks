@@ -35,23 +35,64 @@
     }
     
     .bg-card__preview {
-      height: 180px;
+      height: 200px;
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
+      overflow: hidden;
     }
     
+    /* Portada/CTA - Gradiente radial con spotlight central */
     .bg-card__preview--cover {
-      background: radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%);
+      background: radial-gradient(ellipse at center, #3a3a60 0%, #252542 40%, #0F0F1A 100%);
     }
     
+    .bg-card__preview--cover::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(89, 104, 234, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    
+    /* Sección - Gradiente diagonal más pronunciado */
     .bg-card__preview--section {
-      background: linear-gradient(135deg, #0F0F1A 0%, #252542 100%);
+      background: linear-gradient(135deg, #0F0F1A 0%, #1a1a35 30%, #3a3a60 70%, #252542 100%);
     }
     
+    .bg-card__preview--section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, transparent 0%, rgba(89, 104, 234, 0.08) 50%, transparent 100%);
+    }
+    
+    /* Contenido - Sólido con bordes sutiles */
     .bg-card__preview--content {
       background: #0F0F1A;
+      border-top: 3px solid rgba(89, 104, 234, 0.3);
+    }
+    
+    .bg-card__preview--content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(rgba(89, 104, 234, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(89, 104, 234, 0.02) 1px, transparent 1px);
+      background-size: 30px 30px;
+      opacity: 0.5;
     }
     
     .bg-card__preview--grid {
@@ -69,12 +110,64 @@
       opacity: 0.4;
     }
     
+    /* Mock de slide dentro del preview */
+    .bg-card__mock {
+      position: absolute;
+      width: 70%;
+      height: 65%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0.5rem;
+      background: rgba(0, 0, 0, 0.2);
+    }
+    
+    .bg-card__mock-title {
+      width: 60%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 2px;
+      margin-bottom: 6px;
+    }
+    
+    .bg-card__mock-subtitle {
+      width: 40%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 2px;
+    }
+    
+    .bg-card__mock-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      width: 80%;
+      margin-top: 10px;
+    }
+    
+    .bg-card__mock-card {
+      height: 20px;
+      background: rgba(89, 104, 234, 0.15);
+      border-radius: 3px;
+      border: 1px solid rgba(89, 104, 234, 0.2);
+    }
+    
     .bg-card__label {
       font-family: var(--font-heading);
-      font-size: 1rem;
+      font-size: 0.75rem;
       font-weight: 600;
       color: var(--wo-text);
       text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
     }
     
     .bg-card__info {
@@ -132,6 +225,168 @@
       position: relative;
       z-index: 1;
       text-align: center;
+    }
+    
+    /* ═══════════════════════════════════════════════════════════════
+       PARTICLES DEMO
+       ═══════════════════════════════════════════════════════════════ */
+    
+    .particles-demo {
+      position: relative;
+      height: 350px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      margin-top: 1.5rem;
+      background: radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%);
+    }
+    
+    .particles-demo__container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    
+    .particles-demo__content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      text-align: center;
+      padding: 2rem;
+      pointer-events: none;
+    }
+    
+    .particles-demo__title {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    }
+    
+    .particles-demo__subtitle {
+      color: var(--wo-text-secondary);
+      font-size: 1rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    
+    .particles-demo__badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--wo-yellow-spark);
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      z-index: 2;
+    }
+    
+    .particles-demo__hint {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      font-size: 0.75rem;
+      color: var(--wo-text-muted);
+      background: rgba(0, 0, 0, 0.4);
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      z-index: 2;
+    }
+    
+    /* Particles config cards */
+    .particles-config {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .particles-config__item {
+      background: var(--wo-dark-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+    }
+    
+    .particles-config__label {
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--wo-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    
+    .particles-config__value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--wo-blue-lab);
+    }
+    
+    .particles-config__colors {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    
+    .particles-config__color {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .particles-config__color--blue {
+      background: #5968EA;
+    }
+    
+    .particles-config__color--yellow {
+      background: #FFCB00;
+    }
+    
+    .particles-config__color-label {
+      font-size: 0.75rem;
+      color: var(--wo-text-secondary);
+    }
+    
+    /* Slides recomendados */
+    .slides-recommendation {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    
+    .slides-recommendation__item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--wo-dark-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+    }
+    
+    .slides-recommendation__icon {
+      font-size: 1rem;
+    }
+    
+    .slides-recommendation__item--active {
+      border-color: var(--wo-yellow-spark);
+      background: rgba(255, 203, 0, 0.1);
     }
   </style>
 </head>
@@ -206,28 +461,43 @@
           <div class="bg-card">
             <div class="bg-card__preview bg-card__preview--cover">
               <span class="bg-card__label">PORTADA / CTA</span>
+              <div class="bg-card__mock">
+                <div class="bg-card__mock-title"></div>
+                <div class="bg-card__mock-subtitle"></div>
+              </div>
             </div>
             <div class="bg-card__info">
               <div class="bg-card__name">Gradient Cover</div>
               <div class="bg-card__usage">Slide 1 (portada) y último slide (CTA)</div>
-              <code class="bg-card__var">--gradient-cover</code>
+              <code class="bg-card__var">radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%)</code>
             </div>
           </div>
           
           <div class="bg-card">
             <div class="bg-card__preview bg-card__preview--section">
               <span class="bg-card__label">SECCIÓN</span>
+              <div class="bg-card__mock">
+                <div class="bg-card__mock-title" style="width: 80%;"></div>
+                <div class="bg-card__mock-subtitle" style="width: 50%;"></div>
+              </div>
             </div>
             <div class="bg-card__info">
               <div class="bg-card__name">Gradient Section</div>
               <div class="bg-card__usage">Transiciones entre temas</div>
-              <code class="bg-card__var">--gradient-section</code>
+              <code class="bg-card__var">linear-gradient(135deg, #0F0F1A 0%, #252542 100%)</code>
             </div>
           </div>
           
           <div class="bg-card">
             <div class="bg-card__preview bg-card__preview--content">
               <span class="bg-card__label">CONTENIDO</span>
+              <div class="bg-card__mock">
+                <div class="bg-card__mock-title" style="width: 50%; align-self: flex-start;"></div>
+                <div class="bg-card__mock-grid">
+                  <div class="bg-card__mock-card"></div>
+                  <div class="bg-card__mock-card"></div>
+                </div>
+              </div>
             </div>
             <div class="bg-card__info">
               <div class="bg-card__name">Solid Dark</div>
@@ -268,6 +538,177 @@
   opacity: 0.4;
   z-index: -1;
 }</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Particles Animation -->
+      <section class="hub-section">
+        <h2>Partículas Animadas <span class="accent">"Data Network"</span></h2>
+        <p>Red de nodos conectados que representa la inteligencia de datos geoespaciales. Aparece en slides clave usando <a href="https://particles.js.org/" target="_blank">tsParticles</a>.</p>
+        
+        <!-- Live Demo -->
+        <div class="particles-demo">
+          <span class="particles-demo__badge">INTERACTIVO</span>
+          <div id="particles-demo-container" class="particles-demo__container"></div>
+          <div class="particles-demo__content">
+            <div class="particles-demo__title">Inteligencia <span class="accent">Geoespacial</span></div>
+            <div class="particles-demo__subtitle">Mueve el cursor para interactuar con la red de datos</div>
+          </div>
+          <span class="particles-demo__hint">Hover para conectar nodos</span>
+        </div>
+        
+        <!-- Config Overview -->
+        <h3 style="margin-top: 2rem;">Configuración de Marca</h3>
+        <div class="particles-config">
+          <div class="particles-config__item">
+            <div class="particles-config__label">Colores</div>
+            <div class="particles-config__colors">
+              <div class="particles-config__color particles-config__color--blue"></div>
+              <span class="particles-config__color-label">75% Azul</span>
+              <div class="particles-config__color particles-config__color--yellow"></div>
+              <span class="particles-config__color-label">25% Amarillo</span>
+            </div>
+          </div>
+          <div class="particles-config__item">
+            <div class="particles-config__label">Partículas</div>
+            <div class="particles-config__value">50 nodos</div>
+          </div>
+          <div class="particles-config__item">
+            <div class="particles-config__label">Velocidad</div>
+            <div class="particles-config__value">0.6 (lenta)</div>
+          </div>
+          <div class="particles-config__item">
+            <div class="particles-config__label">Links</div>
+            <div class="particles-config__value">140px distancia</div>
+          </div>
+        </div>
+        
+        <!-- Slides recomendados -->
+        <h3 style="margin-top: 2rem;">Slides Recomendados</h3>
+        <p style="font-size: 0.9rem; color: var(--wo-text-secondary);">Agregar <code style="background: var(--wo-dark-surface); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.8rem;">data-particles="true"</code> a las sections donde se desea mostrar:</p>
+        <div class="slides-recommendation">
+          <div class="slides-recommendation__item slides-recommendation__item--active">
+            <span class="slides-recommendation__icon">1</span>
+            <span>Portada</span>
+          </div>
+          <div class="slides-recommendation__item">
+            <span class="slides-recommendation__icon">...</span>
+            <span>Slides de sección</span>
+          </div>
+          <div class="slides-recommendation__item slides-recommendation__item--active">
+            <span class="slides-recommendation__icon">N</span>
+            <span>CTA de cierre</span>
+          </div>
+        </div>
+        
+        <!-- CSS Required -->
+        <div class="code-block" style="margin-top: 1.5rem;">
+          <div class="code-block__header">
+            <span class="code-block__lang">CSS - Estilos requeridos</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-particles-css')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-particles-css">#tsparticles {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+#tsparticles.visible { opacity: 1; }
+
+.reveal { position: relative; z-index: 1; }
+
+/* Atenuar grid cuando hay partículas activas */
+.particles-active .grid-background { opacity: 0.3 !important; }</pre>
+          </div>
+        </div>
+        
+        <!-- JS Config -->
+        <div class="code-block" style="margin-top: 1rem;">
+          <div class="code-block__header">
+            <span class="code-block__lang">JavaScript - Configuración tsParticles</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-particles-js')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-particles-js">const particlesConfig = {
+  particles: {
+    color: { value: ["#5968EA", "#5968EA", "#5968EA", "#FFCB00"] }, // 75% azul, 25% amarillo
+    links: {
+      enable: true,
+      color: "#5968EA",
+      distance: 140,
+      opacity: 0.12,
+      width: 1
+    },
+    move: {
+      enable: true,
+      speed: 0.6,
+      direction: "none",
+      outModes: { default: "out" }
+    },
+    number: { value: 50 },
+    opacity: { value: { min: 0.3, max: 0.7 } },
+    size: { value: { min: 2, max: 4 } }
+  },
+  interactivity: {
+    events: {
+      onHover: { enable: true, mode: "grab" }
+    },
+    modes: {
+      grab: {
+        distance: 180,
+        links: { color: "#FFCB00", opacity: 0.5 } // Amarillo al hover
+      }
+    }
+  }
+};
+
+// Inicializar
+tsParticles.load("tsparticles", particlesConfig);</pre>
+          </div>
+        </div>
+        
+        <!-- HTML Implementation -->
+        <div class="code-block" style="margin-top: 1rem;">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML - Activar en slide</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-particles-html')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-particles-html">&lt;!-- Agregar contenedor antes de .reveal --&gt;
+&lt;div id="tsparticles"&gt;&lt;/div&gt;
+
+&lt;!-- Activar partículas con data-attribute --&gt;
+&lt;section data-background-gradient="radial-gradient(...)" 
+         data-particles="true"&gt;
+  &lt;div class="wo-cover"&gt;...&lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- Control de visibilidad en Reveal.js --&gt;
+&lt;script&gt;
+Reveal.on('slidechanged', event =&gt; {
+  const particles = document.getElementById('tsparticles');
+  const hasParticles = event.currentSlide.dataset.particles === 'true';
+  particles.classList.toggle('visible', hasParticles);
+  document.body.classList.toggle('particles-active', hasParticles);
+});
+&lt;/script&gt;</pre>
+          </div>
+        </div>
+        
+        <!-- CDN -->
+        <div class="code-block" style="margin-top: 1rem;">
+          <div class="code-block__header">
+            <span class="code-block__lang">CDN - Incluir librería</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-particles-cdn')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-particles-cdn">&lt;script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"&gt;&lt;/script&gt;</pre>
           </div>
         </div>
       </section>
@@ -352,5 +793,68 @@
   
   <!-- Hub JS -->
   <script src="hub.js"></script>
+  
+  <!-- tsParticles for demo -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+  <script>
+    // Initialize particles demo
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof tsParticles !== 'undefined') {
+        tsParticles.load("particles-demo-container", {
+          fullScreen: { enable: false },
+          background: { color: { value: "transparent" } },
+          fpsLimit: 60,
+          particles: {
+            color: { value: ["#5968EA", "#5968EA", "#5968EA", "#FFCB00"] },
+            links: {
+              enable: true,
+              color: "#5968EA",
+              distance: 140,
+              opacity: 0.15,
+              width: 1
+            },
+            move: {
+              enable: true,
+              speed: 0.6,
+              direction: "none",
+              random: false,
+              straight: false,
+              outModes: { default: "out" }
+            },
+            number: {
+              value: 40,
+              density: { enable: true, area: 800 }
+            },
+            opacity: {
+              value: { min: 0.3, max: 0.7 }
+            },
+            size: {
+              value: { min: 2, max: 4 }
+            }
+          },
+          interactivity: {
+            detectsOn: "canvas",
+            events: {
+              onHover: {
+                enable: true,
+                mode: "grab"
+              },
+              resize: true
+            },
+            modes: {
+              grab: {
+                distance: 180,
+                links: {
+                  color: "#FFCB00",
+                  opacity: 0.6
+                }
+              }
+            }
+          },
+          detectRetina: true
+        });
+      }
+    });
+  </script>
 </body>
 </html>
