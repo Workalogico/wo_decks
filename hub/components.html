@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Componentes - Design System Workalógico">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <title>Componentes | Design System Hub</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../LOGOS/teseracto yellow@3x.png">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Design Tokens + Design System -->
+  <link rel="stylesheet" href="../wo-tokens.css">
+  <link rel="stylesheet" href="../wo-design-system.css">
+  
+  <!-- Hub Styles -->
+  <link rel="stylesheet" href="hub.css">
+  
+  <style>
+    /* Override reveal.js styles for hub preview */
+    .component-demo {
+      font-size: 16px;
+    }
+    .component-demo .wo-card,
+    .component-demo .wo-stat,
+    .component-demo .wo-metric,
+    .component-demo .wo-quote,
+    .component-demo .wo-badge,
+    .component-demo .wo-steps {
+      font-size: 1rem;
+    }
+    .component-demo .wo-card h3,
+    .component-demo .wo-stat__value,
+    .component-demo .wo-metric__value {
+      font-size: inherit;
+    }
+  </style>
+</head>
+<body>
+  <div class="hub-layout">
+    <!-- Sidebar -->
+    <aside class="hub-sidebar">
+      <div class="hub-logo">
+        <img src="../LOGOS/logo light @3x.png" alt="Workalógico">
+        <span class="hub-version">Design System v2.0</span>
+      </div>
+      
+      <nav class="hub-nav">
+        <h4>Inicio</h4>
+        <a href="index.html">
+          <span>&#x1F3E0;</span> Dashboard
+        </a>
+        
+        <h4>Fundamentos</h4>
+        <a href="colors.html">
+          <span>&#x1F3A8;</span> Colores
+        </a>
+        <a href="typography.html">
+          <span>&#x1F524;</span> Tipografía
+        </a>
+        <a href="spacing.html">
+          <span>&#x1F4CF;</span> Espaciado
+        </a>
+        
+        <h4>Componentes</h4>
+        <a href="components.html" class="active">
+          <span>&#x1F9F1;</span> Componentes
+        </a>
+        <a href="templates.html">
+          <span>&#x1F4C4;</span> Templates
+        </a>
+        
+        <h4>Recursos</h4>
+        <a href="../index.html">
+          <span>&#x1F4BC;</span> Ver Decks
+        </a>
+      </nav>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="hub-main">
+      <header class="hub-header">
+        <h1>Galería de <span class="accent">Componentes</span></h1>
+        <p>Todos los componentes del Design System con código copiable. Basados en metodología Atomic Design.</p>
+      </header>
+      
+      <!-- Molecules -->
+      <section class="hub-section">
+        <h2>Moléculas</h2>
+        <p>Componentes pequeños y reutilizables.</p>
+        
+        <!-- Badge -->
+        <h3>wo-badge</h3>
+        <div class="hub-preview-card">
+          <div class="hub-preview-card__header">
+            <span class="hub-preview-card__title">Badge / Pill</span>
+            <span class="hub-preview-card__badge">Molécula</span>
+          </div>
+          <div class="hub-preview-card__content">
+            <div class="component-preview component-demo" style="background: var(--wo-dark); gap: 1rem; flex-wrap: wrap;">
+              <div class="wo-badge">TÉCNICO</div>
+              <div class="wo-badge wo-badge--yellow">NUEVO</div>
+            </div>
+          </div>
+          <div class="hub-preview-card__footer">
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-badge')">Copiar código</button>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML</span>
+          </div>
+          <div class="code-block__content">
+<pre id="code-badge">&lt;div class="wo-badge"&gt;TÉCNICO&lt;/div&gt;
+&lt;div class="wo-badge wo-badge--yellow"&gt;NUEVO&lt;/div&gt;</pre>
+          </div>
+        </div>
+        
+        <!-- Accent Text -->
+        <h3>Accent Text</h3>
+        <div class="hub-preview-card">
+          <div class="hub-preview-card__header">
+            <span class="hub-preview-card__title">Texto Acentuado</span>
+            <span class="hub-preview-card__badge">Molécula</span>
+          </div>
+          <div class="hub-preview-card__content">
+            <div class="component-preview component-demo" style="background: var(--wo-dark); flex-direction: column; align-items: flex-start; gap: 0.5rem;">
+              <p style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700;">Título con <span class="accent">palabra destacada</span></p>
+              <p style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700;">El costo de <span class="danger">equivocarse</span></p>
+              <p style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700;">Resultado <span class="success">exitoso</span></p>
+            </div>
+          </div>
+          <div class="hub-preview-card__footer">
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-accent')">Copiar código</button>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML</span>
+          </div>
+          <div class="code-block__content">
+<pre id="code-accent">&lt;span class="accent"&gt;Texto azul&lt;/span&gt;
+&lt;span class="accent-yellow"&gt;Texto amarillo&lt;/span&gt;
+&lt;span class="danger"&gt;Texto rojo (error/pérdida)&lt;/span&gt;
+&lt;span class="success"&gt;Texto verde (éxito)&lt;/span&gt;</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Organisms -->
+      <section class="hub-section">
+        <h2>Organismos</h2>
+        <p>Componentes compuestos para contenido estructurado.</p>
+        
+        <!-- Card -->
+        <h3>wo-card</h3>
+        <div class="hub-preview-card">
+          <div class="hub-preview-card__header">
+            <span class="hub-preview-card__title">Card Estándar</span>
+            <span class="hub-preview-card__badge">Organismo</span>
+          </div>
+          <div class="hub-preview-card__content">
+            <div class="component-preview component-demo" style="background: var(--wo-dark);">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; width: 100%; max-width: 500px;">
+                <div class="wo-card" style="padding: 1rem 1.25rem;">
+                  <div class="card-number" style="font-size: 1.5rem;">01</div>
+                  <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Título del Card</h3>
+                  <p style="font-size: 0.85rem;">Descripción breve del contenido.</p>
+                </div>
+                <div class="wo-card wo-card--highlight" style="padding: 1rem 1.25rem;">
+                  <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Card Destacado</h3>
+                  <p style="font-size: 0.85rem;">Con badge "RECOMENDADO".</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hub-preview-card__footer">
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-card')">Copiar código</button>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML</span>
+          </div>
+          <div class="code-block__content">
+<pre id="code-card">&lt;!-- Card estándar --&gt;
+&lt;div class="wo-card"&gt;
+  &lt;div class="card-number"&gt;01&lt;/div&gt;
+  &lt;h3&gt;Título del Card&lt;/h3&gt;
+  &lt;p&gt;Descripción breve del contenido.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- Card destacado --&gt;
+&lt;div class="wo-card wo-card--highlight"&gt;
+  &lt;h3&gt;Card Destacado&lt;/h3&gt;
+  &lt;p&gt;Con badge "RECOMENDADO".&lt;/p&gt;
+&lt;/div&gt;</pre>
+          </div>
+        </div>
+        
+        <!-- Stat -->
+        <h3>wo-stat</h3>
+        <div class="hub-preview-card">
+          <div class="hub-preview-card__header">
+            <span class="hub-preview-card__title">Stat (Métrica pequeña)</span>
+            <span class="hub-preview-card__badge">Organismo</span>
+          </div>
+          <div class="hub-preview-card__content">
+            <div class="component-preview component-demo" style="background: var(--wo-dark); gap: 1rem;">
+              <div class="wo-stat" style="padding: 1rem 1.5rem;">
+                <div class="wo-stat__value" style="font-size: 1.75rem;">500M+</div>
+                <div class="wo-stat__label" style="font-size: 0.8rem;">Data points</div>
+              </div>
+              <div class="wo-stat" style="padding: 1rem 1.5rem;">
+                <div class="wo-stat__value" style="font-size: 1.75rem;">98%</div>
+                <div class="wo-stat__label" style="font-size: 0.8rem;">Precisión</div>
+              </div>
+            </div>
+          </div>
+          <div class="hub-preview-card__footer">
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-stat')">Copiar código</button>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML</span>
+          </div>
+          <div class="code-block__content">
+<pre id="code-stat">&lt;div class="wo-stat"&gt;
+  &lt;div class="wo-stat__value"&gt;500M+&lt;/div&gt;
+  &lt;div class="wo-stat__label"&gt;Data points&lt;/div&gt;
+&lt;/div&gt;</pre>
+          </div>
+        </div>
+        
+        <!-- Metric -->
+        <h3>wo-metric</h3>
+        <div class="hub-preview-card">
+          <div class="hub-preview-card__header">
+            <span class="hub-preview-card__title">Metric (Métrica grande)</span>
+            <span class="hub-preview-card__badge">Organismo</span>
+          </div>
+          <div class="hub-preview-card__content">
+            <div class="component-preview component-demo" style="background: var(--wo-dark); gap: 1.5rem; flex-wrap: wrap;">
+              <div class="wo-metric" style="padding: 1.5rem 2rem;">
+                <div class="wo-metric__value" style="font-size: 2.5rem;">$2-5M</div>
+                <div class="wo-metric__label" style="font-size: 0.9rem;">Inversión promedio</div>
+              </div>
+              <div class="wo-metric wo-metric--danger" style="padding: 1.5rem 2rem;">
+                <div class="wo-metric__value" style="font-size: 2.5rem;">70%</div>
+                <div class="wo-metric__label" style="font-size: 0.9rem;">No alcanzan metas</div>
+              </div>
+            </div>
+          </div>
+          <div class="hub-preview-card__footer">
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-metric')">Copiar código</button>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML</span>
+          </div>
+          <div class="code-block__content">
+<pre id="code-metric">&lt;!-- Metric estándar --&gt;
+&lt;div class="wo-metric"&gt;
+  &lt;div class="wo-metric__value"&gt;$2-5M&lt;/div&gt;
+  &lt;div class="wo-metric__label"&gt;Inversión promedio&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Metric con estado danger --&gt;
+&lt;div class="wo-metric wo-metric--danger"&gt;
+  &lt;div class="wo-metric__value"&gt;70%&lt;/div&gt;
+  &lt;div class="wo-metric__label"&gt;No alcanzan metas&lt;/div&gt;
+&lt;/div&gt;</pre>
+          </div>
+        </div>
+        
+        <!-- Quote -->
+        <h3>wo-quote</h3>
+        <div class="hub-preview-card">
+          <div class="hub-preview-card__header">
+            <span class="hub-preview-card__title">Quote (Cita destacada)</span>
+            <span class="hub-preview-card__badge">Organismo</span>
+          </div>
+          <div class="hub-preview-card__content">
+            <div class="component-preview component-demo" style="background: var(--wo-dark);">
+              <div class="wo-quote" style="padding: 1rem 1.5rem; max-width: 400px;">
+                <p style="font-size: 1rem;">"La diferencia entre éxito y fracaso puede ser de 500 metros."</p>
+              </div>
+            </div>
+          </div>
+          <div class="hub-preview-card__footer">
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-quote')">Copiar código</button>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML</span>
+          </div>
+          <div class="code-block__content">
+<pre id="code-quote">&lt;div class="wo-quote"&gt;
+  &lt;p&gt;"La diferencia entre éxito y fracaso puede ser de 500 metros."&lt;/p&gt;
+&lt;/div&gt;</pre>
+          </div>
+        </div>
+        
+        <!-- Steps -->
+        <h3>wo-steps</h3>
+        <div class="hub-preview-card">
+          <div class="hub-preview-card__header">
+            <span class="hub-preview-card__title">Steps (Lista numerada)</span>
+            <span class="hub-preview-card__badge">Organismo</span>
+          </div>
+          <div class="hub-preview-card__content">
+            <div class="component-preview component-demo" style="background: var(--wo-dark);">
+              <ul class="wo-steps" style="font-size: 1rem; max-width: 400px; padding: 0 1rem;">
+                <li style="font-size: 0.95rem;"><strong>Brief Inicial:</strong> Call de 30 min.</li>
+                <li style="font-size: 0.95rem;"><strong>Propuesta 48h:</strong> Alcance y precio.</li>
+                <li style="font-size: 0.95rem;"><strong>Entrega:</strong> Mapas y scoring.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="hub-preview-card__footer">
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-steps')">Copiar código</button>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML</span>
+          </div>
+          <div class="code-block__content">
+<pre id="code-steps">&lt;ul class="wo-steps"&gt;
+  &lt;li&gt;&lt;strong&gt;Brief Inicial:&lt;/strong&gt; Call de 30 min.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Propuesta 48h:&lt;/strong&gt; Alcance y precio.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Entrega:&lt;/strong&gt; Mapas y scoring.&lt;/li&gt;
+&lt;/ul&gt;</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Grids -->
+      <section class="hub-section">
+        <h2>Layouts / Grids</h2>
+        <p>Sistemas de grid para organizar componentes.</p>
+        
+        <h3>wo-grid</h3>
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-grid')">Copiar código</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-grid">&lt;!-- Grid de 2 columnas --&gt;
+&lt;div class="wo-grid wo-grid--2"&gt;
+  &lt;div class="wo-card"&gt;...&lt;/div&gt;
+  &lt;div class="wo-card"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Grid de 3 columnas --&gt;
+&lt;div class="wo-grid wo-grid--3"&gt;
+  &lt;div class="wo-card"&gt;...&lt;/div&gt;
+  &lt;div class="wo-card"&gt;...&lt;/div&gt;
+  &lt;div class="wo-card"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Fila de stats --&gt;
+&lt;div class="wo-stats-row"&gt;
+  &lt;div class="wo-stat"&gt;...&lt;/div&gt;
+  &lt;div class="wo-stat"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Fila de métricas --&gt;
+&lt;div class="wo-metrics-row"&gt;
+  &lt;div class="wo-metric"&gt;...&lt;/div&gt;
+  &lt;div class="wo-metric"&gt;...&lt;/div&gt;
+&lt;/div&gt;</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Footer -->
+      <footer class="hub-footer">
+        <p><a href="index.html">← Volver al Dashboard</a> | <a href="templates.html">Ver Templates →</a></p>
+      </footer>
+    </main>
+  </div>
+  
+  <!-- Hub JS -->
+  <script src="hub.js"></script>
+</body>
+</html>

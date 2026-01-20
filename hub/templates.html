@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Templates de Slides - Design System Workalógico">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <title>Templates | Design System Hub</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../LOGOS/teseracto yellow@3x.png">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Design Tokens -->
+  <link rel="stylesheet" href="../wo-tokens.css">
+  
+  <!-- Hub Styles -->
+  <link rel="stylesheet" href="hub.css">
+</head>
+<body>
+  <div class="hub-layout">
+    <!-- Sidebar -->
+    <aside class="hub-sidebar">
+      <div class="hub-logo">
+        <img src="../LOGOS/logo light @3x.png" alt="Workalógico">
+        <span class="hub-version">Design System v2.0</span>
+      </div>
+      
+      <nav class="hub-nav">
+        <h4>Inicio</h4>
+        <a href="index.html">
+          <span>&#x1F3E0;</span> Dashboard
+        </a>
+        
+        <h4>Fundamentos</h4>
+        <a href="colors.html">
+          <span>&#x1F3A8;</span> Colores
+        </a>
+        <a href="typography.html">
+          <span>&#x1F524;</span> Tipografía
+        </a>
+        <a href="spacing.html">
+          <span>&#x1F4CF;</span> Espaciado
+        </a>
+        
+        <h4>Componentes</h4>
+        <a href="components.html">
+          <span>&#x1F9F1;</span> Componentes
+        </a>
+        <a href="templates.html" class="active">
+          <span>&#x1F4C4;</span> Templates
+        </a>
+        
+        <h4>Recursos</h4>
+        <a href="../index.html">
+          <span>&#x1F4BC;</span> Ver Decks
+        </a>
+      </nav>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="hub-main">
+      <header class="hub-header">
+        <h1>Templates de <span class="accent">Slides</span></h1>
+        <p>Layouts predefinidos para presentaciones Reveal.js. Cada template incluye fondo, estructura y código completo.</p>
+      </header>
+      
+      <!-- Cover Template -->
+      <section class="hub-section">
+        <h2>1. Portada (Cover)</h2>
+        <p>Slide inicial con logo, badge, título, stats y autor. Usar en slide 1.</p>
+        
+        <div class="hub-preview-card">
+          <div class="hub-preview-card__header">
+            <span class="hub-preview-card__title">wo-cover</span>
+            <span class="hub-preview-card__badge">Template</span>
+          </div>
+          <div class="hub-preview-card__content">
+            <div style="background: radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%); border-radius: var(--radius-md); padding: 2rem; text-align: center;">
+              <img src="../LOGOS/logo dark@3x.png" alt="Logo" style="width: 60px; margin-bottom: 0.75rem; opacity: 0.9;">
+              <div style="display: inline-block; padding: 0.25rem 0.6rem; background: var(--wo-accent-dim); border: 1px solid var(--wo-blue-lab); border-radius: var(--radius-full); font-family: var(--font-heading); font-size: 0.6rem; font-weight: 600; color: var(--wo-blue-lab); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem;">GEOINTELIGENCIA</div>
+              <h1 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem;">Título <span style="color: var(--wo-blue-lab);">Destacado</span></h1>
+              <p style="font-size: 0.85rem; color: var(--wo-text-secondary); margin-bottom: 1rem;">Subtítulo de la presentación</p>
+              <p style="font-size: 0.7rem; color: var(--wo-text-muted); padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.1);">Workalógico • Enero 2026</p>
+            </div>
+          </div>
+          <div class="hub-preview-card__footer">
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-cover')">Copiar código</button>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML</span>
+          </div>
+          <div class="code-block__content">
+<pre id="code-cover">&lt;section data-background-gradient="radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%)" data-particles="true"&gt;
+  &lt;div class="wo-cover"&gt;
+    &lt;img data-src="../LOGOS/logo dark@3x.png" alt="Workalógico" class="wo-cover__logo"&gt;
+    &lt;div class="wo-badge"&gt;CATEGORÍA&lt;/div&gt;
+    &lt;h1 class="wo-cover__title"&gt;Título &lt;span class="accent"&gt;Destacado&lt;/span&gt;&lt;/h1&gt;
+    &lt;p class="wo-cover__subtitle"&gt;Subtítulo de la presentación&lt;/p&gt;
+    
+    &lt;!-- Stats opcionales --&gt;
+    &lt;div class="wo-stats-row"&gt;
+      &lt;div class="wo-stat fragment zoom-in"&gt;
+        &lt;div class="wo-stat__value"&gt;500M+&lt;/div&gt;
+        &lt;div class="wo-stat__label"&gt;Data points&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;p class="wo-cover__author"&gt;Workalógico • Enero 2026&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="grid-background"&gt;&lt;/div&gt;
+&lt;/section&gt;</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Section Template -->
+      <section class="hub-section">
+        <h2>2. Sección (Divider)</h2>
+        <p>Slide de transición entre secciones. Título centrado con subtítulo opcional.</p>
+        
+        <div class="hub-preview-card">
+          <div class="hub-preview-card__header">
+            <span class="hub-preview-card__title">wo-section</span>
+            <span class="hub-preview-card__badge">Template</span>
+          </div>
+          <div class="hub-preview-card__content">
+            <div style="background: linear-gradient(135deg, #0F0F1A 0%, #252542 100%); border-radius: var(--radius-md); padding: 3rem 2rem; text-align: center;">
+              <h1 style="font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; margin-bottom: 0.25rem;">Título de <span style="color: var(--wo-blue-lab);">Sección</span></h1>
+              <p style="font-size: 0.9rem; color: var(--wo-text-secondary);">Descripción breve de lo que viene</p>
+            </div>
+          </div>
+          <div class="hub-preview-card__footer">
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-section')">Copiar código</button>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML</span>
+          </div>
+          <div class="code-block__content">
+<pre id="code-section">&lt;section data-background-gradient="linear-gradient(135deg, #0F0F1A 0%, #252542 100%)" data-particles="true"&gt;
+  &lt;h1 class="wo-section__title"&gt;Título de &lt;span class="accent"&gt;Sección&lt;/span&gt;&lt;/h1&gt;
+  &lt;p class="wo-section__subtitle"&gt;Descripción breve de lo que viene&lt;/p&gt;
+&lt;/section&gt;</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Content with Cards Template -->
+      <section class="hub-section">
+        <h2>3. Contenido con Cards</h2>
+        <p>Slide estándar con título y grid de cards. El más usado para contenido.</p>
+        
+        <div class="hub-preview-card">
+          <div class="hub-preview-card__header">
+            <span class="hub-preview-card__title">Content + wo-grid</span>
+            <span class="hub-preview-card__badge">Template</span>
+          </div>
+          <div class="hub-preview-card__content">
+            <div style="background: #0F0F1A; border-radius: var(--radius-md); padding: 1.5rem; position: relative;">
+              <h2 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Qué <span style="color: var(--wo-blue-lab);">Analizamos</span></h2>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                <div style="background: rgba(37, 37, 66, 0.5); border: 1px solid rgba(89, 104, 234, 0.3); border-radius: var(--radius-md); padding: 0.75rem;">
+                  <div style="font-family: var(--font-heading); font-size: 1.25rem; color: var(--wo-blue-lab); opacity: 0.25;">01</div>
+                  <h3 style="font-family: var(--font-heading); font-size: 0.9rem; font-weight: 700;">ADN Comercial</h3>
+                  <p style="font-size: 0.75rem; color: var(--wo-text-secondary); margin: 0;">Perfil demográfico.</p>
+                </div>
+                <div style="background: rgba(37, 37, 66, 0.5); border: 1px solid rgba(89, 104, 234, 0.3); border-radius: var(--radius-md); padding: 0.75rem;">
+                  <div style="font-family: var(--font-heading); font-size: 1.25rem; color: var(--wo-blue-lab); opacity: 0.25;">02</div>
+                  <h3 style="font-family: var(--font-heading); font-size: 0.9rem; font-weight: 700;">Isócronas</h3>
+                  <p style="font-size: 0.75rem; color: var(--wo-text-secondary); margin: 0;">Áreas de influencia.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hub-preview-card__footer">
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-content')">Copiar código</button>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML</span>
+          </div>
+          <div class="code-block__content">
+<pre id="code-content">&lt;section data-background-color="#0F0F1A"&gt;
+  &lt;h2&gt;Qué &lt;span class="accent"&gt;Analizamos&lt;/span&gt;&lt;/h2&gt;
+  
+  &lt;div class="wo-grid wo-grid--2"&gt;
+    &lt;div class="wo-card fragment fade-up"&gt;
+      &lt;div class="card-number"&gt;01&lt;/div&gt;
+      &lt;h3&gt;ADN Comercial&lt;/h3&gt;
+      &lt;p&gt;Perfil demográfico y comercial de cada zona.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="wo-card fragment fade-up"&gt;
+      &lt;div class="card-number"&gt;02&lt;/div&gt;
+      &lt;h3&gt;Isócronas&lt;/h3&gt;
+      &lt;p&gt;Áreas de influencia por tiempo de traslado.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="grid-background"&gt;&lt;/div&gt;
+&lt;/section&gt;</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Pricing Template -->
+      <section class="hub-section">
+        <h2>4. Precios</h2>
+        <p>Grid de 3 columnas con card destacado central para paquete recomendado.</p>
+        
+        <div class="hub-preview-card">
+          <div class="hub-preview-card__header">
+            <span class="hub-preview-card__title">Pricing Grid</span>
+            <span class="hub-preview-card__badge">Template</span>
+          </div>
+          <div class="hub-preview-card__content">
+            <div style="background: #0F0F1A; border-radius: var(--radius-md); padding: 1.5rem;">
+              <h2 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Paquetes <span style="color: var(--wo-blue-lab);">Transparentes</span></h2>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;">
+                <div style="background: rgba(37, 37, 66, 0.5); border: 1px solid rgba(89, 104, 234, 0.3); border-radius: var(--radius-md); padding: 0.75rem; text-align: center;">
+                  <h3 style="font-family: var(--font-heading); font-size: 0.85rem; margin-bottom: 0.25rem;">Estándar</h3>
+                  <p style="font-size: 0.7rem; color: var(--wo-text); margin-bottom: 0.25rem;">1 Ubicación</p>
+                  <p style="font-family: var(--font-heading); font-size: 1rem; color: var(--wo-blue-lab); font-weight: 700;">$40K - $60K</p>
+                  <p style="font-size: 0.65rem; color: var(--wo-text-muted);">2-3 semanas</p>
+                </div>
+                <div style="background: var(--wo-yellow-dim); border: 1px solid rgba(255, 203, 0, 0.4); border-radius: var(--radius-md); padding: 0.75rem; text-align: center; position: relative;">
+                  <span style="position: absolute; top: -8px; right: 8px; background: var(--wo-yellow-spark); color: var(--wo-dark); font-family: var(--font-heading); font-size: 0.5rem; font-weight: 700; padding: 0.15rem 0.4rem; border-radius: 3px;">RECOMENDADO</span>
+                  <h3 style="font-family: var(--font-heading); font-size: 0.85rem; margin-bottom: 0.25rem;">Pro</h3>
+                  <p style="font-size: 0.7rem; color: var(--wo-text); margin-bottom: 0.25rem;">3-5 Ubicaciones</p>
+                  <p style="font-family: var(--font-heading); font-size: 1rem; color: var(--wo-blue-lab); font-weight: 700;">$80K - $120K</p>
+                  <p style="font-size: 0.65rem; color: var(--wo-text-muted);">3-4 semanas</p>
+                </div>
+                <div style="background: rgba(37, 37, 66, 0.5); border: 1px solid rgba(89, 104, 234, 0.3); border-radius: var(--radius-md); padding: 0.75rem; text-align: center;">
+                  <h3 style="font-family: var(--font-heading); font-size: 0.85rem; margin-bottom: 0.25rem;">Enterprise</h3>
+                  <p style="font-size: 0.7rem; color: var(--wo-text); margin-bottom: 0.25rem;">10+ Ubicaciones</p>
+                  <p style="font-family: var(--font-heading); font-size: 1rem; color: var(--wo-blue-lab); font-weight: 700;">$150K - $250K</p>
+                  <p style="font-size: 0.65rem; color: var(--wo-text-muted);">4-6 semanas</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hub-preview-card__footer">
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-pricing')">Copiar código</button>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML</span>
+          </div>
+          <div class="code-block__content">
+<pre id="code-pricing">&lt;section data-background-color="#0F0F1A"&gt;
+  &lt;h2&gt;Paquetes &lt;span class="accent"&gt;Transparentes&lt;/span&gt;&lt;/h2&gt;
+  
+  &lt;div class="wo-grid wo-grid--3"&gt;
+    &lt;div class="wo-card fragment zoom-in"&gt;
+      &lt;h3&gt;Estándar&lt;/h3&gt;
+      &lt;p class="card-tier"&gt;1 Ubicación&lt;/p&gt;
+      &lt;p class="card-price"&gt;$40K - $60K&lt;/p&gt;
+      &lt;p class="card-time"&gt;2-3 semanas&lt;/p&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="wo-card wo-card--highlight fragment zoom-in"&gt;
+      &lt;h3&gt;Pro&lt;/h3&gt;
+      &lt;p class="card-tier"&gt;3-5 Ubicaciones&lt;/p&gt;
+      &lt;p class="card-price"&gt;$80K - $120K&lt;/p&gt;
+      &lt;p class="card-time"&gt;3-4 semanas&lt;/p&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="wo-card fragment zoom-in"&gt;
+      &lt;h3&gt;Enterprise&lt;/h3&gt;
+      &lt;p class="card-tier"&gt;10+ Ubicaciones&lt;/p&gt;
+      &lt;p class="card-price"&gt;$150K - $250K&lt;/p&gt;
+      &lt;p class="card-time"&gt;4-6 semanas&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="grid-background"&gt;&lt;/div&gt;
+&lt;/section&gt;</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- CTA Template -->
+      <section class="hub-section">
+        <h2>5. CTA / Cierre</h2>
+        <p>Slide final con llamado a la acción y datos de contacto. Usar en último slide.</p>
+        
+        <div class="hub-preview-card">
+          <div class="hub-preview-card__header">
+            <span class="hub-preview-card__title">wo-cta</span>
+            <span class="hub-preview-card__badge">Template</span>
+          </div>
+          <div class="hub-preview-card__content">
+            <div style="background: radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%); border-radius: var(--radius-md); padding: 2.5rem; text-align: center;">
+              <h1 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem;">¿Listo para <span style="color: var(--wo-blue-lab);">empezar</span>?</h1>
+              <p style="font-size: 0.95rem; color: var(--wo-text-secondary); margin-bottom: 1.25rem;">Agenda tu brief gratuito hoy</p>
+              <div style="padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                <p style="font-size: 0.8rem; color: var(--wo-text-muted); margin: 0.25rem 0;">contacto@workalogico.mx</p>
+                <p style="font-size: 0.8rem; color: var(--wo-text-muted); margin: 0.25rem 0;">www.workalogico.mx</p>
+              </div>
+            </div>
+          </div>
+          <div class="hub-preview-card__footer">
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-cta')">Copiar código</button>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML</span>
+          </div>
+          <div class="code-block__content">
+<pre id="code-cta">&lt;section data-background-gradient="radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%)" data-particles="true"&gt;
+  &lt;div class="wo-cta"&gt;
+    &lt;h1 class="wo-cta__title"&gt;¿Listo para &lt;span class="accent"&gt;empezar&lt;/span&gt;?&lt;/h1&gt;
+    &lt;p class="wo-cta__subtitle"&gt;Agenda tu brief gratuito hoy&lt;/p&gt;
+    
+    &lt;div class="wo-cta__contact"&gt;
+      &lt;p&gt;contacto@workalogico.mx&lt;/p&gt;
+      &lt;p&gt;www.workalogico.mx&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="grid-background"&gt;&lt;/div&gt;
+&lt;/section&gt;</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Backgrounds Reference -->
+      <section class="hub-section">
+        <h2>Referencia de Fondos</h2>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">data-background attributes</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-backgrounds')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-backgrounds">&lt;!-- Portada / CTA --&gt;
+data-background-gradient="radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%)"
+
+&lt;!-- Sección / Transición --&gt;
+data-background-gradient="linear-gradient(135deg, #0F0F1A 0%, #252542 100%)"
+
+&lt;!-- Contenido estándar --&gt;
+data-background-color="#0F0F1A"
+
+&lt;!-- Activar partículas (solo portada, sección, CTA) --&gt;
+data-particles="true"</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Footer -->
+      <footer class="hub-footer">
+        <p><a href="index.html">← Volver al Dashboard</a> | <a href="../index.html">Ver Decks en producción →</a></p>
+      </footer>
+    </main>
+  </div>
+  
+  <!-- Hub JS -->
+  <script src="hub.js"></script>
+</body>
+</html>

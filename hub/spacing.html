@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Espaciado - Design System Workalógico">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <title>Espaciado | Design System Hub</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../LOGOS/teseracto yellow@3x.png">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Design Tokens -->
+  <link rel="stylesheet" href="../wo-tokens.css">
+  
+  <!-- Hub Styles -->
+  <link rel="stylesheet" href="hub.css">
+</head>
+<body>
+  <div class="hub-layout">
+    <!-- Sidebar -->
+    <aside class="hub-sidebar">
+      <div class="hub-logo">
+        <img src="../LOGOS/logo light @3x.png" alt="Workalógico">
+        <span class="hub-version">Design System v2.0</span>
+      </div>
+      
+      <nav class="hub-nav">
+        <h4>Inicio</h4>
+        <a href="index.html">
+          <span>&#x1F3E0;</span> Dashboard
+        </a>
+        
+        <h4>Fundamentos</h4>
+        <a href="colors.html">
+          <span>&#x1F3A8;</span> Colores
+        </a>
+        <a href="typography.html">
+          <span>&#x1F524;</span> Tipografía
+        </a>
+        <a href="spacing.html" class="active">
+          <span>&#x1F4CF;</span> Espaciado
+        </a>
+        
+        <h4>Componentes</h4>
+        <a href="components.html">
+          <span>&#x1F9F1;</span> Componentes
+        </a>
+        <a href="templates.html">
+          <span>&#x1F4C4;</span> Templates
+        </a>
+        
+        <h4>Recursos</h4>
+        <a href="../index.html">
+          <span>&#x1F4BC;</span> Ver Decks
+        </a>
+      </nav>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="hub-main">
+      <header class="hub-header">
+        <h1>Sistema de <span class="accent">Espaciado</span></h1>
+        <p>Escala de espaciado consistente optimizada para presentaciones Reveal.js en viewport 1280x720.</p>
+      </header>
+      
+      <!-- Spacing Scale -->
+      <section class="hub-section">
+        <h2>Escala de Espaciado</h2>
+        <p>Valores de espaciado progresivos para padding, margin y gaps.</p>
+        
+        <div style="background: var(--wo-dark-surface); border-radius: var(--radius-lg); padding: 2rem; margin-top: 1.5rem;">
+          <div class="space-sample">
+            <div class="space-sample__visual">
+              <div class="space-sample__bar" style="width: 4px;"></div>
+            </div>
+            <div class="space-sample__info">
+              <span class="space-sample__name">XS (Extra Small)</span>
+              <span class="space-sample__value">--space-xs: 0.25rem (4px)</span>
+            </div>
+          </div>
+          
+          <div class="space-sample">
+            <div class="space-sample__visual">
+              <div class="space-sample__bar" style="width: 8px;"></div>
+            </div>
+            <div class="space-sample__info">
+              <span class="space-sample__name">SM (Small)</span>
+              <span class="space-sample__value">--space-sm: 0.5rem (8px)</span>
+            </div>
+          </div>
+          
+          <div class="space-sample">
+            <div class="space-sample__visual">
+              <div class="space-sample__bar" style="width: 12px;"></div>
+            </div>
+            <div class="space-sample__info">
+              <span class="space-sample__name">MD (Medium)</span>
+              <span class="space-sample__value">--space-md: 0.75rem (12px)</span>
+            </div>
+          </div>
+          
+          <div class="space-sample">
+            <div class="space-sample__visual">
+              <div class="space-sample__bar" style="width: 16px;"></div>
+            </div>
+            <div class="space-sample__info">
+              <span class="space-sample__name">LG (Large)</span>
+              <span class="space-sample__value">--space-lg: 1rem (16px)</span>
+            </div>
+          </div>
+          
+          <div class="space-sample">
+            <div class="space-sample__visual">
+              <div class="space-sample__bar" style="width: 24px;"></div>
+            </div>
+            <div class="space-sample__info">
+              <span class="space-sample__name">XL (Extra Large)</span>
+              <span class="space-sample__value">--space-xl: 1.5rem (24px)</span>
+            </div>
+          </div>
+          
+          <div class="space-sample">
+            <div class="space-sample__visual">
+              <div class="space-sample__bar" style="width: 16px;"></div>
+            </div>
+            <div class="space-sample__info">
+              <span class="space-sample__name">Gap Card</span>
+              <span class="space-sample__value">--gap-card: 1em</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Border Radius -->
+      <section class="hub-section">
+        <h2>Border Radius</h2>
+        <p>Valores de redondeo para esquinas de componentes.</p>
+        
+        <div class="hub-grid hub-grid--4" style="margin-top: 1.5rem;">
+          <div style="text-align: center;">
+            <div style="width: 80px; height: 80px; background: var(--wo-blue-lab); border-radius: var(--radius-sm); margin: 0 auto 1rem;"></div>
+            <div style="font-family: var(--font-heading); font-size: 0.85rem; font-weight: 600;">SM</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--wo-text-muted);">4px</div>
+          </div>
+          
+          <div style="text-align: center;">
+            <div style="width: 80px; height: 80px; background: var(--wo-blue-lab); border-radius: var(--radius-md); margin: 0 auto 1rem;"></div>
+            <div style="font-family: var(--font-heading); font-size: 0.85rem; font-weight: 600;">MD</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--wo-text-muted);">8px</div>
+          </div>
+          
+          <div style="text-align: center;">
+            <div style="width: 80px; height: 80px; background: var(--wo-blue-lab); border-radius: var(--radius-lg); margin: 0 auto 1rem;"></div>
+            <div style="font-family: var(--font-heading); font-size: 0.85rem; font-weight: 600;">LG</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--wo-text-muted);">12px</div>
+          </div>
+          
+          <div style="text-align: center;">
+            <div style="width: 80px; height: 80px; background: var(--wo-blue-lab); border-radius: var(--radius-xl); margin: 0 auto 1rem;"></div>
+            <div style="font-family: var(--font-heading); font-size: 0.85rem; font-weight: 600;">XL</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--wo-text-muted);">16px</div>
+          </div>
+          
+          <div style="text-align: center; grid-column: span 4;">
+            <div style="width: 160px; height: 48px; background: var(--wo-blue-lab); border-radius: var(--radius-full); margin: 1rem auto;"></div>
+            <div style="font-family: var(--font-heading); font-size: 0.85rem; font-weight: 600;">FULL (Pills/Badges)</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--wo-text-muted);">50px</div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Usage -->
+      <section class="hub-section">
+        <h2>Uso Recomendado</h2>
+        
+        <div class="hub-grid hub-grid--2">
+          <div style="background: var(--wo-dark-surface); border-radius: var(--radius-md); padding: 1.5rem;">
+            <h4 style="font-family: var(--font-heading); font-size: 0.9rem; margin-bottom: 1rem; color: var(--wo-blue-lab);">Padding de Cards</h4>
+            <ul style="color: var(--wo-text-secondary); font-size: 0.9rem; margin-left: 1.25rem;">
+              <li><code style="color: var(--wo-yellow-spark);">0.6em 0.8em</code> - Cards compactas</li>
+              <li><code style="color: var(--wo-yellow-spark);">1.2em 1.8em</code> - Métricas grandes</li>
+              <li><code style="color: var(--wo-yellow-spark);">0.8em 1.2em</code> - Quotes</li>
+            </ul>
+          </div>
+          
+          <div style="background: var(--wo-dark-surface); border-radius: var(--radius-md); padding: 1.5rem;">
+            <h4 style="font-family: var(--font-heading); font-size: 0.9rem; margin-bottom: 1rem; color: var(--wo-blue-lab);">Gaps en Grids</h4>
+            <ul style="color: var(--wo-text-secondary); font-size: 0.9rem; margin-left: 1.25rem;">
+              <li><code style="color: var(--wo-yellow-spark);">0.5em</code> - Grids de cards</li>
+              <li><code style="color: var(--wo-yellow-spark);">0.6em</code> - Stats row / Metrics row</li>
+              <li><code style="color: var(--wo-yellow-spark);">0.8em</code> - Columns layout</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Code Example -->
+      <section class="hub-section">
+        <h2>Ejemplo de Uso</h2>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">CSS</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'css-spacing')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="css-spacing">/* Usar variables de espaciado */
+.mi-card {
+  padding: var(--space-lg) var(--space-xl);
+  margin-bottom: var(--space-md);
+  border-radius: var(--radius-md);
+}
+
+.mi-grid {
+  display: grid;
+  gap: var(--gap-card);
+}
+
+.mi-badge {
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-full);
+}</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Footer -->
+      <footer class="hub-footer">
+        <p><a href="index.html">← Volver al Dashboard</a></p>
+      </footer>
+    </main>
+  </div>
+  
+  <!-- Hub JS -->
+  <script src="hub.js"></script>
+</body>
+</html>

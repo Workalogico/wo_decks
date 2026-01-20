@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Paleta de colores - Design System Workalógico">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <title>Colores | Design System Hub</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../LOGOS/teseracto yellow@3x.png">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Design Tokens -->
+  <link rel="stylesheet" href="../wo-tokens.css">
+  
+  <!-- Hub Styles -->
+  <link rel="stylesheet" href="hub.css">
+</head>
+<body>
+  <div class="hub-layout">
+    <!-- Sidebar -->
+    <aside class="hub-sidebar">
+      <div class="hub-logo">
+        <img src="../LOGOS/logo light @3x.png" alt="Workalógico">
+        <span class="hub-version">Design System v2.0</span>
+      </div>
+      
+      <nav class="hub-nav">
+        <h4>Inicio</h4>
+        <a href="index.html">
+          <span>&#x1F3E0;</span> Dashboard
+        </a>
+        
+        <h4>Fundamentos</h4>
+        <a href="colors.html" class="active">
+          <span>&#x1F3A8;</span> Colores
+        </a>
+        <a href="typography.html">
+          <span>&#x1F524;</span> Tipografía
+        </a>
+        <a href="spacing.html">
+          <span>&#x1F4CF;</span> Espaciado
+        </a>
+        
+        <h4>Componentes</h4>
+        <a href="components.html">
+          <span>&#x1F9F1;</span> Componentes
+        </a>
+        <a href="templates.html">
+          <span>&#x1F4C4;</span> Templates
+        </a>
+        
+        <h4>Recursos</h4>
+        <a href="../index.html">
+          <span>&#x1F4BC;</span> Ver Decks
+        </a>
+      </nav>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="hub-main">
+      <header class="hub-header">
+        <h1>Paleta de <span class="accent">Colores</span></h1>
+        <p>Sistema cromático de Workalógico. Click en cualquier color para copiar su variable CSS.</p>
+      </header>
+      
+      <!-- Brand Colors -->
+      <section class="hub-section">
+        <h2>Colores de Marca</h2>
+        <p>Los 4 colores principales que definen la identidad visual de Workalógico.</p>
+        
+        <div class="hub-grid hub-grid--2">
+          <div class="color-swatch" data-copy="--wo-yellow-spark" onclick="copyColor(this)">
+            <div class="color-swatch__preview" style="background: var(--wo-yellow-spark);"></div>
+            <div class="color-swatch__info">
+              <div class="color-swatch__name">Yellow Spark</div>
+              <div class="color-swatch__var">--wo-yellow-spark</div>
+              <div class="color-swatch__hex">#FFCB00</div>
+            </div>
+            <div class="color-swatch__copy">
+              <button class="hub-btn hub-btn--small hub-btn--copy">Copiar</button>
+            </div>
+          </div>
+          
+          <div class="color-swatch" data-copy="--wo-blue-lab" onclick="copyColor(this)">
+            <div class="color-swatch__preview" style="background: var(--wo-blue-lab);"></div>
+            <div class="color-swatch__info">
+              <div class="color-swatch__name">Blue Lab</div>
+              <div class="color-swatch__var">--wo-blue-lab</div>
+              <div class="color-swatch__hex">#5968EA</div>
+            </div>
+            <div class="color-swatch__copy">
+              <button class="hub-btn hub-btn--small hub-btn--copy">Copiar</button>
+            </div>
+          </div>
+          
+          <div class="color-swatch" data-copy="--wo-black-core" onclick="copyColor(this)">
+            <div class="color-swatch__preview" style="background: var(--wo-black-core);"></div>
+            <div class="color-swatch__info">
+              <div class="color-swatch__name">Black Core</div>
+              <div class="color-swatch__var">--wo-black-core</div>
+              <div class="color-swatch__hex">#1A1A2E</div>
+            </div>
+            <div class="color-swatch__copy">
+              <button class="hub-btn hub-btn--small hub-btn--copy">Copiar</button>
+            </div>
+          </div>
+          
+          <div class="color-swatch" data-copy="--wo-white-focus" onclick="copyColor(this)">
+            <div class="color-swatch__preview" style="background: var(--wo-white-focus); border: 1px solid var(--border-subtle);"></div>
+            <div class="color-swatch__info">
+              <div class="color-swatch__name">White Focus</div>
+              <div class="color-swatch__var">--wo-white-focus</div>
+              <div class="color-swatch__hex">#F7F7F7</div>
+            </div>
+            <div class="color-swatch__copy">
+              <button class="hub-btn hub-btn--small hub-btn--copy">Copiar</button>
+            </div>
+          </div>
+        </div>
+        
+        <h3>Uso Recomendado</h3>
+        <ul style="color: var(--wo-text-secondary); margin-left: 1.5rem;">
+          <li><strong style="color: var(--wo-yellow-spark);">Yellow Spark:</strong> CTAs, highlights, badges especiales, estados activos</li>
+          <li><strong style="color: var(--wo-blue-lab);">Blue Lab:</strong> Accent primario, enlaces, datos clave, hover states</li>
+          <li><strong style="color: var(--wo-text);">Black Core:</strong> Fondos principales, superficies elevadas</li>
+          <li><strong style="color: var(--wo-text);">White Focus:</strong> Texto principal en modo oscuro</li>
+        </ul>
+      </section>
+      
+      <!-- Background Colors -->
+      <section class="hub-section">
+        <h2>Fondos (Dark Theme)</h2>
+        <p>Jerarquía de elevación para superficies y contenedores.</p>
+        
+        <div class="hub-grid hub-grid--3">
+          <div class="color-swatch" data-copy="--wo-dark" onclick="copyColor(this)">
+            <div class="color-swatch__preview" style="background: var(--wo-dark);"></div>
+            <div class="color-swatch__info">
+              <div class="color-swatch__name">Dark (Base)</div>
+              <div class="color-swatch__var">--wo-dark</div>
+              <div class="color-swatch__hex">#0F0F1A</div>
+            </div>
+            <div class="color-swatch__copy">
+              <button class="hub-btn hub-btn--small hub-btn--copy">Copiar</button>
+            </div>
+          </div>
+          
+          <div class="color-swatch" data-copy="--wo-dark-elevated" onclick="copyColor(this)">
+            <div class="color-swatch__preview" style="background: var(--wo-dark-elevated);"></div>
+            <div class="color-swatch__info">
+              <div class="color-swatch__name">Dark Elevated</div>
+              <div class="color-swatch__var">--wo-dark-elevated</div>
+              <div class="color-swatch__hex">#1A1A2E</div>
+            </div>
+            <div class="color-swatch__copy">
+              <button class="hub-btn hub-btn--small hub-btn--copy">Copiar</button>
+            </div>
+          </div>
+          
+          <div class="color-swatch" data-copy="--wo-dark-surface" onclick="copyColor(this)">
+            <div class="color-swatch__preview" style="background: var(--wo-dark-surface);"></div>
+            <div class="color-swatch__info">
+              <div class="color-swatch__name">Dark Surface</div>
+              <div class="color-swatch__var">--wo-dark-surface</div>
+              <div class="color-swatch__hex">#252542</div>
+            </div>
+            <div class="color-swatch__copy">
+              <button class="hub-btn hub-btn--small hub-btn--copy">Copiar</button>
+            </div>
+          </div>
+          
+          <div class="color-swatch" data-copy="--wo-accent-dim" onclick="copyColor(this)">
+            <div class="color-swatch__preview" style="background: var(--wo-accent-dim);"></div>
+            <div class="color-swatch__info">
+              <div class="color-swatch__name">Accent Dim</div>
+              <div class="color-swatch__var">--wo-accent-dim</div>
+              <div class="color-swatch__hex">rgba(89,104,234,0.15)</div>
+            </div>
+            <div class="color-swatch__copy">
+              <button class="hub-btn hub-btn--small hub-btn--copy">Copiar</button>
+            </div>
+          </div>
+          
+          <div class="color-swatch" data-copy="--wo-yellow-dim" onclick="copyColor(this)">
+            <div class="color-swatch__preview" style="background: var(--wo-yellow-dim);"></div>
+            <div class="color-swatch__info">
+              <div class="color-swatch__name">Yellow Dim</div>
+              <div class="color-swatch__var">--wo-yellow-dim</div>
+              <div class="color-swatch__hex">rgba(255,203,0,0.15)</div>
+            </div>
+            <div class="color-swatch__copy">
+              <button class="hub-btn hub-btn--small hub-btn--copy">Copiar</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Text Colors -->
+      <section class="hub-section">
+        <h2>Texto</h2>
+        <p>Jerarquía de lectura para contenido textual.</p>
+        
+        <div class="hub-grid hub-grid--3">
+          <div class="color-swatch" data-copy="--wo-text" onclick="copyColor(this)">
+            <div class="color-swatch__preview" style="background: var(--wo-text);"></div>
+            <div class="color-swatch__info">
+              <div class="color-swatch__name">Text (Primary)</div>
+              <div class="color-swatch__var">--wo-text</div>
+              <div class="color-swatch__hex">#FFFFFF</div>
+            </div>
+            <div class="color-swatch__copy">
+              <button class="hub-btn hub-btn--small hub-btn--copy">Copiar</button>
+            </div>
+          </div>
+          
+          <div class="color-swatch" data-copy="--wo-text-secondary" onclick="copyColor(this)">
+            <div class="color-swatch__preview" style="background: var(--wo-text-secondary);"></div>
+            <div class="color-swatch__info">
+              <div class="color-swatch__name">Text Secondary</div>
+              <div class="color-swatch__var">--wo-text-secondary</div>
+              <div class="color-swatch__hex">#94A3B8</div>
+            </div>
+            <div class="color-swatch__copy">
+              <button class="hub-btn hub-btn--small hub-btn--copy">Copiar</button>
+            </div>
+          </div>
+          
+          <div class="color-swatch" data-copy="--wo-text-muted" onclick="copyColor(this)">
+            <div class="color-swatch__preview" style="background: var(--wo-text-muted);"></div>
+            <div class="color-swatch__info">
+              <div class="color-swatch__name">Text Muted</div>
+              <div class="color-swatch__var">--wo-text-muted</div>
+              <div class="color-swatch__hex">#64748B</div>
+            </div>
+            <div class="color-swatch__copy">
+              <button class="hub-btn hub-btn--small hub-btn--copy">Copiar</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Semantic Colors -->
+      <section class="hub-section">
+        <h2>Estados Semánticos</h2>
+        <p>Colores para comunicar estados y feedback.</p>
+        
+        <div class="hub-grid hub-grid--2">
+          <div class="color-swatch" data-copy="--wo-danger" onclick="copyColor(this)">
+            <div class="color-swatch__preview" style="background: var(--wo-danger);"></div>
+            <div class="color-swatch__info">
+              <div class="color-swatch__name">Danger</div>
+              <div class="color-swatch__var">--wo-danger</div>
+              <div class="color-swatch__hex">#FF6B6B</div>
+            </div>
+            <div class="color-swatch__copy">
+              <button class="hub-btn hub-btn--small hub-btn--copy">Copiar</button>
+            </div>
+          </div>
+          
+          <div class="color-swatch" data-copy="--wo-success" onclick="copyColor(this)">
+            <div class="color-swatch__preview" style="background: var(--wo-success);"></div>
+            <div class="color-swatch__info">
+              <div class="color-swatch__name">Success</div>
+              <div class="color-swatch__var">--wo-success</div>
+              <div class="color-swatch__hex">#10B981</div>
+            </div>
+            <div class="color-swatch__copy">
+              <button class="hub-btn hub-btn--small hub-btn--copy">Copiar</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Usage Example -->
+      <section class="hub-section">
+        <h2>Ejemplo de Uso</h2>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">CSS</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'css-example')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="css-example">/* Usar variables CSS en tus estilos */
+.mi-componente {
+  background: var(--wo-dark-surface);
+  color: var(--wo-text);
+  border: 1px solid var(--border-accent);
+}
+
+.mi-componente:hover {
+  border-color: var(--wo-blue-lab);
+}
+
+.mi-componente.destacado {
+  background: var(--wo-yellow-dim);
+  border-color: var(--wo-yellow-spark);
+}</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Footer -->
+      <footer class="hub-footer">
+        <p><a href="index.html">← Volver al Dashboard</a></p>
+      </footer>
+    </main>
+  </div>
+  
+  <!-- Hub JS -->
+  <script src="hub.js"></script>
+</body>
+</html>

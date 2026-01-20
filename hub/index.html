@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Design System Hub - Sistema de diseño centralizado de Workalógico">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <title>Design System Hub | Workalógico</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../LOGOS/teseracto yellow@3x.png">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Design Tokens (Single Source of Truth) -->
+  <link rel="stylesheet" href="../wo-tokens.css">
+  
+  <!-- Hub Styles -->
+  <link rel="stylesheet" href="hub.css">
+</head>
+<body>
+  <div class="hub-layout">
+    <!-- Sidebar -->
+    <aside class="hub-sidebar">
+      <div class="hub-logo">
+        <img src="../LOGOS/logo light @3x.png" alt="Workalógico">
+        <span class="hub-version">Design System v2.0</span>
+      </div>
+      
+      <nav class="hub-nav">
+        <h4>Inicio</h4>
+        <a href="index.html" class="active">
+          <span>&#x1F3E0;</span> Dashboard
+        </a>
+        
+        <h4>Fundamentos</h4>
+        <a href="colors.html">
+          <span>&#x1F3A8;</span> Colores
+        </a>
+        <a href="typography.html">
+          <span>&#x1F524;</span> Tipografía
+        </a>
+        <a href="spacing.html">
+          <span>&#x1F4CF;</span> Espaciado
+        </a>
+        
+        <h4>Componentes</h4>
+        <a href="components.html">
+          <span>&#x1F9F1;</span> Componentes
+        </a>
+        <a href="templates.html">
+          <span>&#x1F4C4;</span> Templates
+        </a>
+        
+        <h4>Recursos</h4>
+        <a href="../index.html">
+          <span>&#x1F4BC;</span> Ver Decks
+        </a>
+        <a href="https://github.com" target="_blank" rel="noopener">
+          <span>&#x1F4E6;</span> GitHub
+        </a>
+      </nav>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="hub-main">
+      <header class="hub-header">
+        <h1>Design System <span class="accent">Hub</span></h1>
+        <p>Single Source of Truth para presentaciones Workalógico. Documentación, tokens y componentes centralizados.</p>
+      </header>
+      
+      <!-- Stats -->
+      <div class="hub-stats">
+        <div class="hub-stat-card">
+          <div class="hub-stat-value">4</div>
+          <div class="hub-stat-label">Colores de Marca</div>
+        </div>
+        <div class="hub-stat-card">
+          <div class="hub-stat-value">12</div>
+          <div class="hub-stat-label">Componentes</div>
+        </div>
+        <div class="hub-stat-card">
+          <div class="hub-stat-value">6</div>
+          <div class="hub-stat-label">Decks Publicados</div>
+        </div>
+        <div class="hub-stat-card">
+          <div class="hub-stat-value">5</div>
+          <div class="hub-stat-label">Templates de Slide</div>
+        </div>
+      </div>
+      
+      <!-- Quick Links -->
+      <section class="hub-section">
+        <h2>Acceso Rápido</h2>
+        
+        <div class="hub-quick-links">
+          <a href="colors.html" class="hub-quick-link">
+            <div class="hub-quick-link__icon">&#x1F3A8;</div>
+            <div class="hub-quick-link__text">
+              <div class="hub-quick-link__title">Paleta de Colores</div>
+              <div class="hub-quick-link__desc">4 colores de marca + estados</div>
+            </div>
+          </a>
+          
+          <a href="typography.html" class="hub-quick-link">
+            <div class="hub-quick-link__icon">&#x1F524;</div>
+            <div class="hub-quick-link__text">
+              <div class="hub-quick-link__title">Tipografía</div>
+              <div class="hub-quick-link__desc">Space Grotesk + DM Sans</div>
+            </div>
+          </a>
+          
+          <a href="components.html" class="hub-quick-link">
+            <div class="hub-quick-link__icon">&#x1F9F1;</div>
+            <div class="hub-quick-link__text">
+              <div class="hub-quick-link__title">Componentes</div>
+              <div class="hub-quick-link__desc">Cards, badges, métricas</div>
+            </div>
+          </a>
+          
+          <a href="templates.html" class="hub-quick-link">
+            <div class="hub-quick-link__icon">&#x1F4C4;</div>
+            <div class="hub-quick-link__text">
+              <div class="hub-quick-link__title">Templates</div>
+              <div class="hub-quick-link__desc">Layouts de slides</div>
+            </div>
+          </a>
+        </div>
+      </section>
+      
+      <!-- Brand Colors Preview -->
+      <section class="hub-section">
+        <h2>Colores de Marca</h2>
+        
+        <div class="hub-grid hub-grid--4">
+          <div class="color-swatch">
+            <div class="color-swatch__preview" style="background: var(--wo-yellow-spark);"></div>
+            <div class="color-swatch__info">
+              <div class="color-swatch__name">Yellow Spark</div>
+              <div class="color-swatch__var">--wo-yellow-spark</div>
+              <div class="color-swatch__hex">#FFCB00</div>
+            </div>
+          </div>
+          
+          <div class="color-swatch">
+            <div class="color-swatch__preview" style="background: var(--wo-blue-lab);"></div>
+            <div class="color-swatch__info">
+              <div class="color-swatch__name">Blue Lab</div>
+              <div class="color-swatch__var">--wo-blue-lab</div>
+              <div class="color-swatch__hex">#5968EA</div>
+            </div>
+          </div>
+          
+          <div class="color-swatch">
+            <div class="color-swatch__preview" style="background: var(--wo-black-core);"></div>
+            <div class="color-swatch__info">
+              <div class="color-swatch__name">Black Core</div>
+              <div class="color-swatch__var">--wo-black-core</div>
+              <div class="color-swatch__hex">#1A1A2E</div>
+            </div>
+          </div>
+          
+          <div class="color-swatch">
+            <div class="color-swatch__preview" style="background: var(--wo-white-focus); border: 1px solid var(--border-subtle);"></div>
+            <div class="color-swatch__info">
+              <div class="color-swatch__name">White Focus</div>
+              <div class="color-swatch__var">--wo-white-focus</div>
+              <div class="color-swatch__hex">#F7F7F7</div>
+            </div>
+          </div>
+        </div>
+        
+        <p style="margin-top: 1.5rem;"><a href="colors.html">Ver paleta completa →</a></p>
+      </section>
+      
+      <!-- Components Preview -->
+      <section class="hub-section">
+        <h2>Componentes Destacados</h2>
+        
+        <div class="hub-grid hub-grid--2">
+          <div class="hub-preview-card">
+            <div class="hub-preview-card__header">
+              <span class="hub-preview-card__title">wo-card</span>
+              <span class="hub-preview-card__badge">Organismo</span>
+            </div>
+            <div class="hub-preview-card__content">
+              <div class="component-preview" style="background: var(--wo-dark);">
+                <div style="background: rgba(37, 37, 66, 0.5); border: 1px solid var(--border-accent); border-radius: var(--radius-md); padding: 1rem 1.25rem; max-width: 280px;">
+                  <div style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--wo-blue-lab); opacity: 0.25; margin-bottom: 0.25rem;">01</div>
+                  <h3 style="font-family: var(--font-heading); font-size: 1rem; font-weight: 700; color: var(--wo-text); margin-bottom: 0.5rem;">Título del Card</h3>
+                  <p style="font-size: 0.85rem; color: var(--wo-text-secondary); margin: 0; line-height: 1.4;">Descripción breve del contenido.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="hub-preview-card">
+            <div class="hub-preview-card__header">
+              <span class="hub-preview-card__title">wo-stat</span>
+              <span class="hub-preview-card__badge">Organismo</span>
+            </div>
+            <div class="hub-preview-card__content">
+              <div class="component-preview" style="background: var(--wo-dark);">
+                <div style="text-align: center; padding: 1rem 1.5rem; background: var(--wo-accent-dim); border: 1px solid var(--border-accent); border-radius: var(--radius-md);">
+                  <div style="font-family: var(--font-heading); font-size: 2rem; font-weight: 700; color: var(--wo-blue-lab); line-height: 1;">500M+</div>
+                  <div style="font-size: 0.8rem; color: var(--wo-text-secondary); margin-top: 0.35rem;">Data points</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="hub-preview-card">
+            <div class="hub-preview-card__header">
+              <span class="hub-preview-card__title">wo-badge</span>
+              <span class="hub-preview-card__badge">Molécula</span>
+            </div>
+            <div class="hub-preview-card__content">
+              <div class="component-preview" style="background: var(--wo-dark); gap: 1rem;">
+                <span style="display: inline-block; padding: 0.35rem 0.85rem; background: var(--wo-accent-dim); border: 1px solid var(--wo-blue-lab); border-radius: var(--radius-full); font-family: var(--font-heading); font-size: 0.7rem; font-weight: 600; color: var(--wo-blue-lab); letter-spacing: 0.08em; text-transform: uppercase;">TÉCNICO</span>
+                <span style="display: inline-block; padding: 0.35rem 0.85rem; background: var(--wo-yellow-dim); border: 1px solid var(--wo-yellow-spark); border-radius: var(--radius-full); font-family: var(--font-heading); font-size: 0.7rem; font-weight: 600; color: var(--wo-yellow-spark); letter-spacing: 0.08em; text-transform: uppercase; margin-left: 0.5rem;">NUEVO</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="hub-preview-card">
+            <div class="hub-preview-card__header">
+              <span class="hub-preview-card__title">wo-quote</span>
+              <span class="hub-preview-card__badge">Organismo</span>
+            </div>
+            <div class="hub-preview-card__content">
+              <div class="component-preview" style="background: var(--wo-dark);">
+                <div style="background: var(--wo-yellow-dim); border-left: 3px solid var(--wo-yellow-spark); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1rem 1.25rem; max-width: 320px; text-align: center;">
+                  <p style="font-family: var(--font-heading); font-size: 0.9rem; font-style: italic; color: var(--wo-text); margin: 0;">"La diferencia entre éxito y fracaso puede ser de 500 metros."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <p style="margin-top: 1.5rem;"><a href="components.html">Ver todos los componentes →</a></p>
+      </section>
+      
+      <!-- How It Works -->
+      <section class="hub-section">
+        <h2>Cómo Funciona</h2>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">Arquitectura</span>
+          </div>
+          <div class="code-block__content">
+<pre>wo-tokens.css          ← Single Source of Truth (tokens)
+    ↓
+wo-design-system.css   ← Componentes (importa tokens)
+    ↓
+deck-wo-*/index.html   ← Presentaciones (importan design-system)</pre>
+          </div>
+        </div>
+        
+        <p>Un cambio en <code style="background: var(--wo-dark-surface); padding: 0.15rem 0.4rem; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">wo-tokens.css</code> se propaga automáticamente a todas las presentaciones al recargar.</p>
+      </section>
+      
+      <!-- Footer -->
+      <footer class="hub-footer">
+        <p>Workalógico Design System v2.0 | <a href="../index.html">Ver Presentaciones</a> | <a href="mailto:contacto@workalogico.mx">Contacto</a></p>
+      </footer>
+    </main>
+  </div>
+  
+  <!-- Hub JS -->
+  <script src="hub.js"></script>
+</body>
+</html>

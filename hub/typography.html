@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tipografía - Design System Workalógico">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <title>Tipografía | Design System Hub</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../LOGOS/teseracto yellow@3x.png">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Design Tokens -->
+  <link rel="stylesheet" href="../wo-tokens.css">
+  
+  <!-- Hub Styles -->
+  <link rel="stylesheet" href="hub.css">
+</head>
+<body>
+  <div class="hub-layout">
+    <!-- Sidebar -->
+    <aside class="hub-sidebar">
+      <div class="hub-logo">
+        <img src="../LOGOS/logo light @3x.png" alt="Workalógico">
+        <span class="hub-version">Design System v2.0</span>
+      </div>
+      
+      <nav class="hub-nav">
+        <h4>Inicio</h4>
+        <a href="index.html">
+          <span>&#x1F3E0;</span> Dashboard
+        </a>
+        
+        <h4>Fundamentos</h4>
+        <a href="colors.html">
+          <span>&#x1F3A8;</span> Colores
+        </a>
+        <a href="typography.html" class="active">
+          <span>&#x1F524;</span> Tipografía
+        </a>
+        <a href="spacing.html">
+          <span>&#x1F4CF;</span> Espaciado
+        </a>
+        
+        <h4>Componentes</h4>
+        <a href="components.html">
+          <span>&#x1F9F1;</span> Componentes
+        </a>
+        <a href="templates.html">
+          <span>&#x1F4C4;</span> Templates
+        </a>
+        
+        <h4>Recursos</h4>
+        <a href="../index.html">
+          <span>&#x1F4BC;</span> Ver Decks
+        </a>
+      </nav>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="hub-main">
+      <header class="hub-header">
+        <h1>Sistema <span class="accent">Tipográfico</span></h1>
+        <p>Dos familias tipográficas que definen la personalidad visual de Workalógico: técnica y accesible.</p>
+      </header>
+      
+      <!-- Font Families -->
+      <section class="hub-section">
+        <h2>Familias Tipográficas</h2>
+        
+        <div class="hub-grid hub-grid--2">
+          <div class="hub-preview-card">
+            <div class="hub-preview-card__header">
+              <span class="hub-preview-card__title">Space Grotesk</span>
+              <span class="hub-preview-card__badge">Headings</span>
+            </div>
+            <div class="hub-preview-card__content">
+              <p style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.1;">Aa Bb Cc</p>
+              <p style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 400; color: var(--wo-text-secondary); margin-bottom: 1rem;">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789</p>
+              <p style="font-size: 0.85rem; color: var(--wo-text-muted);">Uso: Títulos, métricas, badges, elementos de navegación</p>
+            </div>
+            <div class="hub-preview-card__footer">
+              <code style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--wo-blue-lab);">--font-heading</code>
+            </div>
+          </div>
+          
+          <div class="hub-preview-card">
+            <div class="hub-preview-card__header">
+              <span class="hub-preview-card__title">DM Sans</span>
+              <span class="hub-preview-card__badge">Body</span>
+            </div>
+            <div class="hub-preview-card__content">
+              <p style="font-family: var(--font-body); font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.1;">Aa Bb Cc</p>
+              <p style="font-family: var(--font-body); font-size: 1.25rem; font-weight: 400; color: var(--wo-text-secondary); margin-bottom: 1rem;">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789</p>
+              <p style="font-size: 0.85rem; color: var(--wo-text-muted);">Uso: Párrafos, descripciones, texto de interfaz</p>
+            </div>
+            <div class="hub-preview-card__footer">
+              <code style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--wo-blue-lab);">--font-body</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Type Scale for Reveal.js -->
+      <section class="hub-section">
+        <h2>Escala Tipográfica (Reveal.js)</h2>
+        <p>Tamaños optimizados para viewport 1280x720 de las presentaciones.</p>
+        
+        <div class="type-sample">
+          <div class="type-sample__label">
+            <span class="type-sample__name">H1 - Título Principal</span>
+            <span class="type-sample__specs">Space Grotesk / 700 / 1.3em</span>
+          </div>
+          <p class="type-sample__text" style="font-family: var(--font-heading); font-size: 2rem; font-weight: 700; line-height: 1.1;">Análisis de Vocación Geoestadístico</p>
+        </div>
+        
+        <div class="type-sample">
+          <div class="type-sample__label">
+            <span class="type-sample__name">H2 - Título de Slide</span>
+            <span class="type-sample__specs">Space Grotesk / 700 / 1em</span>
+          </div>
+          <p class="type-sample__text" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; line-height: 1.1;">El Costo de <span class="accent">Equivocarse</span></p>
+        </div>
+        
+        <div class="type-sample">
+          <div class="type-sample__label">
+            <span class="type-sample__name">H3 - Título de Card</span>
+            <span class="type-sample__specs">Space Grotesk / 700 / 0.7em</span>
+          </div>
+          <p class="type-sample__text" style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; line-height: 1.2;">ADN Comercial</p>
+        </div>
+        
+        <div class="type-sample">
+          <div class="type-sample__label">
+            <span class="type-sample__name">Body - Párrafo</span>
+            <span class="type-sample__specs">DM Sans / 400 / 0.6em</span>
+          </div>
+          <p class="type-sample__text" style="font-family: var(--font-body); font-size: 1rem; font-weight: 400; color: var(--wo-text-secondary); line-height: 1.5;">Perfil demográfico y comercial de cada zona. Análisis detallado de variables territoriales para decisiones de ubicación.</p>
+        </div>
+        
+        <div class="type-sample">
+          <div class="type-sample__label">
+            <span class="type-sample__name">Small - Metadata</span>
+            <span class="type-sample__specs">DM Sans / 400 / 0.5em</span>
+          </div>
+          <p class="type-sample__text" style="font-family: var(--font-body); font-size: 0.85rem; font-weight: 400; color: var(--wo-text-muted); line-height: 1.4;">Workalógico • Enero 2026</p>
+        </div>
+      </section>
+      
+      <!-- Font Weights -->
+      <section class="hub-section">
+        <h2>Pesos Tipográficos</h2>
+        
+        <div class="hub-grid hub-grid--2">
+          <div style="background: var(--wo-dark-surface); border-radius: var(--radius-md); padding: 1.5rem;">
+            <h4 style="font-family: var(--font-heading); font-size: 0.75rem; color: var(--wo-text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Space Grotesk</h4>
+            <p style="font-family: var(--font-heading); font-weight: 400; font-size: 1.25rem; margin-bottom: 0.5rem;">Regular (400) - Subtítulos</p>
+            <p style="font-family: var(--font-heading); font-weight: 500; font-size: 1.25rem; margin-bottom: 0.5rem;">Medium (500) - Labels</p>
+            <p style="font-family: var(--font-heading); font-weight: 600; font-size: 1.25rem; margin-bottom: 0.5rem;">Semibold (600) - Badges</p>
+            <p style="font-family: var(--font-heading); font-weight: 700; font-size: 1.25rem;">Bold (700) - Títulos</p>
+          </div>
+          
+          <div style="background: var(--wo-dark-surface); border-radius: var(--radius-md); padding: 1.5rem;">
+            <h4 style="font-family: var(--font-heading); font-size: 0.75rem; color: var(--wo-text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">DM Sans</h4>
+            <p style="font-family: var(--font-body); font-weight: 400; font-size: 1.25rem; margin-bottom: 0.5rem;">Regular (400) - Párrafos</p>
+            <p style="font-family: var(--font-body); font-weight: 500; font-size: 1.25rem; margin-bottom: 0.5rem;">Medium (500) - UI</p>
+            <p style="font-family: var(--font-body); font-weight: 600; font-size: 1.25rem; margin-bottom: 0.5rem;">Semibold (600) - Énfasis</p>
+            <p style="font-family: var(--font-body); font-weight: 700; font-size: 1.25rem;">Bold (700) - Strong</p>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Code Example -->
+      <section class="hub-section">
+        <h2>Implementación</h2>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'html-fonts')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="html-fonts">&lt;!-- Cargar Google Fonts --&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"&gt;</pre>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">CSS</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'css-fonts')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="css-fonts">/* Usar las variables tipográficas */
+.mi-titulo {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.mi-parrafo {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+}</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Footer -->
+      <footer class="hub-footer">
+        <p><a href="index.html">← Volver al Dashboard</a></p>
+      </footer>
+    </main>
+  </div>
+  
+  <!-- Hub JS -->
+  <script src="hub.js"></script>
+</body>
+</html>
