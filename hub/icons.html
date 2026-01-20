@@ -142,45 +142,45 @@
       <nav class="hub-nav">
         <h4>Inicio</h4>
         <a href="index.html">
-          <span>&#x1F3E0;</span> Dashboard
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></span> Dashboard
         </a>
         
         <h4>Fundamentos</h4>
         <a href="colors.html">
-          <span>&#x1F3A8;</span> Colores
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18h3a2 2 0 0 0 0-4h-1a2 2 0 0 1 0-4h2a2 2 0 0 0 2-2 6 6 0 0 0-6-6z"/><circle cx="8" cy="10" r="1"/><circle cx="6.5" cy="14" r="1"/><circle cx="10.5" cy="6.5" r="1"/></svg></span> Colores
         </a>
         <a href="typography.html">
-          <span>&#x1F524;</span> Tipografía
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 6h14"/><path d="M12 6v12"/><path d="M8 18h8"/></svg></span> Tipografía
         </a>
         <a href="spacing.html">
-          <span>&#x1F4CF;</span> Espaciado
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M4 17h16"/><path d="M7 9v6"/><path d="M12 9v6"/><path d="M17 9v6"/></svg></span> Espaciado
         </a>
         
         <h4>Componentes</h4>
         <a href="components.html">
-          <span>&#x1F9F1;</span> Componentes
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span> Componentes
         </a>
         <a href="templates.html">
-          <span>&#x1F4C4;</span> Templates
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg></span> Templates
         </a>
         <a href="mapbox.html">
-          <span>&#x1F5FA;</span> Mapbox Theme
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14"/><path d="M15 6v14"/></svg></span> Mapbox Theme
         </a>
         
         <h4>Assets</h4>
         <a href="assets.html">
-          <span>&#x1F3F7;</span> Logos
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 12l9 9 9-9-9-9H3z"/><circle cx="8" cy="8" r="1.5"/></svg></span> Logos
         </a>
         <a href="backgrounds.html">
-          <span>&#x1F304;</span> Fondos
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 17l5-5 4 4 3-3 6 6"/><circle cx="8" cy="10" r="2"/></svg></span> Fondos
         </a>
         <a href="icons.html" class="active">
-          <span>&#x2B50;</span> Iconos
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/></svg></span> Iconos
         </a>
         
         <h4>Recursos</h4>
         <a href="../index.html">
-          <span>&#x1F4BC;</span> Ver Decks
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="11" rx="2"/><path d="M9 7V5h6v2"/><path d="M4 12h16"/></svg></span> Ver Decks
         </a>
       </nav>
     </aside>
@@ -282,6 +282,216 @@
         </div>
       </section>
       
+      <!-- Navigation Icons -->
+      <section class="hub-section">
+        <h2>Iconos de <span class="accent">Navegación</span></h2>
+        <p>Set de íconos para la barra lateral del Design System Hub.</p>
+        
+        <div class="hub-grid hub-grid--3">
+          <div class="icon-card">
+            <div class="icon-card__preview">
+              <svg viewBox="0 0 24 24">
+                <path d="M3 11l9-7 9 7"/>
+                <path d="M5 10v10h14V10"/>
+              </svg>
+            </div>
+            <div class="icon-card__info">
+              <div class="icon-card__name">Dashboard</div>
+              <div class="icon-card__desc">Inicio del Hub.</div>
+              <div class="icon-card__copy">
+                <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'icon-nav-dashboard')">Copiar SVG</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="icon-card">
+            <div class="icon-card__preview">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3a9 9 0 1 0 0 18h3a2 2 0 0 0 0-4h-1a2 2 0 0 1 0-4h2a2 2 0 0 0 2-2 6 6 0 0 0-6-6z"/>
+                <circle cx="8" cy="10" r="1"/>
+                <circle cx="6.5" cy="14" r="1"/>
+                <circle cx="10.5" cy="6.5" r="1"/>
+              </svg>
+            </div>
+            <div class="icon-card__info">
+              <div class="icon-card__name">Colores</div>
+              <div class="icon-card__desc">Paleta de marca y tokens.</div>
+              <div class="icon-card__copy">
+                <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'icon-nav-colors')">Copiar SVG</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="icon-card">
+            <div class="icon-card__preview">
+              <svg viewBox="0 0 24 24">
+                <path d="M5 6h14"/>
+                <path d="M12 6v12"/>
+                <path d="M8 18h8"/>
+              </svg>
+            </div>
+            <div class="icon-card__info">
+              <div class="icon-card__name">Tipografía</div>
+              <div class="icon-card__desc">Sistema tipográfico.</div>
+              <div class="icon-card__copy">
+                <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'icon-nav-typography')">Copiar SVG</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="icon-card">
+            <div class="icon-card__preview">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 7h16"/>
+                <path d="M4 17h16"/>
+                <path d="M7 9v6"/>
+                <path d="M12 9v6"/>
+                <path d="M17 9v6"/>
+              </svg>
+            </div>
+            <div class="icon-card__info">
+              <div class="icon-card__name">Espaciado</div>
+              <div class="icon-card__desc">Sistema de spacing.</div>
+              <div class="icon-card__copy">
+                <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'icon-nav-spacing')">Copiar SVG</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="icon-card">
+            <div class="icon-card__preview">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <rect x="14" y="14" width="7" height="7" rx="1"/>
+              </svg>
+            </div>
+            <div class="icon-card__info">
+              <div class="icon-card__name">Componentes</div>
+              <div class="icon-card__desc">Sistema de componentes UI.</div>
+              <div class="icon-card__copy">
+                <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'icon-nav-components')">Copiar SVG</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="icon-card">
+            <div class="icon-card__preview">
+              <svg viewBox="0 0 24 24">
+                <path d="M7 3h7l5 5v13H7z"/>
+                <path d="M14 3v5h5"/>
+              </svg>
+            </div>
+            <div class="icon-card__info">
+              <div class="icon-card__name">Templates</div>
+              <div class="icon-card__desc">Layouts y plantillas.</div>
+              <div class="icon-card__copy">
+                <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'icon-nav-templates')">Copiar SVG</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="icon-card">
+            <div class="icon-card__preview">
+              <svg viewBox="0 0 24 24">
+                <path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/>
+                <path d="M9 4v14"/>
+                <path d="M15 6v14"/>
+              </svg>
+            </div>
+            <div class="icon-card__info">
+              <div class="icon-card__name">Mapbox Theme</div>
+              <div class="icon-card__desc">Tema y tokens Mapbox.</div>
+              <div class="icon-card__copy">
+                <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'icon-nav-mapbox')">Copiar SVG</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="icon-card">
+            <div class="icon-card__preview">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 21s6-6.5 6-11a6 6 0 1 0-12 0c0 4.5 6 11 6 11z"/>
+                <circle cx="12" cy="10" r="2.5"/>
+              </svg>
+            </div>
+            <div class="icon-card__info">
+              <div class="icon-card__name">Map Components</div>
+              <div class="icon-card__desc">Componentes de mapas.</div>
+              <div class="icon-card__copy">
+                <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'icon-nav-mapcomponents')">Copiar SVG</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="icon-card">
+            <div class="icon-card__preview">
+              <svg viewBox="0 0 24 24">
+                <path d="M3 12l9 9 9-9-9-9H3z"/>
+                <circle cx="8" cy="8" r="1.5"/>
+              </svg>
+            </div>
+            <div class="icon-card__info">
+              <div class="icon-card__name">Logos</div>
+              <div class="icon-card__desc">Assets de marca.</div>
+              <div class="icon-card__copy">
+                <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'icon-nav-logos')">Copiar SVG</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="icon-card">
+            <div class="icon-card__preview">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="6" width="18" height="12" rx="2"/>
+                <path d="M3 17l5-5 4 4 3-3 6 6"/>
+                <circle cx="8" cy="10" r="2"/>
+              </svg>
+            </div>
+            <div class="icon-card__info">
+              <div class="icon-card__name">Fondos</div>
+              <div class="icon-card__desc">Gradientes y patrones.</div>
+              <div class="icon-card__copy">
+                <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'icon-nav-backgrounds')">Copiar SVG</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="icon-card">
+            <div class="icon-card__preview">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/>
+              </svg>
+            </div>
+            <div class="icon-card__info">
+              <div class="icon-card__name">Iconos</div>
+              <div class="icon-card__desc">Set de íconos SVG.</div>
+              <div class="icon-card__copy">
+                <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'icon-nav-icons')">Copiar SVG</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="icon-card">
+            <div class="icon-card__preview">
+              <svg viewBox="0 0 24 24">
+                <rect x="4" y="7" width="16" height="11" rx="2"/>
+                <path d="M9 7V5h6v2"/>
+                <path d="M4 12h16"/>
+              </svg>
+            </div>
+            <div class="icon-card__info">
+              <div class="icon-card__name">Ver Decks</div>
+              <div class="icon-card__desc">Acceso a presentaciones.</div>
+              <div class="icon-card__copy">
+                <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'icon-nav-decks')">Copiar SVG</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
       <!-- Demo de uso -->
       <section class="hub-section">
         <h2>Uso en Context</h2>
@@ -368,6 +578,162 @@
   &lt;rect x="14" y="3" width="7" height="7" rx="1"/&gt;
   &lt;rect x="3" y="14" width="7" height="7" rx="1"/&gt;
   &lt;rect x="14" y="14" width="7" height="7" rx="1"/&gt;
+&lt;/svg&gt;</pre>
+          </div>
+        </div>
+        
+        <h3>Iconos de Navegación</h3>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">Dashboard</span>
+          </div>
+          <div class="code-block__content">
+<pre id="icon-nav-dashboard">&lt;svg viewBox="0 0 24 24"&gt;
+  &lt;path d="M3 11l9-7 9 7"/&gt;
+  &lt;path d="M5 10v10h14V10"/&gt;
+&lt;/svg&gt;</pre>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">Colores</span>
+          </div>
+          <div class="code-block__content">
+<pre id="icon-nav-colors">&lt;svg viewBox="0 0 24 24"&gt;
+  &lt;path d="M12 3a9 9 0 1 0 0 18h3a2 2 0 0 0 0-4h-1a2 2 0 0 1 0-4h2a2 2 0 0 0 2-2 6 6 0 0 0-6-6z"/&gt;
+  &lt;circle cx="8" cy="10" r="1"/&gt;
+  &lt;circle cx="6.5" cy="14" r="1"/&gt;
+  &lt;circle cx="10.5" cy="6.5" r="1"/&gt;
+&lt;/svg&gt;</pre>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">Tipografía</span>
+          </div>
+          <div class="code-block__content">
+<pre id="icon-nav-typography">&lt;svg viewBox="0 0 24 24"&gt;
+  &lt;path d="M5 6h14"/&gt;
+  &lt;path d="M12 6v12"/&gt;
+  &lt;path d="M8 18h8"/&gt;
+&lt;/svg&gt;</pre>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">Espaciado</span>
+          </div>
+          <div class="code-block__content">
+<pre id="icon-nav-spacing">&lt;svg viewBox="0 0 24 24"&gt;
+  &lt;path d="M4 7h16"/&gt;
+  &lt;path d="M4 17h16"/&gt;
+  &lt;path d="M7 9v6"/&gt;
+  &lt;path d="M12 9v6"/&gt;
+  &lt;path d="M17 9v6"/&gt;
+&lt;/svg&gt;</pre>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">Componentes</span>
+          </div>
+          <div class="code-block__content">
+<pre id="icon-nav-components">&lt;svg viewBox="0 0 24 24"&gt;
+  &lt;rect x="3" y="3" width="7" height="7" rx="1"/&gt;
+  &lt;rect x="14" y="3" width="7" height="7" rx="1"/&gt;
+  &lt;rect x="3" y="14" width="7" height="7" rx="1"/&gt;
+  &lt;rect x="14" y="14" width="7" height="7" rx="1"/&gt;
+&lt;/svg&gt;</pre>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">Templates</span>
+          </div>
+          <div class="code-block__content">
+<pre id="icon-nav-templates">&lt;svg viewBox="0 0 24 24"&gt;
+  &lt;path d="M7 3h7l5 5v13H7z"/&gt;
+  &lt;path d="M14 3v5h5"/&gt;
+&lt;/svg&gt;</pre>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">Mapbox Theme</span>
+          </div>
+          <div class="code-block__content">
+<pre id="icon-nav-mapbox">&lt;svg viewBox="0 0 24 24"&gt;
+  &lt;path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/&gt;
+  &lt;path d="M9 4v14"/&gt;
+  &lt;path d="M15 6v14"/&gt;
+&lt;/svg&gt;</pre>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">Map Components</span>
+          </div>
+          <div class="code-block__content">
+<pre id="icon-nav-mapcomponents">&lt;svg viewBox="0 0 24 24"&gt;
+  &lt;path d="M12 21s6-6.5 6-11a6 6 0 1 0-12 0c0 4.5 6 11 6 11z"/&gt;
+  &lt;circle cx="12" cy="10" r="2.5"/&gt;
+&lt;/svg&gt;</pre>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">Logos</span>
+          </div>
+          <div class="code-block__content">
+<pre id="icon-nav-logos">&lt;svg viewBox="0 0 24 24"&gt;
+  &lt;path d="M3 12l9 9 9-9-9-9H3z"/&gt;
+  &lt;circle cx="8" cy="8" r="1.5"/&gt;
+&lt;/svg&gt;</pre>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">Fondos</span>
+          </div>
+          <div class="code-block__content">
+<pre id="icon-nav-backgrounds">&lt;svg viewBox="0 0 24 24"&gt;
+  &lt;rect x="3" y="6" width="18" height="12" rx="2"/&gt;
+  &lt;path d="M3 17l5-5 4 4 3-3 6 6"/&gt;
+  &lt;circle cx="8" cy="10" r="2"/&gt;
+&lt;/svg&gt;</pre>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">Iconos</span>
+          </div>
+          <div class="code-block__content">
+<pre id="icon-nav-icons">&lt;svg viewBox="0 0 24 24"&gt;
+  &lt;path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/&gt;
+&lt;/svg&gt;</pre>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">Ver Decks</span>
+          </div>
+          <div class="code-block__content">
+<pre id="icon-nav-decks">&lt;svg viewBox="0 0 24 24"&gt;
+  &lt;rect x="4" y="7" width="16" height="11" rx="2"/&gt;
+  &lt;path d="M9 7V5h6v2"/&gt;
+  &lt;path d="M4 12h16"/&gt;
 &lt;/svg&gt;</pre>
           </div>
         </div>

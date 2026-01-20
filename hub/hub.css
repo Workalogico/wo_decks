@@ -135,8 +135,23 @@ a:hover {
   color: var(--wo-text);
 }
 
-.hub-nav a span {
-  font-size: 1.1rem;
+.hub-nav .nav-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.hub-nav .nav-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -595,6 +610,16 @@ a:hover {
   justify-content: center;
   background: var(--wo-accent-dim);
   border-radius: var(--radius-md);
+}
+
+.hub-quick-link__icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--wo-blue-lab);
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .hub-quick-link__text {

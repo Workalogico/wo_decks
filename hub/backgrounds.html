@@ -42,6 +42,26 @@
       position: relative;
       overflow: hidden;
     }
+
+    .fullscreen-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--wo-text);
+      font-size: 0.7rem;
+      padding: 0.35rem 0.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      z-index: 3;
+      transition: all var(--transition-fast);
+    }
+
+    .fullscreen-btn:hover {
+      background: rgba(89, 104, 234, 0.35);
+      border-color: rgba(89, 104, 234, 0.6);
+    }
     
     /* Portada/CTA - Gradiente radial con spotlight central */
     .bg-card__preview--cover {
@@ -214,10 +234,10 @@
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       background-image: 
-        linear-gradient(rgba(89, 104, 234, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(89, 104, 234, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba(89, 104, 234, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(89, 104, 234, 0.12) 1px, transparent 1px);
       background-size: 40px 40px;
-      opacity: 0.4;
+      opacity: 0.8;
       pointer-events: none;
     }
     
@@ -225,6 +245,115 @@
       position: relative;
       z-index: 1;
       text-align: center;
+    }
+    
+    /* ═══════════════════════════════════════════════════════════════
+       GEOMETRIC PATTERNS
+       ═══════════════════════════════════════════════════════════════ */
+    
+    .pattern-card {
+      background: var(--wo-dark-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all var(--transition-normal);
+    }
+    
+    .pattern-card:hover {
+      border-color: var(--wo-blue-lab);
+    }
+    
+    .pattern-card__preview {
+      height: 180px;
+      position: relative;
+      background: var(--wo-dark);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .pattern-card__label {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--wo-text);
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      z-index: 2;
+    }
+    
+    .pattern-card__info {
+      padding: 1rem 1.25rem;
+      background: var(--wo-dark-elevated);
+      border-top: 1px solid var(--border-subtle);
+    }
+    
+    .pattern-card__name {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    
+    .pattern-card__desc {
+      font-size: 0.8rem;
+      color: var(--wo-text-secondary);
+    }
+    
+    /* Hexagon Pattern */
+    .pattern-hexagon {
+      background-color: var(--wo-dark);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%235968ea' fill-opacity='0.15'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    
+    /* Dots Pattern */
+    .pattern-dots {
+      background-color: var(--wo-dark);
+      background-image: radial-gradient(rgba(89, 104, 234, 0.25) 1.5px, transparent 1.5px);
+      background-size: 20px 20px;
+    }
+    
+    /* Diagonal Lines Pattern */
+    .pattern-diagonal {
+      background-color: var(--wo-dark);
+      background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(89, 104, 234, 0.08) 10px,
+        rgba(89, 104, 234, 0.08) 11px
+      );
+    }
+    
+    /* Isometric Grid Pattern */
+    .pattern-isometric {
+      background-color: var(--wo-dark);
+      background-image: 
+        linear-gradient(30deg, rgba(89, 104, 234, 0.12) 12%, transparent 12.5%, transparent 87%, rgba(89, 104, 234, 0.12) 87.5%, rgba(89, 104, 234, 0.12)),
+        linear-gradient(150deg, rgba(89, 104, 234, 0.12) 12%, transparent 12.5%, transparent 87%, rgba(89, 104, 234, 0.12) 87.5%, rgba(89, 104, 234, 0.12)),
+        linear-gradient(30deg, rgba(89, 104, 234, 0.12) 12%, transparent 12.5%, transparent 87%, rgba(89, 104, 234, 0.12) 87.5%, rgba(89, 104, 234, 0.12)),
+        linear-gradient(150deg, rgba(89, 104, 234, 0.12) 12%, transparent 12.5%, transparent 87%, rgba(89, 104, 234, 0.12) 87.5%, rgba(89, 104, 234, 0.12)),
+        linear-gradient(60deg, rgba(89, 104, 234, 0.08) 25%, transparent 25.5%, transparent 75%, rgba(89, 104, 234, 0.08) 75%, rgba(89, 104, 234, 0.08)),
+        linear-gradient(60deg, rgba(89, 104, 234, 0.08) 25%, transparent 25.5%, transparent 75%, rgba(89, 104, 234, 0.08) 75%, rgba(89, 104, 234, 0.08));
+      background-size: 40px 70px;
+      background-position: 0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px;
+    }
+    
+    /* Cross Pattern */
+    .pattern-cross {
+      background-color: var(--wo-dark);
+      background-image: 
+        linear-gradient(rgba(89, 104, 234, 0.1) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(89, 104, 234, 0.1) 2px, transparent 2px),
+        linear-gradient(rgba(89, 104, 234, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(89, 104, 234, 0.05) 1px, transparent 1px);
+      background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+      background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
     }
     
     /* ═══════════════════════════════════════════════════════════════
@@ -388,6 +517,137 @@
       border-color: var(--wo-yellow-spark);
       background: rgba(255, 203, 0, 0.1);
     }
+    
+    /* ═══════════════════════════════════════════════════════════════
+       THREE.JS PAPER PLANES DEMO
+       ═══════════════════════════════════════════════════════════════ */
+    
+    .threejs-demo {
+      position: relative;
+      height: 70vh;
+      min-height: 420px;
+      max-height: 800px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      margin-top: 1.5rem;
+      background: radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%);
+    }
+    
+    .threejs-demo__canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    
+    .threejs-demo__content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      text-align: center;
+      padding: 2rem;
+      pointer-events: none;
+    }
+    
+    .threejs-demo__title {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+    }
+    
+    .threejs-demo__subtitle {
+      color: var(--wo-text-secondary);
+      font-size: 1rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+    
+    .threejs-demo__badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--wo-yellow-spark);
+      background: rgba(0, 0, 0, 0.6);
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      z-index: 2;
+    }
+    
+    .threejs-demo__hint {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      font-size: 0.75rem;
+      color: var(--wo-text-muted);
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      z-index: 2;
+    }
+    
+    .threejs-demo__tech {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      color: var(--wo-text-muted);
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      z-index: 2;
+    }
+    
+    .threejs-demo__tech-logo {
+      width: 16px;
+      height: 16px;
+    }
+
+    .fullscreen-overlay {
+      position: fixed;
+      inset: 0;
+      background: #0F0F1A;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fullscreen-preview {
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-size: cover;
+      background-repeat: repeat;
+    }
+
+    .fullscreen-close {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--wo-text);
+      font-size: 0.8rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 10000;
+    }
   </style>
 </head>
 <body>
@@ -402,45 +662,45 @@
       <nav class="hub-nav">
         <h4>Inicio</h4>
         <a href="index.html">
-          <span>&#x1F3E0;</span> Dashboard
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></span> Dashboard
         </a>
         
         <h4>Fundamentos</h4>
         <a href="colors.html">
-          <span>&#x1F3A8;</span> Colores
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18h3a2 2 0 0 0 0-4h-1a2 2 0 0 1 0-4h2a2 2 0 0 0 2-2 6 6 0 0 0-6-6z"/><circle cx="8" cy="10" r="1"/><circle cx="6.5" cy="14" r="1"/><circle cx="10.5" cy="6.5" r="1"/></svg></span> Colores
         </a>
         <a href="typography.html">
-          <span>&#x1F524;</span> Tipografía
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 6h14"/><path d="M12 6v12"/><path d="M8 18h8"/></svg></span> Tipografía
         </a>
         <a href="spacing.html">
-          <span>&#x1F4CF;</span> Espaciado
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M4 17h16"/><path d="M7 9v6"/><path d="M12 9v6"/><path d="M17 9v6"/></svg></span> Espaciado
         </a>
         
         <h4>Componentes</h4>
         <a href="components.html">
-          <span>&#x1F9F1;</span> Componentes
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span> Componentes
         </a>
         <a href="templates.html">
-          <span>&#x1F4C4;</span> Templates
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg></span> Templates
         </a>
         <a href="mapbox.html">
-          <span>&#x1F5FA;</span> Mapbox Theme
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14"/><path d="M15 6v14"/></svg></span> Mapbox Theme
         </a>
         
         <h4>Assets</h4>
         <a href="assets.html">
-          <span>&#x1F3F7;</span> Logos
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 12l9 9 9-9-9-9H3z"/><circle cx="8" cy="8" r="1.5"/></svg></span> Logos
         </a>
         <a href="backgrounds.html" class="active">
-          <span>&#x1F304;</span> Fondos
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 17l5-5 4 4 3-3 6 6"/><circle cx="8" cy="10" r="2"/></svg></span> Fondos
         </a>
         <a href="icons.html">
-          <span>&#x2B50;</span> Iconos
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/></svg></span> Iconos
         </a>
         
         <h4>Recursos</h4>
         <a href="../index.html">
-          <span>&#x1F4BC;</span> Ver Decks
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="11" rx="2"/><path d="M9 7V5h6v2"/><path d="M4 12h16"/></svg></span> Ver Decks
         </a>
       </nav>
     </aside>
@@ -459,7 +719,8 @@
         
         <div class="hub-grid hub-grid--3">
           <div class="bg-card">
-            <div class="bg-card__preview bg-card__preview--cover">
+            <div class="bg-card__preview bg-card__preview--cover" id="bg-preview-cover">
+              <button class="fullscreen-btn" data-fullscreen-target="bg-preview-cover">Ver full</button>
               <span class="bg-card__label">PORTADA / CTA</span>
               <div class="bg-card__mock">
                 <div class="bg-card__mock-title"></div>
@@ -474,7 +735,8 @@
           </div>
           
           <div class="bg-card">
-            <div class="bg-card__preview bg-card__preview--section">
+            <div class="bg-card__preview bg-card__preview--section" id="bg-preview-section">
+              <button class="fullscreen-btn" data-fullscreen-target="bg-preview-section">Ver full</button>
               <span class="bg-card__label">SECCIÓN</span>
               <div class="bg-card__mock">
                 <div class="bg-card__mock-title" style="width: 80%;"></div>
@@ -489,7 +751,8 @@
           </div>
           
           <div class="bg-card">
-            <div class="bg-card__preview bg-card__preview--content">
+            <div class="bg-card__preview bg-card__preview--content" id="bg-preview-content">
+              <button class="fullscreen-btn" data-fullscreen-target="bg-preview-content">Ver full</button>
               <span class="bg-card__label">CONTENIDO</span>
               <div class="bg-card__mock">
                 <div class="bg-card__mock-title" style="width: 50%; align-self: flex-start;"></div>
@@ -513,7 +776,8 @@
         <h2>Grid Pattern</h2>
         <p>Patrón de cuadrícula sutil que agrega profundidad a los slides de contenido.</p>
         
-        <div class="pattern-demo">
+        <div class="pattern-demo" id="pattern-grid-demo">
+          <button class="fullscreen-btn" data-fullscreen-target="pattern-grid-demo">Ver full</button>
           <div class="pattern-demo__grid"></div>
           <div class="pattern-demo__content">
             <h3 style="font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: 0.5rem;">Contenido con Grid Background</h3>
@@ -531,12 +795,138 @@
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   background-image: 
-    linear-gradient(rgba(89, 104, 234, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(89, 104, 234, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(89, 104, 234, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(89, 104, 234, 0.08) 1px, transparent 1px);
   background-size: 40px 40px;
   pointer-events: none;
-  opacity: 0.4;
+  opacity: 0.7;
   z-index: -1;
+}</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Geometric Patterns -->
+      <section class="hub-section">
+        <h2>Patrones <span class="accent">Geométricos</span></h2>
+        <p>Patrones CSS alternativos para agregar profundidad visual a los slides. Ideales para secciones técnicas o de datos.</p>
+        
+        <div class="hub-grid hub-grid--2" style="margin-top: 1.5rem;">
+          <!-- Hexagon Pattern -->
+          <div class="pattern-card">
+            <div class="pattern-card__preview pattern-hexagon" id="pattern-hexagon-demo">
+              <button class="fullscreen-btn" data-fullscreen-target="pattern-hexagon-demo">Ver full</button>
+              <span class="pattern-card__label">HEXÁGONOS</span>
+            </div>
+            <div class="pattern-card__info">
+              <div class="pattern-card__name">Hexagon Pattern</div>
+              <div class="pattern-card__desc">Red hexagonal. Ideal para slides de datos geoespaciales.</div>
+            </div>
+          </div>
+          
+          <!-- Dots Pattern -->
+          <div class="pattern-card">
+            <div class="pattern-card__preview pattern-dots" id="pattern-dots-demo">
+              <button class="fullscreen-btn" data-fullscreen-target="pattern-dots-demo">Ver full</button>
+              <span class="pattern-card__label">PUNTOS</span>
+            </div>
+            <div class="pattern-card__info">
+              <div class="pattern-card__name">Dots Pattern</div>
+              <div class="pattern-card__desc">Puntos distribuidos. Minimalista y limpio.</div>
+            </div>
+          </div>
+          
+          <!-- Diagonal Lines -->
+          <div class="pattern-card">
+            <div class="pattern-card__preview pattern-diagonal" id="pattern-diagonal-demo">
+              <button class="fullscreen-btn" data-fullscreen-target="pattern-diagonal-demo">Ver full</button>
+              <span class="pattern-card__label">DIAGONALES</span>
+            </div>
+            <div class="pattern-card__info">
+              <div class="pattern-card__name">Diagonal Lines</div>
+              <div class="pattern-card__desc">Líneas 45°. Efecto de velocidad y tecnología.</div>
+            </div>
+          </div>
+          
+          <!-- Isometric Grid -->
+          <div class="pattern-card">
+            <div class="pattern-card__preview pattern-isometric" id="pattern-isometric-demo">
+              <button class="fullscreen-btn" data-fullscreen-target="pattern-isometric-demo">Ver full</button>
+              <span class="pattern-card__label">ISOMÉTRICO</span>
+            </div>
+            <div class="pattern-card__info">
+              <div class="pattern-card__name">Isometric Grid</div>
+              <div class="pattern-card__desc">Grid 3D. Para visualizaciones espaciales.</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Código de patrones -->
+        <h3 style="margin-top: 2rem;">Código CSS</h3>
+        
+        <div class="code-block" style="margin-top: 1rem;">
+          <div class="code-block__header">
+            <span class="code-block__lang">Hexagon Pattern</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-hexagon')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-hexagon">.pattern-hexagon {
+  background-color: #0F0F1A;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%235968ea' fill-opacity='0.15'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}</pre>
+          </div>
+        </div>
+        
+        <div class="code-block" style="margin-top: 1rem;">
+          <div class="code-block__header">
+            <span class="code-block__lang">Dots Pattern</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-dots')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-dots">.pattern-dots {
+  background-color: #0F0F1A;
+  background-image: radial-gradient(rgba(89, 104, 234, 0.25) 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
+}</pre>
+          </div>
+        </div>
+        
+        <div class="code-block" style="margin-top: 1rem;">
+          <div class="code-block__header">
+            <span class="code-block__lang">Diagonal Lines</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-diagonal')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-diagonal">.pattern-diagonal {
+  background-color: #0F0F1A;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(89, 104, 234, 0.08) 10px,
+    rgba(89, 104, 234, 0.08) 11px
+  );
+}</pre>
+          </div>
+        </div>
+        
+        <div class="code-block" style="margin-top: 1rem;">
+          <div class="code-block__header">
+            <span class="code-block__lang">Isometric Grid</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-isometric')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-isometric">.pattern-isometric {
+  background-color: #0F0F1A;
+  background-image: 
+    linear-gradient(30deg, rgba(89, 104, 234, 0.12) 12%, transparent 12.5%, transparent 87%, rgba(89, 104, 234, 0.12) 87.5%),
+    linear-gradient(150deg, rgba(89, 104, 234, 0.12) 12%, transparent 12.5%, transparent 87%, rgba(89, 104, 234, 0.12) 87.5%),
+    linear-gradient(30deg, rgba(89, 104, 234, 0.12) 12%, transparent 12.5%, transparent 87%, rgba(89, 104, 234, 0.12) 87.5%),
+    linear-gradient(150deg, rgba(89, 104, 234, 0.12) 12%, transparent 12.5%, transparent 87%, rgba(89, 104, 234, 0.12) 87.5%),
+    linear-gradient(60deg, rgba(89, 104, 234, 0.08) 25%, transparent 25.5%, transparent 75%, rgba(89, 104, 234, 0.08) 75%),
+    linear-gradient(60deg, rgba(89, 104, 234, 0.08) 25%, transparent 25.5%, transparent 75%, rgba(89, 104, 234, 0.08) 75%);
+  background-size: 40px 70px;
+  background-position: 0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px;
 }</pre>
           </div>
         </div>
@@ -548,7 +938,8 @@
         <p>Red de nodos conectados que representa la inteligencia de datos geoespaciales. Aparece en slides clave usando <a href="https://particles.js.org/" target="_blank">tsParticles</a>.</p>
         
         <!-- Live Demo -->
-        <div class="particles-demo">
+        <div class="particles-demo" id="particles-demo-fullscreen">
+          <button class="fullscreen-btn" data-fullscreen-target="particles-demo-fullscreen" data-fullscreen-mode="live">Ver full</button>
           <span class="particles-demo__badge">INTERACTIVO</span>
           <div id="particles-demo-container" class="particles-demo__container"></div>
           <div class="particles-demo__content">
@@ -713,6 +1104,95 @@ Reveal.on('slidechanged', event =&gt; {
         </div>
       </section>
       
+      <!-- Three.js Paper Planes -->
+      <section class="hub-section">
+        <h2>Three.js <span class="accent">Paper Planes</span></h2>
+        <p>Fondo interactivo 3D con aviones de papel animados usando <a href="https://threejs.org/" target="_blank">Three.js</a> y el algoritmo de flocking (boids). Los aviones siguen el cursor y crean un efecto dinámico.</p>
+        
+        <!-- Live Demo -->
+        <div class="threejs-demo" id="threejs-demo-fullscreen">
+          <button class="fullscreen-btn" data-fullscreen-target="threejs-demo-fullscreen" data-fullscreen-mode="live">Ver full</button>
+          <span class="threejs-demo__badge">THREE.JS + WEBGL</span>
+          <div id="threejs-canvas" class="threejs-demo__canvas"></div>
+          <div class="threejs-demo__content">
+            <div class="threejs-demo__title">Flocking <span class="accent">Simulation</span></div>
+            <div class="threejs-demo__subtitle">Mueve el cursor para interactuar con los aviones de papel</div>
+          </div>
+          <span class="threejs-demo__hint">Cursor repele los boids</span>
+          <span class="threejs-demo__tech">
+            <svg class="threejs-demo__tech-logo" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L2 19.5h20L12 2zm0 4l6.5 11.5h-13L12 6z"/>
+            </svg>
+            Three.js r160
+          </span>
+        </div>
+        
+        <!-- Config Overview -->
+        <h3 style="margin-top: 2rem;">Configuración</h3>
+        <div class="particles-config">
+          <div class="particles-config__item">
+            <div class="particles-config__label">Aviones</div>
+            <div class="particles-config__value">200 boids</div>
+          </div>
+          <div class="particles-config__item">
+            <div class="particles-config__label">Colores</div>
+            <div class="particles-config__colors">
+              <div class="particles-config__color particles-config__color--blue"></div>
+              <span class="particles-config__color-label">Azul brand</span>
+              <div class="particles-config__color particles-config__color--yellow"></div>
+              <span class="particles-config__color-label">Amarillo accent</span>
+            </div>
+          </div>
+          <div class="particles-config__item">
+            <div class="particles-config__label">Velocidad</div>
+            <div class="particles-config__value">4 unidades/frame</div>
+          </div>
+          <div class="particles-config__item">
+            <div class="particles-config__label">Parvadas</div>
+            <div class="particles-config__value">3 grupos coordinados</div>
+          </div>
+        </div>
+        
+        <!-- Código -->
+        <h3 style="margin-top: 2rem;">Implementación</h3>
+        <p style="font-size: 0.9rem; color: var(--wo-text-secondary);">Este fondo requiere Three.js y es ideal para landing pages o slides de impacto visual.</p>
+        
+        <div class="code-block" style="margin-top: 1rem;">
+          <div class="code-block__header">
+            <span class="code-block__lang">CDN - Three.js</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-threejs-cdn')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-threejs-cdn">&lt;script type="importmap"&gt;
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+  }
+}
+&lt;/script&gt;</pre>
+          </div>
+        </div>
+        
+        <div class="code-block" style="margin-top: 1rem;">
+          <div class="code-block__header">
+            <span class="code-block__lang">Colores Workalógico</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-threejs-colors')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-threejs-colors">// Paleta de colores para los aviones
+const BIRD_COLORS = [
+  0x5968EA,  // wo-blue-lab (75%)
+  0x5968EA,
+  0x5968EA,
+  0xFFCB00   // wo-yellow-spark (25%)
+];
+
+// Gradiente de fondo
+const BG_GRADIENT = 'radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%)';</pre>
+          </div>
+        </div>
+      </section>
+      
       <!-- Implementación -->
       <section class="hub-section">
         <h2>Implementación en Reveal.js</h2>
@@ -855,6 +1335,366 @@ Reveal.on('slidechanged', event =&gt; {
         });
       }
     });
+  </script>
+  
+  <!-- Three.js Paper Planes Demo -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+    }
+  }
+  </script>
+  <script type="module">
+    import * as THREE from 'three';
+    
+    // Workalógico Brand Colors
+    const BIRD_COLORS = [0x5968EA, 0x5968EA, 0x5968EA, 0xFFCB00];
+    
+    // Bird Geometry - Paper Plane shape
+    class BirdGeometry extends THREE.BufferGeometry {
+      constructor() {
+        super();
+        const vertices = new Float32Array([
+          0, 0, 20,    // nose
+          -8, 0, -10,  // left wing tip
+          0, 3, -6,    // top
+          0, 0, 20,    // nose
+          0, 3, -6,    // top
+          8, 0, -10,   // right wing tip
+          0, 0, 20,    // nose
+          0, -3, -6,   // bottom
+          -8, 0, -10,  // left wing tip
+          0, 0, 20,    // nose
+          8, 0, -10,   // right wing tip
+          0, -3, -6,   // bottom
+          -8, 0, -10,  // left wing back
+          0, 3, -6,    // top
+          0, 0, -15,   // tail
+          8, 0, -10,   // right wing back
+          0, 0, -15,   // tail
+          0, 3, -6,    // top
+          -8, 0, -10,  // left wing back
+          0, 0, -15,   // tail
+          0, -3, -6,   // bottom
+          8, 0, -10,   // right wing back
+          0, -3, -6,   // bottom
+          0, 0, -15    // tail
+        ]);
+        this.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+        this.computeVertexNormals();
+      }
+    }
+    
+    // Boid class - Flocking behavior
+    class Boid {
+      constructor() {
+        this.position = new THREE.Vector3(
+          Math.random() * 400 - 200,
+          Math.random() * 400 - 200,
+          Math.random() * 400 - 200
+        );
+        this.velocity = new THREE.Vector3(
+          Math.random() * 2 - 1,
+          Math.random() * 2 - 1,
+          Math.random() * 2 - 1
+        );
+        this.acceleration = new THREE.Vector3();
+        this.maxSpeed = 6;
+        this.maxForce = 0.1;
+        this.neighborDist = 120;
+        this.desiredSeparation = 60;
+        this.goal = null;
+      }
+      
+      setGoal(target) {
+        this.goal = target;
+      }
+
+      run(boids, bounds, mousePos) {
+        this.flock(boids);
+        if (this.goal) {
+          this.acceleration.add(this.seek(this.goal).multiplyScalar(0.005));
+        }
+        this.avoidBounds(bounds);
+        if (mousePos) this.avoidMouse(mousePos);
+        this.update();
+      }
+      
+      avoidMouse(mousePos) {
+        const dist = this.position.distanceTo(mousePos);
+        if (dist < 150) {
+          const diff = new THREE.Vector3().subVectors(this.position, mousePos);
+          diff.normalize();
+          diff.divideScalar(dist * 0.01);
+          this.acceleration.add(diff);
+        }
+      }
+      
+      avoidBounds(bounds) {
+        const margin = 30;
+        const turn = 0.5;
+        if (this.position.x < -bounds + margin) this.acceleration.x += turn;
+        if (this.position.x > bounds - margin) this.acceleration.x -= turn;
+        if (this.position.y < -bounds + margin) this.acceleration.y += turn;
+        if (this.position.y > bounds - margin) this.acceleration.y -= turn;
+        if (this.position.z < -bounds + margin) this.acceleration.z += turn;
+        if (this.position.z > bounds - margin) this.acceleration.z -= turn;
+      }
+      
+      flock(boids) {
+        const sep = this.separate(boids);
+        const ali = this.align(boids);
+        const coh = this.cohesion(boids);
+        sep.multiplyScalar(1.5);
+        ali.multiplyScalar(1.0);
+        coh.multiplyScalar(1.0);
+        this.acceleration.add(sep);
+        this.acceleration.add(ali);
+        this.acceleration.add(coh);
+      }
+      
+      update() {
+        this.velocity.add(this.acceleration);
+        if (this.velocity.length() > this.maxSpeed) {
+          this.velocity.normalize().multiplyScalar(this.maxSpeed);
+        }
+        this.position.add(this.velocity);
+        this.acceleration.set(0, 0, 0);
+      }
+      
+      seek(target) {
+        const desired = new THREE.Vector3().subVectors(target, this.position);
+        desired.normalize().multiplyScalar(this.maxSpeed);
+        const steer = new THREE.Vector3().subVectors(desired, this.velocity);
+        if (steer.length() > this.maxForce) {
+          steer.normalize().multiplyScalar(this.maxForce);
+        }
+        return steer;
+      }
+      
+      separate(boids) {
+        const steer = new THREE.Vector3();
+        let count = 0;
+        for (const other of boids) {
+          const d = this.position.distanceTo(other.position);
+          if (d > 0 && d < this.desiredSeparation) {
+            const diff = new THREE.Vector3().subVectors(this.position, other.position);
+            diff.normalize().divideScalar(d);
+            steer.add(diff);
+            count++;
+          }
+        }
+        if (count > 0) steer.divideScalar(count);
+        if (steer.length() > 0) {
+          steer.normalize().multiplyScalar(this.maxSpeed).sub(this.velocity);
+          if (steer.length() > this.maxForce) steer.normalize().multiplyScalar(this.maxForce);
+        }
+        return steer;
+      }
+      
+      align(boids) {
+        const sum = new THREE.Vector3();
+        let count = 0;
+        for (const other of boids) {
+          const d = this.position.distanceTo(other.position);
+          if (d > 0 && d < this.neighborDist) {
+            sum.add(other.velocity);
+            count++;
+          }
+        }
+        if (count > 0) {
+          sum.divideScalar(count).normalize().multiplyScalar(this.maxSpeed);
+          const steer = new THREE.Vector3().subVectors(sum, this.velocity);
+          if (steer.length() > this.maxForce) steer.normalize().multiplyScalar(this.maxForce);
+          return steer;
+        }
+        return new THREE.Vector3();
+      }
+      
+      cohesion(boids) {
+        const sum = new THREE.Vector3();
+        let count = 0;
+        for (const other of boids) {
+          const d = this.position.distanceTo(other.position);
+          if (d > 0 && d < this.neighborDist) {
+            sum.add(other.position);
+            count++;
+          }
+        }
+        if (count > 0) {
+          sum.divideScalar(count);
+          return this.seek(sum);
+        }
+        return new THREE.Vector3();
+      }
+    }
+    
+    // Fullscreen helpers for background previews
+    const openFullscreenPreview = (target) => {
+      const overlay = document.createElement('div');
+      overlay.className = 'fullscreen-overlay';
+
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'fullscreen-close';
+      closeBtn.textContent = 'Cerrar';
+
+      const preview = document.createElement('div');
+      preview.className = 'fullscreen-preview';
+
+      const computed = window.getComputedStyle(target);
+      preview.style.backgroundColor = computed.backgroundColor;
+      preview.style.backgroundImage = computed.backgroundImage;
+      preview.style.backgroundSize = computed.backgroundSize || 'cover';
+      preview.style.backgroundRepeat = computed.backgroundRepeat || 'repeat';
+      preview.style.backgroundPosition = computed.backgroundPosition || 'center';
+
+      overlay.appendChild(preview);
+      document.body.appendChild(overlay);
+      document.body.appendChild(closeBtn);
+
+      const close = () => {
+        overlay.remove();
+        closeBtn.remove();
+      };
+
+      closeBtn.addEventListener('click', close);
+      overlay.addEventListener('click', close);
+    };
+
+    const initFullscreenButtons = () => {
+      const buttons = document.querySelectorAll('[data-fullscreen-target]');
+      buttons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          const targetId = button.getAttribute('data-fullscreen-target');
+          const target = document.getElementById(targetId);
+          if (!target) return;
+
+          const mode = button.getAttribute('data-fullscreen-mode');
+          if (mode === 'live' && target.requestFullscreen) {
+            target.requestFullscreen().catch(() => openFullscreenPreview(target));
+            return;
+          }
+
+          openFullscreenPreview(target);
+        });
+      });
+    };
+
+    initFullscreenButtons();
+
+    // Initialize Three.js scene
+    const container = document.getElementById('threejs-canvas');
+    if (container) {
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      
+      // Scene
+      const scene = new THREE.Scene();
+      
+      // Camera
+      const camera = new THREE.PerspectiveCamera(75, width / height, 1, 2000);
+      camera.position.z = Math.max(width, height) * 0.6;
+      
+      // Renderer
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+      
+      // Lighting
+      const ambientLight = new THREE.AmbientLight(0x404040, 2);
+      scene.add(ambientLight);
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+      directionalLight.position.set(1, 1, 1);
+      scene.add(directionalLight);
+      
+      // Create boids and birds
+      const NUM_BIRDS = 200;
+      const boids = [];
+      const birds = [];
+      const birdGeometry = new BirdGeometry();
+      const FLOCKS = 3;
+      
+      for (let i = 0; i < NUM_BIRDS; i++) {
+        const boid = new Boid();
+        boid.flockId = i % FLOCKS;
+        boids.push(boid);
+        
+        const color = BIRD_COLORS[i % BIRD_COLORS.length];
+        const material = new THREE.MeshStandardMaterial({
+          color: color,
+          side: THREE.DoubleSide,
+          flatShading: true,
+          metalness: 0.3,
+          roughness: 0.7
+        });
+        const bird = new THREE.Mesh(birdGeometry, material);
+        bird.scale.set(0.6, 0.6, 0.6);
+        scene.add(bird);
+        birds.push(bird);
+      }
+      
+      // Mouse tracking
+      const mouse = new THREE.Vector3();
+      let mouseActive = false;
+      const flockGoals = [
+        new THREE.Vector3(-120, 60, 0),
+        new THREE.Vector3(120, -40, 0),
+        new THREE.Vector3(0, 120, -80)
+      ];
+      let time = 0;
+      
+      container.addEventListener('mousemove', (event) => {
+        const rect = container.getBoundingClientRect();
+        mouse.x = ((event.clientX - rect.left) / width) * 400 - 200;
+        mouse.y = -((event.clientY - rect.top) / height) * 400 + 200;
+        mouse.z = 0;
+        mouseActive = true;
+      });
+      
+      container.addEventListener('mouseleave', () => {
+        mouseActive = false;
+      });
+      
+      // Animation loop
+      function animate() {
+        requestAnimationFrame(animate);
+        time += 0.01;
+        flockGoals[0].set(Math.sin(time) * 160, Math.cos(time * 1.2) * 120, Math.sin(time * 0.8) * 80);
+        flockGoals[1].set(Math.cos(time * 1.1) * 180, Math.sin(time * 1.3) * 90, Math.cos(time * 0.7) * 60);
+        flockGoals[2].set(Math.sin(time * 0.9) * 100, Math.cos(time * 1.4) * 150, Math.sin(time * 1.1) * 100);
+        
+        for (let i = 0; i < NUM_BIRDS; i++) {
+          const boid = boids[i];
+          const bird = birds[i];
+          
+          boid.setGoal(flockGoals[boid.flockId]);
+          boid.run(boids, Math.max(width, height) * 0.45, mouseActive ? mouse : null);
+          
+          bird.position.copy(boid.position);
+          bird.rotation.y = Math.atan2(-boid.velocity.z, boid.velocity.x);
+          bird.rotation.z = Math.asin(boid.velocity.y / boid.velocity.length());
+        }
+        
+        renderer.render(scene, camera);
+      }
+      
+      // Handle resize
+      const resizeObserver = new ResizeObserver(() => {
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        camera.aspect = w / h;
+        camera.position.z = Math.max(w, h) * 0.6;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      });
+      resizeObserver.observe(container);
+      
+      animate();
+    }
   </script>
 </body>
 </html>
