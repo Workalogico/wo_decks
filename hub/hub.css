@@ -1,6 +1,10 @@
 /* ═══════════════════════════════════════════════════════════════
    WORKALÓGICO DESIGN SYSTEM HUB - Estilos
    Interfaz de documentación del sistema de diseño
+   
+   Usa el sistema de temas intercambiables:
+   - data-wo-theme="yellow" → Amarillo protagonista (default)
+   - data-wo-theme="blue"   → Azul protagonista
    ═══════════════════════════════════════════════════════════════ */
 
 /* Reset y base */
@@ -23,13 +27,13 @@ body {
 }
 
 a {
-  color: var(--wo-blue-lab);
+  color: var(--wo-accent-primary);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 
 a:hover {
-  color: var(--wo-yellow-spark);
+  color: var(--wo-accent-secondary);
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -84,14 +88,14 @@ a:hover {
   width: 140px;
   height: auto;
   margin-bottom: 0.75rem;
-  filter: drop-shadow(0 4px 12px rgba(89, 104, 234, 0.2));
+  filter: drop-shadow(0 4px 12px rgba(var(--wo-accent-primary-rgb), 0.2));
 }
 
 .hub-version {
   font-family: var(--font-heading);
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--wo-blue-lab);
+  color: var(--wo-accent-primary);
   background: var(--wo-accent-dim);
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius-full);
@@ -131,8 +135,8 @@ a:hover {
 }
 
 .hub-nav a.active {
-  background: var(--wo-blue-lab);
-  color: var(--wo-text);
+  background: var(--wo-accent-primary);
+  color: var(--wo-dark);
 }
 
 .hub-nav .nav-icon {
@@ -208,7 +212,7 @@ a:hover {
 }
 
 .hub-stat-card:hover {
-  border-color: var(--wo-blue-lab);
+  border-color: var(--wo-accent-primary);
   transform: translateY(-2px);
   box-shadow: var(--shadow-card-hover);
 }
@@ -217,7 +221,7 @@ a:hover {
   font-family: var(--font-heading);
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--wo-blue-lab);
+  color: var(--wo-accent-primary);
   line-height: 1;
   margin-bottom: 0.5rem;
 }
@@ -241,7 +245,7 @@ a:hover {
   font-weight: 700;
   margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
-  border-bottom: 2px solid var(--wo-blue-lab);
+  border-bottom: 2px solid var(--wo-accent-primary);
 }
 
 .hub-section h3 {
@@ -291,7 +295,7 @@ a:hover {
 }
 
 .hub-preview-card:hover {
-  border-color: var(--wo-blue-lab);
+  border-color: var(--wo-accent-primary);
   box-shadow: var(--shadow-card-hover);
 }
 
@@ -313,7 +317,7 @@ a:hover {
 .hub-preview-card__badge {
   font-size: 0.65rem;
   font-weight: 600;
-  color: var(--wo-blue-lab);
+  color: var(--wo-accent-primary);
   background: var(--wo-accent-dim);
   padding: 0.2rem 0.5rem;
   border-radius: var(--radius-sm);
@@ -346,7 +350,7 @@ a:hover {
 }
 
 .color-swatch:hover {
-  border-color: var(--wo-blue-lab);
+  border-color: var(--wo-accent-primary);
 }
 
 .color-swatch__preview {
@@ -372,7 +376,7 @@ a:hover {
 .color-swatch__var {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.75rem;
-  color: var(--wo-blue-lab);
+  color: var(--wo-accent-primary);
   margin-bottom: 0.25rem;
 }
 
@@ -457,8 +461,8 @@ a:hover {
 }
 
 .hub-btn:hover {
-  background: var(--wo-blue-lab);
-  border-color: var(--wo-blue-lab);
+  background: var(--wo-accent-primary);
+  border-color: var(--wo-accent-primary);
 }
 
 .hub-btn--small {
@@ -504,7 +508,7 @@ a:hover {
 .type-sample__specs {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.7rem;
-  color: var(--wo-blue-lab);
+  color: var(--wo-accent-primary);
 }
 
 .type-sample__text {
@@ -535,7 +539,7 @@ a:hover {
 
 .space-sample__bar {
   height: 24px;
-  background: var(--wo-blue-lab);
+  background: var(--wo-accent-primary);
   border-radius: var(--radius-sm);
   opacity: 0.8;
 }
@@ -596,7 +600,7 @@ a:hover {
 }
 
 .hub-quick-link:hover {
-  border-color: var(--wo-blue-lab);
+  border-color: var(--wo-accent-primary);
   background: var(--wo-dark-elevated);
   color: var(--wo-text);
 }
@@ -615,7 +619,7 @@ a:hover {
 .hub-quick-link__icon svg {
   width: 24px;
   height: 24px;
-  stroke: var(--wo-blue-lab);
+  stroke: var(--wo-accent-primary);
   fill: none;
   stroke-width: 1.6;
   stroke-linecap: round;
@@ -652,19 +656,27 @@ a:hover {
 }
 
 .hub-footer a {
-  color: var(--wo-blue-lab);
+  color: var(--wo-accent-primary);
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   ACCENT TEXT
+   ACCENT TEXT (usa sistema de temas)
    ═══════════════════════════════════════════════════════════════ */
 
 .accent {
-  color: var(--wo-blue-lab);
+  color: var(--wo-accent-primary);
+}
+
+.accent-alt {
+  color: var(--wo-accent-secondary);
 }
 
 .accent-yellow {
   color: var(--wo-yellow-spark);
+}
+
+.accent-blue {
+  color: var(--wo-blue-lab);
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -677,10 +689,10 @@ a:hover {
   right: 2rem;
   width: 48px;
   height: 48px;
-  background: var(--wo-blue-lab);
+  background: var(--wo-accent-primary);
   border: none;
   border-radius: 50%;
-  color: var(--wo-text);
+  color: var(--wo-dark);
   font-size: 1.25rem;
   cursor: pointer;
   opacity: 0;
@@ -695,7 +707,7 @@ a:hover {
 }
 
 .back-to-top:hover {
-  background: var(--wo-yellow-spark);
+  background: var(--wo-accent-secondary);
   color: var(--wo-dark);
   transform: translateY(-3px);
 }

@@ -6,6 +6,75 @@
  */
 
 /**
+ * ═══════════════════════════════════════════════════════════════
+ * SISTEMA DE TEMAS
+ * Permite alternar entre tema amarillo (brand) y azul (tech)
+ * Compatible con WoThemeSwitch (componente animado)
+ * ═══════════════════════════════════════════════════════════════
+ */
+
+/**
+ * Cambia el tema activo (función legacy para compatibilidad)
+ * @param {string} theme - 'yellow' o 'blue'
+ */
+function setTheme(theme) {
+  // Si existe el switch animado, usarlo
+  if (window.themeSwitch && typeof window.themeSwitch.setTheme === 'function') {
+    window.themeSwitch.setTheme(theme);
+  } else {
+    // Fallback directo
+    document.body.dataset.woTheme = theme;
+    localStorage.setItem('wo-theme', theme);
+    updateThemeButtons(theme);
+  }
+  console.log(`Theme changed to: ${theme}`);
+}
+
+/**
+ * Obtiene el tema actual
+ * @returns {string} - 'yellow' o 'blue'
+ */
+function getTheme() {
+  return document.body.dataset.woTheme || localStorage.getItem('wo-theme') || 'yellow';
+}
+
+/**
+ * Actualiza el estado visual de los botones de tema (legacy)
+ * Esta función se mantiene para compatibilidad con callbacks
+ * @param {string} activeTheme - El tema activo
+ */
+function updateThemeButtons(activeTheme) {
+  // Los botones antiguos ya no existen, pero mantenemos la función
+  // por si se usa como callback desde el switch animado
+  const btnYellow = document.getElementById('btn-yellow');
+  const btnBlue = document.getElementById('btn-blue');
+  
+  if (btnYellow && btnBlue) {
+    if (activeTheme === 'yellow') {
+      btnYellow.style.borderColor = '#FFFFFF';
+      btnYellow.style.transform = 'scale(1.1)';
+      btnBlue.style.borderColor = 'transparent';
+      btnBlue.style.transform = 'scale(1)';
+    } else {
+      btnBlue.style.borderColor = '#FFFFFF';
+      btnBlue.style.transform = 'scale(1.1)';
+      btnYellow.style.borderColor = 'transparent';
+      btnYellow.style.transform = 'scale(1)';
+    }
+  }
+}
+
+/**
+ * Inicializa el sistema de temas
+ */
+function initThemeSystem() {
+  // Cargar tema guardado o usar default (yellow)
+  const savedTheme = localStorage.getItem('wo-theme') || 'yellow';
+  document.body.dataset.woTheme = savedTheme;
+  // El switch animado se encargará de su propia visualización
+}
+
+/**
  * Copia el valor de un color al portapapeles
  * @param {HTMLElement} swatch - El elemento color-swatch clickeado
  */
@@ -212,6 +281,7 @@ function initCardAnimations() {
  * Inicializa todas las funcionalidades del Hub
  */
 function initHub() {
+  initThemeSystem();
   setActiveNav();
   initBackToTop();
   initColorSwatches();

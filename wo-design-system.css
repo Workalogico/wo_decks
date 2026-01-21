@@ -1,11 +1,17 @@
 /* ═══════════════════════════════════════════════════════════════
-   WORKALÓGICO DESIGN SYSTEM v2.0
+   WORKALÓGICO DESIGN SYSTEM v2.2
    Sistema Atómico para Presentaciones Reveal.js
    
    IMPORTANTE: Diseñado para viewport 1280x720 de Reveal.js
    Los tamaños están optimizados para que el contenido NO desborde.
    
-   Uso: Incluir después del theme de Reveal.js
+   SISTEMA DE TEMAS:
+   - data-wo-theme="yellow" → Amarillo protagonista (Brand Guidelines)
+   - data-wo-theme="blue"   → Azul protagonista (Técnico)
+   - Sin atributo           → Default amarillo
+   
+   Uso: 
+   <body data-wo-theme="yellow">
    <link rel="stylesheet" href="../wo-design-system.css">
    
    TOKENS: Los design tokens están centralizados en wo-tokens.css
@@ -69,40 +75,61 @@
 
 /* ═══════════════════════════════════════════════════════════════
    MOLÉCULAS: UTILITY CLASSES
+   Usan --wo-accent-primary y --wo-accent-secondary del tema activo
    ═══════════════════════════════════════════════════════════════ */
 
-.accent { color: var(--wo-blue-lab); }
+/* Accent principal: cambia según tema (amarillo default, azul si data-wo-theme="blue") */
+.accent { color: var(--wo-accent-primary); }
+/* Accent alternativo: color secundario del tema */
+.accent-alt { color: var(--wo-accent-secondary); }
+/* Accesos directos a colores específicos (sin cambiar por tema) */
 .accent-yellow { color: var(--wo-yellow-spark); }
+.accent-blue { color: var(--wo-blue-lab); }
 .danger { color: var(--wo-danger); }
 .success { color: var(--wo-success); }
 
+/* Badge: usa colores del tema activo */
 .wo-badge {
   display: inline-block;
   padding: 0.2em 0.6em;
   background: var(--wo-accent-dim);
-  border: 1px solid var(--wo-blue-lab);
+  border: 1px solid var(--wo-accent-primary);
   border-radius: var(--radius-full);
   font-family: var(--font-heading);
   font-size: 0.45em;
   font-weight: 600;
-  color: var(--wo-blue-lab);
+  color: var(--wo-accent-primary);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 0.5em;
 }
 
+/* Variante alternativa: usa el color secundario del tema */
+.wo-badge--alt {
+  background: var(--wo-accent-secondary-dim);
+  border-color: var(--wo-accent-secondary);
+  color: var(--wo-accent-secondary);
+}
+
+/* Variantes directas (sin cambiar por tema) */
 .wo-badge--yellow {
   background: var(--wo-yellow-dim);
   border-color: var(--wo-yellow-spark);
   color: var(--wo-yellow-spark);
 }
 
+.wo-badge--blue {
+  background: var(--wo-blue-dim);
+  border-color: var(--wo-blue-lab);
+  color: var(--wo-blue-lab);
+}
+
 .grid-background {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   background-image: 
-    linear-gradient(rgba(89, 104, 234, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(89, 104, 234, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(var(--wo-accent-primary-rgb), 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--wo-accent-primary-rgb), 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
   pointer-events: none;
   opacity: 0.4;
@@ -113,7 +140,7 @@
   font-family: var(--font-heading);
   font-size: 1em;
   font-weight: 700;
-  color: var(--wo-blue-lab);
+  color: var(--wo-accent-primary);
   opacity: 0.25;
   line-height: 1;
   margin-bottom: 0.1em;
@@ -130,7 +157,7 @@
   font-family: var(--font-heading); 
   font-size: 0.8em; 
   font-weight: 700; 
-  color: var(--wo-blue-lab); 
+  color: var(--wo-accent-primary); 
   margin: 0.1em 0;
 }
 
@@ -158,7 +185,7 @@
 
 .wo-card:hover {
   transform: translateY(-2px);
-  border-color: var(--wo-blue-lab);
+  border-color: var(--wo-accent-primary);
   box-shadow: var(--shadow-card-hover);
 }
 
@@ -177,8 +204,9 @@
   overflow-wrap: break-word;
 }
 
+/* Highlight usa el color secundario del tema (contraste visual) */
 .wo-card--highlight {
-  background: var(--wo-yellow-dim);
+  background: var(--wo-accent-secondary-dim);
   border-color: var(--border-highlight);
   position: relative;
 }
@@ -188,7 +216,7 @@
   position: absolute;
   top: -0.4em;
   right: 0.5em;
-  background: var(--wo-yellow-spark);
+  background: var(--wo-accent-secondary);
   color: var(--wo-dark);
   font-family: var(--font-heading);
   font-size: 0.4em;
@@ -199,7 +227,7 @@
 }
 
 .wo-card--highlight:hover {
-  border-color: var(--wo-yellow-spark);
+  border-color: var(--wo-accent-secondary);
   box-shadow: var(--shadow-highlight);
 }
 
@@ -215,7 +243,7 @@
 
 .wo-stat:hover {
   transform: translateY(-2px);
-  border-color: var(--wo-blue-lab);
+  border-color: var(--wo-accent-primary);
   box-shadow: var(--shadow-card-hover);
 }
 
@@ -223,9 +251,9 @@
   font-family: var(--font-heading);
   font-size: 0.85em;
   font-weight: 700;
-  color: var(--wo-blue-lab);
+  color: var(--wo-accent-primary);
   line-height: 1;
-  text-shadow: var(--shadow-glow-blue);
+  text-shadow: var(--shadow-glow-primary);
 }
 
 .wo-stat__label {
@@ -247,7 +275,7 @@
 
 .wo-metric:hover {
   transform: translateY(-3px);
-  border-color: var(--wo-blue-lab);
+  border-color: var(--wo-accent-primary);
   box-shadow: var(--shadow-card-hover);
 }
 
@@ -257,8 +285,8 @@
   font-weight: 700;
   line-height: 1;
   margin-bottom: 0.1em;
-  color: var(--wo-blue-lab);
-  text-shadow: var(--shadow-glow-blue);
+  color: var(--wo-accent-primary);
+  text-shadow: var(--shadow-glow-primary);
 }
 
 .wo-metric__label {
@@ -318,7 +346,7 @@
   font-family: var(--font-heading);
   font-size: 1em;
   font-weight: 700;
-  color: var(--wo-blue-lab);
+  color: var(--wo-accent-primary);
   background: var(--wo-accent-dim);
   width: 1.6em;
   height: 1.6em;
@@ -360,7 +388,7 @@
   font-size: 0.85em;
   margin-bottom: 0.3em;
   padding-bottom: 0.2em;
-  border-bottom: 2px solid var(--wo-blue-lab);
+  border-bottom: 2px solid var(--wo-accent-primary);
 }
 
 .wo-column ul { list-style: none; padding: 0; margin: 0; }
@@ -377,7 +405,7 @@
   content: '→';
   position: absolute;
   left: 0;
-  color: var(--wo-blue-lab);
+  color: var(--wo-accent-primary);
   font-weight: 600;
 }
 
@@ -528,6 +556,7 @@
 
 /* ═══════════════════════════════════════════════════════════════
    REVEAL.JS CONTROLS (Estilizado sin interferir)
+   Usa colores del tema activo
    ═══════════════════════════════════════════════════════════════ */
 
 .reveal .progress {
@@ -536,17 +565,17 @@
 }
 
 .reveal .progress span {
-  background: var(--wo-blue-lab);
+  background: var(--wo-accent-primary);
   transition: width 0.3s ease;
 }
 
-.reveal .controls { color: var(--wo-blue-lab); }
+.reveal .controls { color: var(--wo-accent-primary); }
 .reveal .controls button:hover { color: var(--wo-text); }
 
 .reveal .slide-number {
   font-family: var(--font-heading);
   font-size: 11px;
-  background: rgba(89, 104, 234, 0.25);
+  background: rgba(var(--wo-accent-primary-rgb), 0.25);
   color: var(--wo-text);
   padding: 5px 10px;
   border-radius: var(--radius-md);

@@ -21,8 +21,11 @@
   
   <!-- Hub Styles -->
   <link rel="stylesheet" href="hub.css">
+  
+  <!-- Theme Switch Component -->
+  <link rel="stylesheet" href="wo-theme-switch.css">
 </head>
-<body>
+<body data-wo-theme="yellow">
   <div class="hub-layout">
     <!-- Sidebar -->
     <aside class="hub-sidebar">
@@ -83,8 +86,14 @@
     <!-- Main Content -->
     <main class="hub-main">
       <header class="hub-header">
-        <h1>Design System <span class="accent">Hub</span></h1>
-        <p>Single Source of Truth para presentaciones Workalógico. Documentación, tokens y componentes centralizados.</p>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem;">
+          <div>
+            <h1>Design System <span class="accent">Hub</span></h1>
+            <p>Single Source of Truth para presentaciones Workalógico. Documentación, tokens y componentes centralizados.</p>
+          </div>
+          <!-- Animated Theme Switch -->
+          <div id="theme-switch-container"></div>
+        </div>
       </header>
       
       <!-- Stats -->
@@ -278,6 +287,73 @@
         <p style="margin-top: 1.5rem;"><a href="components.html">Ver todos los componentes →</a></p>
       </section>
       
+      <!-- Theme Switch Component -->
+      <section class="hub-section">
+        <h2>Sistema de <span class="accent">Temas</span></h2>
+        <p>El Design System soporta dos temas intercambiables. Usa el switch animado de arriba o el atributo <code style="background: var(--wo-dark-surface); padding: 0.15rem 0.4rem; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">data-wo-theme</code> en el body.</p>
+        
+        <div class="hub-grid hub-grid--2" style="margin-top: 1.5rem;">
+          <div class="hub-preview-card">
+            <div class="hub-preview-card__header">
+              <span class="hub-preview-card__title">Tema Amarillo (Brand)</span>
+              <span class="hub-preview-card__badge" style="background: rgba(255,203,0,0.15); color: #FFCB00; border: 1px solid #FFCB00;">Default</span>
+            </div>
+            <div class="hub-preview-card__content">
+              <div class="component-preview" style="background: var(--wo-dark); flex-direction: column; gap: 0.5rem;">
+                <code style="font-size: 0.75rem; color: var(--wo-text-muted);">&lt;body data-wo-theme="yellow"&gt;</code>
+                <div style="display: flex; gap: 1rem; align-items: center; margin-top: 0.5rem;">
+                  <div style="width: 40px; height: 40px; background: #FFCB00; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                    <span style="font-weight: bold; color: #0F0F1A;">1°</span>
+                  </div>
+                  <div style="width: 30px; height: 30px; background: #5968EA; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                    <span style="font-size: 0.7rem; color: white;">2°</span>
+                  </div>
+                </div>
+                <p style="font-size: 0.75rem; color: var(--wo-text-secondary); margin: 0;">Amarillo protagonista, azul secundario</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="hub-preview-card">
+            <div class="hub-preview-card__header">
+              <span class="hub-preview-card__title">Tema Azul (Tech)</span>
+              <span class="hub-preview-card__badge">Técnico</span>
+            </div>
+            <div class="hub-preview-card__content">
+              <div class="component-preview" style="background: var(--wo-dark); flex-direction: column; gap: 0.5rem;">
+                <code style="font-size: 0.75rem; color: var(--wo-text-muted);">&lt;body data-wo-theme="blue"&gt;</code>
+                <div style="display: flex; gap: 1rem; align-items: center; margin-top: 0.5rem;">
+                  <div style="width: 40px; height: 40px; background: #5968EA; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                    <span style="font-weight: bold; color: white;">1°</span>
+                  </div>
+                  <div style="width: 30px; height: 30px; background: #FFCB00; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                    <span style="font-size: 0.7rem; color: #0F0F1A;">2°</span>
+                  </div>
+                </div>
+                <p style="font-size: 0.75rem; color: var(--wo-text-secondary); margin: 0;">Azul protagonista, amarillo secundario</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <h3>Variables Semánticas</h3>
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">CSS</span>
+          </div>
+          <div class="code-block__content">
+<pre>/* Cambian según el tema activo */
+var(--wo-accent-primary)       /* Color protagonista */
+var(--wo-accent-secondary)     /* Color secundario */
+var(--wo-accent-dim)           /* Fondo sutil primary */
+
+/* Clases CSS */
+.accent       /* Texto en color protagonista */
+.accent-alt   /* Texto en color secundario */</pre>
+          </div>
+        </div>
+      </section>
+      
       <!-- How It Works -->
       <section class="hub-section">
         <h2>Cómo Funciona</h2>
@@ -300,12 +376,37 @@ deck-wo-*/index.html   ← Presentaciones (importan design-system)</pre>
       
       <!-- Footer -->
       <footer class="hub-footer">
-        <p>Workalógico Design System v2.0 | <a href="../index.html">Ver Presentaciones</a> | <a href="mailto:contacto@workalogico.mx">Contacto</a></p>
+        <p>Workalógico Design System v2.2 | <a href="../index.html">Ver Presentaciones</a> | <a href="mailto:contacto@workalogico.mx">Contacto</a></p>
       </footer>
     </main>
   </div>
   
+  <!-- Anime.js (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+  
+  <!-- Theme Switch Component -->
+  <script src="wo-theme-switch.js"></script>
+  
   <!-- Hub JS -->
   <script src="hub.js"></script>
+  
+  <!-- Initialize Theme Switch -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Crear el switch animado
+      const themeSwitch = new WoThemeSwitch('#theme-switch-container', {
+        initialTheme: localStorage.getItem('wo-theme') || 'yellow',
+        showLabel: true,
+        onChange: (theme) => {
+          console.log('Theme changed to:', theme);
+          // Actualizar otros elementos si es necesario
+          updateThemeButtons(theme);
+        }
+      });
+      
+      // Exponer globalmente para compatibilidad
+      window.themeSwitch = themeSwitch;
+    });
+  </script>
 </body>
 </html>

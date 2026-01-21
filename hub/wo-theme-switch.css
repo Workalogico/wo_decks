@@ -1,0 +1,281 @@
+/* ═══════════════════════════════════════════════════════════════
+   WORKALÓGICO THEME SWITCH - Componente Animado
+   Interruptor para alternar entre tema amarillo y azul
+   Requiere: Anime.js v4+
+   ═══════════════════════════════════════════════════════════════ */
+
+.wo-theme-switch {
+  --switch-width: 120px;
+  --switch-height: 52px;
+  --knob-size: 40px;
+  --knob-margin: 6px;
+  --yellow: #FFCB00;
+  --blue: #5968EA;
+  --dark: #0F0F1A;
+  --dark-surface: #252542;
+  
+  position: relative;
+  width: var(--switch-width);
+  height: var(--switch-height);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Track / Fondo del switch */
+.wo-theme-switch__track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: calc(var(--switch-height) / 2);
+  background: var(--dark-surface);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.wo-theme-switch:hover .wo-theme-switch__track {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Fondo con gradiente que cambia */
+.wo-theme-switch__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--yellow) 0%,
+    var(--yellow) 25%,
+    var(--blue) 75%,
+    var(--blue) 100%
+  );
+  opacity: 0.15;
+  transform: translateX(0%);
+}
+
+/* Glow effect */
+.wo-theme-switch__glow {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  filter: blur(20px);
+  opacity: 0.4;
+  pointer-events: none;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.wo-theme-switch__glow--yellow {
+  background: var(--yellow);
+  left: 10px;
+}
+
+.wo-theme-switch__glow--blue {
+  background: var(--blue);
+  right: 10px;
+  opacity: 0;
+}
+
+/* Íconos de los lados */
+.wo-theme-switch__icons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 14px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.wo-theme-switch__icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.wo-theme-switch__icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.wo-theme-switch__icon--sun {
+  opacity: 0.3;
+}
+
+.wo-theme-switch__icon--sun svg {
+  fill: none;
+  stroke: var(--yellow);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.wo-theme-switch__icon--sun svg circle {
+  fill: var(--yellow);
+}
+
+.wo-theme-switch__icon--lab {
+  opacity: 0.6;
+}
+
+.wo-theme-switch__icon--lab svg {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.wo-theme-switch__icon--lab svg circle {
+  fill: var(--blue);
+}
+
+/* Estado Yellow activo */
+[data-wo-theme="yellow"] .wo-theme-switch__icon--sun {
+  opacity: 0.3;
+}
+
+[data-wo-theme="yellow"] .wo-theme-switch__icon--lab {
+  opacity: 0.6;
+}
+
+/* Estado Blue activo */
+[data-wo-theme="blue"] .wo-theme-switch__icon--sun {
+  opacity: 0.6;
+}
+
+[data-wo-theme="blue"] .wo-theme-switch__icon--lab {
+  opacity: 0.3;
+}
+
+/* Knob / Perilla */
+.wo-theme-switch__knob {
+  position: absolute;
+  top: var(--knob-margin);
+  left: var(--knob-margin);
+  width: var(--knob-size);
+  height: var(--knob-size);
+  border-radius: 50%;
+  background: var(--yellow);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(255, 203, 0, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Teseracto dentro del knob */
+.wo-theme-switch__knob-icon {
+  width: 24px;
+  height: 24px;
+  opacity: 0.9;
+}
+
+.wo-theme-switch__knob-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--dark);
+  fill: none;
+  stroke-width: 1.5;
+}
+
+/* Efecto de brillo en el knob */
+.wo-theme-switch__knob-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-radius: 50% 50% 0 0;
+  pointer-events: none;
+}
+
+/* Partículas decorativas */
+.wo-theme-switch__particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: calc(var(--switch-height) / 2);
+}
+
+.wo-theme-switch__particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+/* Label */
+.wo-theme-switch__label {
+  display: block;
+  margin-top: 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--wo-text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.wo-theme-switch__label-text {
+  transition: opacity 0.3s ease;
+}
+
+/* Container con label */
+.wo-theme-switch-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Hover states */
+.wo-theme-switch:hover .wo-theme-switch__knob {
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(255, 203, 0, 0.5),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+/* Active/Press state */
+.wo-theme-switch:active .wo-theme-switch__knob {
+  transform: scale(0.95);
+}
+
+/* Ripple effect on click */
+.wo-theme-switch__ripple {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(0);
+  opacity: 1;
+  pointer-events: none;
+}

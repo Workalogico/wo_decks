@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   WORKALÓGICO DESIGN TOKENS v2.1
+   WORKALÓGICO DESIGN TOKENS v2.2
    Single Source of Truth - Sistema de Diseño
    
    Este archivo centraliza TODAS las variables CSS del sistema.
@@ -8,6 +8,14 @@
    - Todas las presentaciones (decks)
    - Design System Hub
    
+   SISTEMA DE TEMAS:
+   - data-wo-theme="yellow" → Amarillo protagonista (Brand Guidelines)
+   - data-wo-theme="blue"   → Azul protagonista (Tech/Técnico)
+   - Sin atributo           → Default amarillo (recomendado)
+   
+   Uso en HTML:
+   <body data-wo-theme="yellow"> o <body data-wo-theme="blue">
+   
    Documentación: /hub/
    Brand Guidelines: quick guide 2026.pdf
    ═══════════════════════════════════════════════════════════════ */
@@ -15,12 +23,24 @@
 :root {
   /* ═══════════════════════════════════════════════════════════════
      COLORES DE MARCA (Brand Guidelines 2026)
+     Colores base - siempre disponibles por nombre directo
      ═══════════════════════════════════════════════════════════════ */
-  --wo-yellow-spark: #FFCB00;    /* Color primario - CTAs, highlights */
+  --wo-yellow-spark: #FFCB00;    /* Amarillo Workalógico */
+  --wo-blue-lab: #5968EA;        /* Azul Workalógico */
   --wo-black-core: #1A1A2E;      /* Fondo elevado dark theme */
-  --wo-blue-lab: #5968EA;        /* Accent secundario */
   --wo-white-focus: #F7F7F7;     /* Texto/logo sobre fondos oscuros */
   --wo-gray-dark: #333333;       /* Texto/logo sobre fondos claros */
+  
+  /* ═══════════════════════════════════════════════════════════════
+     COLORES SEMÁNTICOS - TEMA AMARILLO (DEFAULT)
+     El amarillo es el color protagonista según Brand Guidelines
+     ═══════════════════════════════════════════════════════════════ */
+  --wo-accent-primary: var(--wo-yellow-spark);
+  --wo-accent-secondary: var(--wo-blue-lab);
+  --wo-accent-primary-dim: rgba(255, 203, 0, 0.15);
+  --wo-accent-secondary-dim: rgba(89, 104, 234, 0.15);
+  --wo-accent-primary-rgb: 255, 203, 0;
+  --wo-accent-secondary-rgb: 89, 104, 234;
   
   /* ═══════════════════════════════════════════════════════════════
      FONDOS (Dark Theme)
@@ -28,8 +48,9 @@
   --wo-dark: #0F0F1A;
   --wo-dark-elevated: #1A1A2E;
   --wo-dark-surface: #252542;
-  --wo-accent-dim: rgba(89, 104, 234, 0.15);
+  --wo-accent-dim: var(--wo-accent-primary-dim);
   --wo-yellow-dim: rgba(255, 203, 0, 0.15);
+  --wo-blue-dim: rgba(89, 104, 234, 0.15);
   
   /* ═══════════════════════════════════════════════════════════════
      TEXTO
@@ -43,6 +64,12 @@
      ═══════════════════════════════════════════════════════════════ */
   --wo-danger: #FF6B6B;
   --wo-success: #10B981;
+  
+  /* ═══════════════════════════════════════════════════════════════
+     SOMBRAS Y GLOWS (basados en accent primary)
+     ═══════════════════════════════════════════════════════════════ */
+  --shadow-glow-primary: 0 0 40px rgba(var(--wo-accent-primary-rgb), 0.3);
+  --shadow-glow-secondary: 0 0 40px rgba(var(--wo-accent-secondary-rgb), 0.3);
   
   /* ═══════════════════════════════════════════════════════════════
      TIPOGRAFÍA (Brand Guidelines 2026)
@@ -63,11 +90,11 @@
   --gap-card: 1em;
   
   /* ═══════════════════════════════════════════════════════════════
-     BORDES
+     BORDES (usan colores semánticos del tema activo)
      ═══════════════════════════════════════════════════════════════ */
-  --border-subtle: rgba(89, 104, 234, 0.2);
-  --border-accent: rgba(89, 104, 234, 0.3);
-  --border-highlight: rgba(255, 203, 0, 0.4);
+  --border-subtle: rgba(var(--wo-accent-primary-rgb), 0.2);
+  --border-accent: rgba(var(--wo-accent-primary-rgb), 0.3);
+  --border-highlight: rgba(var(--wo-accent-secondary-rgb), 0.4);
   --border-white: rgba(255, 255, 255, 0.1);
   --border-danger: rgba(255, 107, 107, 0.4);
   
@@ -81,14 +108,15 @@
   --radius-full: 50px;
   
   /* ═══════════════════════════════════════════════════════════════
-     SOMBRAS
+     SOMBRAS (usan colores semánticos del tema activo)
      ═══════════════════════════════════════════════════════════════ */
-  --shadow-card: 0 8px 30px rgba(89, 104, 234, 0.15);
-  --shadow-card-hover: 0 8px 30px rgba(89, 104, 234, 0.2);
-  --shadow-highlight: 0 8px 30px rgba(255, 203, 0, 0.2);
+  --shadow-card: 0 8px 30px rgba(var(--wo-accent-primary-rgb), 0.15);
+  --shadow-card-hover: 0 8px 30px rgba(var(--wo-accent-primary-rgb), 0.2);
+  --shadow-highlight: 0 8px 30px rgba(var(--wo-accent-secondary-rgb), 0.2);
   --shadow-danger: 0 8px 30px rgba(255, 107, 107, 0.2);
   --shadow-text: 0 2px 20px rgba(0, 0, 0, 0.5);
   --shadow-glow-blue: 0 0 40px rgba(89, 104, 234, 0.3);
+  --shadow-glow-yellow: 0 0 40px rgba(255, 203, 0, 0.3);
   --shadow-glow-red: 0 0 40px rgba(255, 107, 107, 0.3);
   
   /* ═══════════════════════════════════════════════════════════════
@@ -219,4 +247,36 @@
   --map-heat-60: rgba(251, 191, 36, 0.65);
   --map-heat-80: rgba(251, 191, 36, 0.85);
   --map-heat-100: #FFCB00;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TEMA AMARILLO (Explícito)
+   Usa: <body data-wo-theme="yellow"> o <html data-wo-theme="yellow">
+   Este es el tema recomendado según Brand Guidelines 2026
+   ═══════════════════════════════════════════════════════════════ */
+[data-wo-theme="yellow"],
+[data-wo-theme="yellow"] :root {
+  --wo-accent-primary: var(--wo-yellow-spark);
+  --wo-accent-secondary: var(--wo-blue-lab);
+  --wo-accent-primary-dim: rgba(255, 203, 0, 0.15);
+  --wo-accent-secondary-dim: rgba(89, 104, 234, 0.15);
+  --wo-accent-primary-rgb: 255, 203, 0;
+  --wo-accent-secondary-rgb: 89, 104, 234;
+  --wo-accent-dim: var(--wo-accent-primary-dim);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TEMA AZUL
+   Usa: <body data-wo-theme="blue"> o <html data-wo-theme="blue">
+   Ideal para: Presentaciones técnicas, documentación, demos
+   ═══════════════════════════════════════════════════════════════ */
+[data-wo-theme="blue"],
+[data-wo-theme="blue"] :root {
+  --wo-accent-primary: var(--wo-blue-lab);
+  --wo-accent-secondary: var(--wo-yellow-spark);
+  --wo-accent-primary-dim: rgba(89, 104, 234, 0.15);
+  --wo-accent-secondary-dim: rgba(255, 203, 0, 0.15);
+  --wo-accent-primary-rgb: 89, 104, 234;
+  --wo-accent-secondary-rgb: 255, 203, 0;
+  --wo-accent-dim: var(--wo-accent-primary-dim);
 }

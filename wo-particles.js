@@ -1,51 +1,88 @@
 /**
  * ═══════════════════════════════════════════════════════════════
- * WORKALÓGICO PARTICLES SYSTEM v1.0
+ * WORKALÓGICO PARTICLES SYSTEM v1.1
  * Configuración de tsParticles para Reveal.js
  * 
  * CONCEPTO: "Data Network"
  * Red de nodos conectados que representa inteligencia de datos.
- * Colores: 75% azul Wo (#5968EA), 25% amarillo Wo (#FFCB00)
+ * 
+ * SISTEMA DE TEMAS:
+ * - data-wo-theme="yellow" (default): 75% amarillo, 25% azul
+ * - data-wo-theme="blue": 75% azul, 25% amarillo
  * 
  * USO:
  * 1. Incluir tsParticles CDN
  * 2. Incluir este script después de Reveal.js
- * 3. Llamar initWoParticles() después de Reveal.initialize()
+ * 3. Llamar setupWoParticles() después de Reveal.initialize()
  * ═══════════════════════════════════════════════════════════════
  */
 
+// Detectar tema activo
+function getWoTheme() {
+  const body = document.body;
+  const html = document.documentElement;
+  return body.dataset.woTheme || html.dataset.woTheme || 'yellow';
+}
+
+// Colores según tema
+function getThemeColors() {
+  const theme = getWoTheme();
+  if (theme === 'blue') {
+    return {
+      primary: '#5968EA',
+      secondary: '#FFCB00',
+      // 75% azul, 25% amarillo
+      particles: ['#5968EA', '#5968EA', '#5968EA', '#FFCB00'],
+      links: '#5968EA',
+      grabLinks: '#FFCB00'
+    };
+  }
+  // Default: yellow theme
+  return {
+    primary: '#FFCB00',
+    secondary: '#5968EA',
+    // 75% amarillo, 25% azul
+    particles: ['#FFCB00', '#FFCB00', '#FFCB00', '#5968EA'],
+    links: '#FFCB00',
+    grabLinks: '#5968EA'
+  };
+}
+
 // Configuración base de partículas Workalógico
-const woParticlesConfig = {
-  fullScreen: {
-    enable: false
-  },
-  background: {
-    color: {
-      value: "transparent"
-    }
-  },
-  fpsLimit: 60,
+function getWoParticlesConfig() {
+  const colors = getThemeColors();
   
-  // ─────────────────────────────────────────
-  // PARTÍCULAS
-  // ─────────────────────────────────────────
-  particles: {
-    // Colores de marca Workalógico: 75% azul, 25% amarillo
-    color: {
-      value: ["#5968EA", "#5968EA", "#5968EA", "#FFCB00"]
+  return {
+    fullScreen: {
+      enable: false
     },
-    
-    // Links entre partículas (red de datos)
-    links: {
-      color: "#5968EA",
-      distance: 140,
-      enable: true,
-      opacity: 0.12,
-      width: 1,
-      triangles: {
-        enable: false
+    background: {
+      color: {
+        value: "transparent"
       }
     },
+    fpsLimit: 60,
+    
+    // ─────────────────────────────────────────
+    // PARTÍCULAS
+    // ─────────────────────────────────────────
+    particles: {
+      // Colores según tema activo
+      color: {
+        value: colors.particles
+      },
+      
+      // Links entre partículas (red de datos)
+      links: {
+        color: colors.links,
+        distance: 140,
+        enable: true,
+        opacity: 0.12,
+        width: 1,
+        triangles: {
+          enable: false
+        }
+      },
     
     // Movimiento lento y elegante
     move: {
@@ -105,76 +142,81 @@ const woParticlesConfig = {
     }
   },
   
-  // ─────────────────────────────────────────
-  // INTERACTIVIDAD
-  // ─────────────────────────────────────────
-  interactivity: {
-    detectsOn: "window",
-    events: {
-      onHover: {
-        enable: true,
-        mode: "grab",
-        parallax: {
+    // ─────────────────────────────────────────
+    // INTERACTIVIDAD
+    // ─────────────────────────────────────────
+    interactivity: {
+      detectsOn: "window",
+      events: {
+        onHover: {
           enable: true,
-          force: 15,
-          smooth: 25
-        }
+          mode: "grab",
+          parallax: {
+            enable: true,
+            force: 15,
+            smooth: 25
+          }
+        },
+        onClick: {
+          enable: false // No interferir con navegación
+        },
+        resize: true
       },
-      onClick: {
-        enable: false // No interferir con navegación
-      },
-      resize: true
-    },
-    modes: {
-      grab: {
-        distance: 180,
-        links: {
-          opacity: 0.35,
-          color: "#FFCB00" // Amarillo al interactuar
+      modes: {
+        grab: {
+          distance: 180,
+          links: {
+            opacity: 0.35,
+            color: colors.grabLinks // Color secundario al interactuar
+          }
         }
       }
-    }
-  },
-  
-  detectRetina: true
-};
+    },
+    
+    detectRetina: true
+  };
+}
 
 // Variantes de configuración por servicio
-const woParticlesVariants = {
-  // Geointeligencia: Configuración estándar (más puntos de datos)
-  geo: {
-    particles: {
-      number: { value: 60 },
-      links: { distance: 150 }
-    }
-  },
+function getWoParticlesVariants() {
+  const colors = getThemeColors();
   
-  // AI Experts: Más conexiones, más amarillo
-  ai: {
-    particles: {
-      color: { value: ["#5968EA", "#5968EA", "#FFCB00", "#FFCB00"] },
-      links: { opacity: 0.15 },
-      number: { value: 55 }
+  return {
+    // Geointeligencia: Configuración estándar (más puntos de datos)
+    geo: {
+      particles: {
+        number: { value: 60 },
+        links: { distance: 150 }
+      }
+    },
+    
+    // AI Experts: Más conexiones, balance 50/50
+    ai: {
+      particles: {
+        color: { value: [colors.primary, colors.primary, colors.secondary, colors.secondary] },
+        links: { opacity: 0.15 },
+        number: { value: 55 }
+      }
+    },
+    
+    // Marketing: Más dinámico
+    marketing: {
+      particles: {
+        move: { speed: 0.8 },
+        number: { value: 45 }
+      }
+    },
+    
+    // CRM/Automatización: Más estructurado
+    enterprise: {
+      particles: {
+        move: { speed: 0.5 },
+        links: { distance: 160, opacity: 0.1 },
+        number: { value: 40 }
+      }
     }
-  },
-  
-  // Marketing: Más dinámico
-  marketing: {
-    particles: {
-      move: { speed: 0.8 },
-      number: { value: 45 }
-    }
-  },
-  
-  // CRM/Automatización: Más estructurado
-  enterprise: {
-    particles: {
-      move: { speed: 0.5 },
-      links: { distance: 160, opacity: 0.1 },
-      number: { value: 40 }
-    }
-  }
-};
+  };
+}
 
 // ─────────────────────────────────────────
 // FUNCIONES DE INICIALIZACIÓN
@@ -209,14 +251,17 @@ function isObject(item) {
 
 /**
  * Inicializa tsParticles con la configuración Wo
+ * Detecta automáticamente el tema desde data-wo-theme
  * @param {string} variant - Variante: 'geo', 'ai', 'marketing', 'enterprise'
  */
 async function initWoParticles(variant = null) {
-  let config = { ...woParticlesConfig };
+  // Obtener config base según tema activo
+  let config = getWoParticlesConfig();
+  const variants = getWoParticlesVariants();
   
   // Aplicar variante si existe
-  if (variant && woParticlesVariants[variant]) {
-    config = deepMerge(config, woParticlesVariants[variant]);
+  if (variant && variants[variant]) {
+    config = deepMerge(config, variants[variant]);
   }
   
   // Reducir partículas en móvil
@@ -227,7 +272,8 @@ async function initWoParticles(variant = null) {
   
   try {
     particlesInstance = await tsParticles.load("tsparticles", config);
-    console.log('Wo Particles initialized:', variant || 'default');
+    const theme = getWoTheme();
+    console.log(`Wo Particles initialized: ${variant || 'default'} (theme: ${theme})`);
   } catch (error) {
     console.warn('Failed to initialize particles:', error);
   }
@@ -267,8 +313,10 @@ async function setupWoParticles(variant = null) {
 }
 
 // Exportar para uso global
-window.woParticlesConfig = woParticlesConfig;
-window.woParticlesVariants = woParticlesVariants;
+window.getWoTheme = getWoTheme;
+window.getThemeColors = getThemeColors;
+window.getWoParticlesConfig = getWoParticlesConfig;
+window.getWoParticlesVariants = getWoParticlesVariants;
 window.initWoParticles = initWoParticles;
 window.updateWoParticlesVisibility = updateWoParticlesVisibility;
 window.setupWoParticles = setupWoParticles;
