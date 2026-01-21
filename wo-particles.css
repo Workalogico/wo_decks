@@ -30,7 +30,8 @@
   z-index: 10;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Fluidity overhaul: transición más lenta que slides para efecto desacoplado */
+  transition: opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 #tsparticles.visible {

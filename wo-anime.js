@@ -30,6 +30,7 @@ const WoAnime = (function() {
     // Easings predefinidos
     easing: {
       smooth: 'easeOutQuad',
+      softLanding: 'cubicBezier(0.23, 1, 0.32, 1)', // Fluidity overhaul - aterrizaje suave
       bounce: 'easeOutElastic(1, 0.5)',
       spring: 'spring(1, 80, 10, 0)',
       expo: 'easeOutExpo',
@@ -322,7 +323,18 @@ const WoAnime = (function() {
       duration,
       easing,
       delay: anime.stagger(delay, { from }),
-      complete: onComplete
+      complete: () => {
+        // Fluidity Overhaul: Cleanup will-change para rendimiento
+        const targetEls = typeof targets === 'string' 
+          ? document.querySelectorAll(targets) 
+          : targets;
+        if (targetEls.forEach) {
+          targetEls.forEach(el => {
+            if (el && el.style) el.style.willChange = 'auto';
+          });
+        }
+        if (onComplete) onComplete();
+      }
     };
     
     if (translateY) animProps.translateY = translateY;
@@ -494,7 +506,13 @@ const WoAnime = (function() {
         opacity: [0, 1],
         translateY: [15, 0],
         duration: 400,
-        easing: config.easing.smooth
+        easing: config.easing.smooth,
+        complete: () => {
+          // Fluidity Overhaul: Cleanup will-change para rendimiento
+          elements.forEach(el => {
+            if (el) el.style.willChange = 'auto';
+          });
+        }
       }, '-=150');
     }
     
@@ -1475,26 +1493,59 @@ const WoAnime = (function() {
   // ═══════════════════════════════════════════════════════════════
   
   /**
+   * Animación de salida para el slide anterior (Fluidity Overhaul)
+   * Crea overlap visual suavizando la transición entre slides
+   */
+  function animateSlideExit(slide) {
+    if (!slide) return;
+    
+    const elements = slide.querySelectorAll('.wo-card, .wo-stat, .wo-metric, .wo-column');
+    if (elements.length === 0) return;
+    
+    anime({
+      targets: elements,
+      opacity: [1, 0],
+      translateX: [-20, 0], // Dirección contraria al flujo de entrada
+      duration: 250,
+      easing: 'easeInQuad',
+      complete: () => {
+        // Cleanup will-change después de salida
+        elements.forEach(el => {
+          if (el && el.style) el.style.willChange = 'auto';
+        });
+      }
+    });
+  }
+  
+  /**
    * Handler para cambio de slide
+   * REFACTORIZADO: Sin delays artificiales para transiciones más fluidas
    */
   function onSlideChange(event) {
-    // Detener animaciones del slide anterior
-    stopAllAnimations();
-    
     const slide = event.currentSlide;
+    const previousSlide = event.previousSlide;
+    
+    // Animar salida del slide anterior (overlap visual)
+    if (previousSlide) {
+      animateSlideExit(previousSlide);
+    }
+    
+    // Detener animaciones después del exit
+    stopAllAnimations();
     currentSlide = slide;
     
     // Detectar tipo de slide y aplicar animación apropiada
+    // NOTA: Animaciones sin setTimeout para inicio inmediato
     
     // 1. Portada - animación cinematográfica completa
     if (slide.classList.contains('wo-cover') || slide.querySelector('.wo-cover')) {
-      setTimeout(() => cover(slide, { animateCounters: true }), 100);
+      cover(slide, { animateCounters: true });
       return; // Cover maneja todo internamente
     }
     
     // 2. Sección - título con accent glow
     if (slide.querySelector('.wo-section__title')) {
-      setTimeout(() => section(slide), 100);
+      section(slide);
     }
     
     // 3. CTA - glow pulsante en accent
@@ -1511,7 +1562,7 @@ const WoAnime = (function() {
         el.style.transform = 'translateY(20px)';
       });
       
-      const ctaTl = anime.timeline({ easing: config.easing.expo });
+      const ctaTl = anime.timeline({ easing: config.easing.softLanding });
       
       if (ctaTitle) {
         ctaTl.add({
@@ -1519,7 +1570,7 @@ const WoAnime = (function() {
           opacity: [0, 1],
           translateY: [30, 0],
           duration: 600
-        }, 100);
+        }, 0); // Sin delay inicial
       }
       
       if (ctaSubtitle) {
@@ -1528,7 +1579,7 @@ const WoAnime = (function() {
           opacity: [0, 1],
           translateY: [20, 0],
           duration: 450
-        }, '-=300');
+        }, '-=400'); // Mayor overlap
       }
       
       if (ctaContact) {
@@ -1537,12 +1588,12 @@ const WoAnime = (function() {
           opacity: [0, 1],
           translateY: [15, 0],
           duration: 400
-        }, '-=200');
+        }, '-=300'); // Mayor overlap
       }
       
-      // Glow pulsante en accent después de la entrada
+      // Glow pulsante en accent después de la entrada (este delay sí es intencional)
       if (ctaAccent) {
-        setTimeout(() => ctaGlow(ctaAccent, { duration: 2500, intensity: 25 }), 800);
+        setTimeout(() => ctaGlow(ctaAccent, { duration: 2500, intensity: 25 }), 600);
       }
       
       trackAnimation(ctaTl);
@@ -1552,36 +1603,32 @@ const WoAnime = (function() {
     // 4. Animar contadores si hay métricas con data-animate
     const metrics = slide.querySelectorAll('.wo-metric__value[data-animate="counter"]');
     if (metrics.length > 0) {
-      setTimeout(() => {
-        metrics.forEach(m => counter(m));
-      }, 400);
+      metrics.forEach(m => counter(m));
     }
     
     // 5. Animar stats con data-animate
     const stats = slide.querySelectorAll('.wo-stat__value[data-animate="counter"]');
     if (stats.length > 0) {
-      setTimeout(() => {
-        stats.forEach(s => counter(s));
-      }, 500);
+      stats.forEach(s => counter(s));
     }
     
     // 6. Steps timeline con línea de progreso
     const steps = slide.querySelector('.wo-steps[data-animate="timeline"]');
     if (steps) {
-      setTimeout(() => stepsTimeline(steps), 300);
+      stepsTimeline(steps);
     }
     
     // 7. Cards con stagger (si no son fragments)
     const cardsWithStagger = slide.querySelectorAll('.wo-card[data-animate="stagger"]:not(.fragment)');
     if (cardsWithStagger.length > 0) {
-      setTimeout(() => cardsEntrance(cardsWithStagger), 300);
+      cardsEntrance(cardsWithStagger);
     }
     
     // 8. Gauge animation
     const gauges = slide.querySelectorAll('.wo-gauge[data-animate="gauge"]');
     gauges.forEach(g => {
       const score = parseFloat(g.dataset.score) || 0;
-      setTimeout(() => gauge(g, { score }), 400);
+      gauge(g, { score });
     });
   }
   
