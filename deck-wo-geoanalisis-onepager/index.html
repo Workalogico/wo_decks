@@ -481,25 +481,25 @@
     <div class="slides">
 
       <!-- ═══════════════════════════════════════════════════════════════
-           SLIDE 1: PORTADA
+           SLIDE 1: PORTADA (WoAnime: cover animation + counters)
            ═══════════════════════════════════════════════════════════════ -->
       <section data-background-gradient="radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%)" data-particles="true" aria-label="Portada">
-        <div class="wo-cover">
+        <div class="wo-cover" data-animate="cinematic">
           <img data-src="../LOGOS/logo dark@3x.png" alt="Workalógico" class="wo-cover__logo" loading="lazy">
           <div class="wo-badge" role="text">Inteligencia de Mercados</div>
           <h1 class="wo-cover__title">Inteligencia <span class="accent">Geoestadística</span></h1>
           <p class="wo-cover__subtitle">Elige tu próxima ubicación con datos, no intuición</p>
           <div class="wo-stats-row" role="list" aria-label="Estadísticas clave">
-            <div class="wo-stat fragment zoom-in" data-fragment-index="1" role="listitem">
-              <div class="wo-stat__value" aria-label="500 millones más">500M+</div>
+            <div class="wo-stat" role="listitem">
+              <div class="wo-stat__value" data-animate="counter" aria-label="500 millones más">500M+</div>
               <div class="wo-stat__label">Data points</div>
             </div>
-            <div class="wo-stat fragment zoom-in" data-fragment-index="2" role="listitem">
-              <div class="wo-stat__value">2-6</div>
+            <div class="wo-stat" role="listitem">
+              <div class="wo-stat__value" data-animate="counter">2-6</div>
               <div class="wo-stat__label">Semanas</div>
             </div>
-            <div class="wo-stat fragment zoom-in" data-fragment-index="3" role="listitem">
-              <div class="wo-stat__value" aria-label="15 o más">15+</div>
+            <div class="wo-stat" role="listitem">
+              <div class="wo-stat__value" data-animate="counter" aria-label="15 o más">15+</div>
               <div class="wo-stat__label">Marcas</div>
             </div>
           </div>
@@ -512,6 +512,8 @@
           - Enfatizar los 500M+ de data points como diferenciador
           - Tiempo de entrega competitivo: 2-6 semanas
           - Experiencia comprobada: 15+ marcas atendidas
+          
+          [WoAnime] Animación cinematográfica con contadores
         </aside>
       </section>
 
@@ -529,27 +531,27 @@
       </section>
 
       <!-- ═══════════════════════════════════════════════════════════════
-           SLIDE 3: DESAFÍOS DE EXPANSIÓN
+           SLIDE 3: DESAFÍOS DE EXPANSIÓN (WoAnime: cards stagger + step numbers)
            ═══════════════════════════════════════════════════════════════ -->
-      <section data-background-color="#0F0F1A" aria-label="Desafíos de expansión">
+      <section data-background-color="#0F0F1A" aria-label="Desafíos de expansión" data-state="challenges-slide">
         <h2>Desafíos de <span class="accent">Expansión</span></h2>
-        <div class="wo-grid wo-grid--2" role="list">
-          <div class="wo-card fragment fade-up" data-fragment-index="1" role="listitem">
+        <div class="wo-grid wo-grid--2" id="challenges-grid" role="list" data-animate="cards-stagger">
+          <div class="wo-card" data-animate="stagger" role="listitem">
             <div class="card-number" aria-hidden="true">01</div>
             <h3>Mejor Ubicación</h3>
             <p>¿Cuál es la mejor zona para mi próxima sucursal?</p>
           </div>
-          <div class="wo-card fragment fade-up" data-fragment-index="2" role="listitem">
+          <div class="wo-card" data-animate="stagger" role="listitem">
             <div class="card-number" aria-hidden="true">02</div>
             <h3>Clientes Potenciales</h3>
             <p>¿Hay suficientes clientes en esta ubicación?</p>
           </div>
-          <div class="wo-card fragment fade-up" data-fragment-index="3" role="listitem">
+          <div class="wo-card" data-animate="stagger" role="listitem">
             <div class="card-number" aria-hidden="true">03</div>
             <h3>Competencia</h3>
             <p>¿Cuánta competencia existe en 15 minutos?</p>
           </div>
-          <div class="wo-card fragment fade-up" data-fragment-index="4" role="listitem">
+          <div class="wo-card" data-animate="stagger" role="listitem">
             <div class="card-number" aria-hidden="true">04</div>
             <h3>Retorno de Inversión</h3>
             <p>¿Esta propiedad vale la inversión?</p>
@@ -563,36 +565,38 @@
           2. Demanda - ¿Hay mercado suficiente?
           3. Competencia - Saturación del mercado
           4. ROI - Justificación financiera
+          
+          [WoAnime] Cards con stagger orgánico desde el centro
         </aside>
       </section>
 
       <!-- ═══════════════════════════════════════════════════════════════
-           SLIDE 4: CASOS DE USO
+           SLIDE 4: CASOS DE USO (WoAnime: grid stagger from center)
            ═══════════════════════════════════════════════════════════════ -->
-      <section data-background-color="#0F0F1A" aria-label="Casos de uso por industria">
+      <section data-background-color="#0F0F1A" aria-label="Casos de uso por industria" data-state="usecases-slide">
         <h2>Casos de Uso por <span class="accent">Industria</span></h2>
-        <div class="wo-grid wo-grid--3" role="list">
-          <div class="wo-card fragment zoom-in" role="listitem">
+        <div class="wo-grid wo-grid--3" id="usecases-grid" role="list" data-animate="cards-stagger">
+          <div class="wo-card" data-animate="stagger" role="listitem">
             <h3>Restaurantes / QSR</h3>
             <p>Identifica las mejores zonas basándote en tráfico y demografía.</p>
           </div>
-          <div class="wo-card fragment zoom-in" role="listitem">
+          <div class="wo-card" data-animate="stagger" role="listitem">
             <h3>Retail</h3>
             <p>Prioriza inversión con certeza financiera y análisis de canibalización.</p>
           </div>
-          <div class="wo-card fragment zoom-in" role="listitem">
+          <div class="wo-card" data-animate="stagger" role="listitem">
             <h3>Inmobiliario</h3>
             <p>Valida el potencial comercial de terrenos antes de invertir.</p>
           </div>
-          <div class="wo-card fragment zoom-in" role="listitem">
+          <div class="wo-card" data-animate="stagger" role="listitem">
             <h3>Soft Landing</h3>
             <p>Entiende nuevos mercados desconocidos con análisis de competencia.</p>
           </div>
-          <div class="wo-card fragment zoom-in" role="listitem">
+          <div class="wo-card" data-animate="stagger" role="listitem">
             <h3>Conveniencia</h3>
             <p>Encuentra ubicaciones con alto tráfico peatonal y vehicular.</p>
           </div>
-          <div class="wo-card fragment zoom-in" role="listitem">
+          <div class="wo-card" data-animate="stagger" role="listitem">
             <h3>Farmacias</h3>
             <p>Optimiza tu red para maximizar cobertura sin canibalizar.</p>
           </div>
@@ -605,6 +609,8 @@
           - Retail: Análisis de canibalización
           - Inmobiliario: Due diligence de terrenos
           - Soft Landing: Empresas entrando a México/LatAm
+          
+          [WoAnime] Grid 3x2 con stagger desde el centro
         </aside>
       </section>
 
@@ -772,12 +778,12 @@
       </section>
 
       <!-- ═══════════════════════════════════════════════════════════════
-           SLIDE 6: FUENTES DE DATOS
+           SLIDE 6: FUENTES DE DATOS (WoAnime: columns stagger)
            ═══════════════════════════════════════════════════════════════ -->
-      <section data-background-color="#0F0F1A" aria-label="Fuentes de datos">
+      <section data-background-color="#0F0F1A" aria-label="Fuentes de datos" data-state="datasources-slide">
         <h2>Fuentes de <span class="accent">Datos</span></h2>
-        <div class="wo-columns">
-          <div class="wo-column fragment fade-up" data-fragment-index="1">
+        <div class="wo-columns" id="datasources-columns">
+          <div class="wo-column" data-animate="stagger">
             <h3>Entradas</h3>
             <ul role="list">
               <li>INEGI + DENUE</li>
@@ -787,7 +793,7 @@
               <li>Census Data</li>
             </ul>
           </div>
-          <div class="wo-column fragment fade-up" data-fragment-index="2">
+          <div class="wo-column" data-animate="stagger">
             <h3>Salidas</h3>
             <ul role="list">
               <li>Mapas Interactivos</li>
@@ -806,31 +812,33 @@
           - Satelital: Análisis de actividad y uso de suelo
           
           Entregables tangibles y accionables.
+          
+          [WoAnime] Columnas con stagger animation
         </aside>
       </section>
 
       <!-- ═══════════════════════════════════════════════════════════════
-           SLIDE 7: METODOLOGÍA
+           SLIDE 7: METODOLOGÍA (WoAnime: methodology connections + stagger)
            ═══════════════════════════════════════════════════════════════ -->
-      <section data-background-color="#0F0F1A" aria-label="Metodología">
+      <section data-background-color="#0F0F1A" aria-label="Metodología" data-state="methodology-slide">
         <h2>Nuestra <span class="accent">Metodología</span></h2>
-        <div class="wo-grid wo-grid--2" role="list">
-          <div class="wo-card fragment fade-up" data-fragment-index="1" role="listitem">
+        <div class="wo-grid wo-grid--2" id="methodology-grid" role="list" data-animate="methodology">
+          <div class="wo-card" data-animate="stagger" role="listitem">
             <div class="card-number" aria-hidden="true">01</div>
             <h3>ADN Comercial</h3>
             <p>Perfil demográfico, poder adquisitivo y actividad económica de cada zona.</p>
           </div>
-          <div class="wo-card fragment fade-up" data-fragment-index="2" role="listitem">
+          <div class="wo-card" data-animate="stagger" role="listitem">
             <div class="card-number" aria-hidden="true">02</div>
             <h3>Isócronas</h3>
             <p>Áreas de influencia por tiempo de traslado (5, 10, 15 min).</p>
           </div>
-          <div class="wo-card fragment fade-up" data-fragment-index="3" role="listitem">
+          <div class="wo-card" data-animate="stagger" role="listitem">
             <div class="card-number" aria-hidden="true">03</div>
             <h3>Precision Audience</h3>
             <p>Segmentos específicos de clientes potenciales.</p>
           </div>
-          <div class="wo-card fragment fade-up" data-fragment-index="4" role="listitem">
+          <div class="wo-card" data-animate="stagger" role="listitem">
             <div class="card-number" aria-hidden="true">04</div>
             <h3>Matriz Oportunidad</h3>
             <p>Scoring vs saturación competitiva para identificar "sweet spots".</p>
@@ -844,31 +852,33 @@
           2. Isócronas: ¿Qué tan lejos llegan los clientes?
           3. Precision Audience: ¿Es MI cliente?
           4. Matriz: Oportunidad vs Riesgo
+          
+          [WoAnime] Cards con stagger + líneas de conexión animadas
         </aside>
       </section>
 
       <!-- ═══════════════════════════════════════════════════════════════
-           SLIDE 8: PRECIOS
+           SLIDE 8: PRECIOS (WoAnime: pricing cards + counter animation)
            ═══════════════════════════════════════════════════════════════ -->
-      <section data-background-color="#0F0F1A" aria-label="Paquetes y precios">
+      <section data-background-color="#0F0F1A" aria-label="Paquetes y precios" data-state="pricing-slide">
         <h2>Paquetes <span class="accent">Transparentes</span></h2>
-        <div class="wo-grid wo-grid--3" role="list">
-          <div class="wo-card fragment zoom-in" data-fragment-index="1" role="listitem">
+        <div class="wo-grid wo-grid--3" id="pricing-grid" role="list" data-animate="pricing">
+          <div class="wo-card" data-animate="stagger" role="listitem">
             <h3>Estándar</h3>
             <p class="card-tier">1 Ubicación</p>
-            <p class="card-price">$40K - $60K</p>
+            <p class="card-price" data-animate="counter">$40K - $60K</p>
             <p class="card-time">2-3 semanas</p>
           </div>
-          <div class="wo-card wo-card--highlight fragment zoom-in" data-fragment-index="2" role="listitem">
+          <div class="wo-card wo-card--highlight" data-animate="highlight" role="listitem">
             <h3>Pro</h3>
             <p class="card-tier">3-5 Ubicaciones</p>
-            <p class="card-price">$80K - $120K</p>
+            <p class="card-price" data-animate="counter">$80K - $120K</p>
             <p class="card-time">3-4 semanas</p>
           </div>
-          <div class="wo-card fragment zoom-in" data-fragment-index="3" role="listitem">
+          <div class="wo-card" data-animate="stagger" role="listitem">
             <h3>Enterprise</h3>
             <p class="card-tier">10+ Ubicaciones</p>
-            <p class="card-price">$150K - $250K</p>
+            <p class="card-price" data-animate="counter">$150K - $250K</p>
             <p class="card-time">4-6 semanas</p>
           </div>
         </div>
@@ -883,6 +893,8 @@
           - Enterprise: Para expansiones masivas o M&A
           
           No incluye: Estudios de mercado adicionales, encuestas.
+          
+          [WoAnime] Pricing cards con highlight especial + counters
         </aside>
       </section>
 
@@ -918,6 +930,10 @@
   <!-- Reveal.js -->
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/notes/notes.js"></script>
+  
+  <!-- Anime.js + Workalógico Animation System -->
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+  <script src="../wo-anime.js"></script>
   
   <!-- tsParticles + Workalógico Particles System -->
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
@@ -1154,7 +1170,140 @@
       showNotes: false,
       plugins: [RevealNotes]
     }).then(() => {
+      // Setup particles
       setupWoParticles('geo');
+      
+      // WoAnime ya se auto-inicializa, pero agregamos handlers personalizados
+      console.log('WoAnime integration ready');
+    });
+    
+    // ═══════════════════════════════════════════════════════════════
+    // WOÁNIME: ANIMACIONES AVANZADAS POR SLIDE
+    // ═══════════════════════════════════════════════════════════════
+    
+    // Track de slides ya animados para no repetir
+    const animatedSlides = new Set();
+    
+    Reveal.on('slidechanged', (event) => {
+      const slideState = event.currentSlide.dataset.state;
+      const slideId = Reveal.getIndices().h + '-' + Reveal.getIndices().v;
+      
+      // Evitar re-animar slides ya visitados
+      if (animatedSlides.has(slideId)) return;
+      
+      // Challenges slide - Cards con stagger
+      if (slideState === 'challenges-slide') {
+        const grid = event.currentSlide.querySelector('#challenges-grid');
+        if (grid && typeof WoAnime !== 'undefined') {
+          setTimeout(() => {
+            const cards = grid.querySelectorAll('.wo-card');
+            WoAnime.cardsEntrance(cards, { 
+              from: 'center', 
+              delay: 100,
+              effect: 'spring',
+              staggerGrid: { cols: 2, rows: 2 }
+            });
+            WoAnime.animateStepNumbers(grid);
+            animatedSlides.add(slideId);
+          }, 200);
+        }
+      }
+      
+      // Use cases slide - Cards con stagger en grid 3x2
+      if (slideState === 'usecases-slide') {
+        const grid = event.currentSlide.querySelector('#usecases-grid');
+        if (grid && typeof WoAnime !== 'undefined') {
+          setTimeout(() => {
+            const cards = grid.querySelectorAll('.wo-card');
+            WoAnime.cardsEntrance(cards, { 
+              from: 'center', 
+              delay: 80,
+              effect: 'spring',
+              staggerGrid: { cols: 3, rows: 2 }
+            });
+            animatedSlides.add(slideId);
+          }, 200);
+        }
+      }
+      
+      // Methodology slide - Cards con conexiones SVG
+      if (slideState === 'methodology-slide') {
+        const grid = event.currentSlide.querySelector('#methodology-grid');
+        if (grid && typeof WoAnime !== 'undefined') {
+          setTimeout(() => {
+            const cards = grid.querySelectorAll('.wo-card');
+            // Primero animar cards
+            WoAnime.cardsEntrance(cards, { 
+              from: 'first', 
+              delay: 150,
+              effect: 'spring'
+            });
+            // Luego animar números de paso
+            setTimeout(() => {
+              WoAnime.animateStepNumbers(grid);
+            }, 400);
+            // Finalmente, dibujar conexiones
+            setTimeout(() => {
+              WoAnime.methodologyConnections(grid, {
+                direction: 'grid',
+                curved: false,
+                lineColor: '#5968EA',
+                arrowHead: true,
+                duration: 800,
+                staggerDelay: 300
+              });
+            }, 800);
+            animatedSlides.add(slideId);
+          }, 200);
+        }
+      }
+      
+      // Data sources slide - Columnas con stagger
+      if (slideState === 'datasources-slide') {
+        const container = event.currentSlide.querySelector('#datasources-columns');
+        if (container && typeof WoAnime !== 'undefined') {
+          setTimeout(() => {
+            const columns = container.querySelectorAll('.wo-column');
+            WoAnime.stagger(columns, { 
+              delay: 200, 
+              translateX: [-40, 0],
+              translateY: [0, 0],
+              duration: 600 
+            });
+            // Animar items de lista con stagger interno
+            columns.forEach((col, i) => {
+              const items = col.querySelectorAll('li');
+              setTimeout(() => {
+                WoAnime.stagger(items, { 
+                  delay: 80, 
+                  translateX: [-20, 0],
+                  duration: 400 
+                });
+              }, 300 + i * 200);
+            });
+            animatedSlides.add(slideId);
+          }, 200);
+        }
+      }
+      
+      // Pricing slide - Cards con highlight especial
+      if (slideState === 'pricing-slide') {
+        const grid = event.currentSlide.querySelector('#pricing-grid');
+        if (grid && typeof WoAnime !== 'undefined') {
+          setTimeout(() => {
+            // Usar pricingCards para animación especial del highlight
+            WoAnime.pricingCards(grid, { 
+              highlightDelay: 200 
+            });
+            // Animar precios con counter
+            const prices = grid.querySelectorAll('.card-price');
+            setTimeout(() => {
+              prices.forEach(p => WoAnime.counter(p, { duration: 1200 }));
+            }, 600);
+            animatedSlides.add(slideId);
+          }, 200);
+        }
+      }
     });
     
     // ═══════════════════════════════════════════════════════════════

@@ -445,21 +445,189 @@ class WoFlowDiagram {
     }
   }
 
+  /**
+   * Crea partículas animadas usando Anime.js motion path
+   * Proporciona animaciones más suaves y controlables
+   */
   createParticle(fromId, toId) {
     const conn = this.connectionsLayer.querySelector(`#conn-${fromId}-${toId}`);
     if (!conn) return;
     
+    const pathD = conn.getAttribute('d');
+    const fromNode = this.config.nodes.find(n => n.id === fromId);
+    const toNode = this.config.nodes.find(n => n.id === toId);
+    
+    if (!fromNode || !toNode) return;
+    
+    // Crear múltiples partículas para efecto de "flujo de datos"
+    const particleCount = this.options.particleCount || 3;
+    const staggerDelay = 120;
+    
+    for (let i = 0; i < particleCount; i++) {
+      setTimeout(() => {
+        this.createSingleParticle(pathD, fromNode, toNode, i);
+      }, i * staggerDelay);
+    }
+  }
+  
+  /**
+   * Crea una partícula individual con animación
+   */
+  createSingleParticle(pathD, fromNode, toNode, index) {
     const particle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    particle.setAttribute('class', 'wo-flow-particle wo-flow-particle-animated');
-    particle.setAttribute('r', 5);
-    particle.style.offsetPath = `path('${conn.getAttribute('d')}')`;
+    particle.setAttribute('class', 'wo-flow-particle');
+    
+    // Tamaño variable para las partículas
+    const baseRadius = 4;
+    const radius = baseRadius + (index === 1 ? 2 : 0); // La del medio es más grande
+    particle.setAttribute('r', radius);
+    
+    // Posición inicial
+    const startX = fromNode.x + this.options.nodeRadius;
+    const startY = fromNode.y;
+    particle.setAttribute('cx', startX);
+    particle.setAttribute('cy', startY);
+    
+    // Color según índice (alternando)
+    const colors = [WO_COLORS.yellow, WO_COLORS.blue, WO_COLORS.yellow];
+    particle.setAttribute('fill', colors[index % colors.length]);
+    
+    // Agregar glow
+    particle.setAttribute('filter', 'url(#glow)');
     
     this.particlesLayer.appendChild(particle);
     
-    // Eliminar partícula después de la animación
+    // Calcular posiciones para la animación
+    const endX = toNode.x - this.options.nodeRadius;
+    const endY = toNode.y;
+    
+    // Usar Anime.js si está disponible
+    if (typeof anime !== 'undefined') {
+      this.animateParticleWithAnime(particle, startX, startY, endX, endY, pathD);
+    } else {
+      this.animateParticleCSS(particle, pathD);
+    }
+  }
+  
+  /**
+   * Animación con Anime.js (preferida)
+   */
+  animateParticleWithAnime(particle, startX, startY, endX, endY, pathD) {
+    const duration = this.options.particleDuration || 1200;
+    
+    // Crear un path SVG temporal para el motion path
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', pathD);
+    
+    // Obtener puntos del path
+    const pathLength = path.getTotalLength();
+    
+    // Timeline de animación
+    const tl = anime.timeline({
+      easing: 'easeInOutQuad',
+      complete: () => {
+        // Efecto de explosión al llegar
+        this.createArrivalEffect(endX, endY);
+        particle.remove();
+      }
+    });
+    
+    // Animación del movimiento
+    tl.add({
+      targets: particle,
+      cx: [startX, endX],
+      cy: [startY, endY],
+      duration: duration,
+      easing: 'easeInOutCubic'
+    });
+    
+    // Animación de escala y opacidad
+    tl.add({
+      targets: particle,
+      r: [
+        { value: particle.getAttribute('r') * 0.5, duration: 100 },
+        { value: particle.getAttribute('r') * 1.3, duration: duration - 300 },
+        { value: particle.getAttribute('r') * 0.5, duration: 200 }
+      ],
+      opacity: [
+        { value: 0, duration: 0 },
+        { value: 1, duration: 150 },
+        { value: 1, duration: duration - 350 },
+        { value: 0, duration: 200 }
+      ],
+      easing: 'easeOutQuad'
+    }, 0);
+    
+    return tl;
+  }
+  
+  /**
+   * Efecto visual al llegar la partícula al destino
+   */
+  createArrivalEffect(x, y) {
+    if (typeof anime === 'undefined') return;
+    
+    // Crear un círculo de "pulso" en el punto de llegada
+    const pulse = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    pulse.setAttribute('cx', x);
+    pulse.setAttribute('cy', y);
+    pulse.setAttribute('r', 5);
+    pulse.setAttribute('fill', 'none');
+    pulse.setAttribute('stroke', WO_COLORS.yellow);
+    pulse.setAttribute('stroke-width', 2);
+    pulse.setAttribute('opacity', 0.8);
+    
+    this.particlesLayer.appendChild(pulse);
+    
+    anime({
+      targets: pulse,
+      r: [5, 20],
+      opacity: [0.8, 0],
+      strokeWidth: [2, 0.5],
+      duration: 400,
+      easing: 'easeOutQuad',
+      complete: () => pulse.remove()
+    });
+  }
+  
+  /**
+   * Fallback CSS animation
+   */
+  animateParticleCSS(particle, pathD) {
+    particle.classList.add('wo-flow-particle-animated');
+    particle.style.offsetPath = `path('${pathD}')`;
+    
     setTimeout(() => {
       particle.remove();
     }, 2000);
+  }
+  
+  /**
+   * Crea un trail de partículas continuo entre dos nodos
+   * Útil para mostrar flujo de datos activo
+   */
+  createParticleStream(fromId, toId, options = {}) {
+    const {
+      duration = 5000,
+      interval = 300,
+      particlesPerBurst = 2
+    } = options;
+    
+    const startTime = Date.now();
+    
+    const createBurst = () => {
+      if (Date.now() - startTime > duration) return;
+      
+      for (let i = 0; i < particlesPerBurst; i++) {
+        setTimeout(() => {
+          this.createParticle(fromId, toId);
+        }, i * 50);
+      }
+      
+      setTimeout(createBurst, interval);
+    };
+    
+    createBurst();
   }
 
   updatePlayButton() {

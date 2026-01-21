@@ -118,59 +118,180 @@ const WoAnime = (function() {
   // ═══════════════════════════════════════════════════════════════
   
   /**
-   * Anima un contador numérico
+   * Anima un contador numérico con soporte para formatos especiales
+   * Soporta: $2.5M, 70%, 500M+, 15+, $40K - $60K, 2-6, etc.
+   * 
    * @param {string|Element} target - Selector o elemento
    * @param {Object} options - Configuración
    */
   function counter(target, options = {}) {
     const elements = typeof target === 'string' 
       ? document.querySelectorAll(target) 
-      : [target];
+      : (target instanceof NodeList ? Array.from(target) : [target]);
     
     const {
       from = 0,
       to = null, // Si es null, usa el contenido del elemento
       duration = config.duration.counter,
       easing = config.easing.expo,
-      prefix = '',
-      suffix = '',
-      decimals = 0,
+      prefix = null, // Auto-detecta si es null
+      suffix = null, // Auto-detecta si es null
+      decimals = null, // Auto-detecta si es null
       format = true, // Formatear K, M, etc.
+      preserveFormat = true, // Mantener el formato original del texto
       onComplete = null
     } = options;
     
     elements.forEach(el => {
-      // Obtener valor destino del elemento si no se especifica
-      let targetValue = to;
-      if (targetValue === null) {
-        const parsed = parseFormattedValue(el.textContent || el.dataset.value || '0');
-        targetValue = parsed.value;
-      }
+      if (!el) return;
+      
+      const originalText = el.textContent?.trim() || el.dataset.value || '0';
       
       // Guardar valor original para reset
-      el.dataset.originalValue = el.textContent;
+      el.dataset.originalValue = originalText;
+      
+      // Detectar si es un rango (ej: "$40K - $60K" o "2-6")
+      const rangeMatch = originalText.match(/^([^\d]*)([\d.,]+)([KMB%+]*)\s*[-–]\s*([^\d]*)([\d.,]+)([KMB%+]*)(.*)$/i);
+      
+      if (rangeMatch && preserveFormat) {
+        // Es un rango - animar ambos valores
+        animateRange(el, rangeMatch, { duration, easing, from });
+        return;
+      }
+      
+      // Parsear valor único
+      const parsed = parseFormattedValue(originalText);
+      let targetValue = to !== null ? to : parsed.value;
+      
+      // Auto-detectar configuración del formato
+      const autoPrefix = prefix !== null ? prefix : parsed.hasPrefix;
+      const autoSuffix = suffix !== null ? suffix : parsed.hasSuffix;
+      const autoDecimals = decimals !== null ? decimals : detectDecimals(originalText);
+      
+      // Agregar clase para animación visual
+      el.classList.add('wo-counter--animating');
       
       const anim = anime({
         targets: { value: from },
         value: targetValue,
         duration,
         easing,
-        round: decimals === 0 ? 1 : Math.pow(10, decimals),
+        round: autoDecimals === 0 ? 1 : Math.pow(10, autoDecimals),
         update: (a) => {
           const current = a.animations[0].currentValue;
-          if (format && current >= 1000) {
-            el.textContent = formatNumber(current, { prefix, suffix, decimals });
-          } else {
-            el.textContent = prefix + current.toFixed(decimals) + suffix;
-          }
+          el.textContent = formatCounterValue(current, {
+            prefix: autoPrefix,
+            suffix: autoSuffix,
+            decimals: autoDecimals,
+            format,
+            hasPlus: parsed.hasPlus
+          });
         },
         complete: () => {
+          el.classList.remove('wo-counter--animating');
+          el.classList.add('wo-counter--complete');
+          // Restaurar texto original exacto para evitar diferencias de formato
+          if (preserveFormat) {
+            el.textContent = originalText;
+          }
           if (onComplete) onComplete(el);
         }
       });
       
       trackAnimation(anim);
     });
+  }
+  
+  /**
+   * Anima un rango de valores (ej: "$40K - $60K")
+   */
+  function animateRange(el, match, options) {
+    const [_, prefix1, val1, suffix1, prefix2, val2, suffix2, extra] = match;
+    const { duration, easing, from } = options;
+    
+    const parsed1 = parseFormattedValue(prefix1 + val1 + suffix1);
+    const parsed2 = parseFormattedValue(prefix2 + val2 + suffix2);
+    
+    const decimals1 = detectDecimals(val1);
+    const decimals2 = detectDecimals(val2);
+    
+    el.classList.add('wo-counter--animating');
+    
+    const anim = anime({
+      targets: { v1: from, v2: from },
+      v1: parsed1.value,
+      v2: parsed2.value,
+      duration,
+      easing,
+      update: (a) => {
+        const c1 = a.animations[0].currentValue;
+        const c2 = a.animations[1].currentValue;
+        
+        const text1 = formatCounterValue(c1, {
+          prefix: parsed1.hasPrefix,
+          suffix: suffix1.replace(/[%+]/g, ''),
+          decimals: decimals1,
+          format: true
+        });
+        
+        const text2 = formatCounterValue(c2, {
+          prefix: parsed2.hasPrefix || parsed1.hasPrefix,
+          suffix: suffix2.replace(/[%+]/g, ''),
+          decimals: decimals2,
+          format: true
+        });
+        
+        el.textContent = `${text1} - ${text2}${extra}`;
+      },
+      complete: () => {
+        el.classList.remove('wo-counter--animating');
+        el.classList.add('wo-counter--complete');
+        el.textContent = el.dataset.originalValue;
+      }
+    });
+    
+    trackAnimation(anim);
+  }
+  
+  /**
+   * Detecta el número de decimales en un string
+   */
+  function detectDecimals(str) {
+    const match = str.match(/\.(\d+)/);
+    return match ? match[1].length : 0;
+  }
+  
+  /**
+   * Formatea el valor del contador con prefijo y sufijo
+   */
+  function formatCounterValue(value, options) {
+    const { prefix = '', suffix = '', decimals = 0, format = true, hasPlus = false } = options;
+    
+    let result = '';
+    
+    // Prefijo ($, €, etc.)
+    if (prefix) result += prefix;
+    
+    // Número formateado
+    if (format && Math.abs(value) >= 1000000) {
+      result += (value / 1000000).toFixed(decimals > 0 ? decimals : 1) + 'M';
+    } else if (format && Math.abs(value) >= 1000) {
+      result += (value / 1000).toFixed(decimals) + 'K';
+    } else {
+      result += decimals > 0 ? value.toFixed(decimals) : Math.round(value);
+    }
+    
+    // Sufijo (%, +, etc.)
+    if (suffix && !result.includes(suffix)) {
+      result += suffix;
+    }
+    
+    // Plus al final
+    if (hasPlus && !result.includes('+')) {
+      result += '+';
+    }
+    
+    return result;
   }
   
   // ═══════════════════════════════════════════════════════════════
@@ -214,93 +335,227 @@ const WoAnime = (function() {
   }
   
   // ═══════════════════════════════════════════════════════════════
-  // COMPONENTE: COVER (Entrada de Portada)
+  // COMPONENTE: COVER (Entrada de Portada Cinematográfica)
   // ═══════════════════════════════════════════════════════════════
   
   /**
-   * Animación cinematográfica para portadas
+   * Animación cinematográfica para portadas con múltiples efectos
+   * Secuencia: Logo → Badge → Título (con accent highlight) → Subtítulo → Stats → Author
+   * 
    * @param {Element} slideElement - El slide de portada
+   * @param {Object} options - Configuración opcional
    */
-  function cover(slideElement) {
-    const logo = slideElement.querySelector('.wo-cover__logo');
-    const badge = slideElement.querySelector('.wo-badge');
-    const title = slideElement.querySelector('.wo-cover__title');
-    const subtitle = slideElement.querySelector('.wo-cover__subtitle');
-    const stats = slideElement.querySelectorAll('.wo-stat');
-    const author = slideElement.querySelector('.wo-cover__author');
+  function cover(slideElement, options = {}) {
+    const {
+      duration = config.duration.cover,
+      staggerStats = 120,
+      highlightAccent = true,
+      animateCounters = true
+    } = options;
     
-    // Ocultar elementos inicialmente
+    // Seleccionar elementos
+    const container = slideElement.querySelector('.wo-cover') || slideElement;
+    const logo = container.querySelector('.wo-cover__logo');
+    const badge = container.querySelector('.wo-badge');
+    const title = container.querySelector('.wo-cover__title');
+    const titleAccent = title?.querySelector('.accent, .accent-yellow');
+    const subtitle = container.querySelector('.wo-cover__subtitle');
+    const statsRow = container.querySelector('.wo-stats-row');
+    const stats = container.querySelectorAll('.wo-stat');
+    const statValues = container.querySelectorAll('.wo-stat__value');
+    const author = container.querySelector('.wo-cover__author');
+    const gridBg = container.querySelector('.grid-background');
+    
+    // Reset: Ocultar todos los elementos
     const elements = [logo, badge, title, subtitle, author, ...stats].filter(Boolean);
     elements.forEach(el => {
       el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
+      el.style.transform = 'translateY(30px)';
     });
     
+    // Ocultar accent del título para animación separada
+    if (titleAccent && highlightAccent) {
+      titleAccent.style.opacity = '0';
+      titleAccent.style.display = 'inline-block';
+    }
+    
+    // Grid background fade
+    if (gridBg) {
+      gridBg.style.opacity = '0';
+    }
+    
+    // Crear timeline cinematográfico
     const tl = anime.timeline({
       easing: config.easing.expo
     });
     
-    // Logo con scale
+    // 1. Grid background fade in (muy sutil)
+    if (gridBg) {
+      tl.add({
+        targets: gridBg,
+        opacity: [0, 0.4],
+        duration: 1200,
+        easing: 'easeOutQuad'
+      }, 0);
+    }
+    
+    // 2. Logo - entrada con scale y glow sutil
     if (logo) {
       tl.add({
         targets: logo,
-        scale: [0.8, 1],
-        opacity: [0, 1],
-        translateY: [20, 0],
-        duration: config.duration.cover
-      });
+        scale: [0.7, 1],
+        opacity: [0, 0.9],
+        translateY: [40, 0],
+        filter: ['blur(4px)', 'blur(0px)'],
+        duration: duration,
+        easing: config.easing.expo
+      }, 100);
     }
     
-    // Badge
+    // 3. Badge - slide desde arriba
     if (badge) {
       tl.add({
         targets: badge,
         opacity: [0, 1],
-        translateY: [10, 0],
-        duration: 400
+        translateY: [-15, 0],
+        scale: [0.9, 1],
+        duration: 450,
+        easing: config.easing.back
       }, '-=400');
     }
     
-    // Título
+    // 4. Título - entrada dramática
     if (title) {
       tl.add({
         targets: title,
         opacity: [0, 1],
-        translateY: [30, 0],
-        duration: 600
-      }, '-=300');
+        translateY: [50, 0],
+        duration: 700,
+        easing: config.easing.expo
+      }, '-=250');
+      
+      // 4b. Accent del título - highlight con glow
+      if (titleAccent && highlightAccent) {
+        tl.add({
+          targets: titleAccent,
+          opacity: [0, 1],
+          scale: [0.95, 1],
+          textShadow: [
+            `0 0 0px ${config.getPrimaryColor()}`,
+            `0 0 20px ${config.getPrimaryColor()}`,
+            `0 0 0px ${config.getPrimaryColor()}`
+          ],
+          duration: 600,
+          easing: 'easeOutQuad'
+        }, '-=400');
+      }
     }
     
-    // Subtítulo
+    // 5. Subtítulo - fade suave
+    if (subtitle) {
+      tl.add({
+        targets: subtitle,
+        opacity: [0, 1],
+        translateY: [25, 0],
+        duration: 550,
+        easing: config.easing.smooth
+      }, '-=350');
+    }
+    
+    // 6. Stats - entrada con stagger desde el centro
+    if (stats.length > 0) {
+      tl.add({
+        targets: Array.from(stats),
+        scale: [0.85, 1],
+        opacity: [0, 1],
+        translateY: [25, 0],
+        delay: anime.stagger(staggerStats, { from: 'center' }),
+        duration: 500,
+        easing: config.easing.spring
+      }, '-=200');
+      
+      // 6b. Animar contadores de stats si está habilitado
+      if (animateCounters && statValues.length > 0) {
+        // Delay para que los stats ya estén visibles
+        setTimeout(() => {
+          statValues.forEach(val => {
+            if (val.textContent.match(/[\d.,]+[KMB%+]*/)) {
+              counter(val, { duration: 1200, easing: config.easing.expo });
+            }
+          });
+        }, 600);
+      }
+    }
+    
+    // 7. Author - fade final
+    if (author) {
+      tl.add({
+        targets: author,
+        opacity: [0, 1],
+        translateY: [15, 0],
+        duration: 400,
+        easing: config.easing.smooth
+      }, '-=150');
+    }
+    
+    return trackAnimation(tl);
+  }
+  
+  /**
+   * Animación de sección (título + subtítulo)
+   * @param {Element} slideElement - El slide de sección
+   */
+  function section(slideElement, options = {}) {
+    const {
+      duration = 600
+    } = options;
+    
+    const title = slideElement.querySelector('.wo-section__title');
+    const titleAccent = title?.querySelector('.accent, .accent-yellow');
+    const subtitle = slideElement.querySelector('.wo-section__subtitle');
+    
+    const elements = [title, subtitle].filter(Boolean);
+    elements.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+    });
+    
+    if (titleAccent) {
+      titleAccent.style.opacity = '0';
+      titleAccent.style.display = 'inline-block';
+    }
+    
+    const tl = anime.timeline({ easing: config.easing.expo });
+    
+    if (title) {
+      tl.add({
+        targets: title,
+        opacity: [0, 1],
+        translateY: [40, 0],
+        duration
+      });
+      
+      if (titleAccent) {
+        tl.add({
+          targets: titleAccent,
+          opacity: [0, 1],
+          textShadow: [
+            `0 0 0px ${config.getPrimaryColor()}`,
+            `0 0 15px ${config.getPrimaryColor()}`,
+            `0 0 0px ${config.getPrimaryColor()}`
+          ],
+          duration: 500
+        }, '-=400');
+      }
+    }
+    
     if (subtitle) {
       tl.add({
         targets: subtitle,
         opacity: [0, 1],
         translateY: [20, 0],
-        duration: 500
-      }, '-=400');
-    }
-    
-    // Stats con stagger
-    if (stats.length > 0) {
-      tl.add({
-        targets: stats,
-        scale: [0.8, 1],
-        opacity: [0, 1],
-        translateY: [20, 0],
-        delay: anime.stagger(100),
-        duration: 500
-      }, '-=200');
-    }
-    
-    // Author
-    if (author) {
-      tl.add({
-        targets: author,
-        opacity: [0, 1],
-        translateY: [10, 0],
-        duration: 400
-      }, '-=200');
+        duration: 450
+      }, '-=300');
     }
     
     return trackAnimation(tl);
@@ -335,83 +590,352 @@ const WoAnime = (function() {
   }
   
   // ═══════════════════════════════════════════════════════════════
-  // COMPONENTE: STEPS TIMELINE (Pasos Animados)
+  // COMPONENTE: STEPS TIMELINE (Pasos Animados con Línea de Progreso)
   // ═══════════════════════════════════════════════════════════════
   
   /**
-   * Anima una lista de pasos con línea de progreso
-   * @param {Element} container - Contenedor de los pasos
+   * Anima una lista de pasos con línea de progreso vertical
+   * La línea crece conforme aparecen los items
+   * 
+   * @param {Element} container - Contenedor de los pasos (.wo-steps)
+   * @param {Object} options - Configuración
    */
   function stepsTimeline(container, options = {}) {
     const {
-      duration = 2000,
-      staggerDelay = 400
+      duration = 2500,
+      staggerDelay = 350,
+      lineColor = config.getPrimaryColor(),
+      showNumbers = true,
+      pulseOnComplete = true
     } = options;
     
     const items = container.querySelectorAll('li');
-    const progressLine = container.querySelector('.wo-steps__progress-line');
+    let progressLine = container.querySelector('.wo-steps__progress-line');
     
-    // Ocultar items inicialmente
-    items.forEach(item => {
-      item.style.opacity = '0';
-      item.style.transform = 'translateX(-20px)';
-    });
-    
-    const tl = anime.timeline({ easing: config.easing.expo });
-    
-    // Línea de progreso (si existe)
-    if (progressLine) {
-      tl.add({
-        targets: progressLine,
-        scaleY: [0, 1],
-        duration,
-        easing: 'easeInOutQuad'
-      });
+    // Crear línea de progreso si no existe
+    if (!progressLine) {
+      progressLine = document.createElement('div');
+      progressLine.className = 'wo-steps__progress-line';
+      progressLine.style.cssText = `
+        position: absolute;
+        left: 0.8em;
+        top: 1.2em;
+        bottom: 1em;
+        width: 2px;
+        background: linear-gradient(to bottom, ${lineColor}, ${lineColor}88);
+        transform-origin: top;
+        transform: scaleY(0);
+        z-index: 0;
+        border-radius: 2px;
+      `;
+      container.style.position = 'relative';
+      container.insertBefore(progressLine, container.firstChild);
     }
     
-    // Items con stagger
+    // Obtener los números de cada step (::before elements)
+    const stepNumbers = [];
+    items.forEach(item => {
+      item.style.position = 'relative';
+      item.style.zIndex = '1';
+    });
+    
+    // Reset: Ocultar items y sus números
+    items.forEach((item, index) => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateX(-25px)';
+      
+      // Crear indicador de número si showNumbers
+      if (showNumbers) {
+        const numberEl = item.querySelector('.wo-step-number');
+        if (!numberEl) {
+          // El número viene del CSS ::before, lo resaltamos con un pseudo-glow
+          item.style.setProperty('--step-glow', '0');
+        }
+      }
+    });
+    
+    const itemCount = items.length;
+    const tl = anime.timeline({ easing: config.easing.expo });
+    
+    // 1. Línea de progreso - crece gradualmente
     tl.add({
-      targets: items,
-      translateX: [-20, 0],
-      opacity: [0, 1],
-      delay: anime.stagger(staggerDelay),
-      duration: 600
-    }, progressLine ? '-=1500' : 0);
+      targets: progressLine,
+      scaleY: [0, 1],
+      duration: duration,
+      easing: 'easeInOutCubic'
+    }, 0);
+    
+    // 2. Items aparecen en cascada sincronizados con la línea
+    items.forEach((item, index) => {
+      const itemDelay = (index / itemCount) * duration * 0.6;
+      
+      tl.add({
+        targets: item,
+        translateX: [-25, 0],
+        opacity: [0, 1],
+        duration: 500,
+        easing: config.easing.spring,
+        begin: () => {
+          // Pulso en el número al aparecer
+          if (pulseOnComplete) {
+            anime({
+              targets: item,
+              boxShadow: [
+                '0 0 0px rgba(89, 104, 234, 0)',
+                '0 0 15px rgba(89, 104, 234, 0.3)',
+                '0 0 0px rgba(89, 104, 234, 0)'
+              ],
+              duration: 600,
+              easing: 'easeOutQuad'
+            });
+          }
+        }
+      }, itemDelay + 200);
+    });
+    
+    // 3. Efecto final de completado
+    if (pulseOnComplete) {
+      tl.add({
+        targets: progressLine,
+        boxShadow: [
+          `0 0 0px ${lineColor}00`,
+          `0 0 12px ${lineColor}66`,
+          `0 0 0px ${lineColor}00`
+        ],
+        duration: 800,
+        easing: 'easeInOutSine'
+      }, `-=${400}`);
+    }
     
     return trackAnimation(tl);
   }
   
+  /**
+   * Crea una línea de conexión animada entre dos elementos
+   * Útil para mostrar flujos o relaciones
+   * 
+   * @param {Element} fromEl - Elemento de origen
+   * @param {Element} toEl - Elemento de destino
+   * @param {Object} options - Configuración
+   */
+  function connectElements(fromEl, toEl, options = {}) {
+    const {
+      container = fromEl.parentElement,
+      color = config.getPrimaryColor(),
+      strokeWidth = 2,
+      curved = true,
+      duration = 1000,
+      dashArray = null // e.g., '5 3' para línea punteada
+    } = options;
+    
+    // Obtener posiciones relativas al contenedor
+    const containerRect = container.getBoundingClientRect();
+    const fromRect = fromEl.getBoundingClientRect();
+    const toRect = toEl.getBoundingClientRect();
+    
+    const startX = fromRect.right - containerRect.left;
+    const startY = fromRect.top + fromRect.height / 2 - containerRect.top;
+    const endX = toRect.left - containerRect.left;
+    const endY = toRect.top + toRect.height / 2 - containerRect.top;
+    
+    // Crear SVG para la línea
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.style.cssText = `
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: visible;
+    `;
+    
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    
+    // Crear path (curvo o recto)
+    let d;
+    if (curved) {
+      const midX = (startX + endX) / 2;
+      d = `M ${startX} ${startY} Q ${midX} ${startY} ${midX} ${(startY + endY) / 2} T ${endX} ${endY}`;
+    } else {
+      d = `M ${startX} ${startY} L ${endX} ${endY}`;
+    }
+    
+    path.setAttribute('d', d);
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', color);
+    path.setAttribute('stroke-width', strokeWidth);
+    if (dashArray) path.setAttribute('stroke-dasharray', dashArray);
+    
+    svg.appendChild(path);
+    container.style.position = 'relative';
+    container.appendChild(svg);
+    
+    // Animar el dibujo del path
+    const pathLength = path.getTotalLength();
+    path.style.strokeDasharray = pathLength;
+    path.style.strokeDashoffset = pathLength;
+    
+    return trackAnimation(anime({
+      targets: path,
+      strokeDashoffset: [pathLength, 0],
+      duration,
+      easing: 'easeInOutQuad'
+    }));
+  }
+  
   // ═══════════════════════════════════════════════════════════════
-  // COMPONENTE: CARDS ENTRANCE (Entrada de Cards)
+  // COMPONENTE: CARDS ENTRANCE (Entrada de Cards con Stagger Orgánico)
   // ═══════════════════════════════════════════════════════════════
   
   /**
-   * Anima entrada de cards con efecto spring
-   * @param {NodeList|Array} cards - Cards a animar
+   * Anima entrada de cards con efecto spring orgánico
+   * Reemplaza fragment fade-up con animaciones más fluidas
+   * 
+   * @param {NodeList|Array|string} cards - Cards a animar
+   * @param {Object} options - Configuración
    */
   function cardsEntrance(cards, options = {}) {
+    const cardArray = typeof cards === 'string' 
+      ? Array.from(document.querySelectorAll(cards))
+      : Array.from(cards);
+    
+    if (cardArray.length === 0) return null;
+    
     const {
-      from = 'center',
-      delay = 80,
-      duration = 600
+      from = 'center',     // 'first', 'last', 'center', o índice numérico
+      delay = 100,         // Delay entre cards
+      duration = 650,      // Duración de cada animación
+      staggerGrid = null,  // { cols: 2, rows: 3 } para stagger 2D
+      effect = 'spring',   // 'spring', 'slide', 'scale', 'flip'
+      direction = 'up',    // 'up', 'down', 'left', 'right'
+      reset = true         // Resetear estado inicial
     } = options;
     
-    // Reset estado
-    const cardArray = Array.from(cards);
-    cardArray.forEach(card => {
+    // Configuración de efectos
+    const effects = {
+      spring: {
+        translateY: direction === 'up' ? [40, 0] : direction === 'down' ? [-40, 0] : [0, 0],
+        translateX: direction === 'left' ? [40, 0] : direction === 'right' ? [-40, 0] : [0, 0],
+        scale: [0.92, 1],
+        opacity: [0, 1],
+        easing: config.easing.spring
+      },
+      slide: {
+        translateY: direction === 'up' ? [60, 0] : direction === 'down' ? [-60, 0] : [0, 0],
+        translateX: direction === 'left' ? [60, 0] : direction === 'right' ? [-60, 0] : [0, 0],
+        opacity: [0, 1],
+        easing: config.easing.expo
+      },
+      scale: {
+        scale: [0.8, 1],
+        opacity: [0, 1],
+        easing: config.easing.back
+      },
+      flip: {
+        rotateX: [-15, 0],
+        translateY: [30, 0],
+        opacity: [0, 1],
+        easing: config.easing.expo
+      }
+    };
+    
+    const effectConfig = effects[effect] || effects.spring;
+    
+    // Reset estado inicial si está habilitado
+    if (reset) {
+      cardArray.forEach(card => {
+        card.style.opacity = '0';
+        card.style.willChange = 'transform, opacity';
+        
+        if (effect === 'flip') {
+          card.style.transformStyle = 'preserve-3d';
+          card.style.perspective = '1000px';
+        }
+      });
+    }
+    
+    // Configurar stagger
+    let staggerConfig;
+    if (staggerGrid) {
+      // Stagger 2D para grids
+      staggerConfig = anime.stagger(delay, {
+        grid: [staggerGrid.cols, staggerGrid.rows],
+        from: from
+      });
+    } else {
+      staggerConfig = anime.stagger(delay, { from });
+    }
+    
+    const anim = anime({
+      targets: cardArray,
+      ...effectConfig,
+      delay: staggerConfig,
+      duration,
+      complete: () => {
+        // Limpiar will-change para rendimiento
+        cardArray.forEach(card => {
+          card.style.willChange = 'auto';
+        });
+      }
+    });
+    
+    return trackAnimation(anim);
+  }
+  
+  /**
+   * Anima cards de pricing con highlight especial para el card recomendado
+   * @param {Element} container - Contenedor de los cards de pricing
+   */
+  function pricingCards(container, options = {}) {
+    const {
+      highlightClass = 'wo-card--highlight',
+      delay = 150,
+      highlightDelay = 300
+    } = options;
+    
+    const cards = container.querySelectorAll('.wo-card');
+    const highlightCard = container.querySelector(`.${highlightClass}`);
+    const regularCards = Array.from(cards).filter(c => !c.classList.contains(highlightClass));
+    
+    // Reset
+    cards.forEach(card => {
       card.style.opacity = '0';
       card.style.transform = 'translateY(40px) scale(0.95)';
     });
     
-    return trackAnimation(anime({
-      targets: cardArray,
-      translateY: [40, 0],
-      scale: [0.95, 1],
-      opacity: [0, 1],
-      delay: anime.stagger(delay, { from }),
-      duration,
-      easing: config.easing.spring
-    }));
+    const tl = anime.timeline({ easing: config.easing.spring });
+    
+    // Primero los cards regulares
+    if (regularCards.length > 0) {
+      tl.add({
+        targets: regularCards,
+        translateY: [40, 0],
+        scale: [0.95, 1],
+        opacity: [0, 1],
+        delay: anime.stagger(delay, { from: 'first' }),
+        duration: 600
+      });
+    }
+    
+    // Luego el card destacado con efecto especial
+    if (highlightCard) {
+      tl.add({
+        targets: highlightCard,
+        translateY: [60, 0],
+        scale: [0.85, 1.02, 1],
+        opacity: [0, 1],
+        boxShadow: [
+          '0 0 0px rgba(255, 203, 0, 0)',
+          '0 0 30px rgba(255, 203, 0, 0.4)',
+          '0 8px 30px rgba(255, 203, 0, 0.2)'
+        ],
+        duration: 800,
+        easing: config.easing.back
+      }, `-=${highlightDelay}`);
+    }
+    
+    return trackAnimation(tl);
   }
   
   // ═══════════════════════════════════════════════════════════════
@@ -435,6 +959,202 @@ const WoAnime = (function() {
       easing,
       duration,
       delay: anime.stagger(staggerDelay)
+    }));
+  }
+  
+  /**
+   * Crea y anima líneas de conexión entre cards de metodología
+   * Las líneas se dibujan progresivamente para mostrar el flujo del proceso
+   * 
+   * @param {Element} container - Contenedor de los cards (usualmente .wo-grid)
+   * @param {Object} options - Configuración
+   */
+  function methodologyConnections(container, options = {}) {
+    const {
+      cardSelector = '.wo-card',
+      direction = 'horizontal', // 'horizontal', 'vertical', 'grid'
+      lineColor = config.getPrimaryColor(),
+      lineWidth = 2,
+      dashPattern = null, // e.g., '5 3' para línea punteada
+      arrowHead = true,
+      duration = 1200,
+      staggerDelay = 400,
+      curved = false
+    } = options;
+    
+    const cards = container.querySelectorAll(cardSelector);
+    if (cards.length < 2) return null;
+    
+    // Crear SVG overlay
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'wo-methodology-connector');
+    svg.style.cssText = `
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: visible;
+      z-index: 0;
+    `;
+    
+    // Definiciones (flecha)
+    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    if (arrowHead) {
+      defs.innerHTML = `
+        <marker id="methodology-arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="${lineColor}" opacity="0.8"/>
+        </marker>
+      `;
+    }
+    svg.appendChild(defs);
+    
+    // Asegurar que el contenedor tenga position relative
+    const containerStyle = window.getComputedStyle(container);
+    if (containerStyle.position === 'static') {
+      container.style.position = 'relative';
+    }
+    
+    // Calcular posiciones de cards
+    const containerRect = container.getBoundingClientRect();
+    const paths = [];
+    
+    const cardArray = Array.from(cards);
+    for (let i = 0; i < cardArray.length - 1; i++) {
+      const fromCard = cardArray[i];
+      const toCard = cardArray[i + 1];
+      
+      const fromRect = fromCard.getBoundingClientRect();
+      const toRect = toCard.getBoundingClientRect();
+      
+      // Calcular puntos de conexión
+      let startX, startY, endX, endY;
+      
+      if (direction === 'horizontal') {
+        // Conectar derecha a izquierda
+        startX = fromRect.right - containerRect.left;
+        startY = fromRect.top + fromRect.height / 2 - containerRect.top;
+        endX = toRect.left - containerRect.left;
+        endY = toRect.top + toRect.height / 2 - containerRect.top;
+      } else if (direction === 'vertical') {
+        // Conectar abajo a arriba
+        startX = fromRect.left + fromRect.width / 2 - containerRect.left;
+        startY = fromRect.bottom - containerRect.top;
+        endX = toRect.left + toRect.width / 2 - containerRect.left;
+        endY = toRect.top - containerRect.top;
+      } else if (direction === 'grid') {
+        // Detectar si está en la misma fila o diferente
+        const sameRow = Math.abs(fromRect.top - toRect.top) < fromRect.height / 2;
+        
+        if (sameRow) {
+          startX = fromRect.right - containerRect.left;
+          startY = fromRect.top + fromRect.height / 2 - containerRect.top;
+          endX = toRect.left - containerRect.left;
+          endY = toRect.top + toRect.height / 2 - containerRect.top;
+        } else {
+          startX = fromRect.left + fromRect.width / 2 - containerRect.left;
+          startY = fromRect.bottom - containerRect.top;
+          endX = toRect.left + toRect.width / 2 - containerRect.left;
+          endY = toRect.top - containerRect.top;
+        }
+      }
+      
+      // Crear path
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      
+      // Generar el path d
+      let d;
+      if (curved) {
+        // Curva Bezier
+        const midX = (startX + endX) / 2;
+        const midY = (startY + endY) / 2;
+        const controlOffset = 30;
+        
+        if (direction === 'horizontal') {
+          d = `M ${startX} ${startY} Q ${midX} ${startY - controlOffset} ${endX} ${endY}`;
+        } else {
+          d = `M ${startX} ${startY} Q ${startX + controlOffset} ${midY} ${endX} ${endY}`;
+        }
+      } else {
+        // Línea recta
+        d = `M ${startX} ${startY} L ${endX} ${endY}`;
+      }
+      
+      path.setAttribute('d', d);
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', lineColor);
+      path.setAttribute('stroke-width', lineWidth);
+      path.setAttribute('stroke-linecap', 'round');
+      path.setAttribute('opacity', '0.6');
+      if (dashPattern) path.setAttribute('stroke-dasharray', dashPattern);
+      if (arrowHead) path.setAttribute('marker-end', 'url(#methodology-arrow)');
+      
+      // Preparar para animación
+      const pathLength = path.getTotalLength();
+      path.style.strokeDasharray = pathLength;
+      path.style.strokeDashoffset = pathLength;
+      
+      svg.appendChild(path);
+      paths.push(path);
+    }
+    
+    // Insertar SVG antes de los cards
+    container.insertBefore(svg, container.firstChild);
+    
+    // Animar paths con stagger
+    const tl = anime.timeline({ easing: 'easeInOutQuad' });
+    
+    paths.forEach((path, index) => {
+      const pathLength = path.getTotalLength();
+      
+      tl.add({
+        targets: path,
+        strokeDashoffset: [pathLength, 0],
+        opacity: [0.3, 0.6],
+        duration: duration,
+        easing: 'easeInOutCubic'
+      }, index * staggerDelay);
+      
+      // Pulso al completar
+      tl.add({
+        targets: path,
+        opacity: [0.6, 0.8, 0.6],
+        duration: 400,
+        easing: 'easeInOutSine'
+      }, index * staggerDelay + duration - 200);
+    });
+    
+    return trackAnimation(tl);
+  }
+  
+  /**
+   * Anima números de pasos en cards de metodología (01, 02, 03...)
+   * @param {Element} container - Contenedor de cards
+   */
+  function animateStepNumbers(container, options = {}) {
+    const {
+      numberSelector = '.card-number',
+      duration = 600,
+      staggerDelay = 150
+    } = options;
+    
+    const numbers = container.querySelectorAll(numberSelector);
+    if (numbers.length === 0) return null;
+    
+    // Reset
+    numbers.forEach(num => {
+      num.style.opacity = '0';
+      num.style.transform = 'scale(0.5)';
+    });
+    
+    return trackAnimation(anime({
+      targets: Array.from(numbers),
+      scale: [0.5, 1.2, 1],
+      opacity: [0, 1],
+      delay: anime.stagger(staggerDelay),
+      duration: duration,
+      easing: config.easing.back
     }));
   }
   
@@ -499,11 +1219,11 @@ const WoAnime = (function() {
   }
   
   // ═══════════════════════════════════════════════════════════════
-  // COMPONENTE: FLIP CARD (Voltear Card)
+  // COMPONENTE: FLIP CARD (Voltear Card 3D)
   // ═══════════════════════════════════════════════════════════════
   
   /**
-   * Efecto flip 3D para cards
+   * Efecto flip 3D básico para cards
    * @param {Element} card - Card a voltear
    */
   function flipCard(card, options = {}) {
@@ -521,6 +1241,205 @@ const WoAnime = (function() {
       duration,
       easing: 'easeInOutSine'
     }));
+  }
+  
+  /**
+   * Inicializa un card de pricing con efecto flip 3D
+   * Muestra info adicional en el reverso al hacer hover/click
+   * 
+   * @param {Element} card - El card a convertir en flip card
+   * @param {Object} backContent - Contenido del reverso
+   */
+  function initPricingFlip(card, backContent = {}) {
+    // Verificar si ya está inicializado
+    if (card.classList.contains('wo-card--flip-initialized')) return;
+    
+    const {
+      title = 'Incluye',
+      features = [],
+      cta = 'Cotizar',
+      ctaAction = null
+    } = backContent;
+    
+    // Guardar contenido original
+    const originalContent = card.innerHTML;
+    
+    // Crear estructura de flip card
+    card.classList.add('wo-card--flip', 'wo-card--flip-initialized');
+    card.style.perspective = '1000px';
+    
+    // Crear inner container
+    const inner = document.createElement('div');
+    inner.className = 'wo-card--flip-inner';
+    inner.style.cssText = `
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    `;
+    
+    // Front (contenido original)
+    const front = document.createElement('div');
+    front.className = 'wo-card--flip-front';
+    front.style.cssText = `
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0.6em 0.8em;
+    `;
+    front.innerHTML = originalContent;
+    
+    // Back (contenido adicional)
+    const back = document.createElement('div');
+    back.className = 'wo-card--flip-back';
+    back.style.cssText = `
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0.6em 0.8em;
+      background: var(--wo-accent-dim);
+      border-radius: var(--radius-md);
+    `;
+    
+    // Contenido del back
+    back.innerHTML = `
+      <h4 style="margin: 0 0 0.5em; font-size: 0.75em; color: var(--wo-text);">${title}</h4>
+      <ul style="list-style: none; padding: 0; margin: 0 0 0.5em; font-size: 0.6em;">
+        ${features.map(f => `<li style="padding: 0.15em 0; color: var(--wo-text-secondary);">✓ ${f}</li>`).join('')}
+      </ul>
+      ${cta ? `<button class="wo-flip-cta" style="
+        background: var(--wo-blue-lab);
+        border: none;
+        padding: 0.4em 0.8em;
+        border-radius: var(--radius-sm);
+        color: white;
+        font-size: 0.6em;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      ">${cta}</button>` : ''}
+    `;
+    
+    // Limpiar y reconstruir
+    card.innerHTML = '';
+    inner.appendChild(front);
+    inner.appendChild(back);
+    card.appendChild(inner);
+    
+    // Estado de flip
+    let isFlipped = false;
+    
+    // Event handlers
+    const flip = () => {
+      isFlipped = !isFlipped;
+      
+      if (typeof anime !== 'undefined') {
+        anime({
+          targets: inner,
+          rotateY: isFlipped ? 180 : 0,
+          duration: 800,
+          easing: 'easeInOutQuad'
+        });
+        
+        // Efecto de sombra durante el flip
+        anime({
+          targets: card,
+          boxShadow: [
+            '0 8px 30px rgba(89, 104, 234, 0.15)',
+            '0 15px 40px rgba(89, 104, 234, 0.3)',
+            '0 8px 30px rgba(89, 104, 234, 0.15)'
+          ],
+          duration: 800,
+          easing: 'easeInOutQuad'
+        });
+      } else {
+        inner.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0)';
+      }
+    };
+    
+    // Flip on click
+    card.addEventListener('click', (e) => {
+      if (e.target.classList.contains('wo-flip-cta')) {
+        if (ctaAction) ctaAction();
+        return;
+      }
+      flip();
+    });
+    
+    // Flip on keyboard
+    card.setAttribute('tabindex', '0');
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        flip();
+      }
+    });
+    
+    return {
+      flip,
+      isFlipped: () => isFlipped,
+      destroy: () => {
+        card.innerHTML = originalContent;
+        card.classList.remove('wo-card--flip', 'wo-card--flip-initialized');
+      }
+    };
+  }
+  
+  /**
+   * Anima el card de pricing destacado con efecto especial
+   * @param {Element} card - Card con clase wo-card--highlight
+   */
+  function highlightPricingCard(card, options = {}) {
+    const {
+      duration = 1000,
+      pulseCount = 2
+    } = options;
+    
+    // Badge "RECOMENDADO" animation
+    const badge = card.querySelector('::before') || card;
+    
+    const tl = anime.timeline({ easing: 'easeOutQuad' });
+    
+    // Entrada con scale y glow
+    tl.add({
+      targets: card,
+      scale: [0.9, 1.03, 1],
+      opacity: [0, 1],
+      boxShadow: [
+        '0 0 0px rgba(255, 203, 0, 0)',
+        '0 0 40px rgba(255, 203, 0, 0.5)',
+        '0 8px 30px rgba(255, 203, 0, 0.2)'
+      ],
+      duration: duration,
+      easing: 'easeOutBack'
+    });
+    
+    // Pulso sutil continuo
+    for (let i = 0; i < pulseCount; i++) {
+      tl.add({
+        targets: card,
+        boxShadow: [
+          '0 8px 30px rgba(255, 203, 0, 0.2)',
+          '0 8px 40px rgba(255, 203, 0, 0.4)',
+          '0 8px 30px rgba(255, 203, 0, 0.2)'
+        ],
+        duration: 800,
+        easing: 'easeInOutSine'
+      }, `+=${i * 200}`);
+    }
+    
+    return trackAnimation(tl);
   }
   
   // ═══════════════════════════════════════════════════════════════
@@ -565,21 +1484,80 @@ const WoAnime = (function() {
     const slide = event.currentSlide;
     currentSlide = slide;
     
-    // Detectar tipo de slide y aplicar animación
+    // Detectar tipo de slide y aplicar animación apropiada
+    
+    // 1. Portada - animación cinematográfica completa
     if (slide.classList.contains('wo-cover') || slide.querySelector('.wo-cover')) {
-      // Portada - animación cinematográfica
-      setTimeout(() => cover(slide), 100);
+      setTimeout(() => cover(slide, { animateCounters: true }), 100);
+      return; // Cover maneja todo internamente
     }
     
-    // Animar contadores si hay métricas
+    // 2. Sección - título con accent glow
+    if (slide.querySelector('.wo-section__title')) {
+      setTimeout(() => section(slide), 100);
+    }
+    
+    // 3. CTA - glow pulsante en accent
+    if (slide.querySelector('.wo-cta')) {
+      const ctaTitle = slide.querySelector('.wo-cta__title');
+      const ctaAccent = slide.querySelector('.wo-cta__title .accent, .wo-cta__title .accent-yellow');
+      const ctaSubtitle = slide.querySelector('.wo-cta__subtitle');
+      const ctaContact = slide.querySelector('.wo-cta__contact');
+      
+      // Animación de entrada para CTA
+      const ctaElements = [ctaTitle, ctaSubtitle, ctaContact].filter(Boolean);
+      ctaElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+      });
+      
+      const ctaTl = anime.timeline({ easing: config.easing.expo });
+      
+      if (ctaTitle) {
+        ctaTl.add({
+          targets: ctaTitle,
+          opacity: [0, 1],
+          translateY: [30, 0],
+          duration: 600
+        }, 100);
+      }
+      
+      if (ctaSubtitle) {
+        ctaTl.add({
+          targets: ctaSubtitle,
+          opacity: [0, 1],
+          translateY: [20, 0],
+          duration: 450
+        }, '-=300');
+      }
+      
+      if (ctaContact) {
+        ctaTl.add({
+          targets: ctaContact,
+          opacity: [0, 1],
+          translateY: [15, 0],
+          duration: 400
+        }, '-=200');
+      }
+      
+      // Glow pulsante en accent después de la entrada
+      if (ctaAccent) {
+        setTimeout(() => ctaGlow(ctaAccent, { duration: 2500, intensity: 25 }), 800);
+      }
+      
+      trackAnimation(ctaTl);
+      return;
+    }
+    
+    // 4. Animar contadores si hay métricas con data-animate
     const metrics = slide.querySelectorAll('.wo-metric__value[data-animate="counter"]');
     if (metrics.length > 0) {
       setTimeout(() => {
         metrics.forEach(m => counter(m));
-      }, 300);
+      }, 400);
     }
     
-    // Animar stats si hay
+    // 5. Animar stats con data-animate
     const stats = slide.querySelectorAll('.wo-stat__value[data-animate="counter"]');
     if (stats.length > 0) {
       setTimeout(() => {
@@ -587,41 +1565,95 @@ const WoAnime = (function() {
       }, 500);
     }
     
-    // CTA glow
-    if (slide.querySelector('.wo-cta')) {
-      const ctaAccent = slide.querySelector('.wo-cta__title .accent');
-      if (ctaAccent) {
-        setTimeout(() => ctaGlow(ctaAccent), 500);
-      }
-    }
-    
-    // Steps timeline
+    // 6. Steps timeline con línea de progreso
     const steps = slide.querySelector('.wo-steps[data-animate="timeline"]');
     if (steps) {
       setTimeout(() => stepsTimeline(steps), 300);
     }
+    
+    // 7. Cards con stagger (si no son fragments)
+    const cardsWithStagger = slide.querySelectorAll('.wo-card[data-animate="stagger"]:not(.fragment)');
+    if (cardsWithStagger.length > 0) {
+      setTimeout(() => cardsEntrance(cardsWithStagger), 300);
+    }
+    
+    // 8. Gauge animation
+    const gauges = slide.querySelectorAll('.wo-gauge[data-animate="gauge"]');
+    gauges.forEach(g => {
+      const score = parseFloat(g.dataset.score) || 0;
+      setTimeout(() => gauge(g, { score }), 400);
+    });
   }
   
   /**
    * Handler para fragment mostrado
+   * Mejora los fragments de Reveal.js con animaciones más fluidas
    */
   function onFragmentShown(event) {
     const fragment = event.fragment;
     
-    // Cards con animación especial
-    if (fragment.classList.contains('wo-card') && fragment.dataset.animate === 'stagger') {
-      // Buscar siblings visibles para stagger
+    // Cards con animación especial de stagger
+    if (fragment.classList.contains('wo-card')) {
       const parent = fragment.parentElement;
-      const visibleCards = parent.querySelectorAll('.wo-card.visible');
-      if (visibleCards.length > 0) {
-        cardsEntrance(visibleCards);
+      
+      // Animar con spring si tiene data-animate="stagger"
+      if (fragment.dataset.animate === 'stagger') {
+        const visibleCards = parent.querySelectorAll('.wo-card.visible');
+        if (visibleCards.length > 0) {
+          cardsEntrance(visibleCards, { reset: false });
+        }
+      } else {
+        // Animación individual para cards sin stagger grupal
+        anime({
+          targets: fragment,
+          translateY: [30, 0],
+          scale: [0.95, 1],
+          opacity: [0, 1],
+          duration: 500,
+          easing: config.easing.spring
+        });
       }
     }
     
-    // Contador en fragment
+    // Stats con animación de contador
+    if (fragment.classList.contains('wo-stat')) {
+      const valueEl = fragment.querySelector('.wo-stat__value');
+      if (valueEl && valueEl.textContent.match(/[\d.,]+[KMB%+]*/)) {
+        // Pequeño delay para que se vea el stat primero
+        setTimeout(() => counter(valueEl, { duration: 1000 }), 150);
+      }
+      
+      // Animación de entrada con spring
+      anime({
+        targets: fragment,
+        scale: [0.85, 1],
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: 450,
+        easing: config.easing.spring
+      });
+    }
+    
+    // Contador en fragment genérico
     if (fragment.dataset.animate === 'counter') {
       const valueEl = fragment.querySelector('.wo-metric__value, .wo-stat__value') || fragment;
       counter(valueEl);
+    }
+    
+    // Métricas grandes
+    if (fragment.classList.contains('wo-metric')) {
+      anime({
+        targets: fragment,
+        translateY: [40, 0],
+        opacity: [0, 1],
+        duration: 550,
+        easing: config.easing.expo
+      });
+      
+      const valueEl = fragment.querySelector('.wo-metric__value');
+      if (valueEl && valueEl.dataset.animate === 'counter') {
+        setTimeout(() => counter(valueEl), 200);
+      }
     }
   }
   
@@ -708,17 +1740,25 @@ const WoAnime = (function() {
     counter,
     stagger,
     cover,
+    section,
     ctaGlow,
     stepsTimeline,
+    connectElements,
     cardsEntrance,
+    pricingCards,
     pathDraw,
+    methodologyConnections,
+    animateStepNumbers,
     gauge,
     flipCard,
+    initPricingFlip,
+    highlightPricingCard,
     particleFlow,
     
     // Utilidades
     formatNumber,
     parseFormattedValue,
+    formatCounterValue,
     stopAllAnimations,
     
     // Estado

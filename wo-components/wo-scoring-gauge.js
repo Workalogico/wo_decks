@@ -209,14 +209,145 @@ class WoScoringGauge {
     const location = this.currentLocation;
     const { animationDuration } = this.options;
     
-    // Animar gauge principal
+    // Check if Anime.js is available (WoAnime integration)
+    if (typeof anime !== 'undefined') {
+      this.animateWithAnime(location, animationDuration);
+    } else {
+      // Fallback to vanilla animation
+      this.animateVanilla(location, animationDuration);
+    }
+  }
+  
+  /**
+   * Animación usando Anime.js timelines (recomendado)
+   * Proporciona animaciones más suaves y sincronizadas
+   */
+  animateWithAnime(location, duration) {
+    const circumference = parseFloat(this.progressCircle.dataset.circumference);
+    const targetOffset = circumference * (1 - location.score / 100);
+    const miniBars = this.container.querySelectorAll('.wo-mini-gauge__bar');
+    const miniValues = this.container.querySelectorAll('.wo-mini-gauge__value');
+    const recommendation = this.container.querySelector('.wo-scoring-recommendation');
+    const gaugeWrapper = this.container.querySelector('.wo-gauge-wrapper');
+    
+    // Reset estados iniciales
+    this.scoreElement.classList.add('counting');
+    if (recommendation) {
+      recommendation.style.opacity = '0';
+      recommendation.style.transform = 'translateY(20px)';
+    }
+    
+    // Crear timeline coordinado
+    const tl = anime.timeline({
+      easing: 'easeOutExpo'
+    });
+    
+    // 1. Gauge wrapper entrance (si es la primera vez)
+    if (gaugeWrapper && !gaugeWrapper.dataset.animated) {
+      gaugeWrapper.dataset.animated = 'true';
+      tl.add({
+        targets: gaugeWrapper,
+        scale: [0.9, 1],
+        opacity: [0, 1],
+        duration: 600,
+        easing: 'easeOutBack'
+      }, 0);
+    }
+    
+    // 2. Círculo de progreso - animar strokeDashoffset
+    tl.add({
+      targets: this.progressCircle,
+      strokeDashoffset: [circumference, targetOffset],
+      duration: duration,
+      easing: 'easeOutExpo'
+    }, 100);
+    
+    // 3. Contador numérico del score
+    tl.add({
+      targets: { value: 0 },
+      value: location.score,
+      round: 1,
+      duration: duration * 0.9,
+      easing: 'easeOutExpo',
+      update: (anim) => {
+        this.scoreElement.textContent = Math.round(anim.animations[0].currentValue);
+      },
+      complete: () => {
+        this.scoreElement.classList.remove('counting');
+      }
+    }, 100);
+    
+    // 4. Glow effect en el score al completar
+    tl.add({
+      targets: this.scoreElement,
+      textShadow: [
+        '0 0 0px rgba(89, 104, 234, 0)',
+        '0 0 25px rgba(89, 104, 234, 0.5)',
+        '0 0 0px rgba(89, 104, 234, 0)'
+      ],
+      duration: 800,
+      easing: 'easeInOutSine'
+    }, duration * 0.7);
+    
+    // 5. Mini gauges con stagger
+    if (miniBars.length > 0) {
+      // Reset barras
+      miniBars.forEach(bar => bar.style.width = '0%');
+      
+      tl.add({
+        targets: Array.from(miniBars),
+        width: (el) => el.dataset.width + '%',
+        delay: anime.stagger(120),
+        duration: 600,
+        easing: 'easeOutExpo'
+      }, 300);
+      
+      // Animar valores numéricos de mini gauges
+      if (miniValues.length > 0) {
+        miniValues.forEach((val, i) => {
+          const targetVal = parseInt(val.textContent) || 0;
+          val.textContent = '0';
+          
+          tl.add({
+            targets: { value: 0 },
+            value: targetVal,
+            round: 1,
+            duration: 500,
+            easing: 'easeOutQuad',
+            update: (anim) => {
+              val.textContent = Math.round(anim.animations[0].currentValue);
+            }
+          }, 350 + i * 120);
+        });
+      }
+    }
+    
+    // 6. Recomendación aparece al final
+    if (recommendation) {
+      tl.add({
+        targets: recommendation,
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: 500,
+        easing: 'easeOutQuad'
+      }, duration * 0.6);
+    }
+    
+    // Guardar referencia al timeline
+    this.animationTimeline = tl;
+  }
+  
+  /**
+   * Animación vanilla (fallback si Anime.js no está disponible)
+   */
+  animateVanilla(location, duration) {
     const circumference = parseFloat(this.progressCircle.dataset.circumference);
     const targetOffset = circumference * (1 - location.score / 100);
     
     this.scoreElement.classList.add('counting');
     
     // Animar score con countUp
-    this.countUp(this.scoreElement, 0, location.score, animationDuration);
+    this.countUp(this.scoreElement, 0, location.score, duration);
     
     // Animar círculo después de un pequeño delay
     setTimeout(() => {
@@ -255,6 +386,36 @@ class WoScoringGauge {
 
   easeOutQuart(t) {
     return 1 - Math.pow(1 - t, 4);
+  }
+  
+  /**
+   * Pausa la animación actual (solo con Anime.js)
+   */
+  pauseAnimation() {
+    if (this.animationTimeline) {
+      this.animationTimeline.pause();
+    }
+  }
+  
+  /**
+   * Reanuda la animación actual (solo con Anime.js)
+   */
+  resumeAnimation() {
+    if (this.animationTimeline) {
+      this.animationTimeline.play();
+    }
+  }
+  
+  /**
+   * Reinicia la animación
+   */
+  restartAnimation() {
+    this.animated = false;
+    if (this.animationTimeline) {
+      this.animationTimeline.restart();
+    } else {
+      this.animate();
+    }
   }
 
   destroy() {
