@@ -41,6 +41,28 @@
   color: var(--wo-text);
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   DS-105: TRANSICIONES DE TEMA PARA PRESENTACIONES
+   Sincroniza cambios de tema con la animación del toggle (400ms)
+   ═══════════════════════════════════════════════════════════════ */
+[data-wo-theme] .reveal .accent,
+[data-wo-theme] .reveal .accent-alt,
+[data-wo-theme] .reveal .wo-badge,
+[data-wo-theme] .reveal .wo-card,
+[data-wo-theme] .reveal .wo-stat,
+[data-wo-theme] .reveal .wo-metric,
+[data-wo-theme] .reveal .wo-quote,
+[data-wo-theme] .reveal .card-number,
+[data-wo-theme] .reveal .card-price,
+[data-wo-theme] .reveal .grid-background {
+  transition: 
+    color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* Tipografía compacta para viewport 1280x720 
    AJUSTADO: Tamaños reducidos para mejor legibilidad en pantallas grandes */
 .reveal h1,

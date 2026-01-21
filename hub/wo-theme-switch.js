@@ -21,6 +21,7 @@ class WoThemeSwitch {
       initialTheme: options.initialTheme || this.getStoredTheme() || 'yellow',
       onChange: options.onChange || null,
       showLabel: options.showLabel !== false,
+      variant: options.variant || 'default', // DS-103: 'default' | 'minimal' | 'pill' | 'orbital'
       ...options
     };
     
@@ -31,6 +32,14 @@ class WoThemeSwitch {
       yellow: '#FFCB00',
       blue: '#5968EA',
       dark: '#0F0F1A'
+    };
+    
+    // DS-103: Variaciones disponibles
+    this.variants = {
+      default: { name: 'Default', desc: 'Diseño estándar con íconos' },
+      minimal: { name: 'Minimal', desc: 'Limpio y compacto' },
+      pill: { name: 'Pill', desc: 'Pastilla con degradado' },
+      orbital: { name: 'Orbital', desc: 'Anillo decorativo animado' }
     };
     
     this.init();
@@ -49,10 +58,13 @@ class WoThemeSwitch {
   
   render() {
     const labelText = this.currentTheme === 'yellow' ? 'Brand' : 'Tech';
+    const variantClass = this.options.variant !== 'default' 
+      ? `wo-theme-switch--${this.options.variant}` 
+      : '';
     
     this.container.innerHTML = `
       <div class="wo-theme-switch-container">
-        <div class="wo-theme-switch" role="switch" aria-checked="${this.currentTheme === 'yellow'}" tabindex="0">
+        <div class="wo-theme-switch ${variantClass}" role="switch" aria-checked="${this.currentTheme === 'yellow'}" tabindex="0">
           <div class="wo-theme-switch__track">
             <div class="wo-theme-switch__bg"></div>
             <div class="wo-theme-switch__glow wo-theme-switch__glow--yellow"></div>
@@ -174,127 +186,117 @@ class WoThemeSwitch {
     const toBlue = theme === 'blue';
     const knobTravel = this.switch.offsetWidth - this.knob.offsetWidth - 12;
     
-    // Calcular posiciones
+    // ═══════════════════════════════════════════════════════════════
+    // OPTIMIZACIÓN DS-101: Respuesta instantánea (<100ms)
+    // El tema se aplica INMEDIATAMENTE, la animación es cosmética
+    // ═══════════════════════════════════════════════════════════════
+    
+    // 1. INMEDIATO: Actualizar estado interno y tema global
+    this.currentTheme = theme;
+    document.body.dataset.woTheme = theme;
+    this.switch.setAttribute('aria-checked', theme === 'yellow');
+    
+    // 2. ASYNC: localStorage en microtask para no bloquear
+    queueMicrotask(() => {
+      localStorage.setItem('wo-theme', theme);
+    });
+    
+    // 3. INMEDIATO: Callback para que otros componentes reaccionen
+    if (this.options.onChange) {
+      this.options.onChange(theme);
+    }
+    
+    // Calcular posiciones para animación
     const fromX = toBlue ? 0 : knobTravel;
     const toX = toBlue ? knobTravel : 0;
     
-    // Timeline de animación con Anime.js
+    // ═══════════════════════════════════════════════════════════════
+    // ANIMACIÓN VISUAL (no bloquea la funcionalidad)
+    // ═══════════════════════════════════════════════════════════════
+    
+    // Timeline optimizado - todas las animaciones en paralelo donde sea posible
     const timeline = anime.timeline({
-      easing: 'easeOutElastic(1, 0.5)',
+      easing: 'easeOutQuad',
       complete: () => {
-        this.currentTheme = theme;
         this.isAnimating = false;
-        document.body.dataset.woTheme = theme;
-        localStorage.setItem('wo-theme', theme);
-        
-        // Actualizar ARIA
-        this.switch.setAttribute('aria-checked', theme === 'yellow');
-        
-        // Callback
-        if (this.options.onChange) {
-          this.options.onChange(theme);
-        }
       }
     });
     
-    // 1. Squash del knob al inicio
-    timeline.add({
-      targets: this.knob,
-      scaleX: [1, 1.2],
-      scaleY: [1, 0.85],
-      duration: 150,
-      easing: 'easeOutQuad'
-    });
-    
-    // 2. Movimiento del knob
+    // Knob: squash + movimiento + color (combinados para menos overhead)
     timeline.add({
       targets: this.knob,
       translateX: [fromX, toX],
-      scaleX: [1.2, 1],
-      scaleY: [0.85, 1],
-      duration: 500,
-      easing: 'easeOutElastic(1, 0.6)'
-    }, '-=100');
-    
-    // 3. Cambio de color del knob
-    timeline.add({
-      targets: this.knob,
+      scaleX: [1, 1.15, 1],
+      scaleY: [1, 0.9, 1],
       backgroundColor: toBlue ? this.colors.blue : this.colors.yellow,
       boxShadow: toBlue 
         ? '0 2px 8px rgba(0,0,0,0.3), 0 0 20px rgba(89,104,234,0.4), inset 0 2px 4px rgba(255,255,255,0.3)'
         : '0 2px 8px rgba(0,0,0,0.3), 0 0 20px rgba(255,203,0,0.4), inset 0 2px 4px rgba(255,255,255,0.3)',
       duration: 400,
-      easing: 'easeInOutQuad'
-    }, '-=450');
+      easing: 'easeOutElastic(1, 0.7)'
+    });
     
-    // 4. Rotación del ícono del knob
+    // Rotación del ícono (paralelo)
     timeline.add({
       targets: this.knobIcon,
       rotate: toBlue ? '180deg' : '0deg',
-      duration: 500,
+      duration: 350,
       easing: 'easeOutBack'
-    }, '-=500');
+    }, 0);
     
-    // 5. Movimiento del fondo degradado
+    // Fondo degradado (paralelo)
     timeline.add({
       targets: this.bg,
       translateX: toBlue ? '-50%' : '0%',
-      duration: 400,
+      duration: 300,
       easing: 'easeInOutQuad'
-    }, '-=500');
+    }, 0);
     
-    // 6. Glows
-    timeline.add({
+    // Glows en paralelo
+    anime({
       targets: this.glowYellow,
       opacity: toBlue ? 0 : 0.4,
-      duration: 300,
+      duration: 250,
       easing: 'easeInOutQuad'
-    }, '-=400');
+    });
     
-    timeline.add({
+    anime({
       targets: this.glowBlue,
       opacity: toBlue ? 0.4 : 0,
-      duration: 300,
+      duration: 250,
       easing: 'easeInOutQuad'
-    }, '-=300');
+    });
     
-    // 7. Íconos laterales
-    timeline.add({
+    // Íconos laterales en paralelo
+    anime({
       targets: this.iconSun,
       opacity: toBlue ? 0.6 : 0.3,
       scale: toBlue ? 1.1 : 1,
-      duration: 300,
+      duration: 200,
       easing: 'easeOutQuad'
-    }, '-=400');
+    });
     
-    timeline.add({
+    anime({
       targets: this.iconLab,
       opacity: toBlue ? 0.3 : 0.6,
       scale: toBlue ? 1 : 1.1,
-      duration: 300,
+      duration: 200,
       easing: 'easeOutQuad'
-    }, '-=300');
+    });
     
-    // 8. Partículas de celebración
-    this.animateParticles(toBlue);
+    // Partículas (efecto secundario, no crítico)
+    requestAnimationFrame(() => {
+      this.animateParticles(toBlue);
+    });
     
-    // 9. Actualizar label
+    // Label con transición más rápida
     if (this.label) {
-      anime({
-        targets: this.label,
-        opacity: [1, 0],
-        duration: 150,
-        easing: 'easeOutQuad',
-        complete: () => {
-          this.label.textContent = toBlue ? 'Tech' : 'Brand';
-          anime({
-            targets: this.label,
-            opacity: [0, 1],
-            duration: 150,
-            easing: 'easeInQuad'
-          });
-        }
-      });
+      this.label.style.transition = 'opacity 100ms ease';
+      this.label.style.opacity = '0';
+      setTimeout(() => {
+        this.label.textContent = toBlue ? 'Tech' : 'Brand';
+        this.label.style.opacity = '1';
+      }, 100);
     }
   }
   
@@ -333,6 +335,77 @@ class WoThemeSwitch {
   
   getTheme() {
     return this.currentTheme;
+  }
+  
+  // DS-103: Cambiar variación visual
+  setVariant(variant) {
+    if (!this.variants[variant]) return;
+    
+    this.options.variant = variant;
+    localStorage.setItem('wo-theme-switch-variant', variant);
+    
+    // Re-renderizar con la nueva variación
+    this.render();
+    this.cacheElements();
+    this.bindEvents();
+    this.setInitialState();
+  }
+  
+  getVariant() {
+    return this.options.variant;
+  }
+  
+  // DS-103: Renderizar selector de variaciones
+  static renderVariantSelector(containerId, switchInstance) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    const variants = switchInstance.variants;
+    const currentVariant = switchInstance.options.variant;
+    
+    let html = '<div class="wo-theme-switch-variants">';
+    
+    for (const [key, info] of Object.entries(variants)) {
+      const isActive = key === currentVariant ? 'active' : '';
+      html += `
+        <div class="wo-theme-switch-variant ${isActive}" data-variant="${key}">
+          <div class="wo-theme-switch-variant__preview">
+            <div class="wo-theme-switch ${key !== 'default' ? `wo-theme-switch--${key}` : ''}" style="pointer-events: none;">
+              <div class="wo-theme-switch__track">
+                <div class="wo-theme-switch__bg"></div>
+                <div class="wo-theme-switch__glow wo-theme-switch__glow--yellow"></div>
+              </div>
+              <div class="wo-theme-switch__knob">
+                <div class="wo-theme-switch__knob-icon">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="6" y="6" width="12" height="12" rx="1"/>
+                    <rect x="9" y="9" width="6" height="6" rx="0.5"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="wo-theme-switch-variant__name">${info.name}</span>
+          <span class="wo-theme-switch-variant__desc">${info.desc}</span>
+        </div>
+      `;
+    }
+    
+    html += '</div>';
+    container.innerHTML = html;
+    
+    // Bind eventos
+    container.querySelectorAll('.wo-theme-switch-variant').forEach(el => {
+      el.addEventListener('click', () => {
+        const variant = el.dataset.variant;
+        switchInstance.setVariant(variant);
+        
+        // Actualizar estado activo
+        container.querySelectorAll('.wo-theme-switch-variant').forEach(v => {
+          v.classList.toggle('active', v.dataset.variant === variant);
+        });
+      });
+    });
   }
   
   destroy() {

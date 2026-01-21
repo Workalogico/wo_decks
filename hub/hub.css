@@ -26,6 +26,13 @@ body {
   line-height: 1.6;
 }
 
+/* DS-102: Transiciones globales sincronizadas con el toggle */
+body[data-wo-theme] * {
+  transition-property: color, background-color, border-color, box-shadow, opacity;
+  transition-duration: 0.4s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 a {
   color: var(--wo-accent-primary);
   text-decoration: none;

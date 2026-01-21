@@ -352,6 +352,11 @@ var(--wo-accent-dim)           /* Fondo sutil primary */
 .accent-alt   /* Texto en color secundario */</pre>
           </div>
         </div>
+        
+        <!-- DS-103: Variaciones del Toggle -->
+        <h3 style="margin-top: 2rem; color: var(--wo-text);">Variaciones del Toggle</h3>
+        <p style="color: var(--wo-text-muted); margin-bottom: 1rem;">Selecciona el estilo visual que prefieras:</p>
+        <div id="variant-selector-container"></div>
       </section>
       
       <!-- How It Works -->
@@ -393,10 +398,14 @@ deck-wo-*/index.html   ← Presentaciones (importan design-system)</pre>
   <!-- Initialize Theme Switch -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // DS-103: Recuperar variación guardada
+      const savedVariant = localStorage.getItem('wo-theme-switch-variant') || 'default';
+      
       // Crear el switch animado
       const themeSwitch = new WoThemeSwitch('#theme-switch-container', {
         initialTheme: localStorage.getItem('wo-theme') || 'yellow',
         showLabel: true,
+        variant: savedVariant,
         onChange: (theme) => {
           console.log('Theme changed to:', theme);
           // Actualizar otros elementos si es necesario
@@ -406,6 +415,9 @@ deck-wo-*/index.html   ← Presentaciones (importan design-system)</pre>
       
       // Exponer globalmente para compatibilidad
       window.themeSwitch = themeSwitch;
+      
+      // DS-103: Renderizar selector de variaciones
+      WoThemeSwitch.renderVariantSelector('variant-selector-container', themeSwitch);
     });
   </script>
 </body>

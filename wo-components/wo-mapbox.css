@@ -1431,3 +1431,177 @@
     display: none;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   DS-104: INTEGRACIÓN DE TEMAS
+   Sincroniza los componentes del mapa con el tema global
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Transición global para cambio de tema */
+.wo-map-container,
+.wo-map-container * {
+  transition: 
+    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TEMA BRAND (AMARILLO) - Predeterminado
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-wo-theme="yellow"] .wo-map-container {
+  border-color: rgba(255, 203, 0, 0.3);
+}
+
+[data-wo-theme="yellow"] .wo-map-layer-btn:hover,
+[data-wo-theme="yellow"] .wo-map-layer-btn.active {
+  border-color: #FFCB00;
+  background: rgba(255, 203, 0, 0.15);
+}
+
+[data-wo-theme="yellow"] .wo-map-info-panel {
+  border-color: rgba(255, 203, 0, 0.3);
+}
+
+[data-wo-theme="yellow"] .wo-map-info-panel__score-value {
+  color: #FFCB00;
+}
+
+[data-wo-theme="yellow"] .wo-map-legend {
+  border-color: rgba(255, 203, 0, 0.3);
+}
+
+[data-wo-theme="yellow"] .wo-map-legend__gradient {
+  background: linear-gradient(90deg, #4338CA 0%, #6366F1 25%, #A5B4FC 50%, #FBBF24 75%, #FFCB00 100%);
+}
+
+[data-wo-theme="yellow"] .wo-map-loading__spinner {
+  border-top-color: #FFCB00;
+}
+
+[data-wo-theme="yellow"] .wo-score-gauge__fill {
+  stroke: #FFCB00;
+}
+
+[data-wo-theme="yellow"] .wo-popup-stat__badge--high {
+  background: rgba(255, 203, 0, 0.2);
+  color: #FFCB00;
+}
+
+[data-wo-theme="yellow"] .wo-popup-stat__metric-value--highlight {
+  color: #FFCB00;
+}
+
+[data-wo-theme="yellow"] .wo-popup-stat__score-fill {
+  background: linear-gradient(90deg, #4338CA, #FFCB00);
+}
+
+[data-wo-theme="yellow"] .wo-marker__pin-body--primary {
+  background: #FFCB00;
+}
+
+[data-wo-theme="yellow"] .wo-heatmap-controls__slider::-webkit-slider-thumb {
+  background: #FFCB00;
+}
+
+/* Mapbox popup en tema amarillo */
+[data-wo-theme="yellow"] .mapboxgl-popup-content {
+  border-color: rgba(255, 203, 0, 0.4) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TEMA TECH (AZUL)
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-wo-theme="blue"] .wo-map-container {
+  border-color: rgba(89, 104, 234, 0.3);
+}
+
+[data-wo-theme="blue"] .wo-map-layer-btn:hover,
+[data-wo-theme="blue"] .wo-map-layer-btn.active {
+  border-color: #5968EA;
+  background: rgba(89, 104, 234, 0.2);
+}
+
+[data-wo-theme="blue"] .wo-map-info-panel {
+  border-color: rgba(89, 104, 234, 0.3);
+}
+
+[data-wo-theme="blue"] .wo-map-info-panel__score-value {
+  color: #5968EA;
+}
+
+[data-wo-theme="blue"] .wo-map-legend {
+  border-color: rgba(89, 104, 234, 0.3);
+}
+
+[data-wo-theme="blue"] .wo-map-legend__gradient {
+  background: linear-gradient(90deg, #1E1E40 0%, #4338CA 25%, #6366F1 50%, #A5B4FC 75%, #5968EA 100%);
+}
+
+[data-wo-theme="blue"] .wo-map-loading__spinner {
+  border-top-color: #5968EA;
+}
+
+[data-wo-theme="blue"] .wo-score-gauge__fill {
+  stroke: #5968EA;
+}
+
+[data-wo-theme="blue"] .wo-popup-stat__badge--high {
+  background: rgba(89, 104, 234, 0.2);
+  color: #818CF8;
+}
+
+[data-wo-theme="blue"] .wo-popup-stat__metric-value--highlight {
+  color: #5968EA;
+}
+
+[data-wo-theme="blue"] .wo-popup-stat__score-fill {
+  background: linear-gradient(90deg, #1E1E40, #5968EA);
+}
+
+[data-wo-theme="blue"] .wo-marker__pin-body--primary {
+  background: #5968EA;
+}
+
+[data-wo-theme="blue"] .wo-heatmap-controls__slider::-webkit-slider-thumb {
+  background: #5968EA;
+}
+
+/* Mapbox popup en tema azul */
+[data-wo-theme="blue"] .mapboxgl-popup-content {
+  border-color: rgba(89, 104, 234, 0.4) !important;
+}
+
+/* Controles en tema azul - colores ajustados */
+[data-wo-theme="blue"] .wo-map-layer-btn[data-layer="scoring"] .indicator {
+  background: linear-gradient(135deg, #1E1E40, #6366F1, #5968EA);
+}
+
+[data-wo-theme="blue"] .wo-map-layer-btn[data-layer="poblacion"] .indicator {
+  background: #5968EA;
+}
+
+/* Isochrone legend en tema azul */
+[data-wo-theme="blue"] .wo-isochrone-legend__ring--15min {
+  border-color: #5968EA;
+  background: rgba(89, 104, 234, 0.15);
+}
+
+/* Clusters en tema azul */
+[data-wo-theme="blue"] .wo-cluster--lg,
+[data-wo-theme="blue"] .wo-cluster--xl {
+  background: #5968EA;
+  color: #fff;
+}
+
+/* Data panel en tema azul */
+[data-wo-theme="blue"] .wo-data-panel {
+  border-color: rgba(89, 104, 234, 0.3);
+}
+
+[data-wo-theme="blue"] .wo-data-panel__chart-bar {
+  background: linear-gradient(to top, #1E1E40, #5968EA);
+}

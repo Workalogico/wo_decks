@@ -22,6 +22,58 @@ const WO_COLORS = {
 };
 
 // ═══════════════════════════════════════════════════════════════
+// DS-104: SISTEMA DE TEMAS PARA MAPBOX
+// Integra el cambio de tema global con los estilos del mapa
+// ═══════════════════════════════════════════════════════════════
+
+const WO_MAP_THEMES = {
+  // Tema Brand (Amarillo dominante) - Fondo más claro
+  yellow: {
+    background: '#1A1A2E',
+    water: '#0A1628',
+    building: '#252542',
+    roadPrimary: '#3A3A65',
+    roadSecondary: '#2F2F50',
+    highlight: '#FFCB00',
+    accent: '#5968EA',
+    poiPrimary: 'rgba(255, 203, 0, 0.8)',
+    poiSecondary: 'rgba(89, 104, 234, 0.7)',
+    textPrimary: '#FFFFFF',
+    textSecondary: '#CBD5E1',
+    glow: 'rgba(255, 203, 0, 0.4)'
+  },
+  // Tema Tech (Azul dominante) - Más oscuro y técnico
+  blue: {
+    background: '#0F0F1A',
+    water: '#050A14',
+    building: '#1A1A2E',
+    roadPrimary: '#2A2A55',
+    roadSecondary: '#1E1E40',
+    highlight: '#5968EA',
+    accent: '#FFCB00',
+    poiPrimary: 'rgba(89, 104, 234, 0.8)',
+    poiSecondary: 'rgba(255, 203, 0, 0.7)',
+    textPrimary: '#E2E8F0',
+    textSecondary: '#94A3B8',
+    glow: 'rgba(89, 104, 234, 0.4)'
+  }
+};
+
+/**
+ * Obtener el tema actual del documento
+ */
+function getWoMapTheme() {
+  return document.body.dataset.woTheme || 'yellow';
+}
+
+/**
+ * Obtener colores del tema actual
+ */
+function getThemeColors() {
+  return WO_MAP_THEMES[getWoMapTheme()];
+}
+
+// ═══════════════════════════════════════════════════════════════
 // WORKALÓGICO MAPBOX STYLE v2.1 (Inline Theme)
 // Tema oscuro optimizado para UI/UX y Accesibilidad
 // 
@@ -747,6 +799,10 @@ class WoMapbox {
         this.addDataSources();
         this.addLayers();
         this.addInteractions();
+        
+        // DS-104: Configurar listener de tema y aplicar tema inicial
+        this.setupThemeListener();
+        this.applyTheme(getWoMapTheme());
       });
     } catch (error) {
       console.error('Error inicializando Mapbox:', error);
@@ -1328,8 +1384,169 @@ class WoMapbox {
     return { type: 'FeatureCollection', features: points };
   }
 
+  // ═══════════════════════════════════════════════════════════════
+  // DS-104: MÉTODOS DE TEMA
+  // ═══════════════════════════════════════════════════════════════
+  
+  /**
+   * Escuchar cambios de tema global
+   */
+  setupThemeListener() {
+    // Observer para cambios en data-wo-theme
+    this.themeObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'data-wo-theme') {
+          const newTheme = document.body.dataset.woTheme;
+          this.applyTheme(newTheme);
+        }
+      });
+    });
+    
+    this.themeObserver.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['data-wo-theme']
+    });
+  }
+  
+  /**
+   * Aplicar tema al mapa con transición suave
+   */
+  applyTheme(theme) {
+    if (!this.map || !this.map.isStyleLoaded()) return;
+    
+    const colors = WO_MAP_THEMES[theme] || WO_MAP_THEMES.yellow;
+    const duration = 400; // Sincronizado con toggle
+    
+    // Transicionar capas base
+    this.transitionLayer('background', 'background-color', colors.background, duration);
+    this.transitionLayer('water', 'fill-color', colors.water, duration);
+    this.transitionLayer('building-fill', 'fill-color', colors.building, duration);
+    
+    // Transicionar carreteras
+    this.transitionLayer('road-primary', 'line-color', colors.roadPrimary, duration);
+    this.transitionLayer('road-secondary-tertiary', 'line-color', colors.roadSecondary, duration);
+    
+    // Transicionar punto central
+    this.transitionLayer('centro-point', 'circle-color', colors.highlight, duration);
+    this.transitionLayer('centro-pulse', 'circle-color', colors.highlight, duration);
+    
+    // Transicionar scoring con escala de colores del tema
+    if (this.map.getLayer('zonas-scoring-fill')) {
+      const scoringColors = theme === 'yellow' 
+        ? ['#4338CA', '#6366F1', '#A5B4FC', '#FBBF24', '#FFCB00']  // Yellow theme
+        : ['#1E1E40', '#4338CA', '#6366F1', '#A5B4FC', '#5968EA']; // Blue theme
+        
+      this.map.setPaintProperty('zonas-scoring-fill', 'fill-color', [
+        'interpolate', ['linear'], ['get', 'score'],
+        0, scoringColors[0],
+        25, scoringColors[1],
+        50, scoringColors[2],
+        75, scoringColors[3],
+        100, scoringColors[4]
+      ]);
+    }
+    
+    // Actualizar competencia
+    const competenciaColor = theme === 'yellow' ? '#F97316' : '#A78BFA';
+    this.transitionLayer('competencia-points', 'circle-color', competenciaColor, duration);
+    
+    // Actualizar heatmap
+    if (this.map.getLayer('poblacion-heatmap')) {
+      const heatmapColors = theme === 'yellow' ? [
+        'interpolate', ['linear'], ['heatmap-density'],
+        0,   'rgba(15, 15, 26, 0)',
+        0.2, 'rgba(99, 102, 241, 0.25)',
+        0.4, 'rgba(99, 102, 241, 0.50)',
+        0.6, 'rgba(251, 191, 36, 0.65)',
+        0.8, 'rgba(251, 191, 36, 0.85)',
+        1,   '#FFCB00'
+      ] : [
+        'interpolate', ['linear'], ['heatmap-density'],
+        0,   'rgba(15, 15, 26, 0)',
+        0.2, 'rgba(67, 56, 202, 0.25)',
+        0.4, 'rgba(99, 102, 241, 0.50)',
+        0.6, 'rgba(129, 140, 248, 0.65)',
+        0.8, 'rgba(165, 180, 252, 0.85)',
+        1,   '#5968EA'
+      ];
+      this.map.setPaintProperty('poblacion-heatmap', 'heatmap-color', heatmapColors);
+    }
+    
+    // Actualizar UI components
+    this.updateUITheme(theme);
+    
+    // Disparar evento
+    this.container.dispatchEvent(new CustomEvent('wo-map-theme-changed', { 
+      detail: { theme, colors } 
+    }));
+  }
+  
+  /**
+   * Transicionar una propiedad de capa suavemente
+   */
+  transitionLayer(layerId, property, value, duration) {
+    if (!this.map.getLayer(layerId)) return;
+    
+    try {
+      this.map.setPaintProperty(layerId, property, value);
+    } catch (e) {
+      // Silenciar errores si la propiedad no existe
+    }
+  }
+  
+  /**
+   * Actualizar estilos de UI (controles, leyenda, panel)
+   */
+  updateUITheme(theme) {
+    const colors = WO_MAP_THEMES[theme];
+    
+    // Actualizar controles
+    const controls = this.container.querySelector('.wo-map-controls');
+    if (controls) {
+      controls.style.setProperty('--wo-map-accent', colors.highlight);
+    }
+    
+    // Actualizar leyenda
+    const legend = this.container.querySelector('.wo-map-legend');
+    if (legend) {
+      const gradient = legend.querySelector('.wo-map-legend__gradient');
+      if (gradient) {
+        gradient.style.background = theme === 'yellow'
+          ? 'linear-gradient(to right, #4338CA, #6366F1, #A5B4FC, #FBBF24, #FFCB00)'
+          : 'linear-gradient(to right, #1E1E40, #4338CA, #6366F1, #A5B4FC, #5968EA)';
+      }
+    }
+    
+    // Actualizar panel de info
+    const panel = this.container.querySelector('.wo-map-info-panel');
+    if (panel) {
+      panel.style.setProperty('--wo-panel-accent', colors.highlight);
+    }
+  }
+  
+  /**
+   * Obtener el tema actual del mapa
+   */
+  getTheme() {
+    return getWoMapTheme();
+  }
+  
+  /**
+   * Establecer tema manualmente
+   */
+  setTheme(theme) {
+    if (theme === 'yellow' || theme === 'blue') {
+      this.applyTheme(theme);
+    }
+  }
+
   // Destruir mapa (limpieza para Reveal.js)
   destroy() {
+    // Desconectar observer de tema
+    if (this.themeObserver) {
+      this.themeObserver.disconnect();
+    }
+    
     if (this.map) {
       this.map.remove();
       this.map = null;

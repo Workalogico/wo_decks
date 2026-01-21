@@ -124,6 +124,7 @@
      ═══════════════════════════════════════════════════════════════ */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
+  --transition-theme: 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Sincronizado con toggle */
   
   /* ═══════════════════════════════════════════════════════════════
      GRADIENTES (Fondos de Slides)
@@ -279,4 +280,77 @@
   --wo-accent-primary-rgb: 89, 104, 234;
   --wo-accent-secondary-rgb: 255, 203, 0;
   --wo-accent-dim: var(--wo-accent-primary-dim);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DS-102: TRANSICIONES GLOBALES DE TEMA
+   Sincroniza el cambio de colores con la animación del toggle
+   Duración: 400ms | Easing: cubic-bezier(0.4, 0, 0.2, 1)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Transiciones para elementos que usan colores de tema */
+[data-wo-theme] {
+  /* Transición del body y elementos hijos */
+  transition: 
+    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Transiciones para texto con clase .accent */
+[data-wo-theme] .accent,
+[data-wo-theme] .accent-alt,
+[data-wo-theme] .accent-yellow,
+[data-wo-theme] .accent-blue {
+  transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Transiciones para badges */
+[data-wo-theme] .wo-badge,
+[data-wo-theme] .wo-badge--alt,
+[data-wo-theme] .wo-badge--yellow,
+[data-wo-theme] .wo-badge--blue {
+  transition: 
+    color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Transiciones para cards y componentes */
+[data-wo-theme] .wo-card,
+[data-wo-theme] .wo-stat,
+[data-wo-theme] .wo-metric,
+[data-wo-theme] .wo-quote {
+  transition: 
+    border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Transiciones para valores destacados */
+[data-wo-theme] .wo-stat__value,
+[data-wo-theme] .wo-metric__value,
+[data-wo-theme] .card-price,
+[data-wo-theme] .card-number {
+  transition: 
+    color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    text-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Transiciones para controles de Reveal.js */
+[data-wo-theme] .reveal .progress span,
+[data-wo-theme] .reveal .controls,
+[data-wo-theme] .reveal .slide-number {
+  transition: 
+    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Transiciones para links */
+[data-wo-theme] a {
+  transition: color 0.25s ease;
+}
+
+/* Grid background con fade */
+[data-wo-theme] .grid-background {
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
