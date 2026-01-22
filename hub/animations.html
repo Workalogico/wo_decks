@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Animations - Sistema de animaciones con Anime.js">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <title>Animations | Design System Hub</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../LOGOS/SVG/WoLogos_2026-08.svg">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Design Tokens + Design System -->
+  <link rel="stylesheet" href="../wo-tokens.css">
+  <link rel="stylesheet" href="../wo-design-system.css">
+  
+  <!-- Hub Styles -->
+  <link rel="stylesheet" href="hub.css">
+  
+  <style>
+    .animation-demo {
+      background: var(--wo-dark);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .counter-demo {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--wo-accent-primary);
+    }
+    
+    .stagger-demo {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .stagger-box {
+      width: 40px;
+      height: 40px;
+      background: var(--wo-accent-primary);
+      border-radius: var(--radius-sm);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .stagger-box.visible {
+      animation: staggerIn 0.5s ease forwards;
+    }
+    
+    @keyframes staggerIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .easing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+    
+    .easing-card {
+      background: var(--wo-dark-surface);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      text-align: center;
+    }
+    
+    .easing-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--wo-accent-primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .easing-desc {
+      font-size: 0.8rem;
+      color: var(--wo-text-secondary);
+    }
+    
+    .demo-btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--wo-accent-primary);
+      color: var(--wo-dark);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body data-wo-theme="yellow">
+  <div class="hub-layout">
+    <!-- Sidebar -->
+    <aside class="hub-sidebar">
+      <div class="hub-logo">
+        <img src="../LOGOS/SVG/WoLogos_2026-01.svg" alt="Workalógico" class="hub-logo__yellow">
+        <img src="../LOGOS/SVG/WoLogos_2026-03.svg" alt="Workalógico" class="hub-logo__white">
+        <span class="hub-version">Design System v2.2</span>
+      </div>
+      
+      <nav class="hub-nav">
+        <h4>Inicio</h4>
+        <a href="index.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></span> Dashboard
+        </a>
+        
+        <h4>Fundamentos</h4>
+        <a href="colors.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18h3a2 2 0 0 0 0-4h-1a2 2 0 0 1 0-4h2a2 2 0 0 0 2-2 6 6 0 0 0-6-6z"/><circle cx="8" cy="10" r="1"/><circle cx="6.5" cy="14" r="1"/><circle cx="10.5" cy="6.5" r="1"/></svg></span> Colores
+        </a>
+        <a href="typography.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 6h14"/><path d="M12 6v12"/><path d="M8 18h8"/></svg></span> Tipografía
+        </a>
+        <a href="spacing.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M4 17h16"/><path d="M7 9v6"/><path d="M12 9v6"/><path d="M17 9v6"/></svg></span> Espaciado
+        </a>
+        
+        <h4>Componentes</h4>
+        <a href="components.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span> Componentes
+        </a>
+        <a href="pricing-components.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span> Pricing
+        </a>
+        <a href="demo-cards.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span> Demo Cards
+        </a>
+        <a href="templates.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg></span> Templates
+        </a>
+        <a href="particles.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><circle cx="6" cy="6" r="1.5"/><circle cx="18" cy="6" r="1.5"/><circle cx="6" cy="18" r="1.5"/><circle cx="18" cy="18" r="1.5"/><path d="M6 6l6 6M18 6l-6 6M6 18l6-6M18 18l-6-6"/></svg></span> Particles
+        </a>
+        <a href="animations.html" class="active">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span> Animations
+        </a>
+        
+        <h4>Assets</h4>
+        <a href="assets.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 12l9 9 9-9-9-9H3z"/><circle cx="8" cy="8" r="1.5"/></svg></span> Logos
+        </a>
+        <a href="backgrounds.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 17l5-5 4 4 3-3 6 6"/><circle cx="8" cy="10" r="2"/></svg></span> Fondos
+        </a>
+        <a href="icons.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/></svg></span> Iconos
+        </a>
+        
+        <h4>Recursos</h4>
+        <a href="../index.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="11" rx="2"/><path d="M9 7V5h6v2"/><path d="M4 12h16"/></svg></span> Ver Decks
+        </a>
+      </nav>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="hub-main">
+      <header class="hub-header">
+        <h1>Animations <span class="accent">System</span></h1>
+        <p>Sistema de animaciones JavaScript usando Anime.js para contadores, stagger effects y transiciones suaves en presentaciones Reveal.js.</p>
+      </header>
+      
+      <!-- Instalación -->
+      <section class="hub-section">
+        <h2>Instalación</h2>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-install')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-install">&lt;!-- Anime.js CDN --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- Workalógico Anime Utilities (opcional) --&gt;
+&lt;script src="../wo-anime.js"&gt;&lt;/script&gt;</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Counter Animation -->
+      <section class="hub-section">
+        <h2>Contador Animado</h2>
+        <p>Anima números de 0 al valor objetivo con easing suave. Ideal para precios, estadísticas y métricas.</p>
+        
+        <div class="hub-preview-card">
+          <div class="hub-preview-card__header">
+            <span class="hub-preview-card__title">animateCounter()</span>
+            <span class="hub-preview-card__badge">Función</span>
+          </div>
+          <div class="hub-preview-card__content">
+            <div class="animation-demo">
+              <div class="counter-demo" id="counter-demo">$0</div>
+              <button class="demo-btn" onclick="runCounterDemo()">Animar</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">JavaScript</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-counter')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-counter">/**
+ * Anima un contador numérico de 0 al valor objetivo
+ * @param {HTMLElement} element - Elemento DOM donde mostrar el valor
+ * @param {number} start - Valor inicial (normalmente 0)
+ * @param {number} end - Valor objetivo
+ * @param {number} duration - Duración en milisegundos
+ * @param {string} suffix - Sufijo a agregar (ej: '%', '+', etc.)
+ */
+function animateCounter(element, start, end, duration, suffix = '') {
+  if (!element) return;
+  
+  const startTime = performance.now();
+  const isDecimal = !Number.isInteger(end);
+  
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    
+    // Easing: ease-out cubic (desacelera al final)
+    const easeProgress = 1 - Math.pow(1 - progress, 3);
+    
+    const current = start + (end - start) * easeProgress;
+    element.textContent = (isDecimal ? current.toFixed(1) : Math.floor(current)) + suffix;
+    
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
+  }
+  
+  requestAnimationFrame(update);
+}
+
+// Uso:
+animateCounter(element, 0, 2847, 1500, '');  // 2,847
+animateCounter(element, 0, 4.2, 1500, '%');   // 4.2%
+animateCounter(element, 0, 156, 1500, '+');   // 156+</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Price Counter -->
+      <section class="hub-section">
+        <h2>Contador de Precios</h2>
+        <p>Variante especializada para precios con formato de moneda y separadores de miles.</p>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">JavaScript</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-price')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-price">/**
+ * Anima un contador de precio con formato de moneda
+ * @param {HTMLElement} element - Elemento con data-price="19500"
+ */
+function animatePriceCounter(element) {
+  if (!element) return;
+  
+  const targetPrice = parseInt(element.dataset.price) || 0;
+  const duration = 1200;
+  const startTime = performance.now();
+  
+  function formatPrice(num) {
+    return '$' + Math.floor(num).toLocaleString('en-US');
+  }
+  
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    
+    // Easing: ease-out expo (más dramático)
+    const easeProgress = 1 - Math.pow(1 - progress, 4);
+    
+    const currentValue = targetPrice * easeProgress;
+    element.textContent = formatPrice(currentValue);
+    
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      element.textContent = formatPrice(targetPrice);
+    }
+  }
+  
+  element.textContent = '$0';
+  requestAnimationFrame(update);
+}
+
+// HTML:
+&lt;p class="card-price" data-price="19500"&gt;$19,500&lt;/p&gt;
+
+// JavaScript:
+animatePriceCounter(document.querySelector('.card-price'));</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Stagger Effect -->
+      <section class="hub-section">
+        <h2>Stagger Effect</h2>
+        <p>Entrada escalonada de múltiples elementos con delay incremental.</p>
+        
+        <div class="hub-preview-card">
+          <div class="hub-preview-card__header">
+            <span class="hub-preview-card__title">Stagger Animation</span>
+            <span class="hub-preview-card__badge">Patrón</span>
+          </div>
+          <div class="hub-preview-card__content">
+            <div class="animation-demo">
+              <div class="stagger-demo" id="stagger-demo">
+                <div class="stagger-box"></div>
+                <div class="stagger-box"></div>
+                <div class="stagger-box"></div>
+                <div class="stagger-box"></div>
+                <div class="stagger-box"></div>
+              </div>
+              <button class="demo-btn" onclick="runStaggerDemo()">Animar</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">JavaScript</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-stagger')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-stagger">// Patrón básico: setTimeout con delay incremental
+function staggerAnimation(elements, staggerDelay = 150) {
+  elements.forEach((element, index) => {
+    setTimeout(() => {
+      element.classList.add('animate-in');
+    }, index * staggerDelay);
+  });
+}
+
+// Uso:
+const cards = document.querySelectorAll('.wo-card--pricing');
+staggerAnimation(cards, 150);
+
+// Con Anime.js (más control):
+anime({
+  targets: '.wo-card--pricing',
+  translateY: [30, 0],
+  opacity: [0, 1],
+  scale: [0.95, 1],
+  duration: 700,
+  delay: anime.stagger(150), // 0, 150, 300, 450...
+  easing: 'cubicBezier(0.23, 1, 0.32, 1)'
+});</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Easing Curves -->
+      <section class="hub-section">
+        <h2>Easing Curves</h2>
+        <p>Curvas de aceleración recomendadas para diferentes tipos de animación.</p>
+        
+        <div class="easing-grid">
+          <div class="easing-card">
+            <div class="easing-name">ease-out-cubic</div>
+            <div class="easing-desc">Contadores, métricas</div>
+          </div>
+          
+          <div class="easing-card">
+            <div class="easing-name">ease-out-expo</div>
+            <div class="easing-desc">Precios, impacto</div>
+          </div>
+          
+          <div class="easing-card">
+            <div class="easing-name">cubicBezier(0.23,1,0.32,1)</div>
+            <div class="easing-desc">Cards, elementos UI</div>
+          </div>
+          
+          <div class="easing-card">
+            <div class="easing-name">ease-in-out</div>
+            <div class="easing-desc">Transiciones suaves</div>
+          </div>
+        </div>
+        
+        <div class="code-block" style="margin-top: 1.5rem;">
+          <div class="code-block__header">
+            <span class="code-block__lang">JavaScript - Easing Functions</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-easing')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-easing">// Ease-out cubic (desacelera gradualmente)
+const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+
+// Ease-out expo (desacelera dramáticamente)
+const easeOutExpo = 1 - Math.pow(1 - progress, 4);
+
+// Ease-in-out (suave inicio y fin)
+const easeInOut = progress < 0.5 
+  ? 2 * progress * progress 
+  : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+// Con Anime.js
+anime({
+  easing: 'easeOutCubic',           // Predefinido
+  easing: 'easeOutExpo',            // Predefinido
+  easing: 'cubicBezier(.23,1,.32,1)' // Custom
+});</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Reveal.js Integration -->
+      <section class="hub-section">
+        <h2>Integración con Reveal.js</h2>
+        <p>Activar animaciones cuando un slide se hace visible.</p>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">JavaScript</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-reveal')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-reveal">// Estado para evitar re-animaciones
+let pricingAnimated = false;
+
+// Escuchar cambio de slide
+Reveal.on('slidechanged', (event) => {
+  const currentState = event.currentSlide.dataset.state;
+  
+  // Activar animación de pricing
+  if (currentState === 'pricing-slide' && !pricingAnimated) {
+    setTimeout(() => startPricingAnimation(), 300);
+    pricingAnimated = true;
+  }
+});
+
+// Escuchar fragments (para animaciones secuenciales)
+Reveal.on('fragmentshown', (event) => {
+  const fragment = event.fragment;
+  
+  if (fragment.classList.contains('wo-card--seo-demo')) {
+    setTimeout(() => startSeoDemo(), 300);
+  }
+});
+
+// Reset al navegar hacia atrás
+Reveal.on('slidechanged', (event) => {
+  const currentIndex = Reveal.getIndices().h;
+  const pricingIndex = 8; // Índice del slide de pricing
+  
+  if (currentIndex < pricingIndex) {
+    pricingAnimated = false;
+    resetPricingDemo();
+  }
+});</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Best Practices -->
+      <section class="hub-section">
+        <h2>Mejores Prácticas</h2>
+        
+        <div class="hub-grid hub-grid--2">
+          <div class="hub-preview-card">
+            <div class="hub-preview-card__header">
+              <span class="hub-preview-card__title" style="color: var(--wo-success);">DO</span>
+            </div>
+            <div class="hub-preview-card__content" style="padding: 1rem;">
+              <ul style="font-size: 0.85rem; color: var(--wo-text-secondary); line-height: 1.8; padding-left: 1rem;">
+                <li>Usar requestAnimationFrame para contadores</li>
+                <li>Aplicar easing suave (nunca linear)</li>
+                <li>Limitar duración a 1-2 segundos</li>
+                <li>Resetear estado al navegar atrás</li>
+                <li>Usar stagger delay de 100-200ms</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="hub-preview-card">
+            <div class="hub-preview-card__header">
+              <span class="hub-preview-card__title" style="color: var(--wo-danger);">DON'T</span>
+            </div>
+            <div class="hub-preview-card__content" style="padding: 1rem;">
+              <ul style="font-size: 0.85rem; color: var(--wo-text-secondary); line-height: 1.8; padding-left: 1rem;">
+                <li>Animar todo el contenido del slide</li>
+                <li>Usar setInterval para contadores</li>
+                <li>Olvidar validar que elemento existe</li>
+                <li>Animaciones que bloquean navegación</li>
+                <li>Más de 5 elementos en stagger</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Footer -->
+      <footer class="hub-footer">
+        <p><a href="particles.html">← Particles</a> | <a href="index.html">Dashboard →</a></p>
+      </footer>
+    </main>
+  </div>
+  
+  <!-- Anime.js -->
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+  
+  <!-- Hub JS -->
+  <script src="hub.js"></script>
+  
+  <!-- Demo Scripts -->
+  <script>
+    function runCounterDemo() {
+      const el = document.getElementById('counter-demo');
+      const targetPrice = 19500;
+      const duration = 1200;
+      const startTime = performance.now();
+      
+      function formatPrice(num) {
+        return '$' + Math.floor(num).toLocaleString('en-US');
+      }
+      
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeProgress = 1 - Math.pow(1 - progress, 4);
+        const currentValue = targetPrice * easeProgress;
+        el.textContent = formatPrice(currentValue);
+        
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+      
+      el.textContent = '$0';
+      requestAnimationFrame(update);
+    }
+    
+    function runStaggerDemo() {
+      const boxes = document.querySelectorAll('#stagger-demo .stagger-box');
+      boxes.forEach(box => {
+        box.classList.remove('visible');
+        box.style.opacity = '0';
+        box.style.transform = 'translateY(20px)';
+      });
+      
+      setTimeout(() => {
+        boxes.forEach((box, index) => {
+          setTimeout(() => {
+            box.classList.add('visible');
+          }, index * 100);
+        });
+      }, 100);
+    }
+  </script>
+</body>
+</html>

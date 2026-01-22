@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Demo Cards - Componentes interactivos para presentaciones">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <title>Demo Cards | Design System Hub</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../LOGOS/SVG/WoLogos_2026-08.svg">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Design Tokens + Design System -->
+  <link rel="stylesheet" href="../wo-tokens.css">
+  <link rel="stylesheet" href="../wo-design-system.css">
+  
+  <!-- Hub Styles -->
+  <link rel="stylesheet" href="hub.css">
+  
+  <style>
+    /* Demo previews */
+    .demo-preview {
+      background: var(--wo-dark);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+    }
+    
+    .demo-card-example {
+      max-width: 280px;
+      margin: 0 auto;
+      background: rgba(37, 37, 66, 0.5);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-md);
+      padding: 0.75rem;
+    }
+    
+    .demo-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    
+    .demo-card-header h4 {
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    
+    .demo-icons {
+      display: flex;
+      gap: 4px;
+    }
+    
+    .demo-icon {
+      width: 16px;
+      height: 16px;
+      background: var(--wo-text-muted);
+      border-radius: 3px;
+      opacity: 0.4;
+    }
+    
+    .demo-icon.active {
+      opacity: 1;
+      background: var(--wo-accent-primary);
+    }
+    
+    .demo-content {
+      background: rgba(15, 15, 26, 0.6);
+      border-radius: 4px;
+      padding: 0.75rem;
+    }
+    
+    .demo-query {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(37, 37, 66, 0.8);
+      border-radius: 4px;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.75rem;
+    }
+    
+    .demo-response {
+      background: rgba(37, 37, 66, 0.5);
+      border-left: 2px solid var(--wo-accent-primary);
+      border-radius: 0 4px 4px 0;
+      padding: 0.5rem;
+      font-size: 0.7rem;
+      color: var(--wo-text-secondary);
+    }
+    
+    .demo-badge {
+      display: inline-block;
+      background: rgba(89, 104, 234, 0.3);
+      color: var(--wo-blue-lab);
+      font-size: 0.6rem;
+      padding: 0.1rem 0.3rem;
+      border-radius: 2px;
+      margin-bottom: 0.25rem;
+    }
+  </style>
+</head>
+<body data-wo-theme="yellow">
+  <div class="hub-layout">
+    <!-- Sidebar -->
+    <aside class="hub-sidebar">
+      <div class="hub-logo">
+        <img src="../LOGOS/SVG/WoLogos_2026-01.svg" alt="Workalógico" class="hub-logo__yellow">
+        <img src="../LOGOS/SVG/WoLogos_2026-03.svg" alt="Workalógico" class="hub-logo__white">
+        <span class="hub-version">Design System v2.2</span>
+      </div>
+      
+      <nav class="hub-nav">
+        <h4>Inicio</h4>
+        <a href="index.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></span> Dashboard
+        </a>
+        
+        <h4>Fundamentos</h4>
+        <a href="colors.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18h3a2 2 0 0 0 0-4h-1a2 2 0 0 1 0-4h2a2 2 0 0 0 2-2 6 6 0 0 0-6-6z"/><circle cx="8" cy="10" r="1"/><circle cx="6.5" cy="14" r="1"/><circle cx="10.5" cy="6.5" r="1"/></svg></span> Colores
+        </a>
+        <a href="typography.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 6h14"/><path d="M12 6v12"/><path d="M8 18h8"/></svg></span> Tipografía
+        </a>
+        <a href="spacing.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M4 17h16"/><path d="M7 9v6"/><path d="M12 9v6"/><path d="M17 9v6"/></svg></span> Espaciado
+        </a>
+        
+        <h4>Componentes</h4>
+        <a href="components.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span> Componentes
+        </a>
+        <a href="pricing-components.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span> Pricing
+        </a>
+        <a href="demo-cards.html" class="active">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span> Demo Cards
+        </a>
+        <a href="templates.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg></span> Templates
+        </a>
+        <a href="particles.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><circle cx="6" cy="6" r="1.5"/><circle cx="18" cy="6" r="1.5"/><circle cx="6" cy="18" r="1.5"/><circle cx="18" cy="18" r="1.5"/><path d="M6 6l6 6M18 6l-6 6M6 18l6-6M18 18l-6-6"/></svg></span> Particles
+        </a>
+        <a href="animations.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span> Animations
+        </a>
+        
+        <h4>Assets</h4>
+        <a href="assets.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 12l9 9 9-9-9-9H3z"/><circle cx="8" cy="8" r="1.5"/></svg></span> Logos
+        </a>
+        <a href="backgrounds.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 17l5-5 4 4 3-3 6 6"/><circle cx="8" cy="10" r="2"/></svg></span> Fondos
+        </a>
+        <a href="icons.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/></svg></span> Iconos
+        </a>
+        
+        <h4>Recursos</h4>
+        <a href="../index.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="11" rx="2"/><path d="M9 7V5h6v2"/><path d="M4 12h16"/></svg></span> Ver Decks
+        </a>
+      </nav>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="hub-main">
+      <header class="hub-header">
+        <h1>Demo <span class="accent">Cards</span></h1>
+        <p>Componentes interactivos con animaciones de typing y simulaciones en tiempo real. Ideales para demostrar capacidades técnicas en presentaciones comerciales.</p>
+      </header>
+      
+      <!-- Overview -->
+      <section class="hub-section">
+        <h2>Tipos de Demo Cards</h2>
+        <p>Tres variantes especializadas para diferentes casos de uso:</p>
+        
+        <div class="hub-grid hub-grid--3">
+          <div class="hub-preview-card">
+            <div class="hub-preview-card__header">
+              <span class="hub-preview-card__title">GEO Demo</span>
+              <span class="hub-preview-card__badge">IA Generativa</span>
+            </div>
+            <div class="hub-preview-card__content">
+              <div class="demo-preview">
+                <div class="demo-card-example">
+                  <div class="demo-card-header">
+                    <h4>GEO</h4>
+                    <div class="demo-icons">
+                      <div class="demo-icon active"></div>
+                      <div class="demo-icon"></div>
+                      <div class="demo-icon"></div>
+                    </div>
+                  </div>
+                  <div class="demo-content">
+                    <div class="demo-query">
+                      <span>🔍</span>
+                      <span>¿Mejores desarrollos...?</span>
+                    </div>
+                    <div class="demo-response">
+                      <span class="demo-badge">IA Generativa</span>
+                      <p style="margin: 0.25rem 0 0 0;">Miramar Hills destaca como opción premium...</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="hub-preview-card">
+            <div class="hub-preview-card__header">
+              <span class="hub-preview-card__title">SEO Demo</span>
+              <span class="hub-preview-card__badge">Rankings</span>
+            </div>
+            <div class="hub-preview-card__content">
+              <div class="demo-preview">
+                <div class="demo-card-example">
+                  <div class="demo-card-header">
+                    <h4>SEO</h4>
+                    <div style="font-size: 0.8rem;">🔍</div>
+                  </div>
+                  <div class="demo-content">
+                    <div style="font-size: 0.7rem; margin-bottom: 0.5rem; color: var(--wo-text-secondary);">desarrollos costa premium</div>
+                    <div style="font-size: 0.65rem;">
+                      <div style="color: var(--wo-success); margin-bottom: 0.25rem;"><strong>#1</strong> miramar-hills.com</div>
+                      <div style="color: var(--wo-text-muted); margin-bottom: 0.25rem;">#2 competidor-a.com</div>
+                      <div style="color: var(--wo-text-muted);">#3 competidor-b.com</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="hub-preview-card">
+            <div class="hub-preview-card__header">
+              <span class="hub-preview-card__title">SEM Demo</span>
+              <span class="hub-preview-card__badge">Métricas</span>
+            </div>
+            <div class="hub-preview-card__content">
+              <div class="demo-preview">
+                <div class="demo-card-example">
+                  <div class="demo-card-header">
+                    <h4>SEM</h4>
+                    <div class="demo-icons">
+                      <div class="demo-icon active"></div>
+                      <div class="demo-icon active"></div>
+                    </div>
+                  </div>
+                  <div class="demo-content" style="text-align: center;">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; font-size: 0.7rem;">
+                      <div><div style="color: var(--wo-accent-primary); font-weight: 700;">2,847</div><div style="color: var(--wo-text-muted); font-size: 0.55rem;">Clics</div></div>
+                      <div><div style="color: var(--wo-accent-primary); font-weight: 700;">4.2%</div><div style="color: var(--wo-text-muted); font-size: 0.55rem;">CTR</div></div>
+                      <div><div style="color: var(--wo-accent-primary); font-weight: 700;">156</div><div style="color: var(--wo-text-muted); font-size: 0.55rem;">Leads</div></div>
+                    </div>
+                    <div style="height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 0.5rem;">
+                      <div style="height: 100%; width: 87%; background: linear-gradient(90deg, var(--wo-accent-primary), var(--wo-success)); border-radius: 2px;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- GEO Demo -->
+      <section class="hub-section">
+        <h2>GEO Demo Card</h2>
+        <p>Simula una consulta a IA generativa (ChatGPT, Perplexity, Gemini, Claude, Grok) con efecto de typing y respuesta animada.</p>
+        
+        <h3>Estructura HTML</h3>
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-geo-html')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-geo-html">&lt;div class="wo-card wo-card--geo-demo"&gt;
+  &lt;div class="geo-card-header"&gt;
+    &lt;h3&gt;GEO&lt;/h3&gt;
+    &lt;div class="geo-ai-icons"&gt;
+      &lt;img src="../LOGOS/external/chatgpt-logo.webp" class="geo-ai-icon" title="ChatGPT"&gt;
+      &lt;img src="../LOGOS/external/perplexity-ai-icon.webp" class="geo-ai-icon" title="Perplexity"&gt;
+      &lt;img src="../LOGOS/external/gemini-icon.webp" class="geo-ai-icon" title="Gemini"&gt;
+      &lt;img src="../LOGOS/external/claude-ai-icon.png" class="geo-ai-icon" title="Claude"&gt;
+      &lt;img src="../LOGOS/external/grok-logo.png" class="geo-ai-icon" title="Grok"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="geo-demo-container"&gt;
+    &lt;div class="geo-demo-query"&gt;
+      &lt;span class="geo-demo-icon"&gt;🔍&lt;/span&gt;
+      &lt;span class="geo-demo-text" id="geo-query-text"&gt;&lt;/span&gt;
+      &lt;span class="geo-cursor"&gt;|&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="geo-demo-response" id="geo-response"&gt;
+      &lt;div class="geo-response-header"&gt;
+        &lt;span class="geo-ai-badge"&gt;IA Generativa&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="geo-response-content" id="geo-response-text"&gt;&lt;/div&gt;
+      &lt;div class="geo-response-source"&gt;
+        &lt;span class="geo-source-dot"&gt;&lt;/span&gt;
+        &lt;span&gt;tu-dominio.com&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+          </div>
+        </div>
+        
+        <h3>CSS Esencial</h3>
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">CSS</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-geo-css')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-geo-css">.wo-card--geo-demo {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em !important;
+  min-height: 200px;
+}
+
+.geo-ai-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  opacity: 0.35;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.geo-ai-icon.active {
+  opacity: 1;
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
+}
+
+.geo-cursor {
+  color: var(--wo-accent-primary);
+  animation: geoCursorBlink 1s infinite;
+}
+
+@keyframes geoCursorBlink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.geo-demo-response {
+  border-left: 2px solid var(--wo-accent-primary);
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.geo-demo-response.visible {
+  opacity: 1;
+  transform: translateY(0);
+}</pre>
+          </div>
+        </div>
+        
+        <h3>JavaScript de Animación</h3>
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">JavaScript</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-geo-js')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-geo-js">function startGeoDemo() {
+  const queryText = document.getElementById('geo-query-text');
+  const responseEl = document.getElementById('geo-response');
+  const responseText = document.getElementById('geo-response-text');
+  const aiIcons = document.querySelectorAll('.geo-ai-icon');
+  const cursor = document.querySelector('.geo-cursor');
+  
+  const query = "¿Mejores desarrollos inmobiliarios en la costa?";
+  const response = "Miramar Hills destaca como opción premium: ubicación privilegiada, arquitectura contemporánea y amenidades de primer nivel...";
+  
+  // Fase 1: Typing de la pregunta
+  let charIndex = 0;
+  const typingInterval = setInterval(() => {
+    if (charIndex < query.length) {
+      queryText.textContent = query.substring(0, charIndex + 1);
+      charIndex++;
+    } else {
+      clearInterval(typingInterval);
+      cursor.style.display = 'none';
+      
+      // Fase 2: Activar iconos de IA
+      setTimeout(() => {
+        aiIcons.forEach((icon, index) => {
+          setTimeout(() => icon.classList.add('active'), index * 200);
+        });
+        
+        // Fase 3: Mostrar respuesta
+        setTimeout(() => {
+          responseEl.classList.add('visible');
+          
+          // Typing de la respuesta
+          let respCharIndex = 0;
+          const respInterval = setInterval(() => {
+            if (respCharIndex < response.length) {
+              responseText.textContent = response.substring(0, respCharIndex + 1);
+              respCharIndex++;
+            } else {
+              clearInterval(respInterval);
+            }
+          }, 25);
+        }, 800);
+      }, 400);
+    }
+  }, 50);
+}</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- SEO Demo -->
+      <section class="hub-section">
+        <h2>SEO Demo Card</h2>
+        <p>Simula resultados de búsqueda en Google con el cliente en posición #1.</p>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-seo-html')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-seo-html">&lt;div class="wo-card wo-card--seo-demo"&gt;
+  &lt;div class="seo-card-header"&gt;
+    &lt;h3&gt;SEO&lt;/h3&gt;
+    &lt;div class="seo-google-icon"&gt;
+      &lt;!-- SVG de Google --&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="seo-demo-container"&gt;
+    &lt;div class="seo-search-bar"&gt;
+      &lt;span class="seo-search-icon"&gt;🔍&lt;/span&gt;
+      &lt;span class="seo-search-text"&gt;desarrollos costa premium&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="seo-results"&gt;
+      &lt;div class="seo-result seo-result--highlight"&gt;
+        &lt;span class="seo-result-position"&gt;#1&lt;/span&gt;
+        &lt;span class="seo-result-url"&gt;tu-dominio.com&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="seo-result"&gt;
+        &lt;span class="seo-result-position"&gt;#2&lt;/span&gt;
+        &lt;span class="seo-result-url"&gt;competidor-a.com&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="seo-result"&gt;
+        &lt;span class="seo-result-position"&gt;#3&lt;/span&gt;
+        &lt;span class="seo-result-url"&gt;competidor-b.com&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">CSS</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-seo-css')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-seo-css">.seo-result {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.25em 0.4em;
+  border-radius: 4px;
+  font-size: 0.55em;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.4s ease;
+}
+
+.seo-result.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.seo-result--highlight {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.seo-result--highlight .seo-result-position,
+.seo-result--highlight .seo-result-url {
+  color: var(--wo-success);
+  font-weight: 700;
+}</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- SEM Demo -->
+      <section class="hub-section">
+        <h2>SEM Demo Card</h2>
+        <p>Muestra métricas de campaña publicitaria con contadores animados.</p>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-sem-html')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-sem-html">&lt;div class="wo-card wo-card--sem-demo"&gt;
+  &lt;div class="sem-card-header"&gt;
+    &lt;h3&gt;SEM&lt;/h3&gt;
+    &lt;div class="sem-platforms"&gt;
+      &lt;img src="../LOGOS/external/logo-google-ads.webp" class="sem-platform"&gt;
+      &lt;img src="../LOGOS/external/meta_PNG5.png" class="sem-platform"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="sem-demo-container"&gt;
+    &lt;div class="sem-metric" id="sem-metric-clicks"&gt;
+      &lt;span class="sem-metric-value"&gt;0&lt;/span&gt;
+      &lt;span class="sem-metric-label"&gt;Clics&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="sem-metric" id="sem-metric-ctr"&gt;
+      &lt;span class="sem-metric-value"&gt;0%&lt;/span&gt;
+      &lt;span class="sem-metric-label"&gt;CTR&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="sem-metric" id="sem-metric-conv"&gt;
+      &lt;span class="sem-metric-value"&gt;0&lt;/span&gt;
+      &lt;span class="sem-metric-label"&gt;Leads&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="sem-progress-bar"&gt;
+      &lt;div class="sem-progress-fill" id="sem-progress"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;span class="sem-progress-label"&gt;Presupuesto optimizado&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">JavaScript</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-sem-js')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-sem-js">function startSemDemo() {
+  const metrics = document.querySelectorAll('.sem-metric');
+  const progressBar = document.getElementById('sem-progress');
+  const clicksEl = document.querySelector('#sem-metric-clicks .sem-metric-value');
+  const ctrEl = document.querySelector('#sem-metric-ctr .sem-metric-value');
+  const convEl = document.querySelector('#sem-metric-conv .sem-metric-value');
+  
+  // Mostrar métricas con stagger
+  metrics.forEach((metric, index) => {
+    setTimeout(() => metric.classList.add('visible'), index * 200);
+  });
+  
+  // Animar contadores
+  setTimeout(() => {
+    animateCounter(clicksEl, 0, 2847, 1500, '');
+    animateCounter(ctrEl, 0, 4.2, 1500, '%');
+    animateCounter(convEl, 0, 156, 1500, '');
+    
+    if (progressBar) {
+      progressBar.style.width = '87%';
+    }
+  }, 600);
+}
+
+function animateCounter(element, start, end, duration, suffix) {
+  const startTime = performance.now();
+  const isDecimal = !Number.isInteger(end);
+  
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const easeProgress = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+    
+    const current = start + (end - start) * easeProgress;
+    element.textContent = (isDecimal ? current.toFixed(1) : Math.floor(current)) + suffix;
+    
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  
+  requestAnimationFrame(update);
+}</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Integración -->
+      <section class="hub-section">
+        <h2>Integración con Reveal.js</h2>
+        <p>Los demos se activan mediante el evento fragmentshown cuando el card aparece.</p>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">JavaScript</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-integration')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-integration">// Iniciar demo cuando el slide se activa
+Reveal.on('slidechanged', (event) => {
+  if (event.currentSlide.dataset.state === 'geo-demo-slide') {
+    setTimeout(() => startGeoDemo(), 500);
+  }
+});
+
+// Iniciar demos específicos cuando sus fragments aparecen
+Reveal.on('fragmentshown', (event) => {
+  const fragment = event.fragment;
+  
+  if (fragment.classList.contains('wo-card--seo-demo')) {
+    setTimeout(() => startSeoDemo(), 300);
+  }
+  
+  if (fragment.classList.contains('wo-card--sem-demo')) {
+    setTimeout(() => startSemDemo(), 300);
+  }
+});</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Footer -->
+      <footer class="hub-footer">
+        <p><a href="pricing-components.html">← Pricing Components</a> | <a href="templates.html">Templates →</a></p>
+      </footer>
+    </main>
+  </div>
+  
+  <!-- Hub JS -->
+  <script src="hub.js"></script>
+</body>
+</html>

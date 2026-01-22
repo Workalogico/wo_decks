@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Particles System - Fondos animados para presentaciones">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <title>Particles System | Design System Hub</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../LOGOS/SVG/WoLogos_2026-08.svg">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Design Tokens + Design System -->
+  <link rel="stylesheet" href="../wo-tokens.css">
+  <link rel="stylesheet" href="../wo-design-system.css">
+  
+  <!-- Hub Styles -->
+  <link rel="stylesheet" href="hub.css">
+  
+  <style>
+    .particles-demo {
+      position: relative;
+      height: 200px;
+      background: radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    
+    .particles-demo-dots {
+      position: absolute;
+      inset: 0;
+    }
+    
+    .particle-dot {
+      position: absolute;
+      border-radius: 50%;
+      animation: particleFloat 8s ease-in-out infinite;
+    }
+    
+    .particle-line {
+      position: absolute;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--wo-accent-primary), transparent);
+      opacity: 0.15;
+      animation: lineGlow 4s ease-in-out infinite;
+    }
+    
+    @keyframes particleFloat {
+      0%, 100% { transform: translate(0, 0); opacity: 0.4; }
+      50% { transform: translate(10px, -10px); opacity: 0.8; }
+    }
+    
+    @keyframes lineGlow {
+      0%, 100% { opacity: 0.1; }
+      50% { opacity: 0.25; }
+    }
+    
+    .variant-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    
+    .variant-card {
+      background: var(--wo-dark-surface);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      text-align: center;
+    }
+    
+    .variant-card__name {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .variant-card__desc {
+      font-size: 0.85rem;
+      color: var(--wo-text-secondary);
+      margin-bottom: 0.75rem;
+    }
+    
+    .variant-card__config {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--wo-accent-primary);
+    }
+  </style>
+</head>
+<body data-wo-theme="yellow">
+  <div class="hub-layout">
+    <!-- Sidebar -->
+    <aside class="hub-sidebar">
+      <div class="hub-logo">
+        <img src="../LOGOS/SVG/WoLogos_2026-01.svg" alt="Workalógico" class="hub-logo__yellow">
+        <img src="../LOGOS/SVG/WoLogos_2026-03.svg" alt="Workalógico" class="hub-logo__white">
+        <span class="hub-version">Design System v2.2</span>
+      </div>
+      
+      <nav class="hub-nav">
+        <h4>Inicio</h4>
+        <a href="index.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></span> Dashboard
+        </a>
+        
+        <h4>Fundamentos</h4>
+        <a href="colors.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18h3a2 2 0 0 0 0-4h-1a2 2 0 0 1 0-4h2a2 2 0 0 0 2-2 6 6 0 0 0-6-6z"/><circle cx="8" cy="10" r="1"/><circle cx="6.5" cy="14" r="1"/><circle cx="10.5" cy="6.5" r="1"/></svg></span> Colores
+        </a>
+        <a href="typography.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 6h14"/><path d="M12 6v12"/><path d="M8 18h8"/></svg></span> Tipografía
+        </a>
+        <a href="spacing.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M4 17h16"/><path d="M7 9v6"/><path d="M12 9v6"/><path d="M17 9v6"/></svg></span> Espaciado
+        </a>
+        
+        <h4>Componentes</h4>
+        <a href="components.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span> Componentes
+        </a>
+        <a href="pricing-components.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span> Pricing
+        </a>
+        <a href="demo-cards.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span> Demo Cards
+        </a>
+        <a href="templates.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg></span> Templates
+        </a>
+        <a href="particles.html" class="active">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><circle cx="6" cy="6" r="1.5"/><circle cx="18" cy="6" r="1.5"/><circle cx="6" cy="18" r="1.5"/><circle cx="18" cy="18" r="1.5"/><path d="M6 6l6 6M18 6l-6 6M6 18l6-6M18 18l-6-6"/></svg></span> Particles
+        </a>
+        <a href="animations.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span> Animations
+        </a>
+        
+        <h4>Assets</h4>
+        <a href="assets.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 12l9 9 9-9-9-9H3z"/><circle cx="8" cy="8" r="1.5"/></svg></span> Logos
+        </a>
+        <a href="backgrounds.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 17l5-5 4 4 3-3 6 6"/><circle cx="8" cy="10" r="2"/></svg></span> Fondos
+        </a>
+        <a href="icons.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/></svg></span> Iconos
+        </a>
+        
+        <h4>Recursos</h4>
+        <a href="../index.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="11" rx="2"/><path d="M9 7V5h6v2"/><path d="M4 12h16"/></svg></span> Ver Decks
+        </a>
+      </nav>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="hub-main">
+      <header class="hub-header">
+        <h1>Particles <span class="accent">System</span></h1>
+        <p>Sistema de fondos animados con tsParticles para presentaciones Reveal.js. Concepto visual "Data Network" que representa inteligencia de datos conectada.</p>
+      </header>
+      
+      <!-- Preview -->
+      <section class="hub-section">
+        <h2>Vista Previa</h2>
+        <p>Red de nodos conectados con movimiento sutil y colores de marca.</p>
+        
+        <div class="hub-preview-card">
+          <div class="hub-preview-card__header">
+            <span class="hub-preview-card__title">Data Network Effect</span>
+            <span class="hub-preview-card__badge">tsParticles</span>
+          </div>
+          <div class="hub-preview-card__content">
+            <div class="particles-demo">
+              <div class="particles-demo-dots">
+                <!-- Simulated particles -->
+                <div class="particle-dot" style="width: 4px; height: 4px; background: var(--wo-accent-primary); top: 20%; left: 15%;"></div>
+                <div class="particle-dot" style="width: 3px; height: 3px; background: var(--wo-blue-lab); top: 35%; left: 25%; animation-delay: 1s;"></div>
+                <div class="particle-dot" style="width: 5px; height: 5px; background: var(--wo-accent-primary); top: 60%; left: 40%; animation-delay: 2s;"></div>
+                <div class="particle-dot" style="width: 3px; height: 3px; background: var(--wo-accent-primary); top: 25%; left: 60%; animation-delay: 0.5s;"></div>
+                <div class="particle-dot" style="width: 4px; height: 4px; background: var(--wo-blue-lab); top: 70%; left: 75%; animation-delay: 1.5s;"></div>
+                <div class="particle-dot" style="width: 3px; height: 3px; background: var(--wo-accent-primary); top: 45%; left: 85%; animation-delay: 2.5s;"></div>
+                
+                <!-- Simulated lines -->
+                <div class="particle-line" style="width: 100px; top: 28%; left: 18%; transform: rotate(15deg);"></div>
+                <div class="particle-line" style="width: 80px; top: 55%; left: 35%; transform: rotate(-10deg); animation-delay: 1s;"></div>
+                <div class="particle-line" style="width: 120px; top: 40%; left: 55%; transform: rotate(25deg); animation-delay: 2s;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Archivos -->
+      <section class="hub-section">
+        <h2>Archivos del Sistema</h2>
+        
+        <div class="hub-grid hub-grid--2">
+          <div class="hub-preview-card">
+            <div class="hub-preview-card__header">
+              <span class="hub-preview-card__title">wo-particles.css</span>
+              <span class="hub-preview-card__badge">Estilos</span>
+            </div>
+            <div class="hub-preview-card__content" style="padding: 1rem;">
+              <p style="font-size: 0.85rem; color: var(--wo-text-secondary);">Contiene el contenedor #tsparticles, capas z-index, y efectos de viñeta. Incluye variantes por servicio y responsive.</p>
+            </div>
+          </div>
+          
+          <div class="hub-preview-card">
+            <div class="hub-preview-card__header">
+              <span class="hub-preview-card__title">wo-particles.js</span>
+              <span class="hub-preview-card__badge">Config</span>
+            </div>
+            <div class="hub-preview-card__content" style="padding: 1rem;">
+              <p style="font-size: 0.85rem; color: var(--wo-text-secondary);">Configuración de tsParticles con detección automática de tema, variantes por servicio, y integración con Reveal.js.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Instalación -->
+      <section class="hub-section">
+        <h2>Instalación</h2>
+        
+        <h3>1. Incluir dependencias</h3>
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML (head)</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-deps')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-deps">&lt;!-- Workalógico Particles CSS --&gt;
+&lt;link rel="stylesheet" href="../wo-particles.css"&gt;
+
+&lt;!-- tsParticles CDN --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- Workalógico Particles Config --&gt;
+&lt;script src="../wo-particles.js"&gt;&lt;/script&gt;</pre>
+          </div>
+        </div>
+        
+        <h3>2. Agregar contenedor</h3>
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML (body)</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-container')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-container">&lt;!-- Contenedor de partículas (ANTES de .reveal) --&gt;
+&lt;div id="tsparticles"&gt;&lt;/div&gt;
+
+&lt;div class="reveal"&gt;
+  &lt;div class="slides"&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+          </div>
+        </div>
+        
+        <h3>3. Activar en slides específicos</h3>
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-activate')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-activate">&lt;!-- Portada con partículas --&gt;
+&lt;section data-background-gradient="..." data-particles="true"&gt;
+  ...
+&lt;/section&gt;
+
+&lt;!-- Slide de contenido SIN partículas --&gt;
+&lt;section data-background-color="#0F0F1A"&gt;
+  ...
+&lt;/section&gt;
+
+&lt;!-- CTA con partículas --&gt;
+&lt;section data-background-gradient="..." data-particles="true"&gt;
+  ...
+&lt;/section&gt;</pre>
+          </div>
+        </div>
+        
+        <h3>4. Inicializar con Reveal.js</h3>
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">JavaScript</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-init')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-init">Reveal.initialize({
+  // ... configuración Reveal.js
+}).then(() => {
+  // Inicializar partículas con variante (opcional)
+  setupWoParticles('enterprise');
+});</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Variantes -->
+      <section class="hub-section">
+        <h2>Variantes por Servicio</h2>
+        <p>Configuraciones predefinidas para diferentes tipos de presentaciones.</p>
+        
+        <div class="variant-grid">
+          <div class="variant-card">
+            <div class="variant-card__name">geo</div>
+            <div class="variant-card__desc">Más puntos de datos, conexiones amplias</div>
+            <div class="variant-card__config">60 partículas, 150px links</div>
+          </div>
+          
+          <div class="variant-card">
+            <div class="variant-card__name">ai</div>
+            <div class="variant-card__desc">Balance 50/50 de colores, más conexiones</div>
+            <div class="variant-card__config">55 partículas, opacity 0.15</div>
+          </div>
+          
+          <div class="variant-card">
+            <div class="variant-card__name">marketing</div>
+            <div class="variant-card__desc">Más dinámico y energético</div>
+            <div class="variant-card__config">45 partículas, speed 0.8</div>
+          </div>
+          
+          <div class="variant-card">
+            <div class="variant-card__name">enterprise</div>
+            <div class="variant-card__desc">Más estructurado y elegante</div>
+            <div class="variant-card__config">40 partículas, speed 0.5</div>
+          </div>
+        </div>
+        
+        <div class="code-block" style="margin-top: 1.5rem;">
+          <div class="code-block__header">
+            <span class="code-block__lang">JavaScript</span>
+          </div>
+          <div class="code-block__content">
+<pre>// Usar variante específica
+setupWoParticles('geo');      // Geointeligencia
+setupWoParticles('ai');       // AI Experts
+setupWoParticles('marketing');// Marketing
+setupWoParticles('enterprise');// CRM/Enterprise
+
+// Sin variante (usa configuración default)
+setupWoParticles();</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Colores por Tema -->
+      <section class="hub-section">
+        <h2>Colores por Tema</h2>
+        <p>Las partículas adaptan sus colores automáticamente según el tema activo.</p>
+        
+        <div class="hub-grid hub-grid--2">
+          <div class="hub-preview-card">
+            <div class="hub-preview-card__header">
+              <span class="hub-preview-card__title">Tema Amarillo (default)</span>
+              <span class="hub-preview-card__badge" style="background: rgba(255,203,0,0.2); color: #FFCB00;">Yellow</span>
+            </div>
+            <div class="hub-preview-card__content" style="padding: 1rem;">
+              <p style="font-size: 0.85rem; color: var(--wo-text-secondary); margin-bottom: 0.5rem;">75% Amarillo, 25% Azul</p>
+              <div style="display: flex; gap: 0.5rem;">
+                <div style="width: 24px; height: 24px; background: #FFCB00; border-radius: 4px;"></div>
+                <div style="width: 24px; height: 24px; background: #FFCB00; border-radius: 4px;"></div>
+                <div style="width: 24px; height: 24px; background: #FFCB00; border-radius: 4px;"></div>
+                <div style="width: 24px; height: 24px; background: #5968EA; border-radius: 4px;"></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="hub-preview-card">
+            <div class="hub-preview-card__header">
+              <span class="hub-preview-card__title">Tema Azul</span>
+              <span class="hub-preview-card__badge">Blue</span>
+            </div>
+            <div class="hub-preview-card__content" style="padding: 1rem;">
+              <p style="font-size: 0.85rem; color: var(--wo-text-secondary); margin-bottom: 0.5rem;">75% Azul, 25% Amarillo</p>
+              <div style="display: flex; gap: 0.5rem;">
+                <div style="width: 24px; height: 24px; background: #5968EA; border-radius: 4px;"></div>
+                <div style="width: 24px; height: 24px; background: #5968EA; border-radius: 4px;"></div>
+                <div style="width: 24px; height: 24px; background: #5968EA; border-radius: 4px;"></div>
+                <div style="width: 24px; height: 24px; background: #FFCB00; border-radius: 4px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Capas Z-Index -->
+      <section class="hub-section">
+        <h2>Capas Z-Index</h2>
+        <p>Orden de renderizado de las capas visuales.</p>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">Arquitectura de Capas</span>
+          </div>
+          <div class="code-block__content">
+<pre>z-index: 20  →  .reveal .slides (contenido)
+z-index: 10  →  #tsparticles (partículas)
+z-index: 5   →  body::after (viñeta)
+z-index: 1   →  .reveal .backgrounds (fondos)</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Slides Recomendados -->
+      <section class="hub-section">
+        <h2>Slides Recomendados</h2>
+        <p>Usar partículas solo en slides clave para no distraer del contenido:</p>
+        
+        <ul style="color: var(--wo-text-secondary); font-size: 0.95rem; line-height: 1.8; padding-left: 1.5rem;">
+          <li><strong>Portada (Slide 1)</strong> - Primera impresión impactante</li>
+          <li><strong>Secciones/Transiciones</strong> - Divisores visuales entre bloques</li>
+          <li><strong>CTA/Cierre</strong> - Refuerzo del llamado a la acción</li>
+        </ul>
+        
+        <p style="margin-top: 1rem; padding: 1rem; background: var(--wo-dark-surface); border-radius: var(--radius-md); font-size: 0.9rem; color: var(--wo-text-secondary);">
+          <strong style="color: var(--wo-accent-primary);">Tip:</strong> No usar en slides de contenido denso (cards, tablas, métricas) - las partículas pueden competir con la información.
+        </p>
+      </section>
+      
+      <!-- Footer -->
+      <footer class="hub-footer">
+        <p><a href="demo-cards.html">← Demo Cards</a> | <a href="animations.html">Animations →</a></p>
+      </footer>
+    </main>
+  </div>
+  
+  <!-- Hub JS -->
+  <script src="hub.js"></script>
+</body>
+</html>
