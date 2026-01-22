@@ -52,14 +52,26 @@
         <a href="components.html">
           <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span> Componentes
         </a>
+        <a href="pricing-components.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span> Pricing
+        </a>
+        <a href="demo-cards.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span> Demo Cards
+        </a>
         <a href="templates.html" class="active">
           <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg></span> Templates
+        </a>
+        <a href="particles.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><circle cx="6" cy="6" r="1.5"/><circle cx="18" cy="6" r="1.5"/><circle cx="6" cy="18" r="1.5"/><circle cx="18" cy="18" r="1.5"/><path d="M6 6l6 6M18 6l-6 6M6 18l6-6M18 18l-6-6"/></svg></span> Particles
+        </a>
+        <a href="animations.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span> Animations
         </a>
         <a href="mapbox.html">
           <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14"/><path d="M15 6v14"/></svg></span> Mapbox Theme
         </a>
         <a href="map-components.html">
-          <span>&#x1F4CD;</span> Map Components
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 21s6-6.5 6-11a6 6 0 1 0-12 0c0 4.5 6 11 6 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span> Map Components
         </a>
         
         <h4>Assets</h4>
@@ -352,6 +364,185 @@
   &lt;/div&gt;
   &lt;div class="grid-background"&gt;&lt;/div&gt;
 &lt;/section&gt;</pre>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Split Cover Template -->
+      <section class="hub-section">
+        <h2>6. Portada Split (Client Proposal)</h2>
+        <p>Layout asimétrico para propuestas a clientes. Teseracto 4D a la izquierda, contenido del cliente a la derecha.</p>
+        
+        <div class="hub-preview-card">
+          <div class="hub-preview-card__header">
+            <span class="hub-preview-card__title">wo-cover--split</span>
+            <span class="hub-preview-card__badge">Template</span>
+          </div>
+          <div class="hub-preview-card__content">
+            <div style="background: radial-gradient(ellipse at 30% 50%, #252542 0%, #0F0F1A 70%); border-radius: var(--radius-md); padding: 1.5rem;">
+              <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.5rem; align-items: center;">
+                <!-- Zona Izquierda: Teseracto -->
+                <div style="text-align: center;">
+                  <div style="width: 100px; height: 100px; margin: 0 auto; border: 2px solid var(--wo-accent-primary); opacity: 0.6; transform: rotate(45deg);"></div>
+                  <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid rgba(255,203,0,0.2);">
+                    <img src="../LOGOS/SVG/WoLogos_2026-01.svg" alt="Workalógico" style="height: 24px; opacity: 0.8;">
+                  </div>
+                </div>
+                <!-- Zona Derecha: Contenido -->
+                <div style="text-align: center;">
+                  <div style="display: inline-block; padding: 0.2rem 0.5rem; background: var(--wo-accent-dim); border: 1px solid var(--wo-blue-lab); border-radius: 20px; font-size: 0.55rem; color: var(--wo-blue-lab); margin-bottom: 0.5rem;">PROYECTO</div>
+                  <div style="font-family: var(--font-heading); font-size: 1rem; color: var(--wo-text-secondary); margin-bottom: 0.5rem;">Logo Cliente</div>
+                  <div style="width: 40px; height: 3px; background: var(--wo-accent-primary); margin: 0.5rem auto;"></div>
+                  <p style="font-size: 0.7rem; color: var(--wo-text-secondary);">Subtítulo de la propuesta</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hub-preview-card__footer">
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-split')">Copiar código</button>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">HTML</span>
+          </div>
+          <div class="code-block__content">
+<pre id="code-split">&lt;section data-background-gradient="radial-gradient(ellipse at 30% 50%, #252542 0%, #0F0F1A 70%)" 
+         data-particles="true" data-state="cover-slide"&gt;
+  
+  &lt;div class="wo-cover wo-cover--split"&gt;
+    
+    &lt;!-- ZONA IZQUIERDA: Teseracto 4D + Firma de marca --&gt;
+    &lt;div class="wo-cover__brand-zone"&gt;
+      &lt;div class="wo-cover__teseracto-container"&gt;
+        &lt;div class="wo-cover__teseracto-glow"&gt;&lt;/div&gt;
+        &lt;div class="wo-cover__teseracto-hero" id="cover-teseracto-4d"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- ZONA DERECHA: Contenido del cliente --&gt;
+    &lt;div class="wo-cover__content-zone"&gt;
+      &lt;div class="wo-badge"&gt;Proyecto Estratégico&lt;/div&gt;
+      
+      &lt;!-- Logo del cliente --&gt;
+      &lt;img data-src="../LOGOS/external/LOGO_CLIENTE.png" 
+           alt="Cliente" class="wo-cover__client-logo"&gt;
+      
+      &lt;div class="wo-cover__divider"&gt;&lt;/div&gt;
+      
+      &lt;p class="wo-cover__subtitle"&gt;Descripción de la propuesta&lt;/p&gt;
+      
+      &lt;!-- Firma de marca --&gt;
+      &lt;div class="wo-cover__signature"&gt;
+        &lt;img data-src="../LOGOS/SVG/WoLogos_2026-01.svg" 
+             alt="Workalógico" class="wo-cover__signature-logo"&gt;
+        &lt;div class="wo-cover__signature-text"&gt;
+          &lt;span class="wo-cover__signature-tagline"&gt;Growth Studio&lt;/span&gt;
+          &lt;span class="wo-cover__signature-date"&gt;Enero 2026&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    
+  &lt;/div&gt;
+  
+  &lt;div class="grid-background"&gt;&lt;/div&gt;
+&lt;/section&gt;</pre>
+          </div>
+        </div>
+        
+        <h3>CSS del Layout Split</h3>
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">CSS</span>
+            <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyCode(this, 'code-split-css')">Copiar</button>
+          </div>
+          <div class="code-block__content">
+<pre id="code-split-css">.wo-cover--split {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2.5em;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1.5em;
+  min-height: 480px;
+}
+
+.wo-cover__brand-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.wo-cover__teseracto-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wo-cover__teseracto-glow {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 203, 0, 0.06) 0%,
+    rgba(255, 203, 0, 0.02) 50%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  animation: teseractoAmbientGlow 6s ease-in-out infinite;
+}
+
+.wo-cover__content-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.wo-cover__client-logo {
+  max-width: 340px;
+  filter: brightness(1.15) drop-shadow(0 0 30px rgba(255, 255, 255, 0.25));
+}
+
+.wo-cover__divider {
+  width: 60px;
+  height: 4px;
+  background: var(--wo-accent-primary);
+  margin: 0.7em 0;
+  border-radius: 2px;
+}
+
+.wo-cover__signature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+  margin-top: 1.5em;
+  padding-top: 1em;
+  border-top: 1px solid rgba(255, 203, 0, 0.15);
+}
+
+.wo-cover__signature-logo {
+  height: 44px;
+  opacity: 0.85;
+}
+
+.wo-cover__signature-tagline {
+  font-size: 0.36em;
+  color: var(--wo-accent-primary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+}</pre>
           </div>
         </div>
       </section>

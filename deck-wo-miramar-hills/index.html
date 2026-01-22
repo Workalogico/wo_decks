@@ -16,7 +16,7 @@
   <title>Workalógico | Miramar Hills - Ecosistema Digital</title>
   
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="../LOGOS/teseracto yellow@3x.png">
+  <link rel="icon" type="image/svg+xml" href="../LOGOS/SVG/WoLogos_2026-08.svg">
   
   <!-- Preload critical assets -->
   <link rel="preload" href="../wo-design-system.css" as="style">
@@ -1449,8 +1449,8 @@
       navigationMode: 'default',
       
       // Fluidity Overhaul
-      transition: 'slide',
-      transitionSpeed: 'slow',
+      transition: 'fade',
+      transitionSpeed: 'default',
       backgroundTransition: 'fade',
       
       // Controls
@@ -1474,16 +1474,6 @@
       
       plugins: [RevealNotes]
     }).then(() => {
-      // #region agent log - H1,H3,H4: Initial CSS layers state
-      (function debugInitialLayers() {
-        const slidesContainer = document.querySelector('.reveal .slides');
-        const tsparticles = document.getElementById('tsparticles');
-        const backgrounds = document.querySelector('.reveal .backgrounds');
-        
-        fetch('http://127.0.0.1:7242/ingest/c7ba30a2-7ce9-428e-85da-e7b6a41b5759',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:init',message:'Initial CSS layers',data:{slidesZIndex:slidesContainer?window.getComputedStyle(slidesContainer).zIndex:'N/A',slidesPosition:slidesContainer?window.getComputedStyle(slidesContainer).position:'N/A',particlesZIndex:tsparticles?window.getComputedStyle(tsparticles).zIndex:'N/A',backgroundsZIndex:backgrounds?window.getComputedStyle(backgrounds).zIndex:'N/A'},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H1-H3-H4'})}).catch(()=>{});
-      })();
-      // #endregion
-      
       // Inicializar partículas
       setupWoParticles('enterprise');
       
@@ -1583,44 +1573,6 @@
       const slideId = currentIndex + '-' + Reveal.getIndices().v;
       const watermark = document.getElementById('teseracto-watermark');
       
-      // #region agent log - H1,H2,H3,H4,H5: Debug slide visibility
-      (function debugSlideVisibility() {
-        const slide = event.currentSlide;
-        const fragments = slide.querySelectorAll('.fragment');
-        const woColumns = slide.querySelector('.wo-columns');
-        const slidesContainer = document.querySelector('.reveal .slides');
-        const tsparticles = document.getElementById('tsparticles');
-        const bodyStyles = window.getComputedStyle(document.body, '::after');
-        
-        // H1: Check .reveal .slides z-index
-        const slidesZIndex = slidesContainer ? window.getComputedStyle(slidesContainer).zIndex : 'N/A';
-        
-        // H2: Check fragments visibility
-        const fragmentsData = Array.from(fragments).map((f, i) => ({
-          index: i,
-          classes: f.className,
-          opacity: window.getComputedStyle(f).opacity,
-          visibility: window.getComputedStyle(f).visibility,
-          display: window.getComputedStyle(f).display
-        }));
-        
-        // H3: body::after computed (note: pseudo-elements are tricky)
-        
-        // H4: tsparticles z-index
-        const particlesZIndex = tsparticles ? window.getComputedStyle(tsparticles).zIndex : 'N/A';
-        
-        // H5: wo-columns position and z-index
-        const woColumnsStyles = woColumns ? {
-          position: window.getComputedStyle(woColumns).position,
-          zIndex: window.getComputedStyle(woColumns).zIndex,
-          opacity: window.getComputedStyle(woColumns).opacity,
-          visibility: window.getComputedStyle(woColumns).visibility
-        } : null;
-        
-        fetch('http://127.0.0.1:7242/ingest/c7ba30a2-7ce9-428e-85da-e7b6a41b5759',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:slidechanged',message:'Slide visibility debug',data:{slideIndex:currentIndex,slideId,slidesZIndex,particlesZIndex,woColumnsStyles,fragmentsCount:fragments.length,fragmentsData},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H1-H5'})}).catch(()=>{});
-      })();
-      // #endregion
-      
       // Detectar navegación hacia atrás - resetear slides futuros
       if (currentIndex < lastSlideIndex) {
         animatedSlides.forEach(id => {
@@ -1639,28 +1591,6 @@
       } else {
         watermark.style.opacity = '0.7';
       }
-      
-      // #region agent log - H2,H5: Delayed check for slide 4 (Portal Web)
-      if (currentIndex === 3) {
-        setTimeout(() => {
-          const slide = Reveal.getCurrentSlide();
-          const woColumns = slide.querySelector('.wo-columns');
-          const woColumnDivs = slide.querySelectorAll('.wo-column');
-          const fragments = slide.querySelectorAll('.fragment');
-          
-          const columnData = Array.from(woColumnDivs).map((col, i) => ({
-            index: i,
-            opacity: window.getComputedStyle(col).opacity,
-            visibility: window.getComputedStyle(col).visibility,
-            display: window.getComputedStyle(col).display,
-            transform: window.getComputedStyle(col).transform,
-            classes: col.className
-          }));
-          
-          fetch('http://127.0.0.1:7242/ingest/c7ba30a2-7ce9-428e-85da-e7b6a41b5759',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:slide4-delayed',message:'Slide 4 delayed check',data:{woColumnsExists:!!woColumns,columnData,fragmentsWithVisible:Array.from(fragments).filter(f=>f.classList.contains('visible')).length,totalFragments:fragments.length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H2-H5'})}).catch(()=>{});
-        }, 500);
-      }
-      // #endregion
       
       // Evitar re-animar slides ya visitados en esta sesión de avance
       if (animatedSlides.has(slideId)) return;
@@ -1955,11 +1885,6 @@
     Reveal.on('fragmentshown', (event) => {
       const fragment = event.fragment;
       
-      // #region agent log - H2: Fragment shown event
-      const slideIndex = Reveal.getIndices().h;
-      fetch('http://127.0.0.1:7242/ingest/c7ba30a2-7ce9-428e-85da-e7b6a41b5759',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:fragmentshown',message:'Fragment shown',data:{slideIndex,fragmentClass:fragment.className,fragmentOpacity:window.getComputedStyle(fragment).opacity,fragmentVisibility:window.getComputedStyle(fragment).visibility},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H2'})}).catch(()=>{});
-      // #endregion
-      
       // Iniciar demo SEO cuando aparece su fragment
       if (fragment.classList.contains('wo-card--seo-demo') && !seoAnimationStarted) {
         setTimeout(() => {
@@ -1976,14 +1901,6 @@
         semAnimationStarted = true;
       }
     });
-    
-    // #region agent log - H2: Fragment hidden event listener
-    Reveal.on('fragmenthidden', (event) => {
-      const fragment = event.fragment;
-      const slideIndex = Reveal.getIndices().h;
-      fetch('http://127.0.0.1:7242/ingest/c7ba30a2-7ce9-428e-85da-e7b6a41b5759',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:fragmenthidden',message:'Fragment hidden',data:{slideIndex,fragmentClass:fragment.className},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H2'})}).catch(()=>{});
-    });
-    // #endregion
   </script>
 </body>
 </html>
