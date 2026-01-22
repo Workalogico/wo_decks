@@ -1,0 +1,338 @@
+{
+  "brand": "Workalógico",
+  "version": "4.0",
+  "type": "editorial_profile",
+  "last_updated": "2026-01-13",
+  "source_documents": {
+    "playbook": "Playbook de Voz y Tono Wo v3",
+    "manual": "Manual Editorial Wo v4"
+  },
+  
+  "identity": {
+    "what": "Estudio de crecimiento - Diseña, desarrolla y escala productos, marcas y negocios",
+    "not": ["agencia", "consultora", "software factory"],
+    "operating_system": "WoOS - The Workalógico Operating System for Growth",
+    "core_principle": "La Voz Wo no se replica por imitación. Se construye a partir de decisiones conscientes.",
+    "voice_nature": "Sistema de lenguaje orientado a la claridad técnica, al criterio estratégico y a un atractivo sobrio",
+    "function": "Explicar, ordenar y activar con precisión",
+    "content_rules": [
+      "Cada frase cumple una función específica",
+      "Cada texto responde a una intención definida",
+      "Todo contenido debe aportar al crecimiento"
+    ],
+    "purpose": "Porque el crecimiento no se improvisa. Se diseña, se construye y se gestiona.",
+    "how_we_do_it": "A través del Sistema Ascendente (Núcleo, Espiral, Elevación, Expansión)"
+  },
+
+  "editorial_principle": {
+    "name": "PRINCIPIO EDITORIAL - FLUJO HUMANO DE PENSAMIENTO",
+    "description": "Antes del tono, del modo y de la forma final del texto, existe una secuencia de pensamiento. El Flujo Humano de Pensamiento establece cómo se desarrolla una idea mientras se escribe, evitando quiebres artificiales, explicaciones defensivas o giros retóricos innecesarios.",
+    "scope": "Funciona como un principio operativo que orienta la construcción del texto",
+    "objective": "Permite que el contenido avance de manera lógica, mantenga continuidad conceptual, evite contradicciones y sobreexplicaciones, y se lea como una progresión clara y coherente",
+    "emphasis": "Estructurar el pensamiento conforme avanza",
+    
+    "fundamental_rules": [
+      {
+        "number": 1,
+        "rule": "El pensamiento avanza",
+        "description": "Cada frase debe aportar progresión. Si no empuja la idea, se elimina."
+      },
+      {
+        "number": 2,
+        "rule": "Evitar la autocorrección constante",
+        "description": "El texto no se justifica ni se disculpa mientras se construye."
+      },
+      {
+        "number": 3,
+        "rule": "La claridad se construye por capas",
+        "description": "No todo se explica al inicio. La comprensión se desarrolla de forma progresiva."
+      },
+      {
+        "number": 4,
+        "rule": "El contraste se sugiere, no se subraya",
+        "description": "Las diferencias conceptuales aparecen por orden y acumulación, no por oposición retórica directa."
+      }
+    ]
+  },
+
+  "dual_voice_model": {
+    "description": "La Voz Wo opera mediante dos modos operativos, ambos con predominio técnico. No se diferencian por emoción frente a razón, sino por contexto de uso y nivel de abstracción.",
+    
+    "system_mode": {
+      "label": "SYSTEM MODE (Externo)",
+      "configuration": {
+        "technical": "80%",
+        "emotional": "20%"
+      },
+      "purpose": "Explicar, estructurar, demostrar capacidad y ordenar decisiones",
+      "when_to_use": [
+        "Pitch decks",
+        "Cotizaciones",
+        "Website institucional",
+        "Investor docs",
+        "Documentos operativos"
+      ],
+      "characteristics": [
+        "Lenguaje directo",
+        "Precisión conceptual",
+        "Declaraciones claras",
+        "Ausencia de ambigüedad"
+      ],
+      "examples": [
+        "Diseñamos la arquitectura del crecimiento.",
+        "El crecimiento se diseña y se ejecuta con método."
+      ]
+    },
+    
+    "organism_mode": {
+      "label": "ORGANISM MODE (Interno/Contextual)",
+      "configuration": {
+        "technical": "70%",
+        "emotional": "30%"
+      },
+      "purpose": "Facilitar la comprensión de ideas complejas sin perder rigor ni claridad",
+      "when_to_use": [
+        "Storytelling",
+        "Social media",
+        "Cultura interna",
+        "Manifiestos"
+      ],
+      "characteristics": [
+        "Lenguaje accesible",
+        "Menor nivel de abstracción",
+        "Ejemplos funcionales",
+        "Atractivo sobrio, sin lirismo"
+      ],
+      "examples": [
+        "Una idea funciona cuando cuenta con una estructura clara.",
+        "La claridad también genera valor."
+      ]
+    },
+    
+    "interaction": {
+      "system_defines": "El marco y las decisiones",
+      "organism_translates": "Esas ideas a contextos más cercanos",
+      "principle": "Ambos operan dentro del mismo sistema, con el mismo método y bajo el mismo criterio"
+    }
+  },
+
+  "fundamental_principles": [
+    {
+      "name": "Claridad funcional",
+      "definition": "La forma del mensaje existe para facilitar la comprensión y la toma de decisiones"
+    },
+    {
+      "name": "Precisión",
+      "definition": "Cada palabra debe ser necesaria y verificable"
+    },
+    {
+      "name": "Simplicidad estructurada",
+      "definition": "Lo complejo se ordena y se explica, no se disfraza"
+    },
+    {
+      "name": "Intención explícita",
+      "definition": "Antes de escribir, se define qué debe entenderse y para qué sirve el texto"
+    }
+  ],
+
+  "vocabulary": {
+    "core_terms": {
+      "Sistema": "Conjunto de elementos interconectados que operan bajo una lógica común",
+      "Arquitectura": "Diseño estructural que ordena decisiones, procesos y resultados",
+      "Crecimiento": "Desarrollo sostenido y medible de un negocio o marca",
+      "WoOS": "Sistema operativo propio que articula estrategia, tecnología, diseño y contenido",
+      "Núcleo": "Fase de entendimiento y diagnóstico",
+      "Espiral": "Fase de diseño y estructuración progresiva",
+      "Elevación": "Fase de ejecución y construcción",
+      "Expansión": "Fase de amplificación sin pérdida de coherencia",
+      "Criterio": "Capacidad de decidir con base en lógica, datos y contexto",
+      "Ejecución": "Conversión de estrategia en acción concreta"
+    },
+    
+    "power_words": [
+      "Arquitectura",
+      "Sistema",
+      "Estructura",
+      "Orquestación",
+      "Diseño sistémico",
+      "Dirección",
+      "Implementación",
+      "Optimización",
+      "Escala",
+      "Resultado"
+    ],
+    
+    "synonyms_alternates": {
+      "Crecimiento": ["expansión", "desarrollo", "escala"],
+      "Estrategia": ["arquitectura", "enfoque", "dirección"],
+      "Ejecución": ["implementación", "despliegue", "operación"],
+      "Impacto": ["resultado", "efecto", "valor generado"]
+    },
+    
+    "allowed_language": {
+      "words": ["Comprensible", "Claro", "Directo", "Accesible", "Funcional"],
+      "usage_note": "Se utiliza de forma descriptiva, no emocional"
+    },
+    
+    "forbidden_language": [
+      "Innovador",
+      "Disruptivo",
+      "Soluciones",
+      "360",
+      "Experiencia única",
+      "Líderes en...",
+      "Creatividad sin límites"
+    ],
+    
+    "banned_anthropomorphism": {
+      "description": "Todo antropomorfismo como fin",
+      "examples": ["sentir", "respirar", "latir", "habitar", "emocionar (como fin)"]
+    }
+  },
+
+  "ascending_system": {
+    "description": "El sistema operativo de crecimiento de Workalógico se compone de cuatro fases",
+    "phases": [
+      {
+        "name": "NÚCLEO / CORE",
+        "purpose": "Entendimiento, diagnóstico y claridad",
+        "result": "Claridad"
+      },
+      {
+        "name": "ESPIRAL / SPIRAL",
+        "purpose": "Diseño de arquitectura estratégica, narrativa y modelo",
+        "result": "Hoja de ruta viva"
+      },
+      {
+        "name": "ELEVACIÓN / LIFT",
+        "purpose": "Ejecución: tecnología, producto, diseño y contenido",
+        "result": "Producto tangible"
+      },
+      {
+        "name": "EXPANSIÓN / EXPANSION",
+        "purpose": "Amplificación sin pérdida de coherencia",
+        "result": "Escala sostenida"
+      }
+    ],
+    "note": "Cada pieza de comunicación debe poder relacionarse con alguna de estas fases"
+  },
+
+  "applications_by_context": [
+    {
+      "context": "Pitch decks",
+      "mode": "System Mode",
+      "priority": "Precisión y estructura"
+    },
+    {
+      "context": "Cotizaciones",
+      "mode": "System Mode",
+      "priority": "Claridad y ordenamiento de decisiones"
+    },
+    {
+      "context": "Web institucional",
+      "mode": "System Mode",
+      "priority": "Demostración de capacidad"
+    },
+    {
+      "context": "Storytelling",
+      "mode": "Organism Mode",
+      "priority": "Comprensión accesible sin perder rigor"
+    },
+    {
+      "context": "Social media",
+      "mode": "Organism Mode",
+      "priority": "Atractivo sobrio y ejemplos funcionales"
+    }
+  ],
+
+  "correction_and_revision": {
+    "pre_approval_checklist": [
+      {
+        "question": "¿Es claro?",
+        "description": "El mensaje facilita la comprensión"
+      },
+      {
+        "question": "¿Es preciso?",
+        "description": "Cada palabra es necesaria y verificable"
+      },
+      {
+        "question": "¿Está en el modo correcto?",
+        "description": "System o Organism según contexto"
+      },
+      {
+        "question": "¿Aporta criterio?",
+        "description": "Facilita la toma de decisiones"
+      },
+      {
+        "question": "¿Evita adornos innecesarios?",
+        "description": "Sin antropomorfismos ni lenguaje aspiracional vacío"
+      }
+    ],
+    "action": "Si no cumple, se reescribe"
+  },
+
+  "ai_protocol": {
+    "description": "La IA es una herramienta de apoyo. Debe respetar el playbook y el manual, usar léxico Wo y priorizar claridad. El criterio final siempre es humano.",
+    "master_rules": [
+      "Elegir modo correcto (System o Organism)",
+      "Mantener sintaxis Wo",
+      "Usar vocabulario oficial",
+      "Evitar palabras prohibidas y antropomorfismos",
+      "Aplicar el Principio Editorial de Flujo Humano",
+      "Cada frase debe aportar progresión",
+      "Evitar autocorrección constante",
+      "Construir claridad por capas",
+      "Sugerir contraste, no subrayarlo",
+      "Reescribir si no cumple checklist"
+    ],
+    "master_prompt": "Escribe en Voz Wo, siguiendo el Principio Editorial de Flujo Humano de Pensamiento y el Modelo Dual (System/Organism). Prioriza claridad funcional, precisión y simplicidad estructurada. El pensamiento debe avanzar sin autocorrecciones defensivas. Cada palabra debe ser una decisión consciente que aporte al crecimiento. Usa el vocabulario oficial y evita lenguaje prohibido y antropomorfismos."
+  },
+
+  "internal_adoption_checklist": {
+    "before_writing": [
+      "Objetivo claro",
+      "Modo correcto",
+      "Fase WoOS identificada"
+    ],
+    "during_writing": [
+      "Progresión real",
+      "Léxico Wo",
+      "Sin antropomorfismo"
+    ],
+    "before_publishing": [
+      "Claridad",
+      "Precisión",
+      "Coherencia Wo"
+    ],
+    "action_if_fails": "Si no cumple, se reescribe"
+  },
+
+  "regulation_scope": {
+    "defines": [
+      "Cómo habla Workalógico",
+      "Cómo escribe Workalógico",
+      "Cómo se estructuran las salidas editoriales",
+      "Cómo se revisa y corrige contenido",
+      "Cómo se alinean lenguaje, estrategia y sistema",
+      "Cómo debe operar cualquier IA dentro del ecosistema Wo"
+    ]
+  },
+
+  "core_principles_summary": [
+    "El lenguaje ordena",
+    "El sistema sostiene",
+    "El criterio dirige",
+    "Si un texto no aporta claridad, criterio o crecimiento, no es Wo"
+  ],
+
+  "closing_statements": {
+    "playbook": "Workalógico comunica para ordenar, decidir y construir. La voz funciona como herramienta. El lenguaje opera como sistema. El criterio marca la diferencia.",
+    "manual": "El lenguaje ordena. El sistema sostiene. El criterio dirige."
+  },
+
+  "document_relationship": {
+    "playbook": "Define el origen, el criterio y la configuración de la voz",
+    "manual": "Define la aplicación, la ejecución y el control de calidad",
+    "conflict_resolution": "Si existe contradicción entre ambos documentos, prevalece el Playbook"
+  }
+}

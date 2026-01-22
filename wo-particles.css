@@ -29,7 +29,7 @@
   height: 100%;
   z-index: 10;
   pointer-events: none;
-  opacity: 0;
+  opacity: 1;
   /* Fluidity overhaul: transición más lenta que slides para efecto desacoplado */
   transition: opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -60,15 +60,10 @@
    COMPORTAMIENTO DEL GRID BACKGROUND
    ───────────────────────────────────────── */
 
-/* Grid base más sutil */
+/* Grid base - oculto por defecto cuando partículas están activas globalmente */
 .grid-background {
-  opacity: 0.4;
+  opacity: 0;
   transition: opacity 0.6s ease;
-}
-
-/* Cuando las partículas están activas, ocultar el grid */
-.particles-active .grid-background {
-  opacity: 0 !important;
 }
 
 /* ─────────────────────────────────────────
@@ -96,7 +91,7 @@
    ───────────────────────────────────────── */
 
 /* Gradiente de viñeta sutil sobre las partículas */
-.particles-active::after {
+body::after {
   content: '';
   position: fixed;
   top: 0;
@@ -110,7 +105,7 @@
     rgba(15, 15, 26, 0.3) 100%
   );
   pointer-events: none;
-  z-index: 11;
+  z-index: 5;
   opacity: 1;
   transition: opacity 0.8s ease;
 }
@@ -130,7 +125,7 @@
    ───────────────────────────────────────── */
 @media print {
   #tsparticles,
-  .particles-active::after {
+  body::after {
     display: none !important;
   }
   

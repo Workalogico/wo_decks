@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Workalógico - Propuesta Estratégica Digital para Miramar Hills">
+  <meta name="author" content="Workalógico">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:title" content="Workalógico | Miramar Hills - Ecosistema Digital">
+  <meta property="og:description" content="Construcción y operación de un ecosistema digital completo para el desarrollo inmobiliario Miramar Hills.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_MX">
+  
+  <title>Workalógico | Miramar Hills - Ecosistema Digital</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../LOGOS/teseracto yellow@3x.png">
+  
+  <!-- Preload critical assets -->
+  <link rel="preload" href="../wo-design-system.css" as="style">
+  <link rel="preload" href="../LOGOS/SVG/WoLogos_2026-03.svg" as="image">
+  
+  <!-- Reveal.js CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/theme/black.css">
+  
+  <!-- Google Fonts with font-display swap -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Workalógico Design System -->
+  <link rel="stylesheet" href="../wo-design-system.css">
+  
+  <!-- Workalógico Particles System -->
+  <link rel="stylesheet" href="../wo-particles.css">
+  
+  <!-- Workalógico Teseracto Components -->
+  <link rel="stylesheet" href="../wo-components/wo-teseracto.css">
+  <link rel="stylesheet" href="../wo-components/wo-teseracto-4d.css">
+  
+  <!-- Custom Styles for Miramar Hills -->
+  <style>
+    /* ═══════════════════════════════════════════════════════════════
+       TESERACTO MINIATURA - Esquina inferior izquierda (global)
+       ═══════════════════════════════════════════════════════════════ */
+    .wo-teseracto-watermark {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 42px;
+      height: 42px;
+      z-index: 100;
+      opacity: 0.7;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+    }
+    
+    .wo-teseracto-watermark:hover {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    
+    /* Ocultar en portada (tiene su propio teseracto grande) */
+    .reveal .slides section:first-child ~ .wo-teseracto-watermark {
+      display: block;
+    }
+    
+    /* ═══════════════════════════════════════════════════════════════
+       PORTADA v3 - Layout Asimétrico Equilibrado
+       Iteración: Stats elegantes, logo separado, balance visual óptimo
+       ═══════════════════════════════════════════════════════════════ */
+    .wo-cover--split {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 2.5em;
+      align-items: center;
+      justify-items: center;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1.5em;
+      min-height: 480px;
+    }
+    
+    /* ─────────────────────────────────────────────────────────────────
+       ZONA IZQUIERDA v3: Marca Visual (Teseracto + Identidad)
+       Iteración: Mejor separación teseracto/logo, proporciones refinadas
+       ───────────────────────────────────────────────────────────────── */
+    .wo-cover__brand-zone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 0;
+      gap: 0;
+    }
+    
+    /* Contenedor del Teseracto - Tamaño controlado */
+    .wo-cover__teseracto-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Glow ambiental - Sutil y elegante */
+    .wo-cover__teseracto-glow {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(
+        circle at center,
+        rgba(255, 203, 0, 0.06) 0%,
+        rgba(255, 203, 0, 0.02) 50%,
+        transparent 70%
+      );
+      border-radius: 50%;
+      animation: teseractoAmbientGlow 6s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    @keyframes teseractoAmbientGlow {
+      0%, 100% { 
+        transform: scale(0.98); 
+        opacity: 0.4;
+      }
+      50% { 
+        transform: scale(1.02); 
+        opacity: 0.8;
+      }
+    }
+    
+    .wo-cover__teseracto-hero {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      z-index: 2;
+    }
+    
+    /* Firma de marca integrada en zona de contenido - centrada */
+    .wo-cover__signature {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5em;
+      margin-top: 1.5em;
+      padding-top: 1em;
+      border-top: 1px solid rgba(255, 203, 0, 0.15);
+      width: 100%;
+      max-width: 200px;
+    }
+    
+    .wo-cover__signature-logo {
+      height: 44px;
+      width: auto;
+      opacity: 0.85;
+    }
+    
+    .wo-cover__signature-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.1em;
+    }
+    
+    .wo-cover__signature-tagline {
+      font-size: 0.36em;
+      color: var(--wo-accent-primary);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    
+    .wo-cover__signature-date {
+      font-size: 0.32em;
+      color: var(--wo-accent-primary);
+      letter-spacing: 0.05em;
+      opacity: 0.7;
+    }
+    
+    /* ─────────────────────────────────────────────────────────────────
+       ZONA DERECHA v3: Contenido Principal con Jerarquía Clara
+       ───────────────────────────────────────────────────────────────── */
+    .wo-cover__content-zone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-right: 0;
+      height: 100%;
+    }
+    
+    .wo-cover__content-zone .wo-badge {
+      margin-bottom: 0.8em;
+      font-size: 0.38em;
+    }
+    
+    /* Logo del cliente - protagonista visual con bruma */
+    .wo-cover__client-logo {
+      max-width: 340px;
+      width: 100%;
+      height: auto;
+      margin-bottom: 0.4em;
+      filter: brightness(1.15) drop-shadow(0 0 30px rgba(255, 255, 255, 0.25)) drop-shadow(0 0 60px rgba(200, 220, 255, 0.15));
+    }
+    
+    .wo-cover__content-zone .wo-cover__title {
+      font-size: 1.7em;
+      line-height: 1.1;
+      margin-bottom: 0.3em;
+      text-align: center;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    
+    /* Línea divisoria dorada */
+    .wo-cover__divider {
+      width: 60px;
+      height: 4px;
+      background: var(--wo-accent-primary);
+      margin: 0.7em 0 0.7em 0;
+      border-radius: 2px;
+      box-shadow: 0 0 8px rgba(var(--wo-accent-primary-rgb), 0.5);
+    }
+    
+    .wo-cover__content-zone .wo-cover__subtitle {
+      font-size: 0.62em;
+      margin-bottom: 1.3em;
+      text-align: center;
+      max-width: 360px;
+      color: var(--wo-text-secondary);
+      line-height: 1.5;
+    }
+    
+    /* ─────────────────────────────────────────────────────────────────
+       STATS v3 - Diseño inline elegante (sin fondo pesado)
+       ───────────────────────────────────────────────────────────────── */
+    .wo-cover__content-zone .wo-stats-row {
+      display: flex;
+      justify-content: flex-start;
+      align-items: baseline;
+      gap: 2em;
+      margin-bottom: 1.8em;
+      padding: 0;
+    }
+    
+    .wo-cover__content-zone .wo-stat {
+      text-align: left;
+      min-width: auto;
+      padding: 0;
+      position: relative;
+    }
+    
+    /* Separador punto entre stats */
+    .wo-cover__content-zone .wo-stat:not(:last-child)::after {
+      content: '•';
+      position: absolute;
+      right: -1.1em;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--wo-accent-primary);
+      opacity: 0.4;
+      font-size: 0.6em;
+    }
+    
+    .wo-cover__content-zone .wo-stat__value {
+      font-size: 1.5em;
+      font-weight: 700;
+      color: var(--wo-accent-primary);
+      line-height: 1;
+      display: block;
+      text-shadow: 0 0 15px rgba(var(--wo-accent-primary-rgb), 0.4);
+    }
+    
+    .wo-cover__content-zone .wo-stat__label {
+      font-size: 0.38em;
+      color: var(--wo-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.3em;
+      font-weight: 500;
+    }
+    
+    
+    /* ═══════════════════════════════════════════════════════════════
+       GEO DEMO - Card con animación de IA Generativa
+       ═══════════════════════════════════════════════════════════════ */
+    .wo-card--geo-demo {
+      display: flex;
+      flex-direction: column;
+      padding: 0.5em !important;
+      min-height: 200px;
+    }
+    
+    .geo-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4em;
+      padding: 0 0.3em;
+    }
+    
+    .geo-card-header h3 {
+      margin: 0;
+      font-size: 0.75em;
+    }
+    
+    .geo-ai-icons {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+    
+    .geo-ai-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      object-fit: contain;
+      opacity: 0.35;
+      transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+      filter: grayscale(0.2);
+    }
+    
+    .geo-ai-icon.active {
+      opacity: 1;
+      transform: scale(1.2);
+      filter: grayscale(0) drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
+    }
+    
+    .geo-demo-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4em;
+      background: rgba(15, 15, 26, 0.6);
+      border-radius: 6px;
+      padding: 0.5em;
+      font-size: 0.55em;
+    }
+    
+    .geo-demo-query {
+      display: flex;
+      align-items: center;
+      gap: 0.4em;
+      padding: 0.4em 0.6em;
+      background: rgba(37, 37, 66, 0.8);
+      border-radius: 4px;
+      border: 1px solid rgba(89, 104, 234, 0.3);
+      min-height: 28px;
+    }
+    
+    .geo-demo-icon {
+      font-size: 0.9em;
+    }
+    
+    .geo-demo-text {
+      flex: 1;
+      color: var(--wo-text);
+      font-family: var(--font-body);
+    }
+    
+    .geo-cursor {
+      color: var(--wo-accent-primary);
+      animation: geoCursorBlink 1s infinite;
+      font-weight: 300;
+    }
+    
+    @keyframes geoCursorBlink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+    
+    .geo-demo-response {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: rgba(37, 37, 66, 0.5);
+      border-radius: 4px;
+      padding: 0.5em;
+      border-left: 2px solid var(--wo-accent-primary);
+      opacity: 0;
+      transform: translateY(5px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    
+    .geo-demo-response.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .geo-response-header {
+      margin-bottom: 0.3em;
+    }
+    
+    .geo-ai-badge {
+      display: inline-block;
+      background: rgba(89, 104, 234, 0.3);
+      color: var(--wo-blue-lab);
+      font-size: 0.7em;
+      padding: 0.15em 0.4em;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    
+    .geo-response-content {
+      flex: 1;
+      color: var(--wo-text-secondary);
+      line-height: 1.4;
+      font-size: 0.95em;
+    }
+    
+    .geo-response-source {
+      display: flex;
+      align-items: center;
+      gap: 0.3em;
+      margin-top: 0.4em;
+      padding-top: 0.3em;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.8em;
+      color: var(--wo-text-muted);
+    }
+    
+    .geo-source-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--wo-success);
+      animation: geoSourcePulse 2s infinite;
+    }
+    
+    @keyframes geoSourcePulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+    
+    .geo-card-footer {
+      font-size: 0.5em !important;
+      color: var(--wo-text-muted) !important;
+      text-align: center;
+      margin: 0.4em 0 0 0 !important;
+    }
+    
+    /* ═══════════════════════════════════════════════════════════════
+       SEO DEMO - Card con simulación de ranking Google
+       ═══════════════════════════════════════════════════════════════ */
+    .wo-card--seo-demo {
+      display: flex;
+      flex-direction: column;
+      padding: 0.5em !important;
+    }
+    
+    .seo-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4em;
+    }
+    
+    .seo-card-header h3 {
+      margin: 0;
+      font-size: 0.75em;
+    }
+    
+    .seo-google-icon {
+      opacity: 0.8;
+    }
+    
+    .seo-demo-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3em;
+      background: rgba(15, 15, 26, 0.6);
+      border-radius: 6px;
+      padding: 0.4em;
+    }
+    
+    .seo-search-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.3em;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 15px;
+      padding: 0.25em 0.5em;
+      font-size: 0.6em;
+    }
+    
+    .seo-search-icon {
+      font-size: 0.8em;
+    }
+    
+    .seo-search-text {
+      color: var(--wo-text-secondary);
+    }
+    
+    .seo-results {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2em;
+    }
+    
+    .seo-result {
+      display: flex;
+      align-items: center;
+      gap: 0.4em;
+      padding: 0.25em 0.4em;
+      border-radius: 4px;
+      font-size: 0.55em;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.4s ease;
+    }
+    
+    .seo-result.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .seo-result--highlight {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    
+    .seo-result--highlight .seo-result-position {
+      color: var(--wo-success);
+      font-weight: 700;
+    }
+    
+    .seo-result--highlight .seo-result-url {
+      color: var(--wo-success);
+      font-weight: 600;
+    }
+    
+    .seo-result-position {
+      color: var(--wo-text-muted);
+      font-weight: 600;
+      min-width: 20px;
+    }
+    
+    .seo-result-url {
+      color: var(--wo-text-secondary);
+    }
+    
+    .seo-card-footer {
+      font-size: 0.5em !important;
+      color: var(--wo-text-muted) !important;
+      text-align: center;
+      margin: 0.4em 0 0 0 !important;
+    }
+    
+    /* ═══════════════════════════════════════════════════════════════
+       SEM DEMO - Card con métricas de campaña
+       ═══════════════════════════════════════════════════════════════ */
+    .wo-card--sem-demo {
+      display: flex;
+      flex-direction: column;
+      padding: 0.5em !important;
+    }
+    
+    .sem-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4em;
+    }
+    
+    .sem-card-header h3 {
+      margin: 0;
+      font-size: 0.75em;
+    }
+    
+    .sem-platforms {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+    
+    .sem-platform {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      object-fit: contain;
+      opacity: 0.85;
+    }
+    
+    .sem-demo-container {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto auto;
+      gap: 0.3em;
+      background: rgba(15, 15, 26, 0.6);
+      border-radius: 6px;
+      padding: 0.5em;
+      align-items: center;
+    }
+    
+    .sem-metric {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.4s ease;
+    }
+    
+    .sem-metric.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    .sem-metric-value {
+      font-family: var(--font-heading);
+      font-size: 0.85em;
+      font-weight: 700;
+      color: var(--wo-accent-primary);
+    }
+    
+    .sem-metric-label {
+      font-size: 0.45em;
+      color: var(--wo-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .sem-progress-bar {
+      grid-column: 1 / -1;
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 0.2em;
+    }
+    
+    .sem-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--wo-accent-primary), var(--wo-success));
+      border-radius: 2px;
+      transition: width 1.5s ease-out;
+    }
+    
+    .sem-progress-label {
+      grid-column: 1 / -1;
+      font-size: 0.45em;
+      color: var(--wo-text-muted);
+      text-align: center;
+    }
+    
+    .sem-card-footer {
+      font-size: 0.5em !important;
+      color: var(--wo-text-muted) !important;
+      text-align: center;
+      margin: 0.4em 0 0 0 !important;
+    }
+    
+    /* ═══════════════════════════════════════════════════════════════
+       PRICING CARDS - Animaciones Avanzadas de Inversión
+       ═══════════════════════════════════════════════════════════════ */
+    
+    /* Contenedor de pricing con stagger unificado */
+    .wo-pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2em;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    /* Cards de pricing base */
+    .wo-card--pricing {
+      position: relative;
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                  box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      transform-origin: center bottom;
+    }
+    
+    /* Hover effect - Scale sutil con elevation */
+    .wo-card--pricing:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 30px rgba(var(--wo-accent-primary-rgb), 0.15);
+    }
+    
+    /* Card destacada - Elevation permanente */
+    .wo-card--pricing.wo-card--highlight {
+      transform: scale(1.05);
+      z-index: 2;
+    }
+    
+    .wo-card--pricing.wo-card--highlight:hover {
+      transform: translateY(-8px) scale(1.07);
+    }
+    
+    /* Badge RECOMENDADO */
+    .wo-pricing-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--wo-accent-primary);
+      color: var(--wo-dark);
+      font-size: 0.4em;
+      font-weight: 700;
+      padding: 0.3em 0.8em;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      box-shadow: 0 4px 15px rgba(var(--wo-accent-primary-rgb), 0.4);
+      animation: pricingBadgePulse 2s ease-in-out infinite;
+      z-index: 3;
+    }
+    
+    @keyframes pricingBadgePulse {
+      0%, 100% { 
+        box-shadow: 0 4px 15px rgba(var(--wo-accent-primary-rgb), 0.4);
+        transform: translateX(-50%) scale(1);
+      }
+      50% { 
+        box-shadow: 0 4px 25px rgba(var(--wo-accent-primary-rgb), 0.6);
+        transform: translateX(-50%) scale(1.05);
+      }
+    }
+    
+    /* Precio principal con animación de contador */
+    .wo-card--pricing .card-price {
+      font-family: var(--font-heading);
+      font-size: 1.4em;
+      font-weight: 700;
+      color: var(--wo-accent-primary);
+      margin: 0.3em 0;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+    }
+    
+    .wo-card--pricing:hover .card-price {
+      transform: scale(1.05);
+      text-shadow: 0 0 20px rgba(var(--wo-accent-primary-rgb), 0.5);
+    }
+    
+    /* Descuento con highlight animado */
+    .wo-pricing-discount {
+      display: inline-block;
+      background: linear-gradient(135deg, 
+        rgba(16, 185, 129, 0.2) 0%, 
+        rgba(16, 185, 129, 0.1) 100%);
+      color: var(--wo-success);
+      font-weight: 600;
+      padding: 0.2em 0.5em;
+      border-radius: 4px;
+      font-size: 0.9em;
+      opacity: 0;
+      transform: translateY(5px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    
+    .wo-pricing-discount.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .wo-pricing-discount::before {
+      content: '↓ ';
+      font-size: 0.9em;
+    }
+    
+    /* Precio tachado (base) para comparativa */
+    .wo-pricing-base {
+      font-size: 0.7em;
+      color: var(--wo-text-muted);
+      text-decoration: line-through;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      margin-bottom: 0.2em;
+    }
+    
+    .wo-pricing-base.visible {
+      opacity: 0.7;
+    }
+    
+    /* Tier label */
+    .wo-card--pricing .card-tier {
+      font-size: 0.55em;
+      color: var(--wo-text-secondary);
+      margin-bottom: 0.3em;
+    }
+    
+    /* Time/terms */
+    .wo-card--pricing .card-time {
+      font-size: 0.5em;
+      color: var(--wo-text-muted);
+      margin-top: 0.3em;
+    }
+    
+    /* Animación de entrada escalonada para pricing */
+    .wo-card--pricing {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    
+    .wo-card--pricing.animate-in {
+      animation: pricingCardEnter 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    }
+    
+    .wo-card--pricing.wo-card--highlight.animate-in {
+      animation: pricingCardEnterHighlight 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    }
+    
+    @keyframes pricingCardEnter {
+      0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    @keyframes pricingCardEnterHighlight {
+      0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+      }
+      60% {
+        opacity: 1;
+        transform: translateY(-5px) scale(1.07);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1.05);
+      }
+    }
+    
+    /* Savings highlight animation */
+    .wo-pricing-savings {
+      display: block;
+      font-size: 0.45em;
+      color: var(--wo-success);
+      margin-top: 0.5em;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    
+    .wo-pricing-savings.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    .wo-pricing-savings strong {
+      color: var(--wo-accent-primary);
+    }
+  </style>
+</head>
+<body data-wo-theme="yellow">
+  <!-- tsParticles Container -->
+  <div id="tsparticles"></div>
+  
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           SLIDE 1: PORTADA - Layout Asimétrico Profesional
+           Diseño: Split con Teseracto 4D a la izquierda, contenido a la derecha
+           ═══════════════════════════════════════════════════════════════ -->
+      <section data-background-gradient="radial-gradient(ellipse at 30% 50%, #252542 0%, #0F0F1A 70%)" data-particles="true" data-state="cover-slide" aria-label="Portada">
+        
+        <div class="wo-cover wo-cover--split">
+          
+          <!-- ZONA IZQUIERDA: Teseracto 4D Protagónico -->
+          <div class="wo-cover__brand-zone">
+            <div class="wo-cover__teseracto-container">
+              <!-- Glow ambiental -->
+              <div class="wo-cover__teseracto-glow" aria-hidden="true"></div>
+              <!-- Teseracto 4D Protagónico -->
+              <div class="wo-cover__teseracto-hero" id="cover-teseracto-4d" aria-hidden="true"></div>
+            </div>
+          </div>
+          
+          <!-- ZONA DERECHA: Contenido Principal -->
+          <div class="wo-cover__content-zone">
+            <div class="wo-badge" role="text">Proyecto Estratégico</div>
+            
+            <!-- Logo oficial del cliente -->
+            <img data-src="../LOGOS/external/LOGO_MIRAMAR-HILLS_COLOR.png" 
+                 alt="Miramar Hills - The Residences" 
+                 class="wo-cover__client-logo"
+                 loading="lazy">
+            
+            <div class="wo-cover__divider" aria-hidden="true"></div>
+            
+            <p class="wo-cover__subtitle">Ecosistema digital completo que convierte visitas en oportunidades comerciales</p>
+            
+            <!-- Firma de marca integrada -->
+            <div class="wo-cover__signature">
+              <img data-src="../LOGOS/SVG/WoLogos_2026-01.svg" alt="Workalógico" class="wo-cover__signature-logo" loading="lazy">
+              <div class="wo-cover__signature-text">
+                <span class="wo-cover__signature-tagline">Growth Studio</span>
+                <span class="wo-cover__signature-date">Enero 2026</span>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+        <div class="grid-background" role="presentation" aria-hidden="true"></div>
+        
+        <aside class="notes">
+          DISEÑO DE PORTADA:
+          Layout asimétrico profesional con dos zonas visuales.
+          
+          Zona izquierda: Marca visual (teseracto 4D + logo)
+          - El teseracto representa la arquitectura multidimensional
+          - Glow ambiental crea profundidad y atmósfera premium
+          
+          Zona derecha: Contenido jerárquico
+          - Badge → Título → Divider → Subtítulo → Stats → Fecha
+          - Alineación izquierda para lectura natural
+          
+          Objetivo: Ecosistema digital que convierte visitas en oportunidades.
+          Duración: 12 meses de acompañamiento integral.
+        </aside>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           SLIDE 2: EL PROYECTO
+           ═══════════════════════════════════════════════════════════════ -->
+      <section data-background-color="#0F0F1A" aria-label="El proyecto">
+        <h2>El <span class="accent">Proyecto</span></h2>
+        <p style="text-align: center; color: var(--wo-text-secondary); font-size: 0.7em; max-width: 85%; margin: 0 auto 1em;">
+          Acompañamos a Miramar Hills durante un año en la construcción y operación de un ecosistema digital completo.
+        </p>
+        <div class="wo-grid wo-grid--2" role="list">
+          <div class="wo-card fragment fade-up" data-fragment-index="1" role="listitem">
+            <div class="card-number" aria-hidden="true">01</div>
+            <h3>Portal Web</h3>
+            <p>Arquitectura de información clara, experiencia optimizada y CMS para actualizaciones internas.</p>
+          </div>
+          <div class="wo-card fragment fade-up" data-fragment-index="2" role="listitem">
+            <div class="card-number" aria-hidden="true">02</div>
+            <h3>Posicionamiento GEO+SEO+SEM</h3>
+            <p>Estrategia de contenido para motores tradicionales e IA generativa.</p>
+          </div>
+          <div class="wo-card fragment fade-up" data-fragment-index="3" role="listitem">
+            <div class="card-number" aria-hidden="true">03</div>
+            <h3>Publicidad Digital</h3>
+            <p>Campañas segmentadas en Google Ads y Meta Ads con optimización continua.</p>
+          </div>
+          <div class="wo-card fragment fade-up" data-fragment-index="4" role="listitem">
+            <div class="card-number" aria-hidden="true">04</div>
+            <h3>Mantenimiento 12 meses</h3>
+            <p>Actualizaciones técnicas, respaldos automáticos y soporte especializado.</p>
+          </div>
+        </div>
+        <div class="grid-background" role="presentation" aria-hidden="true"></div>
+        
+        <aside class="notes">
+          Cuatro pilares que operan como sistema integrado:
+          - Portal Web: Centro de conversión digital
+          - Posicionamiento: Autoridad digital sostenida
+          - Publicidad: Generación de leads calificados
+          - Mantenimiento: Operación continua y evolución
+          
+          Resultado: Sistema de marketing inmobiliario completo y operativo.
+        </aside>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           SLIDE 3: SECCIÓN - SERVICIOS
+           ═══════════════════════════════════════════════════════════════ -->
+      <section data-background-gradient="linear-gradient(135deg, #0F0F1A 0%, #252542 100%)" data-particles="true" aria-label="Servicios integrados">
+        <h1 class="wo-section__title">Arquitectura de <span class="accent">Servicios</span></h1>
+        <p class="wo-section__subtitle">Cada entregable traduce la propuesta de valor en experiencia digital coherente.</p>
+        
+        <aside class="notes">
+          Transición a detalle de servicios.
+          Enfatizar: No son servicios aislados, operan como sistema.
+          Lenguaje visual y verbal alineado con brand foundations.
+        </aside>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           SLIDE 4: PORTAL WEB CON CMS
+           ═══════════════════════════════════════════════════════════════ -->
+      <section data-background-color="#0F0F1A" aria-label="Portal Web">
+        <h2>Portal Web con <span class="accent">CMS</span></h2>
+        <div class="wo-columns">
+          <div class="wo-column fragment fade-up" data-fragment-index="1">
+            <h3 style="color: var(--wo-accent-primary);">Centro Inteligente</h3>
+            <ul style="font-size: 0.6em; text-align: left;">
+              <li>Diseño que convierte visitantes en clientes</li>
+              <li>Experiencias claras, eficientes y memorables</li>
+              <li>Integración natural con estrategias de posicionamiento</li>
+            </ul>
+          </div>
+          <div class="wo-column fragment fade-up" data-fragment-index="2">
+            <h3 style="color: var(--wo-accent-primary);">Gestión Flexible</h3>
+            <ul style="font-size: 0.6em; text-align: left;">
+              <li>Sistema de contenidos actualizable por el equipo interno</li>
+              <li>Información, ofertas y comunicaciones con agilidad</li>
+              <li>Marca siempre vigente y competitiva</li>
+            </ul>
+          </div>
+        </div>
+        <div class="wo-quote fragment fade-up" data-fragment-index="3">
+          <p>"Más que una página web: una herramienta viva que analiza, aprende y mejora."</p>
+        </div>
+        <div class="grid-background" role="presentation" aria-hidden="true"></div>
+        
+        <aside class="notes">
+          Portal Web:
+          - No es vitrina estática, es centro de operación digital
+          - CMS permite autonomía del cliente para actualizaciones
+          - Diseñado para conversión, no solo información
+          - Ecosistema coherente que guía al usuario hacia la acción
+        </aside>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           SLIDE 5: INTELIGENCIA DIGITAL GEO+SEO+SEM
+           ═══════════════════════════════════════════════════════════════ -->
+      <section data-background-color="#0F0F1A" data-state="geo-demo-slide" aria-label="Posicionamiento">
+        <h2>Inteligencia Digital <span class="accent">GEO+SEO+SEM</span></h2>
+        <div class="wo-grid wo-grid--3" role="list" style="align-items: stretch;">
+          
+          <!-- GEO Card con Demo Interactivo -->
+          <div class="wo-card wo-card--geo-demo fragment zoom-in" data-fragment-index="1" role="listitem">
+            <div class="geo-card-header">
+              <h3>GEO</h3>
+              <div class="geo-ai-icons">
+                <img src="../LOGOS/external/chatgpt-logo-transparent-background-free-png.webp" class="geo-ai-icon" title="ChatGPT" alt="ChatGPT">
+                <img src="../LOGOS/external/perplexity-ai-icon.webp" class="geo-ai-icon" title="Perplexity" alt="Perplexity">
+                <img src="../LOGOS/external/gemini-icon-on-a-transparent-background-free-png.webp" class="geo-ai-icon" title="Gemini" alt="Gemini">
+                <img src="../LOGOS/external/claude-ai-icon-65aa.png" class="geo-ai-icon" title="Claude" alt="Claude">
+                <img src="../LOGOS/external/grok-logo-png_seeklogo-613403.png" class="geo-ai-icon" title="Grok" alt="Grok">
+              </div>
+            </div>
+            
+            <!-- Mini Demo de IA Generativa -->
+            <div class="geo-demo-container">
+              <div class="geo-demo-query">
+                <span class="geo-demo-icon">🔍</span>
+                <span class="geo-demo-text" id="geo-query-text"></span>
+                <span class="geo-cursor">|</span>
+              </div>
+              <div class="geo-demo-response" id="geo-response">
+                <div class="geo-response-header">
+                  <span class="geo-ai-badge">IA Generativa</span>
+                </div>
+                <div class="geo-response-content" id="geo-response-text"></div>
+                <div class="geo-response-source">
+                  <span class="geo-source-dot"></span>
+                  <span>miramar-hills.com</span>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+          <!-- SEO Card con Demo de Ranking -->
+          <div class="wo-card wo-card--seo-demo fragment zoom-in" data-fragment-index="2" role="listitem">
+            <div class="seo-card-header">
+              <h3>SEO</h3>
+              <div class="seo-google-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20">
+                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+              </div>
+            </div>
+            
+            <!-- Mini Demo de Ranking -->
+            <div class="seo-demo-container">
+              <div class="seo-search-bar">
+                <span class="seo-search-icon">🔍</span>
+                <span class="seo-search-text">desarrollos costa premium</span>
+              </div>
+              <div class="seo-results">
+                <div class="seo-result seo-result--highlight" id="seo-result-1">
+                  <span class="seo-result-position">#1</span>
+                  <span class="seo-result-url">miramar-hills.com</span>
+                </div>
+                <div class="seo-result" id="seo-result-2">
+                  <span class="seo-result-position">#2</span>
+                  <span class="seo-result-url">competidor-a.com</span>
+                </div>
+                <div class="seo-result" id="seo-result-3">
+                  <span class="seo-result-position">#3</span>
+                  <span class="seo-result-url">competidor-b.com</span>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+          <!-- SEM Card con Demo de Métricas -->
+          <div class="wo-card wo-card--sem-demo fragment zoom-in" data-fragment-index="3" role="listitem">
+            <div class="sem-card-header">
+              <h3>SEM</h3>
+              <div class="sem-platforms">
+                <img src="../LOGOS/external/logo-google-ads-png.webp" class="sem-platform" title="Google Ads" alt="Google Ads">
+                <img src="../LOGOS/external/meta_PNG5.png" class="sem-platform" title="Meta Ads" alt="Meta Ads">
+              </div>
+            </div>
+            
+            <!-- Mini Demo de Métricas -->
+            <div class="sem-demo-container">
+              <div class="sem-metric" id="sem-metric-clicks">
+                <span class="sem-metric-value">0</span>
+                <span class="sem-metric-label">Clics</span>
+              </div>
+              <div class="sem-metric" id="sem-metric-ctr">
+                <span class="sem-metric-value">0%</span>
+                <span class="sem-metric-label">CTR</span>
+              </div>
+              <div class="sem-metric" id="sem-metric-conv">
+                <span class="sem-metric-value">0</span>
+                <span class="sem-metric-label">Leads</span>
+              </div>
+              <div class="sem-progress-bar">
+                <div class="sem-progress-fill" id="sem-progress"></div>
+              </div>
+              <span class="sem-progress-label">Presupuesto optimizado</span>
+            </div>
+            
+          </div>
+        </div>
+        <p class="fragment fade-up" data-fragment-index="4" style="text-align: center; font-size: 0.6em; color: var(--wo-text-secondary); margin-top: 1em;">
+          Tecnología y criterio humano trabajando juntos para que la marca destaque con inteligencia.
+        </p>
+        <div class="grid-background" role="presentation" aria-hidden="true"></div>
+        
+        <aside class="notes">
+          Metodología GEO+SEO+SEM:
+          - GEO: Preparación para era de búsquedas con IA (ChatGPT, Perplexity, Gemini)
+          - SEO: Base orgánica que reduce dependencia de pauta
+          - SEM: Aceleración con inversión inteligente
+          
+          Diferenciador: Contenido útil, original y humano (no keyword stuffing).
+          
+          DEMO: La animación muestra cómo una pregunta a IA generativa
+          devuelve información de Miramar Hills como fuente confiable.
+        </aside>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           SLIDE 6: PUBLICIDAD EN META Y GOOGLE
+           ═══════════════════════════════════════════════════════════════ -->
+      <section data-background-color="#0F0F1A" aria-label="Publicidad Digital">
+        <h2>Publicidad en <span class="accent">Meta y Google</span></h2>
+        <div class="wo-metrics-row" role="list" aria-label="Métricas clave">
+          <div class="wo-metric fragment zoom-in" data-fragment-index="1" role="listitem">
+            <div class="wo-metric__value">Google</div>
+            <div class="wo-metric__label">Búsquedas con intención<br>de compra activa</div>
+          </div>
+          <div class="wo-metric fragment zoom-in" data-fragment-index="2" role="listitem">
+            <div class="wo-metric__value">Meta</div>
+            <div class="wo-metric__label">Segmentación precisa<br>por comportamiento</div>
+          </div>
+        </div>
+        <ul class="wo-steps" role="list" style="margin-top: 1em;">
+          <li class="fragment fade-up" data-fragment-index="3" role="listitem"><strong>Planeación:</strong> Estrategia, segmentaciones y creativos optimizados.</li>
+          <li class="fragment fade-up" data-fragment-index="4" role="listitem"><strong>Ejecución:</strong> Pruebas continuas y seguimiento diario.</li>
+          <li class="fragment fade-up" data-fragment-index="5" role="listitem"><strong>Optimización:</strong> Cada peso invertido con impacto medible y rentable.</li>
+        </ul>
+        <div class="grid-background" role="presentation" aria-hidden="true"></div>
+        
+        <aside class="notes">
+          Gestión de campañas:
+          - Google Ads: Captura demanda existente (búsquedas activas)
+          - Meta Ads: Genera demanda (awareness + consideración)
+          - TikTok: Opcional según perfil de audiencia
+          
+          Enfoque: Prospectos calificados, no métricas vanidad.
+          Sistema publicitario vivo, adaptable a oportunidades del mercado.
+        </aside>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           SLIDE 7: MANTENIMIENTO WEB
+           ═══════════════════════════════════════════════════════════════ -->
+      <section data-background-color="#0F0F1A" aria-label="Mantenimiento">
+        <h2>Mantenimiento <span class="accent">Web</span></h2>
+        <p style="text-align: center; color: var(--wo-text-secondary); font-size: 0.65em; max-width: 80%; margin: 0 auto 1em;">
+          12 meses de operación continua para mantener el portal actualizado y optimizado.
+        </p>
+        <div class="wo-grid wo-grid--4" role="list">
+          <div class="wo-card fragment zoom-in" role="listitem">
+            <h3>Rendimiento</h3>
+            <p>Velocidad y optimización constante.</p>
+          </div>
+          <div class="wo-card fragment zoom-in" role="listitem">
+            <h3>Seguridad</h3>
+            <p>Actualizaciones y protección activa.</p>
+          </div>
+          <div class="wo-card fragment zoom-in" role="listitem">
+            <h3>Landing Pages</h3>
+            <p>Páginas específicas para campañas.</p>
+          </div>
+          <div class="wo-card fragment zoom-in" role="listitem">
+            <h3>Respaldos</h3>
+            <p>Copias automáticas y monitoreo.</p>
+          </div>
+        </div>
+        <div class="wo-quote fragment fade-up">
+          <p>"El sitio no solo se mantiene estable, evoluciona con el negocio."</p>
+        </div>
+        <div class="grid-background" role="presentation" aria-hidden="true"></div>
+        
+        <aside class="notes">
+          Mantenimiento incluido (12 meses):
+          - Actualizaciones técnicas (CMS, plugins, seguridad)
+          - Optimización de rendimiento (Core Web Vitals)
+          - Desarrollo de landing pages para promociones
+          - Respaldos automáticos y monitoreo 24/7
+          - Soporte especializado para incidencias
+          
+          Marco claro y transparente, no costos ocultos.
+        </aside>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           SLIDE 8: DOMINIO Y ALOJAMIENTO
+           ═══════════════════════════════════════════════════════════════ -->
+      <section data-background-color="#0F0F1A" aria-label="Infraestructura">
+        <h2>Dominio y <span class="accent">Alojamiento</span></h2>
+        <div class="wo-grid wo-grid--2" role="list">
+          <div class="wo-card fragment fade-up" data-fragment-index="1" role="listitem">
+            <div class="card-number" aria-hidden="true">01</div>
+            <h3>Alojamiento Premium</h3>
+            <p>Velocidad, seguridad y disponibilidad constante. Monitoreo activo y soporte especializado 24/7.</p>
+          </div>
+          <div class="wo-card fragment fade-up" data-fragment-index="2" role="listitem">
+            <div class="card-number" aria-hidden="true">02</div>
+            <h3>Dominios Estratégicos</h3>
+            <p>Gestión de dominios que fortalecen la identidad digital y facilitan reconocimiento desde el primer clic.</p>
+          </div>
+        </div>
+        <p class="fragment fade-up" data-fragment-index="3" style="text-align: center; font-size: 0.6em; color: var(--wo-text-secondary); margin-top: 1.5em; max-width: 80%; margin-left: auto; margin-right: auto;">
+          Infraestructura sólida que sostiene todas las estrategias digitales y asegura presencia en línea confiable.
+        </p>
+        <div class="grid-background" role="presentation" aria-hidden="true"></div>
+        
+        <aside class="notes">
+          Infraestructura incluida:
+          - Hosting premium (SSD, CDN, SSL)
+          - Uptime garantizado 99.9%
+          - Gestión DNS y dominios
+          - Certificados de seguridad
+          
+          Base técnica para operar con estabilidad y confianza.
+        </aside>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           SLIDE 9: INVERSIÓN - Animaciones Avanzadas
+           ═══════════════════════════════════════════════════════════════ -->
+      <section data-background-gradient="linear-gradient(135deg, #0F0F1A 0%, #252542 100%)" data-state="pricing-slide" aria-label="Inversión">
+        <h2>Inversión <span class="accent">Mensual</span></h2>
+        
+        <div class="wo-pricing-grid" role="list">
+          <!-- Card 1: Iguala Mensual (Base) -->
+          <div class="wo-card wo-card--pricing" role="listitem" data-pricing-index="0">
+            <h3>Iguala Mensual</h3>
+            <p class="card-tier">Pago recurrente</p>
+            <p class="card-price" data-price="19500" data-animate="counter">$19,500</p>
+            <p class="card-time">+IVA / mes</p>
+          </div>
+          
+          <!-- Card 2: Cargo Automático (RECOMENDADO) -->
+          <div class="wo-card wo-card--pricing wo-card--highlight" role="listitem" data-pricing-index="1">
+            <span class="wo-pricing-badge">Recomendado</span>
+            <h3>Cargo Automático</h3>
+            <p class="card-tier">Tarjeta de crédito</p>
+            <p class="wo-pricing-base">$19,500</p>
+            <p class="card-price" data-price="18525" data-animate="counter">$18,525</p>
+            <span class="wo-pricing-discount" data-discount="5">5% descuento</span>
+            <span class="wo-pricing-savings">Ahorro: <strong>$975/mes</strong></span>
+          </div>
+          
+          <!-- Card 3: Pago Anual (Mayor descuento) -->
+          <div class="wo-card wo-card--pricing" role="listitem" data-pricing-index="2">
+            <h3>Pago Anual</h3>
+            <p class="card-tier">Anticipado</p>
+            <p class="wo-pricing-base">$234,000</p>
+            <p class="card-price" data-price="210600" data-animate="counter">$210,600</p>
+            <span class="wo-pricing-discount" data-discount="10">10% descuento</span>
+            <span class="wo-pricing-savings">Equivale a <strong>$17,550/mes</strong></span>
+          </div>
+        </div>
+        
+        <p class="wo-pricing-footer" style="text-align: center; font-size: 0.55em; color: var(--wo-text-muted); margin-top: 1.2em; opacity: 0;">
+          Cotización vigente por 20 días • Incluye IVA en descuentos calculados sobre base
+        </p>
+        
+        <div class="grid-background" role="presentation" aria-hidden="true"></div>
+        
+        <aside class="notes">
+          Opciones de pago:
+          1. Mensual estándar: $19,500 + IVA
+          2. Cargo automático TC: 5% descuento = $18,525 + IVA
+          3. Pago anual anticipado: 10% descuento = $210,600 + IVA total
+          
+          Vigencia: 20 días
+          Forma de pago: Transferencia o tarjeta
+          Banco: Santander - CLABE: 014090655107383518
+          
+          Requiere firma de contrato de prestación de servicios.
+        </aside>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           SLIDE 10: ENTREGABLES RESUMEN
+           ═══════════════════════════════════════════════════════════════ -->
+      <section data-background-color="#0F0F1A" aria-label="Entregables">
+        <h2>Lo que <span class="accent">Recibe</span> Miramar Hills</h2>
+        <div class="wo-grid wo-grid--2" role="list">
+          <div class="wo-card fragment fade-up" role="listitem">
+            <h3>Al Inicio</h3>
+            <ul style="font-size: 0.55em; text-align: left; margin-top: 0.5em;">
+              <li>Portal web diseñado para conversión</li>
+              <li>Configuración de plataformas publicitarias</li>
+              <li>Estrategia GEO+SEO+SEM documentada</li>
+              <li>Infraestructura de hosting y dominios</li>
+            </ul>
+          </div>
+          <div class="wo-card fragment fade-up" role="listitem">
+            <h3>Durante 12 Meses</h3>
+            <ul style="font-size: 0.55em; text-align: left; margin-top: 0.5em;">
+              <li>Gestión continua de campañas</li>
+              <li>Optimización de posicionamiento</li>
+              <li>Mantenimiento técnico y de seguridad</li>
+              <li>Landing pages para promociones</li>
+            </ul>
+          </div>
+        </div>
+        <div class="wo-quote fragment fade-up" style="margin-top: 1em;">
+          <p>"Un sistema de marketing inmobiliario completo: marca digital que inspira confianza y genera leads calificados."</p>
+        </div>
+        <div class="grid-background" role="presentation" aria-hidden="true"></div>
+        
+        <aside class="notes">
+          Resumen de entregables:
+          
+          Entrega inicial:
+          - Sitio web completo con CMS
+          - Cuentas publicitarias configuradas
+          - Estrategia de contenido definida
+          
+          Operación mensual:
+          - Gestión activa de campañas
+          - Reportes de desempeño
+          - Actualizaciones y mejoras continuas
+          
+          Resultado final: Sistema que multiplica resultados de forma sostenida.
+        </aside>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           SLIDE 11: CTA / CIERRE
+           ═══════════════════════════════════════════════════════════════ -->
+      <section data-background-gradient="radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%)" data-particles="true" aria-label="Llamado a la acción">
+        <div class="wo-cta">
+          <h1 class="wo-cta__title">¿Construimos el <span class="accent">ecosistema digital</span>?</h1>
+          <p class="wo-cta__subtitle">Presencia digital que convierte visitas en oportunidades comerciales.</p>
+          <div class="wo-cta__contact">
+            <p><a href="mailto:bo@workalogico.com" style="color: inherit; text-decoration: none;">bo@workalogico.com</a></p>
+            <p><a href="https://www.workalogico.com" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">www.workalogico.com</a></p>
+          </div>
+          <p style="font-size: 0.45em; color: var(--wo-text-muted); margin-top: 1.5em;">
+            Banco: Santander | CLABE: 014090655107383518 | WORKALOGICO SA DE CV
+          </p>
+        </div>
+        <div class="grid-background" role="presentation" aria-hidden="true"></div>
+        
+        <aside class="notes">
+          Cierre:
+          - Confirmar interés y resolver dudas
+          - Próximo paso: Firma de contrato
+          - Inicio de proyecto tras primer pago
+          
+          Datos de contacto:
+          - Email: bo@workalogico.com
+          - Web: www.workalogico.com
+          - Banco: Santander
+          - CLABE: 014090655107383518
+          
+          Factura emitida en 48 horas tras pago.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+  
+  <!-- Teseracto Watermark - Miniatura fija en esquina inferior izquierda -->
+  <div class="wo-teseracto-watermark" id="teseracto-watermark" aria-hidden="true"></div>
+
+  <!-- Reveal.js -->
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/notes/notes.js"></script>
+  
+  <!-- tsParticles + Workalógico Particles System -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+  <script src="../wo-particles.js"></script>
+  
+  <!-- Anime.js (requerido para animaciones) -->
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+  <script src="../wo-anime.js"></script>
+  
+  <!-- Workalógico Teseracto Components -->
+  <script src="../wo-components/wo-teseracto.js"></script>
+  <script src="../wo-components/wo-teseracto-4d.js"></script>
+  
+  <script>
+    // ═══════════════════════════════════════════════════════════════
+    // ESTADO GLOBAL
+    // ═══════════════════════════════════════════════════════════════
+    let coverTeseracto4D = null;
+    let watermarkTeseracto = null;
+    let geoAnimationStarted = false;
+    let seoAnimationStarted = false;
+    let semAnimationStarted = false;
+    let pricingAnimationStarted = false;
+    
+    // ═══════════════════════════════════════════════════════════════
+    // INICIALIZACIÓN DE REVEAL.JS
+    // ═══════════════════════════════════════════════════════════════
+    Reveal.initialize({
+      width: 1280,
+      height: 720,
+      margin: 0.1,
+      minScale: 0.2,
+      maxScale: 1.2,
+      hash: true,
+      center: true,
+      navigationMode: 'default',
+      
+      // Fluidity Overhaul
+      transition: 'slide',
+      transitionSpeed: 'slow',
+      backgroundTransition: 'fade',
+      
+      // Controls
+      slideNumber: 'c/t',
+      showSlideNumber: 'all',
+      progress: true,
+      controls: true,
+      controlsTutorial: false,
+      controlsLayout: 'bottom-right',
+      
+      // Performance
+      viewDistance: 3,
+      mobileViewDistance: 2,
+      touch: true,
+      hideInactiveCursor: true,
+      hideCursorTime: 3000,
+      
+      // Help
+      help: true,
+      showNotes: false,
+      
+      plugins: [RevealNotes]
+    }).then(() => {
+      // #region agent log - H1,H3,H4: Initial CSS layers state
+      (function debugInitialLayers() {
+        const slidesContainer = document.querySelector('.reveal .slides');
+        const tsparticles = document.getElementById('tsparticles');
+        const backgrounds = document.querySelector('.reveal .backgrounds');
+        
+        fetch('http://127.0.0.1:7242/ingest/c7ba30a2-7ce9-428e-85da-e7b6a41b5759',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:init',message:'Initial CSS layers',data:{slidesZIndex:slidesContainer?window.getComputedStyle(slidesContainer).zIndex:'N/A',slidesPosition:slidesContainer?window.getComputedStyle(slidesContainer).position:'N/A',particlesZIndex:tsparticles?window.getComputedStyle(tsparticles).zIndex:'N/A',backgroundsZIndex:backgrounds?window.getComputedStyle(backgrounds).zIndex:'N/A'},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H1-H3-H4'})}).catch(()=>{});
+      })();
+      // #endregion
+      
+      // Inicializar partículas
+      setupWoParticles('enterprise');
+      
+      // Inicializar WoAnime
+      if (typeof WoAnime !== 'undefined') {
+        WoAnime.init();
+      }
+      
+      // ═══════════════════════════════════════════════════════════════
+      // TESERACTO 4D PROTAGÓNICO (Portada) - Configuración v3
+      // ═══════════════════════════════════════════════════════════════
+      if (typeof WoTeseracto4D !== 'undefined') {
+        coverTeseracto4D = WoTeseracto4D.create('#cover-teseracto-4d', {
+          color: '#FFCB00',
+          variant: 'explode',       // Entrada con explosión dramática
+          rotationPreset: 'classic', // Rotación clásica XW (más limpia)
+          strokeWidth: 2.2,         // Líneas más definidas
+          showVertices: true,
+          vertexRadius: 3.5,        // Vértices prominentes
+          viewBoxSize: 200,
+          speed: 0.5,               // Velocidad elegante
+          projectionConfig: {
+            scale: 58,              // Escala optimizada para 280px container
+            rotateX: -0.25,
+            rotateY: 0.4
+          }
+        });
+      }
+      
+      // ═══════════════════════════════════════════════════════════════
+      // TESERACTO MINIATURA (Watermark - todas las slides)
+      // ═══════════════════════════════════════════════════════════════
+      if (typeof WoTeseracto !== 'undefined') {
+        watermarkTeseracto = WoTeseracto.create('#teseracto-watermark', {
+          color: '#FFCB00',
+          variant: 'pulse',      // Pulso sutil continuo
+          autoPlay: true,
+          intensity: 0.5,        // Intensidad reducida para no distraer
+          withParticles: false   // Sin partículas en miniatura
+        });
+      }
+    });
+    
+    // ═══════════════════════════════════════════════════════════════
+    // SISTEMA DE TRACKING DE NAVEGACIÓN
+    // Permite regenerar animaciones al volver a un slide
+    // ═══════════════════════════════════════════════════════════════
+    const animatedSlides = new Set();
+    let lastSlideIndex = 0;
+    
+    // Función para resetear elementos animados de un slide específico
+    function resetSlideAnimations(slideIndex) {
+      const slides = document.querySelectorAll('.slides > section');
+      const slide = slides[slideIndex];
+      if (!slide) return;
+      
+      const state = slide.dataset.state;
+      
+      // Reset específico para GEO demo
+      if (state === 'geo-demo-slide') {
+        geoAnimationStarted = false;
+        seoAnimationStarted = false;
+        semAnimationStarted = false;
+        resetGeoDemo();
+        resetSeoDemo();
+        resetSemDemo();
+      }
+      
+      // Reset específico para Pricing
+      if (state === 'pricing-slide') {
+        pricingAnimationStarted = false;
+        resetPricingDemo();
+      }
+    }
+    
+    // Función para resetear el demo GEO
+    function resetGeoDemo() {
+      const queryText = document.getElementById('geo-query-text');
+      const responseEl = document.getElementById('geo-response');
+      const responseText = document.getElementById('geo-response-text');
+      const aiIcons = document.querySelectorAll('.geo-ai-icon');
+      const cursor = document.querySelector('.geo-cursor');
+      
+      if (queryText) queryText.textContent = '';
+      if (responseText) responseText.textContent = '';
+      if (responseEl) responseEl.classList.remove('visible');
+      if (cursor) cursor.style.display = 'inline';
+      aiIcons.forEach(icon => icon.classList.remove('active'));
+    }
+    
+    // ═══════════════════════════════════════════════════════════════
+    // EVENTO: CAMBIO DE SLIDE
+    // ═══════════════════════════════════════════════════════════════
+    Reveal.on('slidechanged', (event) => {
+      const currentState = event.currentSlide.dataset.state;
+      const currentIndex = Reveal.getIndices().h;
+      const slideId = currentIndex + '-' + Reveal.getIndices().v;
+      const watermark = document.getElementById('teseracto-watermark');
+      
+      // #region agent log - H1,H2,H3,H4,H5: Debug slide visibility
+      (function debugSlideVisibility() {
+        const slide = event.currentSlide;
+        const fragments = slide.querySelectorAll('.fragment');
+        const woColumns = slide.querySelector('.wo-columns');
+        const slidesContainer = document.querySelector('.reveal .slides');
+        const tsparticles = document.getElementById('tsparticles');
+        const bodyStyles = window.getComputedStyle(document.body, '::after');
+        
+        // H1: Check .reveal .slides z-index
+        const slidesZIndex = slidesContainer ? window.getComputedStyle(slidesContainer).zIndex : 'N/A';
+        
+        // H2: Check fragments visibility
+        const fragmentsData = Array.from(fragments).map((f, i) => ({
+          index: i,
+          classes: f.className,
+          opacity: window.getComputedStyle(f).opacity,
+          visibility: window.getComputedStyle(f).visibility,
+          display: window.getComputedStyle(f).display
+        }));
+        
+        // H3: body::after computed (note: pseudo-elements are tricky)
+        
+        // H4: tsparticles z-index
+        const particlesZIndex = tsparticles ? window.getComputedStyle(tsparticles).zIndex : 'N/A';
+        
+        // H5: wo-columns position and z-index
+        const woColumnsStyles = woColumns ? {
+          position: window.getComputedStyle(woColumns).position,
+          zIndex: window.getComputedStyle(woColumns).zIndex,
+          opacity: window.getComputedStyle(woColumns).opacity,
+          visibility: window.getComputedStyle(woColumns).visibility
+        } : null;
+        
+        fetch('http://127.0.0.1:7242/ingest/c7ba30a2-7ce9-428e-85da-e7b6a41b5759',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:slidechanged',message:'Slide visibility debug',data:{slideIndex:currentIndex,slideId,slidesZIndex,particlesZIndex,woColumnsStyles,fragmentsCount:fragments.length,fragmentsData},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H1-H5'})}).catch(()=>{});
+      })();
+      // #endregion
+      
+      // Detectar navegación hacia atrás - resetear slides futuros
+      if (currentIndex < lastSlideIndex) {
+        animatedSlides.forEach(id => {
+          const idIndex = parseInt(id.split('-')[0]);
+          if (idIndex > currentIndex) {
+            animatedSlides.delete(id);
+            resetSlideAnimations(idIndex);
+          }
+        });
+      }
+      lastSlideIndex = currentIndex;
+      
+      // Ocultar watermark en portada (tiene teseracto grande)
+      if (currentState === 'cover-slide') {
+        watermark.style.opacity = '0';
+      } else {
+        watermark.style.opacity = '0.7';
+      }
+      
+      // #region agent log - H2,H5: Delayed check for slide 4 (Portal Web)
+      if (currentIndex === 3) {
+        setTimeout(() => {
+          const slide = Reveal.getCurrentSlide();
+          const woColumns = slide.querySelector('.wo-columns');
+          const woColumnDivs = slide.querySelectorAll('.wo-column');
+          const fragments = slide.querySelectorAll('.fragment');
+          
+          const columnData = Array.from(woColumnDivs).map((col, i) => ({
+            index: i,
+            opacity: window.getComputedStyle(col).opacity,
+            visibility: window.getComputedStyle(col).visibility,
+            display: window.getComputedStyle(col).display,
+            transform: window.getComputedStyle(col).transform,
+            classes: col.className
+          }));
+          
+          fetch('http://127.0.0.1:7242/ingest/c7ba30a2-7ce9-428e-85da-e7b6a41b5759',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:slide4-delayed',message:'Slide 4 delayed check',data:{woColumnsExists:!!woColumns,columnData,fragmentsWithVisible:Array.from(fragments).filter(f=>f.classList.contains('visible')).length,totalFragments:fragments.length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H2-H5'})}).catch(()=>{});
+        }, 500);
+      }
+      // #endregion
+      
+      // Evitar re-animar slides ya visitados en esta sesión de avance
+      if (animatedSlides.has(slideId)) return;
+      
+      // Iniciar demo de GEO cuando llegue a ese slide
+      if (currentState === 'geo-demo-slide' && !geoAnimationStarted) {
+        setTimeout(() => {
+          startGeoDemo();
+        }, 500);
+        geoAnimationStarted = true;
+        animatedSlides.add(slideId);
+      }
+      
+      // Iniciar animación de Pricing cuando llegue a ese slide
+      if (currentState === 'pricing-slide' && !pricingAnimationStarted) {
+        setTimeout(() => {
+          startPricingAnimation();
+        }, 300);
+        pricingAnimationStarted = true;
+        animatedSlides.add(slideId);
+      }
+    });
+    
+    // ═══════════════════════════════════════════════════════════════
+    // ANIMACIÓN: DEMO GEO (Simulación IA Generativa)
+    // ═══════════════════════════════════════════════════════════════
+    function startGeoDemo() {
+      const queryText = document.getElementById('geo-query-text');
+      const responseEl = document.getElementById('geo-response');
+      const responseText = document.getElementById('geo-response-text');
+      const aiIcons = document.querySelectorAll('.geo-ai-icon');
+      const cursor = document.querySelector('.geo-cursor');
+      
+      if (!queryText) return;
+      
+      // Textos para la demo
+      const query = "¿Mejores desarrollos inmobiliarios en la costa?";
+      const response = "Miramar Hills destaca como opción premium: ubicación privilegiada, arquitectura contemporánea y amenidades de primer nivel...";
+      
+      // Fase 1: Typing de la pregunta
+      let charIndex = 0;
+      const typingInterval = setInterval(() => {
+        if (charIndex < query.length) {
+          queryText.textContent = query.substring(0, charIndex + 1);
+          charIndex++;
+        } else {
+          clearInterval(typingInterval);
+          cursor.style.display = 'none';
+          
+          // Fase 2: Activar iconos de IA
+          setTimeout(() => {
+            aiIcons.forEach((icon, index) => {
+              setTimeout(() => {
+                icon.classList.add('active');
+              }, index * 200);
+            });
+            
+            // Fase 3: Mostrar respuesta
+            setTimeout(() => {
+              responseEl.classList.add('visible');
+              
+              // Typing de la respuesta
+              let respCharIndex = 0;
+              const respTypingInterval = setInterval(() => {
+                if (respCharIndex < response.length) {
+                  responseText.textContent = response.substring(0, respCharIndex + 1);
+                  respCharIndex++;
+                } else {
+                  clearInterval(respTypingInterval);
+                }
+              }, 25);
+            }, 800);
+          }, 400);
+        }
+      }, 50);
+    }
+    
+    // ═══════════════════════════════════════════════════════════════
+    // ANIMACIÓN: DEMO SEO (Simulación Ranking Google)
+    // ═══════════════════════════════════════════════════════════════
+    function startSeoDemo() {
+      const results = document.querySelectorAll('.seo-result');
+      
+      if (!results.length) return;
+      
+      // Mostrar resultados con stagger
+      results.forEach((result, index) => {
+        setTimeout(() => {
+          result.classList.add('visible');
+        }, index * 300);
+      });
+    }
+    
+    function resetSeoDemo() {
+      const results = document.querySelectorAll('.seo-result');
+      results.forEach(result => result.classList.remove('visible'));
+      seoAnimationStarted = false;
+    }
+    
+    // ═══════════════════════════════════════════════════════════════
+    // ANIMACIÓN: DEMO SEM (Simulación Métricas Campaña)
+    // ═══════════════════════════════════════════════════════════════
+    function startSemDemo() {
+      const metrics = document.querySelectorAll('.sem-metric');
+      const progressBar = document.getElementById('sem-progress');
+      const clicksEl = document.querySelector('#sem-metric-clicks .sem-metric-value');
+      const ctrEl = document.querySelector('#sem-metric-ctr .sem-metric-value');
+      const convEl = document.querySelector('#sem-metric-conv .sem-metric-value');
+      
+      if (!metrics.length) return;
+      
+      // Mostrar métricas con stagger
+      metrics.forEach((metric, index) => {
+        setTimeout(() => {
+          metric.classList.add('visible');
+        }, index * 200);
+      });
+      
+      // Animar contadores
+      setTimeout(() => {
+        animateCounter(clicksEl, 0, 2847, 1500, '');
+        animateCounter(ctrEl, 0, 4.2, 1500, '%');
+        animateCounter(convEl, 0, 156, 1500, '');
+        
+        // Animar barra de progreso
+        if (progressBar) {
+          progressBar.style.width = '87%';
+        }
+      }, 600);
+    }
+    
+    function animateCounter(element, start, end, duration, suffix) {
+      if (!element) return;
+      
+      const startTime = performance.now();
+      const isDecimal = !Number.isInteger(end);
+      
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeProgress = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+        
+        const current = start + (end - start) * easeProgress;
+        element.textContent = (isDecimal ? current.toFixed(1) : Math.floor(current)) + suffix;
+        
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+      
+      requestAnimationFrame(update);
+    }
+    
+    function resetSemDemo() {
+      const metrics = document.querySelectorAll('.sem-metric');
+      const progressBar = document.getElementById('sem-progress');
+      const clicksEl = document.querySelector('#sem-metric-clicks .sem-metric-value');
+      const ctrEl = document.querySelector('#sem-metric-ctr .sem-metric-value');
+      const convEl = document.querySelector('#sem-metric-conv .sem-metric-value');
+      
+      metrics.forEach(metric => metric.classList.remove('visible'));
+      if (progressBar) progressBar.style.width = '0%';
+      if (clicksEl) clicksEl.textContent = '0';
+      if (ctrEl) ctrEl.textContent = '0%';
+      if (convEl) convEl.textContent = '0';
+      semAnimationStarted = false;
+    }
+    
+    // ═══════════════════════════════════════════════════════════════
+    // ANIMACIÓN: PRICING (Cards de Inversión con Comparativa)
+    // ═══════════════════════════════════════════════════════════════
+    function startPricingAnimation() {
+      const pricingCards = document.querySelectorAll('.wo-card--pricing');
+      const discounts = document.querySelectorAll('.wo-pricing-discount');
+      const savings = document.querySelectorAll('.wo-pricing-savings');
+      const basePrices = document.querySelectorAll('.wo-pricing-base');
+      const footer = document.querySelector('.wo-pricing-footer');
+      
+      if (!pricingCards.length) return;
+      
+      // Fase 1: Entrada escalonada de cards (stagger 150ms)
+      pricingCards.forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.add('animate-in');
+          
+          // Animar contador de precio después de que entre la card
+          const priceEl = card.querySelector('.card-price');
+          if (priceEl) {
+            setTimeout(() => {
+              animatePriceCounter(priceEl);
+            }, 300);
+          }
+        }, index * 150);
+      });
+      
+      // Fase 2: Mostrar precios base (tachados) después de las cards
+      setTimeout(() => {
+        basePrices.forEach(base => {
+          base.classList.add('visible');
+        });
+      }, 700);
+      
+      // Fase 3: Revelar descuentos con efecto de highlight
+      setTimeout(() => {
+        discounts.forEach((discount, index) => {
+          setTimeout(() => {
+            discount.classList.add('visible');
+          }, index * 200);
+        });
+      }, 1000);
+      
+      // Fase 4: Mostrar ahorros
+      setTimeout(() => {
+        savings.forEach((saving, index) => {
+          setTimeout(() => {
+            saving.classList.add('visible');
+          }, index * 150);
+        });
+      }, 1400);
+      
+      // Fase 5: Footer
+      setTimeout(() => {
+        if (footer) {
+          footer.style.transition = 'opacity 0.5s ease';
+          footer.style.opacity = '1';
+        }
+      }, 1800);
+    }
+    
+    function animatePriceCounter(element) {
+      if (!element) return;
+      
+      const targetPrice = parseInt(element.dataset.price) || 0;
+      const duration = 1200;
+      const startTime = performance.now();
+      
+      // Formatear número con comas
+      function formatPrice(num) {
+        return '$' + Math.floor(num).toLocaleString('en-US');
+      }
+      
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Easing: ease-out expo
+        const easeProgress = 1 - Math.pow(1 - progress, 4);
+        
+        const currentValue = targetPrice * easeProgress;
+        element.textContent = formatPrice(currentValue);
+        
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          element.textContent = formatPrice(targetPrice);
+        }
+      }
+      
+      element.textContent = '$0';
+      requestAnimationFrame(update);
+    }
+    
+    function resetPricingDemo() {
+      const pricingCards = document.querySelectorAll('.wo-card--pricing');
+      const discounts = document.querySelectorAll('.wo-pricing-discount');
+      const savings = document.querySelectorAll('.wo-pricing-savings');
+      const basePrices = document.querySelectorAll('.wo-pricing-base');
+      const footer = document.querySelector('.wo-pricing-footer');
+      
+      pricingCards.forEach(card => {
+        card.classList.remove('animate-in');
+        const priceEl = card.querySelector('.card-price');
+        if (priceEl) {
+          const originalPrice = priceEl.dataset.price;
+          priceEl.textContent = '$' + parseInt(originalPrice).toLocaleString('en-US');
+        }
+      });
+      
+      discounts.forEach(d => d.classList.remove('visible'));
+      savings.forEach(s => s.classList.remove('visible'));
+      basePrices.forEach(b => b.classList.remove('visible'));
+      
+      if (footer) {
+        footer.style.opacity = '0';
+      }
+      
+      pricingAnimationStarted = false;
+    }
+    
+    // ═══════════════════════════════════════════════════════════════
+    // HANDLER: FRAGMENTS (Inicia animaciones SEO/SEM)
+    // ═══════════════════════════════════════════════════════════════
+    Reveal.on('fragmentshown', (event) => {
+      const fragment = event.fragment;
+      
+      // #region agent log - H2: Fragment shown event
+      const slideIndex = Reveal.getIndices().h;
+      fetch('http://127.0.0.1:7242/ingest/c7ba30a2-7ce9-428e-85da-e7b6a41b5759',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:fragmentshown',message:'Fragment shown',data:{slideIndex,fragmentClass:fragment.className,fragmentOpacity:window.getComputedStyle(fragment).opacity,fragmentVisibility:window.getComputedStyle(fragment).visibility},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H2'})}).catch(()=>{});
+      // #endregion
+      
+      // Iniciar demo SEO cuando aparece su fragment
+      if (fragment.classList.contains('wo-card--seo-demo') && !seoAnimationStarted) {
+        setTimeout(() => {
+          startSeoDemo();
+        }, 300);
+        seoAnimationStarted = true;
+      }
+      
+      // Iniciar demo SEM cuando aparece su fragment
+      if (fragment.classList.contains('wo-card--sem-demo') && !semAnimationStarted) {
+        setTimeout(() => {
+          startSemDemo();
+        }, 300);
+        semAnimationStarted = true;
+      }
+    });
+    
+    // #region agent log - H2: Fragment hidden event listener
+    Reveal.on('fragmenthidden', (event) => {
+      const fragment = event.fragment;
+      const slideIndex = Reveal.getIndices().h;
+      fetch('http://127.0.0.1:7242/ingest/c7ba30a2-7ce9-428e-85da-e7b6a41b5759',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:fragmenthidden',message:'Fragment hidden',data:{slideIndex,fragmentClass:fragment.className},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H2'})}).catch(()=>{});
+    });
+    // #endregion
+  </script>
+</body>
+</html>
