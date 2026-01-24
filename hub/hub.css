@@ -29,8 +29,7 @@ body {
 /* DS-102: Transiciones globales sincronizadas con el toggle */
 body[data-wo-theme] * {
   transition-property: color, background-color, border-color, box-shadow, opacity;
-  transition-duration: 0.4s;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--transition-theme);
 }
 
 a {
@@ -675,24 +674,11 @@ a:hover {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   ACCENT TEXT (usa sistema de temas)
+   ACCENT TEXT
+   NOTA: Las clases .accent, .accent-alt, .accent-yellow, .accent-blue
+   están definidas en wo-design-system.css (líneas 107-114).
+   Si el hub no importa wo-design-system.css, agregar el import.
    ═══════════════════════════════════════════════════════════════ */
-
-.accent {
-  color: var(--wo-accent-primary);
-}
-
-.accent-alt {
-  color: var(--wo-accent-secondary);
-}
-
-.accent-yellow {
-  color: var(--wo-yellow-spark);
-}
-
-.accent-blue {
-  color: var(--wo-blue-lab);
-}
 
 /* ═══════════════════════════════════════════════════════════════
    BACK TO TOP

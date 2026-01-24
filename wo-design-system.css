@@ -57,13 +57,13 @@
 [data-wo-theme] .reveal .card-price,
 [data-wo-theme] .reveal .grid-background {
   transition: 
-    color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    color var(--transition-theme),
+    background-color var(--transition-theme),
+    border-color var(--transition-theme),
+    box-shadow var(--transition-theme),
+    opacity var(--transition-theme),
+    transform var(--transition-theme),
+    visibility var(--transition-theme);
 }
 
 /* Tipografía compacta para viewport 1280x720 
@@ -234,12 +234,14 @@
   background: var(--wo-accent-secondary-dim);
   border-color: var(--border-highlight);
   position: relative;
+  overflow: visible; /* Permitir que el badge se muestre fuera del card */
+  margin-top: 0.8em; /* Espacio adicional para el badge */
 }
 
 .wo-card--highlight::before {
   content: 'RECOMENDADO';
   position: absolute;
-  top: -0.4em;
+  top: -0.7em;
   right: 0.5em;
   background: var(--wo-accent-secondary);
   color: var(--wo-dark);

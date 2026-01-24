@@ -39,79 +39,17 @@
   <!-- Flow Diagram Component -->
   <link rel="stylesheet" href="../wo-components/wo-flow-diagram.css">
   
+  <!-- WoOS Diagram Component -->
+  <link rel="stylesheet" href="../wo-components/wo-woos-diagram.css">
+  
+  <!-- Teseracto 4D Component -->
+  <link rel="stylesheet" href="../wo-components/wo-teseracto-4d.css">
+  
   <!-- Custom Styles for Growth Tesis -->
   <style>
     /* ═══════════════════════════════════════════════════════════════
        GROWTH TESIS - CUSTOM STYLES
        ═══════════════════════════════════════════════════════════════ */
-    
-    /* WoOS Diagram Styles */
-    .wo-woos-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 1em auto;
-      max-width: 100%;
-      min-height: 300px;
-      position: relative;
-    }
-    
-    .wo-woos-svg {
-      width: 100%;
-      max-width: 850px;
-      height: auto;
-      min-height: 250px;
-      overflow: visible;
-    }
-    
-    .wo-woos-phase {
-      cursor: pointer;
-      transition: transform 0.3s ease, opacity 0.6s ease;
-      will-change: opacity, transform;
-    }
-    
-    .wo-woos-phase:hover {
-      transform: scale(1.08);
-    }
-    
-    /* Fallback: transición suave si JS falla */
-    .wo-woos-container:not(:empty) .wo-woos-phase {
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    
-    .wo-woos-phase__circle {
-      transition: all 0.3s ease;
-    }
-    
-    .wo-woos-phase:hover .wo-woos-phase__circle {
-      filter: drop-shadow(0 0 15px var(--wo-accent-primary));
-    }
-    
-    .wo-woos-phase__icon {
-      font-size: 28px;
-      text-anchor: middle;
-      dominant-baseline: middle;
-    }
-    
-    .wo-woos-phase__label {
-      font-family: var(--font-heading);
-      font-size: 13px;
-      font-weight: 600;
-      fill: var(--wo-text);
-      text-anchor: middle;
-    }
-    
-    .wo-woos-phase__sublabel {
-      font-family: var(--font-body);
-      font-size: 10px;
-      fill: var(--wo-text-secondary);
-      text-anchor: middle;
-    }
-    
-    .wo-woos-spiral {
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
     
     /* Pilares Grid Enhanced */
     .pilares-container {
@@ -335,7 +273,7 @@
     }
   </style>
 </head>
-<body data-wo-theme="blue">
+<body data-wo-theme="yellow">
   <!-- tsParticles Container -->
   <div id="tsparticles"></div>
   
@@ -343,13 +281,37 @@
     <div class="slides">
 
       <!-- ═══════════════════════════════════════════════════════════════
+           SLIDE 0: INTRO - Teseracto Animado
+           Minimalista: Solo el símbolo 4D con el logo
+           ═══════════════════════════════════════════════════════════════ -->
+      <section data-background-color="#0F0F1A" data-state="intro-teseracto" aria-label="Intro">
+        <div class="wo-intro-teseracto" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+          <!-- Teseracto 4D animado -->
+          <div id="intro-teseracto" style="width: 280px; height: 280px; margin-bottom: 1.5em;"></div>
+          
+          <!-- Logo minimalista -->
+          <img data-src="../LOGOS/SVG/WoLogos_2026-01.svg" alt="Workalógico" style="width: 200px; opacity: 0.9;">
+          
+          <p style="font-size: 0.5em; color: var(--wo-text-muted); margin-top: 1em; letter-spacing: 0.2em; text-transform: uppercase;">
+            Growth Tesis 2026
+          </p>
+        </div>
+        
+        <aside class="notes">
+          Slide de intro impactante.
+          - Teseracto 4D representa la multidimensionalidad de Workalógico
+          - Simboliza la cuarta dimensión: el tiempo y la visión de futuro
+          - Minimalismo para captar atención
+        </aside>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
            SLIDE 1: PORTADA - El Aliado Estratégico Total
            ═══════════════════════════════════════════════════════════════ -->
       <section data-background-gradient="radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%)" 
                data-particles="true" aria-label="Portada">
         <div class="wo-cover">
-          <img data-src="../LOGOS/SVG/WoLogos_2026-03.svg" alt="Workalógico" class="wo-cover__logo">
-          <div class="wo-badge">GROWTH TESIS 2026</div>
+          <div class="wo-badge wo-badge--yellow">GROWTH TESIS 2026</div>
           <h1 class="wo-cover__title">El <span class="accent">Aliado Estratégico</span> Total</h1>
           <p class="wo-cover__subtitle">Agencia de Desarrollo de Proyectos para empresas visionarias</p>
           
@@ -478,8 +440,8 @@
         <h2 class="wo-section__title">WoOS: <span class="accent">Sistema Ascendente</span></h2>
         <p class="wo-section__subtitle" style="margin-bottom: 0.5em;">El crecimiento se diseña, se construye y se gestiona</p>
         
-        <div class="wo-woos-container" id="woos-diagram">
-          <!-- SVG generado por JavaScript -->
+        <div id="woos-diagram">
+          <!-- Diagrama WoOS generado por el componente wo-woos-diagram.js -->
         </div>
         
         <div class="grid-background"></div>
@@ -597,25 +559,23 @@
       <section data-background-color="#0F0F1A" data-state="metodologia-slide" aria-label="Fases de metodología">
         <h2>Las 4 Fases de <span class="accent">Ejecución</span></h2>
         
-        <div id="wo-flow-metodologia" style="min-height: 260px;"></div>
+        <!-- Diagrama de flujo con los 4 nodos y conexiones animadas -->
+        <div id="wo-flow-metodologia" style="min-height: 280px; margin-top: 0.5em;"></div>
         
-        <div class="wo-grid wo-grid--4" style="margin-top: 0.3em;">
-          <div class="wo-stat fragment fade-up" data-fragment-index="1">
-            <div class="wo-stat__value" style="font-size: 0.7em;">Discovery</div>
-            <div class="wo-stat__label">Smart Solution</div>
-          </div>
-          <div class="wo-stat fragment fade-up" data-fragment-index="2">
-            <div class="wo-stat__value" style="font-size: 0.7em;">Architecture</div>
-            <div class="wo-stat__label">Strategy Studio</div>
-          </div>
-          <div class="wo-stat fragment fade-up" data-fragment-index="3">
-            <div class="wo-stat__value" style="font-size: 0.7em;">Execution</div>
-            <div class="wo-stat__label">Smart Business</div>
-          </div>
-          <div class="wo-stat fragment fade-up" data-fragment-index="4">
-            <div class="wo-stat__value" style="font-size: 0.7em;">Scale</div>
-            <div class="wo-stat__label">Comunicación</div>
-          </div>
+        <!-- Mapeo de fases a pilares (aparece debajo del diagrama) -->
+        <div class="wo-grid wo-grid--4" style="margin-top: 0.2em; gap: 0.3em;">
+          <p class="fragment fade-up" data-fragment-index="1" style="text-align: center; margin: 0; font-size: 0.5em; color: var(--wo-text-secondary);">
+            <span class="accent" style="font-weight: 600;">Smart Solution</span><br>Diagnóstico
+          </p>
+          <p class="fragment fade-up" data-fragment-index="2" style="text-align: center; margin: 0; font-size: 0.5em; color: var(--wo-text-secondary);">
+            <span class="accent" style="font-weight: 600;">Strategy Studio</span><br>Roadmap
+          </p>
+          <p class="fragment fade-up" data-fragment-index="3" style="text-align: center; margin: 0; font-size: 0.5em; color: var(--wo-text-secondary);">
+            <span class="accent" style="font-weight: 600;">Smart Business</span><br>Build
+          </p>
+          <p class="fragment fade-up" data-fragment-index="4" style="text-align: center; margin: 0; font-size: 0.5em; color: var(--wo-text-secondary);">
+            <span class="accent" style="font-weight: 600;">Comunicación</span><br>Amplificar
+          </p>
         </div>
         
         <div class="grid-background"></div>
@@ -751,40 +711,51 @@
       </section>
 
       <!-- ═══════════════════════════════════════════════════════════════
-           SLIDE 12: CTA - Tu Próximo Nivel
+           SLIDE 12: CTA - Tu Próximo Nivel (con Teseracto)
            ═══════════════════════════════════════════════════════════════ -->
-      <section data-background-gradient="radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%)" 
-               data-particles="true" aria-label="Llamado a la acción">
-        <div class="wo-cta">
-          <h1 class="wo-cta__title">¿Listo para diseñar tu próximo<br><span class="accent">nivel de crecimiento</span>?</h1>
-          <p class="wo-cta__subtitle">El único aliado que desarrolla Smart Solutions para tu Smart Business</p>
-          
-          <div class="wo-stats-row" style="margin: 0.8em 0;">
-            <div class="wo-stat fragment zoom-in">
-              <div class="wo-stat__value">Brief</div>
-              <div class="wo-stat__label">Diagnóstico gratuito</div>
+      <section data-background-color="#0F0F1A" data-state="cta-teseracto" aria-label="Llamado a la acción">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2em; align-items: center; height: 100%; padding: 0 2em;">
+          <!-- Columna izquierda: Contenido -->
+          <div class="wo-cta" style="text-align: left;">
+            <h1 class="wo-cta__title" style="text-align: left; font-size: 1.1em;">¿Listo para tu próximo<br><span class="accent">nivel de crecimiento</span>?</h1>
+            <p class="wo-cta__subtitle" style="text-align: left; font-size: 0.7em; margin-bottom: 0.8em;">
+              El único aliado que desarrolla<br>Smart Solutions para tu Smart Business
+            </p>
+            
+            <div style="margin: 0.8em 0;">
+              <div style="display: flex; gap: 0.4em; margin-bottom: 0.3em; align-items: center;">
+                <span style="color: var(--wo-accent-primary); font-size: 0.8em;">→</span>
+                <span style="font-size: 0.6em; color: var(--wo-text);">Brief & Diagnóstico gratuito</span>
+              </div>
+              <div style="display: flex; gap: 0.4em; margin-bottom: 0.3em; align-items: center;">
+                <span style="color: var(--wo-accent-primary); font-size: 0.8em;">→</span>
+                <span style="font-size: 0.6em; color: var(--wo-text);">Roadmap estratégico claro</span>
+              </div>
+              <div style="display: flex; gap: 0.4em; align-items: center;">
+                <span style="color: var(--wo-accent-primary); font-size: 0.8em;">→</span>
+                <span style="font-size: 0.6em; color: var(--wo-text);">ROI garantizado y medible</span>
+              </div>
             </div>
-            <div class="wo-stat fragment zoom-in">
-              <div class="wo-stat__value">Roadmap</div>
-              <div class="wo-stat__label">Arquitectura clara</div>
-            </div>
-            <div class="wo-stat fragment zoom-in">
-              <div class="wo-stat__value">ROI</div>
-              <div class="wo-stat__label">Resultados medibles</div>
+            
+            <div class="wo-cta__contact" style="border-top: 1px solid var(--wo-accent-primary); padding-top: 0.6em; margin-top: 0.6em;">
+              <p style="font-size: 0.7em;"><a href="mailto:bo@workalogico.com" style="color: var(--wo-accent-primary); text-decoration: none; font-weight: 600;">bo@workalogico.com</a></p>
+              <p style="font-size: 0.55em;"><a href="https://www.workalogico.com" target="_blank" rel="noopener" style="color: var(--wo-text-muted); text-decoration: none;">www.workalogico.com</a></p>
             </div>
           </div>
           
-          <div class="wo-cta__contact">
-            <p><a href="mailto:bo@workalogico.com" style="color: inherit; text-decoration: none;">bo@workalogico.com</a></p>
-            <p><a href="https://www.workalogico.com" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">www.workalogico.com</a></p>
+          <!-- Columna derecha: Teseracto 4D -->
+          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div id="cta-teseracto" style="width: 260px; height: 260px;"></div>
+            <p style="font-size: 0.45em; color: var(--wo-text-muted); margin-top: 0.8em; text-align: center; letter-spacing: 0.1em;">
+              WE DEVELOP EVERYTHING
+            </p>
           </div>
         </div>
-        <div class="grid-background"></div>
         
         <aside class="notes">
-          CTA final:
+          CTA final con teseracto:
+          - Teseracto representa la multidimensionalidad de Workalógico
           - Próximo paso: Brief diagnóstico gratuito
-          - Propuesta de valor resumida
           - La pregunta no es si pueden permitirse contratarnos, 
             sino si pueden permitirse no hacerlo
         </aside>
@@ -803,14 +774,20 @@
   <!-- tsParticles + Workalógico Systems -->
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
   <script src="../wo-particles.js"></script>
-  <script src="../wo-anime.js"></script>
+  <script type="module" src="../wo-anime/wo-anime-bundle.js"></script>
+  
+  <!-- Teseracto 4D -->
+  <script src="../wo-components/wo-teseracto-4d.js"></script>
   
   <!-- Flow Diagram Component -->
   <script src="../wo-components/wo-flow-diagram.js"></script>
   
+  <!-- WoOS Diagram Component -->
+  <script src="../wo-components/wo-woos-diagram.js"></script>
+  
   <script>
     // ═══════════════════════════════════════════════════════════════
-    // GROWTH TESIS - CUSTOM ANIMATIONS & COMPONENTS
+    // GROWTH TESIS - INITIALIZATION & HANDLERS
     // ═══════════════════════════════════════════════════════════════
     
     // Agregar preset de metodología Growth al FLOW_PRESETS
@@ -833,239 +810,13 @@
     }
     
     // ═══════════════════════════════════════════════════════════════
-    // WoOS DIAGRAM - Sistema Ascendente Visual
-    // ═══════════════════════════════════════════════════════════════
-    
-    function createWoOSDiagram(containerId) {
-      // #region agent log
-      fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:createWoOSDiagram:entry',message:'createWoOSDiagram CALLED',data:{containerId,woosInitialized,callTime:performance.now()},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
-      // #endregion
-      const container = document.getElementById(containerId);
-      // #region agent log
-      fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:createWoOSDiagram:container',message:'Container state',data:{hasContainer:!!container,childCount:container?container.children.length:0,innerHTML:container?container.innerHTML.substring(0,100):'null'},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B'})}).catch(()=>{});
-      // #endregion
-      console.log('[WoOS] Container:', container);
-      if (!container) {
-        console.error('[WoOS] Container not found:', containerId);
-        return;
-      }
-      
-      const phases = [
-        { id: 'nucleo', label: 'NÚCLEO', sublabel: 'Claridad', icon: '🎯', color: '#5968EA' },
-        { id: 'espiral', label: 'ESPIRAL', sublabel: 'Hoja de ruta viva', icon: '🌀', color: '#5968EA' },
-        { id: 'elevacion', label: 'ELEVACIÓN', sublabel: 'Producto tangible', icon: '🚀', color: '#FFCB00' },
-        { id: 'expansion', label: 'EXPANSIÓN', sublabel: 'Escala sostenida', icon: '🌐', color: '#FFCB00' }
-      ];
-      
-      // Posiciones en arco ascendente - Ajustadas para dejar espacio para labels
-      const positions = [
-        { x: 120, y: 180 },
-        { x: 320, y: 150 },
-        { x: 520, y: 120 },
-        { x: 720, y: 90 }
-      ];
-      
-      const svgNS = 'http://www.w3.org/2000/svg';
-      const svg = document.createElementNS(svgNS, 'svg');
-      svg.setAttribute('viewBox', '0 0 850 280');
-      svg.setAttribute('class', 'wo-woos-svg');
-      
-      // Gradiente
-      const defs = document.createElementNS(svgNS, 'defs');
-      defs.innerHTML = `
-        <linearGradient id="woosGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#5968EA"/>
-          <stop offset="45%" stop-color="#5968EA"/>
-          <stop offset="55%" stop-color="#FFCB00"/>
-          <stop offset="100%" stop-color="#FFCB00"/>
-        </linearGradient>
-        <filter id="woosGlow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-          <feMerge>
-            <feMergeNode in="coloredBlur"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-      `;
-      svg.appendChild(defs);
-      
-      // Path curvo ascendente - Usando curvas Bézier cúbicas para suavidad
-      const pathD = `M ${positions[0].x} ${positions[0].y}
-                     C ${positions[0].x + 100} ${positions[0].y - 20},
-                       ${positions[1].x - 100} ${positions[1].y + 20},
-                       ${positions[1].x} ${positions[1].y}
-                     C ${positions[1].x + 100} ${positions[1].y - 15},
-                       ${positions[2].x - 100} ${positions[2].y + 15},
-                       ${positions[2].x} ${positions[2].y}
-                     C ${positions[2].x + 100} ${positions[2].y - 10},
-                       ${positions[3].x - 100} ${positions[3].y + 10},
-                       ${positions[3].x} ${positions[3].y}`;
-      
-      const path = document.createElementNS(svgNS, 'path');
-      path.setAttribute('d', pathD);
-      path.setAttribute('fill', 'none');
-      path.setAttribute('stroke', 'url(#woosGradient)');
-      path.setAttribute('stroke-width', '3');
-      path.setAttribute('stroke-linecap', 'round');
-      path.setAttribute('class', 'wo-woos-spiral');
-      path.style.opacity = '0.7';
-      
-      // Calcular longitud del path para animación
-      svg.appendChild(path);
-      const pathLength = path.getTotalLength();
-      path.style.strokeDasharray = pathLength;
-      path.style.strokeDashoffset = pathLength;
-      
-      // Crear nodos de fases
-      phases.forEach((phase, i) => {
-        const g = document.createElementNS(svgNS, 'g');
-        g.setAttribute('class', `wo-woos-phase wo-woos-phase--${phase.id}`);
-        g.setAttribute('transform', `translate(${positions[i].x}, ${positions[i].y})`);
-        g.style.opacity = '0';
-        g.style.transformOrigin = 'center center';
-        g.style.transformBox = 'fill-box';
-        
-        // Círculo de fondo con pulso
-        const pulseCircle = document.createElementNS(svgNS, 'circle');
-        pulseCircle.setAttribute('r', '48');
-        pulseCircle.setAttribute('fill', 'none');
-        pulseCircle.setAttribute('stroke', phase.color);
-        pulseCircle.setAttribute('stroke-width', '1');
-        pulseCircle.setAttribute('opacity', '0.3');
-        pulseCircle.setAttribute('class', 'wo-woos-phase__pulse');
-        g.appendChild(pulseCircle);
-        
-        // Círculo principal
-        const circle = document.createElementNS(svgNS, 'circle');
-        circle.setAttribute('r', '42');
-        circle.setAttribute('fill', 'rgba(37, 37, 66, 0.9)');
-        circle.setAttribute('stroke', phase.color);
-        circle.setAttribute('stroke-width', '2');
-        circle.setAttribute('class', 'wo-woos-phase__circle');
-        g.appendChild(circle);
-        
-        // Icono
-        const icon = document.createElementNS(svgNS, 'text');
-        icon.setAttribute('y', '8');
-        icon.setAttribute('class', 'wo-woos-phase__icon');
-        icon.textContent = phase.icon;
-        g.appendChild(icon);
-        
-        // Label
-        const label = document.createElementNS(svgNS, 'text');
-        label.setAttribute('y', '65');
-        label.setAttribute('class', 'wo-woos-phase__label');
-        label.textContent = phase.label;
-        g.appendChild(label);
-        
-        // Sublabel
-        const sublabel = document.createElementNS(svgNS, 'text');
-        sublabel.setAttribute('y', '80');
-        sublabel.setAttribute('class', 'wo-woos-phase__sublabel');
-        sublabel.textContent = phase.sublabel;
-        g.appendChild(sublabel);
-        
-        svg.appendChild(g);
-      });
-      
-      container.appendChild(svg);
-      console.log('[WoOS] SVG created with', phases.length, 'phases');
-      console.log('[WoOS] Positions:', positions);
-      console.log('[WoOS] ViewBox:', svg.getAttribute('viewBox'));
-      
-      // Fallback: si después de 3s los nodos siguen invisibles, mostrarlos
-      setTimeout(() => {
-        const phasesInSvg = svg.querySelectorAll('.wo-woos-phase');
-        phasesInSvg.forEach(phase => {
-          const computedOpacity = window.getComputedStyle(phase).opacity;
-          if (computedOpacity === '0' || parseFloat(computedOpacity) < 0.1) {
-            phase.style.opacity = '1';
-            phase.style.transform = 'translateY(0)';
-          }
-        });
-      }, 3000);
-      
-      return { svg, path, pathLength };
-    }
-    
-    function animateWoOSDiagram() {
-      // #region agent log
-      fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:animateWoOSDiagram:entry',message:'animateWoOSDiagram CALLED',data:{callTime:performance.now()},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'D'})}).catch(()=>{});
-      // #endregion
-      const path = document.querySelector('.wo-woos-spiral');
-      const phases = document.querySelectorAll('.wo-woos-phase');
-      // #region agent log
-      fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:animateWoOSDiagram:elements',message:'Elements found',data:{hasPath:!!path,phasesCount:phases.length,pathClasses:path?path.className:'null'},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'D'})}).catch(()=>{});
-      // #endregion
-      
-      if (!path || phases.length === 0) return;
-      
-      const pathLength = path.getTotalLength();
-      
-      // Timeline de animación
-      const tl = anime.timeline({
-        easing: 'easeOutExpo'
-      });
-      
-      // Animar el path
-      tl.add({
-        targets: path,
-        strokeDashoffset: [pathLength, 0],
-        duration: 2000,
-        easing: 'easeInOutCubic'
-      });
-      
-      // Animar cada fase - SOLO opacity para evitar conflicto con SVG transform attribute
-      phases.forEach((phase, i) => {
-        // #region agent log
-        fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:animatePhase:before',message:'Phase transform BEFORE anim',data:{phaseIndex:i,transformAttr:phase.getAttribute('transform'),styleTransform:phase.style.transform},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'F'})}).catch(()=>{});
-        // #endregion
-        
-        // Animar solo opacity en el grupo (no afecta transform)
-        tl.add({
-          targets: phase,
-          opacity: [0, 1],
-          duration: 600,
-          easing: 'easeOutQuad',
-          complete: function() {
-            // #region agent log
-            fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:animatePhase:after',message:'Phase transform AFTER anim',data:{phaseIndex:i,transformAttr:phase.getAttribute('transform'),styleTransform:phase.style.transform},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'F'})}).catch(()=>{});
-            // #endregion
-          }
-        }, 400 + (i * 350));
-        
-        // Animar el círculo interno con scale (elemento hijo, no afecta posición del grupo)
-        const circle = phase.querySelector('.wo-woos-phase__circle');
-        if (circle) {
-          tl.add({
-            targets: circle,
-            r: [0, 42],
-            duration: 500,
-            easing: 'easeOutBack'
-          }, 400 + (i * 350));
-        }
-      });
-      
-      // Pulso continuo en los círculos
-      setTimeout(() => {
-        anime({
-          targets: '.wo-woos-phase__pulse',
-          r: [48, 55, 48],
-          opacity: [0.3, 0.1, 0.3],
-          duration: 2000,
-          loop: true,
-          easing: 'easeInOutSine',
-          delay: anime.stagger(200)
-        });
-      }, 2500);
-    }
-    
-    // ═══════════════════════════════════════════════════════════════
     // INICIALIZACIÓN
     // ═══════════════════════════════════════════════════════════════
     
     let metodologiaInitialized = false;
     let woosInitialized = false;
+    let introTeseractoInitialized = false;
+    let ctaTeseractoInitialized = false;
     
     Reveal.initialize({
       width: 1280,
@@ -1109,6 +860,97 @@
       if (typeof WoAnime !== 'undefined') {
         WoAnime.init();
       }
+      
+      // Inicializar componentes si cargamos directamente en un slide específico
+      const currentSlide = Reveal.getCurrentSlide();
+      const currentState = currentSlide?.dataset?.state;
+      
+      // WoOS Diagram
+      if (currentState === 'woos-slide' && !woosInitialized) {
+        setTimeout(() => {
+          if (typeof initWoWoosDiagram === 'function') {
+            initWoWoosDiagram('woos-diagram', {
+              preset: 'growth',
+              autoPlay: false
+            });
+            woosInitialized = true;
+          }
+        }, 100);
+      }
+      
+      // Flow Diagram de Metodología
+      if (currentState === 'metodologia-slide' && !metodologiaInitialized) {
+        setTimeout(() => {
+          if (typeof initWoFlowDiagram === 'function') {
+            initWoFlowDiagram('wo-flow-metodologia', {
+              preset: 'growth',
+              autoPlay: false,
+              showControls: false
+            });
+            metodologiaInitialized = true;
+          }
+        }, 100);
+      }
+      
+      // Teseracto Intro - Siempre inicializar (es el primer slide)
+      // Usar requestAnimationFrame para esperar al render del DOM
+      // #region agent log H3 H4
+      fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:897',message:'INIT_CHECK',data:{introTeseractoInitialized,WoTeseracto4DExists:typeof WoTeseracto4D !== 'undefined'},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H3-H4'})}).catch(()=>{});
+      // #endregion
+      if (!introTeseractoInitialized && typeof WoTeseracto4D !== 'undefined') {
+        // #region agent log H1
+        fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:901',message:'ENTERING_RAF',data:{},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H1'})}).catch(()=>{});
+        // #endregion
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            const container = document.getElementById('intro-teseracto');
+            // #region agent log H1 H2
+            fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:906',message:'CONTAINER_CHECK',data:{containerExists:!!container,containerInnerHTML:container?.innerHTML?.substring(0,100),isEmptyString:container?.innerHTML === ''},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H1-H2'})}).catch(()=>{});
+            // #endregion
+            if (container && container.innerHTML === '') {
+              // #region agent log H5
+              fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:911',message:'CALLING_CREATE',data:{containerId:'intro-teseracto'},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H5'})}).catch(()=>{});
+              // #endregion
+              const result = WoTeseracto4D.create('intro-teseracto', {
+                color: '#FFCB00', // Amarillo - color de marca
+                variant: 'continuous',  // ← Rotación continua sin resets
+                rotationPreset: 'complex',
+                scale: 100,
+                autoPlay: true,
+                speed: 2
+              });
+              // #region agent log H5
+              fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:921',message:'CREATE_RESULT',data:{resultExists:!!result,resultId:result?.id},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H5'})}).catch(()=>{});
+              // #endregion
+              introTeseractoInitialized = true;
+            } else {
+              // #region agent log H1 H2
+              fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:927',message:'SKIPPED_CREATE',data:{reason:!container?'no_container':'not_empty'},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H1-H2'})}).catch(()=>{});
+              // #endregion
+            }
+          }, 300);
+        });
+      } else {
+        // #region agent log H3 H4
+        fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:933',message:'SKIPPED_INIT',data:{reason:introTeseractoInitialized?'already_initialized':'WoTeseracto4D_undefined'},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H3-H4'})}).catch(()=>{});
+        // #endregion
+      }
+      
+      // Teseracto CTA - Inicializar si navegamos directamente al slide final
+      const ctaContainer = document.getElementById('cta-teseracto');
+      if (ctaContainer && currentState === 'cta-teseracto' && !ctaTeseractoInitialized && typeof WoTeseracto4D !== 'undefined') {
+        setTimeout(() => {
+          WoTeseracto4D.create('cta-teseracto', {
+            color: '#FFCB00', // Amarillo - color de marca
+            variant: 'continuous',  // ← Rotación continua
+            rotationPreset: 'dual',
+            scale: 90,
+            speed: 0.8,
+            autoPlay: true
+          });
+          ctaTeseractoInitialized = true;
+        }, 200);
+      }
     });
     
     // ═══════════════════════════════════════════════════════════════
@@ -1117,22 +959,19 @@
     
     Reveal.on('slidechanged', (event) => {
       const currentState = event.currentSlide.dataset.state;
-      // #region agent log
-      fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:slidechanged',message:'slidechanged event',data:{currentState,slideIndex:event.indexh,woosInitialized,isWoosSlide:currentState==='woos-slide'},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'E'})}).catch(()=>{});
-      // #endregion
       
-      // WoOS Diagram
+      // WoOS Diagram - Usando el nuevo componente
       if (currentState === 'woos-slide' && !woosInitialized) {
-        // #region agent log
-        fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:woos-slide-init',message:'WoOS init triggered',data:{woosInitializedBefore:woosInitialized},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C'})}).catch(()=>{});
-        // #endregion
         setTimeout(() => {
-          createWoOSDiagram('woos-diagram');
-          setTimeout(animateWoOSDiagram, 100);
-          woosInitialized = true;
-          // #region agent log
-          fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:woos-init-complete',message:'woosInitialized SET TO TRUE',data:{woosInitialized:true},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C'})}).catch(()=>{});
-          // #endregion
+          if (typeof initWoWoosDiagram === 'function') {
+            initWoWoosDiagram('woos-diagram', {
+              preset: 'growth',
+              autoPlay: true,
+              animationSpeed: 600,
+              staggerDelay: 350
+            });
+            woosInitialized = true;
+          }
         }, 300);
       }
       
@@ -1151,11 +990,45 @@
         }, 400);
       }
       
+      // Teseracto Intro
+      if (currentState === 'intro-teseracto' && !introTeseractoInitialized) {
+        setTimeout(() => {
+          if (typeof WoTeseracto4D !== 'undefined') {
+            WoTeseracto4D.create('intro-teseracto', {
+              color: '#FFCB00',
+              variant: 'continuous',  // ← Rotación continua
+              rotationPreset: 'complex',
+              scale: 100,
+              speed: 2,
+              autoPlay: true
+            });
+            introTeseractoInitialized = true;
+          }
+        }, 300);
+      }
+      
+      // Teseracto CTA
+      if (currentState === 'cta-teseracto' && !ctaTeseractoInitialized) {
+        setTimeout(() => {
+          if (typeof WoTeseracto4D !== 'undefined') {
+            WoTeseracto4D.create('cta-teseracto', {
+              color: '#FFCB00',
+              variant: 'continuous',  // ← Rotación continua
+              rotationPreset: 'dual',
+              scale: 90,
+              speed: 0.8,
+              autoPlay: true
+            });
+            ctaTeseractoInitialized = true;
+          }
+        }, 300);
+      }
+      
       // Pilares slide - animación de cards mejorada
       if (currentState === 'pilares-slide') {
         setTimeout(() => {
           const cards = document.querySelectorAll('#pilares-grid .wo-card.visible');
-          if (cards.length > 0 && typeof WoAnime !== 'undefined') {
+          if (cards.length > 0 && typeof anime !== 'undefined') {
             // Pulso sutil en los card-numbers
             anime({
               targets: '#pilares-grid .card-number',
@@ -1182,36 +1055,40 @@
       
       // Animación mejorada para casos de éxito
       if (fragment.classList.contains('wo-case')) {
-        anime({
-          targets: fragment,
-          scale: [0.9, 1],
-          opacity: [0, 1],
-          translateY: [20, 0],
-          duration: 500,
-          easing: 'easeOutBack'
-        });
-        
-        // Animar métricas dentro del caso
-        const metrics = fragment.querySelectorAll('.wo-case__metric-value');
-        anime({
-          targets: metrics,
-          color: ['#94A3B8', '#5968EA'],
-          duration: 600,
-          delay: anime.stagger(100, { start: 300 }),
-          easing: 'easeOutQuad'
-        });
+        if (typeof anime !== 'undefined') {
+          anime({
+            targets: fragment,
+            scale: [0.9, 1],
+            opacity: [0, 1],
+            translateY: [20, 0],
+            duration: 500,
+            easing: 'easeOutBack'
+          });
+          
+          // Animar métricas dentro del caso
+          const metrics = fragment.querySelectorAll('.wo-case__metric-value');
+          anime({
+            targets: metrics,
+            color: ['#94A3B8', '#5968EA'],
+            duration: 600,
+            delay: anime.stagger(100, { start: 300 }),
+            easing: 'easeOutQuad'
+          });
+        }
       }
       
       // Animación para columnas de comparación
       if (fragment.classList.contains('wo-comparison__col')) {
-        anime({
-          targets: fragment.querySelectorAll('li'),
-          opacity: [0, 1],
-          translateX: fragment.classList.contains('wo-comparison__col--negative') ? [-20, 0] : [20, 0],
-          delay: anime.stagger(80),
-          duration: 400,
-          easing: 'easeOutQuad'
-        });
+        if (typeof anime !== 'undefined') {
+          anime({
+            targets: fragment.querySelectorAll('li'),
+            opacity: [0, 1],
+            translateX: fragment.classList.contains('wo-comparison__col--negative') ? [-20, 0] : [20, 0],
+            delay: anime.stagger(80),
+            duration: 400,
+            easing: 'easeOutQuad'
+          });
+        }
       }
     });
   </script>

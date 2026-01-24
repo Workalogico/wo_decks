@@ -38,7 +38,7 @@
   width: 40px;
   height: 40px;
   border-radius: 10px;
-  background: linear-gradient(135deg, var(--wo-blue-lab, #5968EA), var(--wo-yellow-spark, #FFCB00));
+  background: linear-gradient(135deg, var(--wo-blue-lab), var(--wo-yellow-spark));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,7 +50,7 @@
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--wo-text);
 }
 
 .wo-chat-header__status {
@@ -58,7 +58,7 @@
   align-items: center;
   gap: 6px;
   font-size: 0.75rem;
-  color: #10B981;
+  color: var(--wo-success);
 }
 
 .wo-chat-header__status::before {
@@ -66,7 +66,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #10B981;
+  background: var(--wo-success);
   animation: pulse 2s infinite;
 }
 
@@ -88,7 +88,7 @@
   background: rgba(89, 104, 234, 0.15);
   border: 1px solid rgba(89, 104, 234, 0.4);
   border-radius: 8px;
-  color: #fff;
+  color: var(--wo-text);
   font-family: 'DM Sans', sans-serif;
   font-size: 0.75rem;
   font-weight: 500;
@@ -98,7 +98,7 @@
 
 .wo-chat-model-btn:hover {
   background: rgba(89, 104, 234, 0.25);
-  border-color: var(--wo-blue-lab, #5968EA);
+  border-color: var(--wo-blue-lab);
 }
 
 .wo-chat-model-btn__icon {
@@ -177,13 +177,13 @@
   margin: 0;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--wo-text);
 }
 
 .wo-chat-model-option__info p {
   margin: 2px 0 0;
   font-size: 0.7rem;
-  color: #64748B;
+  color: var(--wo-text-muted);
 }
 
 /* Área de mensajes */
@@ -245,7 +245,7 @@
 }
 
 .wo-chat-message.assistant .wo-chat-message__avatar {
-  background: linear-gradient(135deg, var(--wo-blue-lab, #5968EA), var(--wo-yellow-spark, #FFCB00));
+  background: linear-gradient(135deg, var(--wo-blue-lab), var(--wo-yellow-spark));
 }
 
 .wo-chat-message.user .wo-chat-message__avatar {
@@ -261,13 +261,13 @@
 
 .wo-chat-message.assistant .wo-chat-message__content {
   background: rgba(37, 37, 66, 0.8);
-  color: #fff;
+  color: var(--wo-text);
   border-bottom-left-radius: 4px;
 }
 
 .wo-chat-message.user .wo-chat-message__content {
-  background: var(--wo-blue-lab, #5968EA);
-  color: #fff;
+  background: var(--wo-blue-lab);
+  color: var(--wo-text);
   border-bottom-right-radius: 4px;
 }
 
@@ -286,7 +286,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--wo-blue-lab, #5968EA);
+  background: var(--wo-blue-lab);
   animation: typing 1.4s infinite;
 }
 
@@ -313,7 +313,7 @@
   background: rgba(15, 15, 26, 0.8);
   border: 1px solid rgba(89, 104, 234, 0.3);
   border-radius: 12px;
-  color: #fff;
+  color: var(--wo-text);
   font-family: 'DM Sans', sans-serif;
   font-size: 0.85rem;
   outline: none;
@@ -321,20 +321,20 @@
 }
 
 .wo-chat-input:focus {
-  border-color: var(--wo-blue-lab, #5968EA);
+  border-color: var(--wo-blue-lab);
 }
 
 .wo-chat-input::placeholder {
-  color: #64748B;
+  color: var(--wo-text-muted);
 }
 
 .wo-chat-send-btn {
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: var(--wo-blue-lab, #5968EA);
+  background: var(--wo-blue-lab);
   border: none;
-  color: #fff;
+  color: var(--wo-text);
   font-size: 1.1rem;
   cursor: pointer;
   display: flex;
@@ -367,7 +367,7 @@
   background: rgba(89, 104, 234, 0.1);
   border: 1px solid rgba(89, 104, 234, 0.3);
   border-radius: 20px;
-  color: #94A3B8;
+  color: var(--wo-text-secondary);
   font-size: 0.75rem;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -375,8 +375,8 @@
 
 .wo-chat-suggestion:hover {
   background: rgba(89, 104, 234, 0.2);
-  border-color: var(--wo-blue-lab, #5968EA);
-  color: #fff;
+  border-color: var(--wo-blue-lab);
+  color: var(--wo-text);
 }
 
 /* Código en mensajes */
@@ -390,7 +390,7 @@
 
 /* Links en mensajes */
 .wo-chat-message__content a {
-  color: var(--wo-yellow-spark, #FFCB00);
+  color: var(--wo-yellow-spark);
   text-decoration: none;
 }
 
@@ -402,7 +402,7 @@
 .wo-chat-welcome {
   text-align: center;
   padding: 20px;
-  color: #94A3B8;
+  color: var(--wo-text-secondary);
 }
 
 .wo-chat-welcome__icon {
@@ -415,7 +415,7 @@
   font-family: 'Space Grotesk', sans-serif;
   font-size: 1rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--wo-text);
 }
 
 .wo-chat-welcome p {

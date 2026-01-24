@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Color Lab - Generador de paletas y verificación de accesibilidad">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <title>Color Lab | Design System Hub</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../LOGOS/teseracto yellow@3x.png">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Design Tokens -->
+  <link rel="stylesheet" href="../wo-tokens.css">
+  
+  <!-- Hub Styles -->
+  <link rel="stylesheet" href="hub.css">
+  
+  <!-- Color Lab Styles -->
+  <link rel="stylesheet" href="wo-color-lab.css">
+  
+  <!-- Theme Switch Component -->
+  <link rel="stylesheet" href="wo-theme-switch.css">
+</head>
+<body data-wo-theme="yellow">
+  <div class="hub-layout">
+    <!-- Sidebar -->
+    <aside class="hub-sidebar">
+      <div class="hub-logo">
+        <img src="../LOGOS/SVG/WoLogos_2026-01.svg" alt="Workalógico" class="hub-logo__yellow">
+        <img src="../LOGOS/SVG/WoLogos_2026-03.svg" alt="Workalógico" class="hub-logo__white">
+        <span class="hub-version">Design System v2.3</span>
+      </div>
+      
+      <nav class="hub-nav">
+        <h4>Inicio</h4>
+        <a href="index.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></span> Dashboard
+        </a>
+        
+        <h4>Fundamentos</h4>
+        <a href="colors.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18h3a2 2 0 0 0 0-4h-1a2 2 0 0 1 0-4h2a2 2 0 0 0 2-2 6 6 0 0 0-6-6z"/><circle cx="8" cy="10" r="1"/><circle cx="6.5" cy="14" r="1"/><circle cx="10.5" cy="6.5" r="1"/></svg></span> Colores
+        </a>
+        <a href="color-lab.html" class="active">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M9 2v6l3 2 3-2V2"/><path d="M15 10v6a6 6 0 0 1-6 0v-6"/><circle cx="12" cy="18" r="3"/></svg></span> Color Lab
+        </a>
+        <a href="typography.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 6h14"/><path d="M12 6v12"/><path d="M8 18h8"/></svg></span> Tipografía
+        </a>
+        <a href="spacing.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M4 17h16"/><path d="M7 9v6"/><path d="M12 9v6"/><path d="M17 9v6"/></svg></span> Espaciado
+        </a>
+        
+        <h4>Componentes</h4>
+        <a href="components.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span> Componentes
+        </a>
+        <a href="pricing-components.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span> Pricing
+        </a>
+        <a href="demo-cards.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span> Demo Cards
+        </a>
+        <a href="templates.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg></span> Templates
+        </a>
+        
+        <h4>Herramientas</h4>
+        <a href="mockups.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></span> Mockups
+        </a>
+        
+        <h4>Assets</h4>
+        <a href="assets.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 12l9 9 9-9-9-9H3z"/><circle cx="8" cy="8" r="1.5"/></svg></span> Logos
+        </a>
+        <a href="backgrounds.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 17l5-5 4 4 3-3 6 6"/><circle cx="8" cy="10" r="2"/></svg></span> Fondos
+        </a>
+        
+        <h4>Recursos</h4>
+        <a href="../index.html">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="11" rx="2"/><path d="M9 7V5h6v2"/><path d="M4 12h16"/></svg></span> Ver Decks
+        </a>
+      </nav>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="hub-main">
+      <header class="hub-header">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem;">
+          <div>
+            <h1>Color <span class="accent">Lab</span></h1>
+            <p>Genera paletas de color armónicas, verifica accesibilidad WCAG y simula daltonismo.</p>
+          </div>
+          <!-- Theme Switch -->
+          <div id="theme-switch-container"></div>
+        </div>
+      </header>
+      
+      <!-- Color Picker Section -->
+      <section class="hub-section">
+        <h2>Selector de Color Base</h2>
+        <p>Elige un color inicial o usa uno de los colores de marca de Workalógico.</p>
+        
+        <div class="colorlab-picker-area">
+          <div class="colorlab-picker">
+            <label for="color-input">Color Base</label>
+            <div class="colorlab-picker__controls">
+              <input type="color" id="color-input" value="#FFCB00">
+              <input type="text" id="color-hex" value="#FFCB00" placeholder="#FFCB00">
+            </div>
+          </div>
+          
+          <div class="colorlab-presets">
+            <span class="colorlab-presets__label">Colores Wo:</span>
+            <button class="colorlab-preset" data-color="#FFCB00" style="background: #FFCB00;" title="Yellow Spark"></button>
+            <button class="colorlab-preset" data-color="#5968EA" style="background: #5968EA;" title="Blue Lab"></button>
+            <button class="colorlab-preset" data-color="#1A1A2E" style="background: #1A1A2E;" title="Black Core"></button>
+            <button class="colorlab-preset" data-color="#F7F7F7" style="background: #F7F7F7; border: 1px solid #333;" title="White Focus"></button>
+            <button class="colorlab-preset" data-color="#333333" style="background: #333333;" title="Gray Dark"></button>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Harmony Generator -->
+      <section class="hub-section">
+        <h2>Generador de <span class="accent">Armonías</span></h2>
+        <p>Selecciona un esquema de color para generar paletas complementarias.</p>
+        
+        <div class="colorlab-harmony-selector">
+          <button class="colorlab-harmony-btn active" data-harmony="complementary">
+            <span class="colorlab-harmony-icon">⚖️</span>
+            <span>Complementario</span>
+          </button>
+          <button class="colorlab-harmony-btn" data-harmony="analogous">
+            <span class="colorlab-harmony-icon">🌈</span>
+            <span>Análogo</span>
+          </button>
+          <button class="colorlab-harmony-btn" data-harmony="triadic">
+            <span class="colorlab-harmony-icon">△</span>
+            <span>Triádico</span>
+          </button>
+          <button class="colorlab-harmony-btn" data-harmony="split-complementary">
+            <span class="colorlab-harmony-icon">⚡</span>
+            <span>Split-Comp.</span>
+          </button>
+          <button class="colorlab-harmony-btn" data-harmony="tetradic">
+            <span class="colorlab-harmony-icon">◼</span>
+            <span>Tetrádico</span>
+          </button>
+        </div>
+        
+        <div id="palette-preview" class="colorlab-palette">
+          <!-- Generated palette will be rendered here -->
+        </div>
+      </section>
+      
+      <!-- Accessibility Checker -->
+      <section class="hub-section">
+        <h2>Verificación de <span class="accent">Accesibilidad</span></h2>
+        <p>Comprueba el contraste entre colores según las pautas WCAG 2.1.</p>
+        
+        <div class="colorlab-contrast-checker">
+          <div class="colorlab-contrast-inputs">
+            <div class="colorlab-contrast-input">
+              <label>Color de Texto</label>
+              <div class="colorlab-picker__controls">
+                <input type="color" id="contrast-fg" value="#FFFFFF">
+                <input type="text" id="contrast-fg-hex" value="#FFFFFF">
+              </div>
+            </div>
+            
+            <div class="colorlab-contrast-input">
+              <label>Color de Fondo</label>
+              <div class="colorlab-picker__controls">
+                <input type="color" id="contrast-bg" value="#1A1A2E">
+                <input type="text" id="contrast-bg-hex" value="#1A1A2E">
+              </div>
+            </div>
+          </div>
+          
+          <div class="colorlab-contrast-result">
+            <div class="colorlab-contrast-preview" id="contrast-preview">
+              <span>Texto de ejemplo</span>
+            </div>
+            
+            <div class="colorlab-contrast-scores">
+              <div class="colorlab-score-item">
+                <div class="colorlab-score-label">Ratio de Contraste</div>
+                <div class="colorlab-score-value" id="contrast-ratio">--</div>
+              </div>
+              
+              <div class="colorlab-score-item">
+                <div class="colorlab-score-label">Texto Normal</div>
+                <div class="colorlab-score-badge" id="wcag-normal">
+                  <span class="badge-aa">--</span>
+                  <span class="badge-aaa">--</span>
+                </div>
+              </div>
+              
+              <div class="colorlab-score-item">
+                <div class="colorlab-score-label">Texto Grande</div>
+                <div class="colorlab-score-badge" id="wcag-large">
+                  <span class="badge-aa">--</span>
+                  <span class="badge-aaa">--</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Color Blindness Simulation -->
+      <section class="hub-section">
+        <h2>Simulación de <span class="accent">Daltonismo</span></h2>
+        <p>Visualiza cómo se verá tu paleta para personas con diferentes tipos de daltonismo.</p>
+        
+        <div class="colorlab-colorblind">
+          <div class="colorlab-colorblind-selector">
+            <button class="colorlab-colorblind-btn active" data-type="normal">Normal</button>
+            <button class="colorlab-colorblind-btn" data-type="protanopia">Protanopia</button>
+            <button class="colorlab-colorblind-btn" data-type="deuteranopia">Deuteranopia</button>
+            <button class="colorlab-colorblind-btn" data-type="tritanopia">Tritanopia</button>
+          </div>
+          
+          <div id="colorblind-preview" class="colorlab-colorblind-preview">
+            <!-- Color blindness simulation will be rendered here -->
+          </div>
+        </div>
+      </section>
+      
+      <!-- Export Section -->
+      <section class="hub-section">
+        <h2>Exportar <span class="accent">Paleta</span></h2>
+        <p>Copia las variables CSS o exporta en formato JSON.</p>
+        
+        <div class="colorlab-export">
+          <div class="colorlab-export-tabs">
+            <button class="colorlab-export-tab active" data-format="css">CSS</button>
+            <button class="colorlab-export-tab" data-format="json">JSON</button>
+          </div>
+          
+          <div class="code-block">
+            <div class="code-block__header">
+              <span class="code-block__lang" id="export-lang">CSS Variables</span>
+              <button class="hub-btn hub-btn--small hub-btn--copy" onclick="copyExportCode()">Copiar</button>
+            </div>
+            <div class="code-block__content">
+              <pre id="export-code">/* Selecciona un esquema de armonía para generar código */</pre>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Footer -->
+      <footer class="hub-footer">
+        <p><a href="index.html">← Volver al Dashboard</a> | <a href="colors.html">Ver Paleta de Colores →</a></p>
+      </footer>
+    </main>
+  </div>
+  
+  <!-- Theme Switch Component -->
+  <script src="wo-theme-switch.js"></script>
+  
+  <!-- Color Lab JS -->
+  <script src="wo-color-lab.js"></script>
+  
+  <!-- Initialize -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize theme switch
+      const themeSwitch = new WoThemeSwitch('#theme-switch-container', {
+        initialTheme: localStorage.getItem('wo-theme') || 'yellow',
+        showLabel: false,
+        variant: localStorage.getItem('wo-theme-switch-variant') || 'default'
+      });
+      
+      // Initialize Color Lab
+      WoColorLab.init();
+    });
+  </script>
+</body>
+</html>

@@ -323,18 +323,27 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  padding: 10px 16px;
+  padding: 10px 20px;
   background: rgba(16, 185, 129, 0.15);
   border: 1px solid rgba(16, 185, 129, 0.4);
   border-radius: 8px;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: var(--wo-success, #10B981);
+  text-align: center;
+  white-space: nowrap;
+  min-width: 100px;
 }
 
 .wo-flow-time-saved__value {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 700;
+  display: block;
+}
+
+.wo-flow-time-saved__label {
+  font-size: 0.7rem;
+  opacity: 0.8;
 }
 
 /* ═══════════════════════════════════════════════════════════════

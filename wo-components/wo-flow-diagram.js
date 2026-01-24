@@ -102,14 +102,15 @@ const FLOW_PRESETS = {
   },
 
   // Metodología de desarrollo de proyectos (Growth Tesis)
+  // NOTA: Este preset está optimizado para usarse SIN los wo-stat HTML adicionales
   growth: {
     title: 'Metodología de Desarrollo',
-    timeSaved: 'ROI garantizado',
+    timeSaved: null, // Sin indicador de tiempo (no aplica para metodología)
     nodes: [
-      { id: 'discovery', icon: '🔍', label: 'Discovery', sublabel: 'Diagnóstico profundo', x: 100, y: 180 },
-      { id: 'architecture', icon: '📐', label: 'Architecture', sublabel: 'Roadmap estratégico', x: 300, y: 180 },
-      { id: 'execution', icon: '⚡', label: 'Execution', sublabel: 'Build & Deploy', x: 500, y: 180 },
-      { id: 'scale', icon: '📈', label: 'Scale', sublabel: 'Amplificación', x: 700, y: 180 }
+      { id: 'discovery', icon: '🔍', label: 'Discovery', sublabel: 'Diagnóstico profundo', x: 120, y: 140 },
+      { id: 'architecture', icon: '📐', label: 'Architecture', sublabel: 'Roadmap estratégico', x: 340, y: 140 },
+      { id: 'execution', icon: '⚡', label: 'Execution', sublabel: 'Build & Deploy', x: 560, y: 140 },
+      { id: 'scale', icon: '📈', label: 'Scale', sublabel: 'Amplificación', x: 780, y: 140 }
     ],
     connections: [
       { from: 'discovery', to: 'architecture' },
@@ -194,11 +195,13 @@ class WoFlowDiagram {
           <g class="wo-flow-nodes"></g>
         </svg>
         
+        ${this.config.timeSaved ? `
         <!-- Indicador de tiempo ahorrado -->
         <div class="wo-flow-time-saved">
           <span class="wo-flow-time-saved__value">${this.config.timeSaved}</span>
-          <br>ahorradas
+          <br><span class="wo-flow-time-saved__label">ahorradas</span>
         </div>
+        ` : ''}
         
         ${this.options.showControls ? `
         <div class="wo-flow-controls">

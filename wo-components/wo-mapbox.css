@@ -3,6 +3,9 @@
    Integración con Reveal.js para presentaciones de Geointeligencia
    ═══════════════════════════════════════════════════════════════ */
 
+/* Importar Mapbox tokens (extraídos de wo-tokens.css) */
+@import url('../wo-mapbox-tokens.css');
+
 /* Contenedor principal del mapa */
 .wo-map-container {
   position: relative;

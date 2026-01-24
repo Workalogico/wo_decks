@@ -1,0 +1,253 @@
+/* ═══════════════════════════════════════════════════════════════
+   WORKALÓGICO WOOS DIAGRAM COMPONENT
+   Sistema Ascendente - Diagrama de 4 fases para Growth/Metodología
+   Versión: 1.0.0
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════
+   CONTAINER
+   ═══════════════════════════════════════════════════════════════ */
+
+.wo-woos-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5em auto;
+  max-width: 100%;
+  min-height: 320px;
+  position: relative;
+}
+
+.wo-woos-svg {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  min-height: 280px;
+  overflow: visible;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PATH CONNECTOR
+   ═══════════════════════════════════════════════════════════════ */
+
+.wo-woos-path {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.wo-woos-path--animated {
+  stroke-dasharray: var(--path-length, 800);
+  stroke-dashoffset: var(--path-length, 800);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PHASE NODES
+   ═══════════════════════════════════════════════════════════════ */
+
+.wo-woos-phase {
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.3s ease;
+  transform-origin: center center;
+}
+
+.wo-woos-phase--visible {
+  opacity: 1;
+}
+
+.wo-woos-phase:hover {
+  transform: scale(1.05);
+}
+
+/* Pulse ring (outer glow) */
+.wo-woos-phase__pulse {
+  fill: none;
+  stroke-width: 1;
+  opacity: 0.3;
+  transform-origin: center center;
+}
+
+.wo-woos-phase--blue .wo-woos-phase__pulse {
+  stroke: var(--wo-blue-lab, #5968EA);
+}
+
+.wo-woos-phase--yellow .wo-woos-phase__pulse {
+  stroke: var(--wo-yellow-spark, #FFCB00);
+}
+
+/* Main circle */
+.wo-woos-phase__circle {
+  fill: rgba(37, 37, 66, 0.9);
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+.wo-woos-phase--blue .wo-woos-phase__circle {
+  stroke: var(--wo-blue-lab, #5968EA);
+}
+
+.wo-woos-phase--yellow .wo-woos-phase__circle {
+  stroke: var(--wo-yellow-spark, #FFCB00);
+}
+
+.wo-woos-phase:hover .wo-woos-phase__circle {
+  filter: drop-shadow(0 0 15px currentColor);
+}
+
+.wo-woos-phase--blue:hover .wo-woos-phase__circle {
+  filter: drop-shadow(0 0 15px var(--wo-blue-lab, #5968EA));
+}
+
+.wo-woos-phase--yellow:hover .wo-woos-phase__circle {
+  filter: drop-shadow(0 0 15px var(--wo-yellow-spark, #FFCB00));
+}
+
+/* Icon emoji */
+.wo-woos-phase__icon {
+  font-size: 28px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  pointer-events: none;
+}
+
+/* Label text */
+.wo-woos-phase__label {
+  font-family: var(--font-heading, 'Space Grotesk', sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  fill: var(--wo-text, #FFFFFF);
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+/* Sublabel text */
+.wo-woos-phase__sublabel {
+  font-family: var(--font-body, 'DM Sans', sans-serif);
+  font-size: 11px;
+  fill: var(--wo-text-secondary, #94A3B8);
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Pulse animation for outer rings */
+@keyframes wo-woos-pulse {
+  0%, 100% {
+    r: 48;
+    opacity: 0.3;
+  }
+  50% {
+    r: 55;
+    opacity: 0.15;
+  }
+}
+
+.wo-woos-phase--visible .wo-woos-phase__pulse {
+  animation: wo-woos-pulse 2s ease-in-out infinite;
+}
+
+/* Staggered pulse delays */
+.wo-woos-phase:nth-child(2) .wo-woos-phase__pulse { animation-delay: 0s; }
+.wo-woos-phase:nth-child(3) .wo-woos-phase__pulse { animation-delay: 0.5s; }
+.wo-woos-phase:nth-child(4) .wo-woos-phase__pulse { animation-delay: 1s; }
+.wo-woos-phase:nth-child(5) .wo-woos-phase__pulse { animation-delay: 1.5s; }
+
+/* Path draw animation (CSS fallback) */
+@keyframes wo-woos-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.wo-woos-path--draw {
+  animation: wo-woos-draw 2s ease-in-out forwards;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PRESETS VISUALIZATION
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Standard preset - horizontal ascending */
+.wo-woos--standard .wo-woos-svg {
+  max-width: 900px;
+}
+
+/* Compact preset - smaller for tight spaces */
+.wo-woos--compact .wo-woos-svg {
+  max-width: 700px;
+}
+
+.wo-woos--compact .wo-woos-phase__circle {
+  r: 35;
+}
+
+.wo-woos--compact .wo-woos-phase__pulse {
+  r: 40;
+}
+
+.wo-woos--compact .wo-woos-phase__icon {
+  font-size: 24px;
+}
+
+.wo-woos--compact .wo-woos-phase__label {
+  font-size: 11px;
+}
+
+.wo-woos--compact .wo-woos-phase__sublabel {
+  font-size: 9px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .wo-woos-container {
+    min-height: 250px;
+  }
+  
+  .wo-woos-phase__icon {
+    font-size: 22px;
+  }
+  
+  .wo-woos-phase__label {
+    font-size: 11px;
+  }
+  
+  .wo-woos-phase__sublabel {
+    font-size: 9px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   THEME VARIANTS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Blue theme (default) - first 2 blue, last 2 yellow */
+[data-wo-theme="blue"] .wo-woos-phase--accent-primary .wo-woos-phase__circle,
+[data-wo-theme="blue"] .wo-woos-phase--accent-primary .wo-woos-phase__pulse {
+  stroke: var(--wo-blue-lab, #5968EA);
+}
+
+[data-wo-theme="blue"] .wo-woos-phase--accent-secondary .wo-woos-phase__circle,
+[data-wo-theme="blue"] .wo-woos-phase--accent-secondary .wo-woos-phase__pulse {
+  stroke: var(--wo-yellow-spark, #FFCB00);
+}
+
+/* Yellow theme - first 2 yellow, last 2 blue */
+[data-wo-theme="yellow"] .wo-woos-phase--accent-primary .wo-woos-phase__circle,
+[data-wo-theme="yellow"] .wo-woos-phase--accent-primary .wo-woos-phase__pulse {
+  stroke: var(--wo-yellow-spark, #FFCB00);
+}
+
+[data-wo-theme="yellow"] .wo-woos-phase--accent-secondary .wo-woos-phase__circle,
+[data-wo-theme="yellow"] .wo-woos-phase--accent-secondary .wo-woos-phase__pulse {
+  stroke: var(--wo-blue-lab, #5968EA);
+}

@@ -5,8 +5,13 @@
  * 
  * Funciones de animación para slides de pricing.
  * Requiere: wo-components/wo-pricing.css
+ * 
+ * ACTUALIZADO: Ahora usa wo-anime-counter.js para contadores
  * ═══════════════════════════════════════════════════════════════
  */
+
+// Importar contador desde el módulo compartido
+import { animateCounter, formatPrice } from '../wo-anime/wo-anime-counter.js';
 
 const WoPricing = (function() {
   'use strict';
@@ -100,45 +105,15 @@ const WoPricing = (function() {
   // ─────────────────────────────────────────
   
   /**
-   * Anima un elemento de precio desde 0 hasta el valor target
-   * @param {HTMLElement} element - Elemento con data-price
-   * @param {Object} options - { duration, format }
+   * Re-exporta animateCounter desde wo-anime-counter.js
+   * Mantiene la misma API para backward compatibility
    */
-  function animateCounter(element, options = {}) {
-    if (!element) return;
-    
-    const targetPrice = parseInt(element.dataset.price) || 0;
-    const duration = options.duration || config.counterDuration;
-    const format = options.format || formatPrice;
-    const startTime = performance.now();
-    
-    function update(currentTime) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const easeProgress = config.easing.expo(progress);
-      
-      const currentValue = targetPrice * easeProgress;
-      element.textContent = format(currentValue);
-      
-      if (progress < 1) {
-        requestAnimationFrame(update);
-      } else {
-        element.textContent = format(targetPrice);
-      }
-    }
-    
-    element.textContent = format(0);
-    requestAnimationFrame(update);
-  }
+  // La función animateCounter ya está importada desde wo-anime-counter.js
   
   /**
-   * Formatea número como precio con símbolo de moneda
-   * @param {number} num - Número a formatear
-   * @param {string} currency - Símbolo de moneda (default: '$')
+   * Re-exporta formatPrice desde wo-anime-counter.js
    */
-  function formatPrice(num, currency = '$') {
-    return currency + Math.floor(num).toLocaleString('en-US');
-  }
+  // La función formatPrice ya está importada desde wo-anime-counter.js
   
   // ─────────────────────────────────────────
   // RESET

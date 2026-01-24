@@ -679,6 +679,9 @@ const WoTeseracto4D = (function() {
   // ═══════════════════════════════════════════════════════════════
   
   function create(container, options = {}) {
+    // #region agent log H6
+    fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'wo-teseracto-4d.js:681',message:'CREATE_ENTRY',data:{containerArg:container,containerType:typeof container},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H6'})}).catch(()=>{});
+    // #endregion
     const {
       color = config.colors.yellow,
       strokeWidth = 1.5,
@@ -692,11 +695,25 @@ const WoTeseracto4D = (function() {
       projectionConfig = {}
     } = options;
 
-    const containerEl = typeof container === 'string'
-      ? document.querySelector(container)
-      : container;
+    // Si es string y no empieza con # o ., asumir que es un ID
+    let containerEl;
+    if (typeof container === 'string') {
+      // Si no es un selector CSS válido (no empieza con # . [ :), prefijarlo con #
+      const selector = /^[#.\[:]/.test(container) ? container : `#${container}`;
+      containerEl = document.querySelector(selector);
+    } else {
+      containerEl = container;
+    }
+
+    // #region agent log H6
+    const actualSelector = typeof container === 'string' ? (/^[#.\[:]/.test(container) ? container : `#${container}`) : 'N/A';
+    fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'wo-teseracto-4d.js:706',message:'CONTAINER_LOOKUP',data:{containerArg:container,actualSelector,containerElFound:!!containerEl},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H6',runId:'post-fix'})}).catch(()=>{});
+    // #endregion
 
     if (!containerEl) {
+      // #region agent log H6
+      fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'wo-teseracto-4d.js:705',message:'CONTAINER_NOT_FOUND',data:{containerArg:container},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H6'})}).catch(()=>{});
+      // #endregion
       console.error('WoTeseracto4D: Container not found');
       return null;
     }
@@ -733,6 +750,14 @@ const WoTeseracto4D = (function() {
             preset: rotationPreset, 
             projectionConfig,
             duration: 10000 / speed
+          });
+          break;
+        case 'continuous':
+          // Rotación continua sin resets usando requestAnimationFrame
+          animation = animateRotation(svg, { 
+            preset: rotationPreset, 
+            speed,
+            projectionConfig 
           });
           break;
         case 'breathe':
