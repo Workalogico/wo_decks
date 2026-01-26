@@ -892,7 +892,7 @@
         }, 100);
       }
       
-      // Teseracto Intro - Siempre inicializar (es el primer slide)
+      // Teseracto  Intro - Siempre inicializar (es el primer slide)
       // Usar requestAnimationFrame para esperar al render del DOM
       // #region agent log H3 H4
       fetch('http://127.0.0.1:7253/ingest/f4ab8603-6ff0-4916-a1d2-1ac6c94ca070',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:897',message:'INIT_CHECK',data:{introTeseractoInitialized,WoTeseracto4DExists:typeof WoTeseracto4D !== 'undefined'},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H3-H4'})}).catch(()=>{});
