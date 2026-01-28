@@ -1,0 +1,310 @@
+---
+description: Reglas para el sistema de partículas WoParticles basado en tsParticles - Configuración y uso correcto
+globs: ["**/*.js", "**/deck-wo-*/**/*.html", "**/wo-particles.js", "**/wo-particles.css"]
+alwaysApply: false
+---
+
+# WoParticles - Sistema de Partículas Workalógico
+
+## Concepto Visual: "Data Network"
+
+Red de nodos conectados que representa inteligencia de datos. Las partículas simbolizan puntos de datos interconectados que fluyen y se relacionan.
+
+---
+
+## Dependencias
+
+```html
+<!-- tsParticles Bundle (OBLIGATORIO) -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+
+<!-- Workalógico Particles System -->
+<script src="../wo-particles.js"></script>
+<link rel="stylesheet" href="../wo-particles.css">
+```
+
+---
+
+## Configuración Base
+
+### Colores según Tema
+```javascript
+// Tema Yellow (default)
+{
+  primary: '#FFCB00',
+  secondary: '#5968EA',
+  particles: ['#FFCB00', '#FFCB00', '#FFCB00', '#5968EA'], // 75% yellow, 25% blue
+  links: '#FFCB00',
+  grabLinks: '#5968EA'
+}
+
+// Tema Blue
+{
+  primary: '#5968EA',
+  secondary: '#FFCB00',
+  particles: ['#5968EA', '#5968EA', '#5968EA', '#FFCB00'], // 75% blue, 25% yellow
+  links: '#5968EA',
+  grabLinks: '#FFCB00'
+}
+```
+
+### Parámetros Estándar
+```javascript
+{
+  fullScreen: { enable: false },
+  background: { color: { value: "transparent" } },
+  fpsLimit: 60,
+  
+  particles: {
+    number: { value: 50, density: { enable: true, area: 900 } },
+    size: { value: { min: 1, max: 3 } },
+    opacity: { value: { min: 0.2, max: 0.6 } },
+    move: { speed: 0.6, direction: "none", random: true },
+    links: { distance: 140, enable: true, opacity: 0.12, width: 1 }
+  },
+  
+  interactivity: {
+    events: {
+      onHover: { enable: true, mode: "grab" },
+      onClick: { enable: false } // NO interferir con navegación
+    },
+    modes: {
+      grab: { distance: 180, links: { opacity: 0.35 } }
+    }
+  }
+}
+```
+
+---
+
+## Variantes por Tipo de Servicio
+
+### 1. Geo (Geointeligencia)
+```javascript
+setupWoParticles('geo');
+// Más puntos de datos (60), mayor distancia de links (150)
+```
+
+### 2. AI (AI Experts)
+```javascript
+setupWoParticles('ai');
+// Balance 50/50 colores, más conexiones (opacity: 0.15)
+```
+
+### 3. Marketing
+```javascript
+setupWoParticles('marketing');
+// Más dinámico (speed: 0.8), menos partículas (45)
+```
+
+### 4. Enterprise (CRM/Automatización)
+```javascript
+setupWoParticles('enterprise');
+// Más estructurado (speed: 0.5), links más largos (160)
+```
+
+---
+
+## Uso en Presentaciones
+
+### Activación por Slide
+```html
+<!-- Slide CON partículas -->
+<section data-particles="true" data-background-gradient="...">
+  ...
+</section>
+
+<!-- Slide SIN partículas (default) -->
+<section data-background-color="#0F0F1A">
+  ...
+</section>
+```
+
+### Inicialización
+```javascript
+Reveal.initialize({...}).then(() => {
+  setupWoParticles('enterprise'); // Seleccionar variante
+});
+```
+
+### Visibilidad Automática
+`wo-particles.js` maneja automáticamente la visibilidad:
+- Muestra partículas solo en slides con `data-particles="true"`
+- Oculta en el resto para no distraer
+
+---
+
+## Estructura HTML
+
+### Container Obligatorio
+```html
+<body data-wo-theme="yellow">
+  <!-- Container de partículas (SIEMPRE primero) -->
+  <div id="tsparticles"></div>
+  
+  <div class="reveal">
+    <div class="slides">
+      ...
+    </div>
+  </div>
+</body>
+```
+
+### CSS del Container (wo-particles.css)
+```css
+#tsparticles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#tsparticles.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+```
+
+---
+
+## API Global
+
+### Funciones Disponibles
+```javascript
+// Obtener tema activo
+getWoTheme();  // → 'yellow' | 'blue'
+
+// Obtener colores del tema
+getThemeColors();  // → { primary, secondary, particles, links, grabLinks }
+
+// Obtener configuración base
+getWoParticlesConfig();  // → Objeto de configuración completo
+
+// Obtener variantes
+getWoParticlesVariants();  // → { geo, ai, marketing, enterprise }
+
+// Inicializar partículas
+initWoParticles('variant');  // Inicializa con variante específica
+
+// Actualizar visibilidad (se llama automáticamente)
+updateWoParticlesVisibility();
+
+// Setup completo con Reveal.js
+setupWoParticles('variant');  // Inicializa + registra eventos
+```
+
+---
+
+## Responsive
+
+### Detección de Móvil
+```javascript
+// Automático en initWoParticles()
+if (window.innerWidth < 768) {
+  config.particles.number.value *= 0.6;  // 60% de partículas
+  config.particles.move.speed *= 0.8;     // 80% de velocidad
+}
+```
+
+---
+
+## Mejores Prácticas
+
+### ✅ HACER
+```html
+<!-- Partículas solo en slides de impacto visual -->
+<section data-particles="true" data-background-gradient="...">
+  <!-- Portada, Sección, CTA -->
+</section>
+
+<!-- Contenido sin partículas para mejor lectura -->
+<section data-background-color="#0F0F1A">
+  <!-- Grids, textos densos, comparaciones -->
+</section>
+```
+
+```javascript
+// Seleccionar variante apropiada para el deck
+setupWoParticles('geo');      // Para deck-wo-geoanalisis
+setupWoParticles('ai');       // Para deck-wo-ai-experts
+setupWoParticles('marketing'); // Para deck-wo-marketing-digital
+setupWoParticles('enterprise'); // Para deck-wo-crm, deck-wo-automatizacion
+```
+
+### ❌ EVITAR
+```html
+<!-- NO: Partículas en TODOS los slides -->
+<section data-particles="true">Contenido denso con datos...</section>
+
+<!-- NO: Partículas en slides de lectura -->
+<section data-particles="true">
+  <ul class="wo-steps">Muchos pasos...</ul>
+</section>
+```
+
+```javascript
+// NO: Modificar configuración base directamente
+tsParticles.load("tsparticles", { ...customConfig });
+
+// NO: Velocidades muy altas (distraen)
+particles.move.speed = 3; 
+
+// NO: Demasiadas partículas (afecta performance)
+particles.number.value = 200;
+```
+
+---
+
+## Performance
+
+### Límites Recomendados
+| Parámetro | Mínimo | Máximo | Optimal |
+|-----------|--------|--------|---------|
+| Partículas | 30 | 80 | 50 |
+| Velocidad | 0.3 | 1.0 | 0.6 |
+| Links Distance | 100 | 180 | 140 |
+| FPS Limit | 30 | 60 | 60 |
+
+### Optimización Móvil
+- Se aplica automáticamente reducción del 40%
+- Considerar desactivar en dispositivos muy lentos
+
+---
+
+## Sincronización con Tema
+
+### Cambio Dinámico de Tema
+Las partículas se actualizan automáticamente cuando cambia `data-wo-theme`:
+
+```javascript
+// wo-particles.js lee el tema en cada inicialización
+function getWoTheme() {
+  const body = document.body;
+  const html = document.documentElement;
+  return body.dataset.woTheme || html.dataset.woTheme || 'yellow';
+}
+```
+
+Para forzar actualización después de cambio de tema:
+```javascript
+// Reinicializar partículas
+await initWoParticles('enterprise');
+```
+
+---
+
+## Prohibiciones
+
+1. ❌ Partículas en slides con contenido de lectura denso
+2. ❌ Más de 80 partículas (performance)
+3. ❌ Velocidad mayor a 1.0 (distrae)
+4. ❌ Habilitar onClick (interfiere con Reveal.js)
+5. ❌ Colores fuera de la paleta de marca
+6. ❌ fullScreen: true (rompe el layout)
+7. ❌ Modificar z-index del container
+8. ❌ Usar partículas en slides de pricing/comparación detallada

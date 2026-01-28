@@ -31,13 +31,27 @@ const DASHBOARD_DATA = {
   }
 };
 
-// Colores de marca
-const WO_COLORS = {
-  blue: '#5968EA',
-  yellow: '#FFCB00',
-  success: '#10B981',
-  danger: '#FF6B6B'
+// Función para leer tokens CSS del DOM (evita valores hardcodeados)
+const getTokens = () => {
+  if (typeof document === 'undefined' || !document.documentElement) {
+    return {
+      blue: '#5968EA',
+      yellow: '#FFCB00',
+      success: '#10B981',
+      danger: '#FF6B6B'
+    };
+  }
+  const style = getComputedStyle(document.documentElement);
+  return {
+    blue: style.getPropertyValue('--wo-blue-lab').trim() || '#5968EA',
+    yellow: style.getPropertyValue('--wo-yellow-spark').trim() || '#FFCB00',
+    success: style.getPropertyValue('--wo-success').trim() || '#10B981',
+    danger: style.getPropertyValue('--wo-danger').trim() || '#FF6B6B'
+  };
 };
+
+// Colores de marca (usando tokens CSS dinámicos)
+const WO_COLORS = getTokens();
 
 // Clase principal
 class WoDashboard {
@@ -145,7 +159,7 @@ class WoDashboard {
           </svg>
           
           <!-- X-axis labels -->
-          <div style="display: flex; justify-content: space-between; padding: 8px 0 0; font-size: 0.65rem; color: #64748B;">
+          <div style="display: flex; justify-content: space-between; padding: 8px 0 0; font-size: 0.65rem; color: var(--wo-text-muted);">
             ${chart.labels.map(l => `<span>${l}</span>`).join('')}
           </div>
         </div>

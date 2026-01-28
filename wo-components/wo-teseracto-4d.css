@@ -75,7 +75,7 @@
 .wo-teseracto-4d-container--with-glow {
   background: radial-gradient(
     ellipse at center,
-    rgba(255, 203, 0, 0.08) 0%,
+    rgba(var(--wo-accent-primary-rgb), 0.08) 0%,
     transparent 60%
   );
 }
@@ -83,7 +83,7 @@
 .wo-teseracto-4d-container--with-glow.wo-teseracto-4d-container--blue {
   background: radial-gradient(
     ellipse at center,
-    rgba(89, 104, 234, 0.08) 0%,
+    rgba(var(--wo-accent-secondary-rgb), 0.08) 0%,
     transparent 60%
   );
 }

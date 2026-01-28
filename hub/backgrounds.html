@@ -14,7 +14,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   
   <!-- Design Tokens -->
   <link rel="stylesheet" href="../wo-tokens.css">
@@ -68,7 +68,7 @@
     
     /* Portada/CTA - Gradiente radial con spotlight central */
     .bg-card__preview--cover {
-      background: radial-gradient(ellipse at center, #3a3a60 0%, #252542 40%, #0F0F1A 100%);
+      background: radial-gradient(ellipse at center, #3a3a60 0%, #333333 40%, #1a1a1e 100%);
     }
     
     .bg-card__preview--cover::before {
@@ -85,7 +85,7 @@
     
     /* Sección - Gradiente diagonal más pronunciado */
     .bg-card__preview--section {
-      background: linear-gradient(135deg, #0F0F1A 0%, #1a1a35 30%, #3a3a60 70%, #252542 100%);
+      background: linear-gradient(135deg, #1a1a1e 0%, #1a1a35 30%, #3a3a60 70%, #333333 100%);
     }
     
     .bg-card__preview--section::before {
@@ -100,7 +100,7 @@
     
     /* Contenido - Sólido con bordes sutiles */
     .bg-card__preview--content {
-      background: #0F0F1A;
+      background: #1a1a1e;
       border-top: 3px solid rgba(89, 104, 234, 0.3);
     }
     
@@ -119,7 +119,7 @@
     }
     
     .bg-card__preview--grid {
-      background: #0F0F1A;
+      background: #1a1a1e;
     }
     
     .bg-card__preview--grid::before {
@@ -370,7 +370,7 @@
       overflow: hidden;
       border: 1px solid var(--border-subtle);
       margin-top: 1.5rem;
-      background: radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%);
+      background: radial-gradient(ellipse at center, #333333 0%, #1a1a1e 70%);
     }
     
     .particles-demo__container {
@@ -534,7 +534,7 @@
       overflow: hidden;
       border: 1px solid var(--border-subtle);
       margin-top: 1.5rem;
-      background: radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%);
+      background: radial-gradient(ellipse at center, #333333 0%, #1a1a1e 70%);
     }
     
     .threejs-demo__canvas {
@@ -623,7 +623,7 @@
     .fullscreen-overlay {
       position: fixed;
       inset: 0;
-      background: #0F0F1A;
+      background: #1a1a1e;
       z-index: 9999;
       display: flex;
       align-items: center;
@@ -733,7 +733,7 @@
             <div class="bg-card__info">
               <div class="bg-card__name">Gradient Cover</div>
               <div class="bg-card__usage">Slide 1 (portada) y último slide (CTA)</div>
-              <code class="bg-card__var">radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%)</code>
+              <code class="bg-card__var">radial-gradient(ellipse at center, #333333 0%, #1a1a1e 70%)</code>
             </div>
           </div>
           
@@ -749,7 +749,7 @@
             <div class="bg-card__info">
               <div class="bg-card__name">Gradient Section</div>
               <div class="bg-card__usage">Transiciones entre temas</div>
-              <code class="bg-card__var">linear-gradient(135deg, #0F0F1A 0%, #252542 100%)</code>
+              <code class="bg-card__var">linear-gradient(135deg, #1a1a1e 0%, #333333 100%)</code>
             </div>
           </div>
           
@@ -768,7 +768,7 @@
             <div class="bg-card__info">
               <div class="bg-card__name">Solid Dark</div>
               <div class="bg-card__usage">Slides de contenido estándar</div>
-              <code class="bg-card__var">--wo-dark (#0F0F1A)</code>
+              <code class="bg-card__var">--wo-dark (#1a1a1e)</code>
             </div>
           </div>
         </div>
@@ -874,7 +874,7 @@
           </div>
           <div class="code-block__content">
 <pre id="code-hexagon">.pattern-hexagon {
-  background-color: #0F0F1A;
+  background-color: #1a1a1e;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%235968ea' fill-opacity='0.15'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }</pre>
           </div>
@@ -887,7 +887,7 @@
           </div>
           <div class="code-block__content">
 <pre id="code-dots">.pattern-dots {
-  background-color: #0F0F1A;
+  background-color: #1a1a1e;
   background-image: radial-gradient(rgba(89, 104, 234, 0.25) 1.5px, transparent 1.5px);
   background-size: 20px 20px;
 }</pre>
@@ -901,7 +901,7 @@
           </div>
           <div class="code-block__content">
 <pre id="code-diagonal">.pattern-diagonal {
-  background-color: #0F0F1A;
+  background-color: #1a1a1e;
   background-image: repeating-linear-gradient(
     45deg,
     transparent,
@@ -920,7 +920,7 @@
           </div>
           <div class="code-block__content">
 <pre id="code-isometric">.pattern-isometric {
-  background-color: #0F0F1A;
+  background-color: #1a1a1e;
   background-image: 
     linear-gradient(30deg, rgba(89, 104, 234, 0.12) 12%, transparent 12.5%, transparent 87%, rgba(89, 104, 234, 0.12) 87.5%),
     linear-gradient(150deg, rgba(89, 104, 234, 0.12) 12%, transparent 12.5%, transparent 87%, rgba(89, 104, 234, 0.12) 87.5%),
@@ -1191,7 +1191,7 @@ const BIRD_COLORS = [
 ];
 
 // Gradiente de fondo
-const BG_GRADIENT = 'radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%)';</pre>
+const BG_GRADIENT = 'radial-gradient(ellipse at center, #333333 0%, #1a1a1e 70%)';</pre>
           </div>
         </div>
       </section>
@@ -1207,7 +1207,7 @@ const BG_GRADIENT = 'radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%)
           </div>
           <div class="code-block__content">
 <pre id="code-bg-cover">&lt;!-- Portada con gradiente radial y partículas --&gt;
-&lt;section data-background-gradient="radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%)" 
+&lt;section data-background-gradient="radial-gradient(ellipse at center, #333333 0%, #1a1a1e 70%)" 
          data-particles="true"&gt;
   &lt;div class="wo-cover"&gt;...&lt;/div&gt;
   &lt;div class="grid-background"&gt;&lt;/div&gt;
@@ -1222,7 +1222,7 @@ const BG_GRADIENT = 'radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%)
           </div>
           <div class="code-block__content">
 <pre id="code-bg-section">&lt;!-- Slide de sección con gradiente lineal --&gt;
-&lt;section data-background-gradient="linear-gradient(135deg, #0F0F1A 0%, #252542 100%)" 
+&lt;section data-background-gradient="linear-gradient(135deg, #1a1a1e 0%, #333333 100%)" 
          data-particles="true"&gt;
   &lt;h1 class="wo-section__title"&gt;...&lt;/h1&gt;
 &lt;/section&gt;</pre>
@@ -1236,7 +1236,7 @@ const BG_GRADIENT = 'radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%)
           </div>
           <div class="code-block__content">
 <pre id="code-bg-content">&lt;!-- Slide de contenido con fondo sólido --&gt;
-&lt;section data-background-color="#0F0F1A"&gt;
+&lt;section data-background-color="#1a1a1e"&gt;
   &lt;h2&gt;Título&lt;/h2&gt;
   &lt;div class="wo-grid wo-grid--2"&gt;...&lt;/div&gt;
   &lt;div class="grid-background"&gt;&lt;/div&gt;
@@ -1256,13 +1256,13 @@ const BG_GRADIENT = 'radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%)
           </div>
           <div class="code-block__content">
 <pre id="code-bg-tokens">/* Fondos base */
---wo-dark: #0F0F1A;
---wo-dark-elevated: #1A1A2E;
---wo-dark-surface: #252542;
+--wo-dark: #1a1a1e;
+--wo-dark-elevated: #2a2a2f;
+--wo-dark-surface: #333333;
 
 /* Gradientes de Slides */
---gradient-cover: radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%);
---gradient-section: linear-gradient(135deg, #0F0F1A 0%, #252542 100%);</pre>
+--gradient-cover: radial-gradient(ellipse at center, #333333 0%, #1a1a1e 70%);
+--gradient-section: linear-gradient(135deg, #1a1a1e 0%, #333333 100%);</pre>
           </div>
         </div>
       </section>

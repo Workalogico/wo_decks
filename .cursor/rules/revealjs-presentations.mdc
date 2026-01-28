@@ -1,0 +1,276 @@
+---
+description: Reglas para presentaciones Reveal.js - Estructura, configuración y compatibilidad con el Design System Workalógico
+globs: ["**/deck-wo-*/**/*.html", "**/index.html"]
+alwaysApply: false
+---
+
+# Reveal.js - Presentaciones Workalógico
+
+## Configuración Base Obligatoria
+
+### Dimensiones del Viewport
+```javascript
+Reveal.initialize({
+  width: 1280,
+  height: 720,
+  margin: 0.1,
+  minScale: 0.2,
+  maxScale: 1.2,
+  center: true
+});
+```
+
+### Transiciones Fluidas (Fluidity Overhaul)
+```javascript
+transition: 'slide',
+transitionSpeed: 'slow',
+backgroundTransition: 'fade'
+```
+
+---
+
+## Estructura HTML de Presentaciones
+
+### Template Base Obligatorio
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- Reveal.js CSS (CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/theme/black.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Workalógico Design System -->
+  <link rel="stylesheet" href="../wo-design-system.css">
+  <link rel="stylesheet" href="../wo-particles.css">
+</head>
+<body data-wo-theme="yellow">
+  <!-- tsParticles Container -->
+  <div id="tsparticles"></div>
+  
+  <div class="reveal">
+    <div class="slides">
+      <!-- Slides aquí -->
+    </div>
+  </div>
+  
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+  <script src="../wo-particles.js"></script>
+  <script src="../wo-anime.js"></script>
+</body>
+</html>
+```
+
+---
+
+## Regla de Oro: NO Modificar Layout de Reveal.js
+
+### PROHIBIDO tocar estas clases/propiedades:
+```css
+/* NUNCA modificar: */
+.reveal { /* position, transform, width, height */ }
+.reveal .slides { /* position, transform */ }
+.reveal .slides section { /* position, transform, margin, padding */ }
+```
+
+### PERMITIDO estilizar:
+- Tipografía (font-family, font-size, color)
+- Componentes propios con prefijo `wo-`
+- Backgrounds de slides individuales
+
+---
+
+## Tipos de Slides
+
+### 1. Portada (Cover)
+```html
+<section data-background-gradient="radial-gradient(ellipse at center, #333333 0%, #1a1a1e 70%)" 
+         data-particles="true">
+  <div class="wo-cover">
+    <img data-src="../LOGOS/SVG/WoLogos_2026-03.svg" alt="Workalógico" class="wo-cover__logo">
+    <div class="wo-badge">CATEGORÍA</div>
+    <h1 class="wo-cover__title">Título con <span class="accent">Accent</span></h1>
+    <p class="wo-cover__subtitle">Subtítulo descriptivo</p>
+    <div class="wo-stats-row">
+      <!-- Stats opcionales -->
+    </div>
+    <p class="wo-cover__author">Workalógico • Fecha</p>
+  </div>
+  <div class="grid-background"></div>
+</section>
+```
+
+### 2. Sección (Section Divider)
+```html
+<section data-background-gradient="linear-gradient(135deg, #1a1a1e 0%, #333333 100%)" 
+         data-particles="true">
+  <h1 class="wo-section__title">Título <span class="accent">Destacado</span></h1>
+  <p class="wo-section__subtitle">Descripción de la sección</p>
+</section>
+```
+
+### 3. Contenido con Grid
+```html
+<section data-background-color="#1a1a1e">
+  <h2>Título del <span class="accent">Slide</span></h2>
+  <div class="wo-grid wo-grid--2">
+    <div class="wo-card fragment fade-up">
+      <div class="card-number">01</div>
+      <h3>Título Card</h3>
+      <p>Descripción</p>
+    </div>
+    <!-- Más cards -->
+  </div>
+  <div class="grid-background"></div>
+</section>
+```
+
+### 4. CTA Final
+```html
+<section data-background-gradient="radial-gradient(ellipse at center, #333333 0%, #1a1a1e 70%)" 
+         data-particles="true">
+  <div class="wo-cta">
+    <h1 class="wo-cta__title">¿Listo para <span class="accent">empezar</span>?</h1>
+    <p class="wo-cta__subtitle">Call to action claro</p>
+    <div class="wo-cta__contact">
+      <p>email@workalogico.mx</p>
+      <p>www.workalogico.com</p>
+    </div>
+  </div>
+</section>
+```
+
+---
+
+## Backgrounds
+
+### Gradientes Oficiales
+```css
+/* Portada/CTA */
+data-background-gradient="radial-gradient(ellipse at center, #333333 0%, #1a1a1e 70%)"
+
+/* Secciones */
+data-background-gradient="linear-gradient(135deg, #1a1a1e 0%, #333333 100%)"
+
+/* Contenido estándar */
+data-background-color="#1a1a1e"
+```
+
+### Partículas
+- Activar con `data-particles="true"` en el `<section>`
+- Solo usar en slides de portada, sección y CTA
+- NUNCA en slides de contenido denso (distrae)
+
+---
+
+## Fragments (Animaciones de Reveal.js)
+
+### Clases Permitidas
+```html
+class="fragment fade-up"      /* Entrada desde abajo */
+class="fragment zoom-in"      /* Entrada con zoom */
+class="fragment fade-left"    /* Entrada desde izquierda */
+class="fragment fade-right"   /* Entrada desde derecha */
+```
+
+### Índices de Fragment
+```html
+<div class="fragment" data-fragment-index="1">Primero</div>
+<div class="fragment" data-fragment-index="2">Segundo</div>
+```
+
+---
+
+## Grids y Layouts
+
+### Clases de Grid Disponibles
+```html
+<div class="wo-grid wo-grid--2"><!-- 2 columnas --></div>
+<div class="wo-grid wo-grid--3"><!-- 3 columnas --></div>
+<div class="wo-grid wo-grid--4"><!-- 4 columnas --></div>
+```
+
+### Filas de Stats/Métricas
+```html
+<div class="wo-stats-row"><!-- Stats pequeños --></div>
+<div class="wo-metrics-row"><!-- Métricas grandes --></div>
+```
+
+---
+
+## Speaker Notes
+
+### Formato Obligatorio
+```html
+<aside class="notes">
+  Notas para el presentador.
+  - Punto importante
+  - Contexto adicional
+</aside>
+```
+
+---
+
+## Inicialización Completa
+
+```javascript
+Reveal.initialize({
+  width: 1280,
+  height: 720,
+  margin: 0.1,
+  minScale: 0.2,
+  maxScale: 1.2,
+  hash: true,
+  center: true,
+  navigationMode: 'default',
+  
+  // Fluidity Overhaul
+  transition: 'slide',
+  transitionSpeed: 'slow',
+  backgroundTransition: 'fade',
+  
+  // Controls
+  slideNumber: 'c/t',
+  showSlideNumber: 'all',
+  progress: true,
+  controls: true,
+  controlsTutorial: false,
+  controlsLayout: 'bottom-right',
+  
+  // Performance
+  viewDistance: 3,
+  mobileViewDistance: 2,
+  touch: true,
+  hideInactiveCursor: true,
+  hideCursorTime: 3000,
+  
+  plugins: [RevealNotes]
+}).then(() => {
+  setupWoParticles('enterprise'); // o 'geo', 'ai', 'marketing'
+  if (typeof WoAnime !== 'undefined') {
+    WoAnime.init();
+  }
+});
+```
+
+---
+
+## Prohibiciones
+
+1. ❌ Modificar dimensiones del viewport (1280x720 es fijo)
+2. ❌ Usar transiciones diferentes a 'slide' sin justificación
+3. ❌ Slides sin `data-background-color` o `data-background-gradient`
+4. ❌ Contenido que desborde el viewport
+5. ❌ Partículas en slides de contenido denso
+6. ❌ Más de 4 columnas en grids
+7. ❌ Fragments sin índice cuando el orden importa

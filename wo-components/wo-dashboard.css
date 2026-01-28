@@ -19,8 +19,8 @@
    ═══════════════════════════════════════════════════════════════ */
 
 .wo-metric-card {
-  background: rgba(37, 37, 66, 0.6);
-  border: 1px solid rgba(89, 104, 234, 0.3);
+  background: color-mix(in srgb, var(--wo-dark-surface) 60%, transparent);
+  border: 1px solid rgba(var(--wo-accent-secondary-rgb), 0.3);
   border-radius: 12px;
   padding: 20px;
   position: relative;
@@ -31,7 +31,7 @@
 .wo-metric-card:hover {
   border-color: var(--wo-blue-lab, #5968EA);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(89, 104, 234, 0.2);
+  box-shadow: 0 8px 24px rgba(var(--wo-accent-secondary-rgb), 0.2);
 }
 
 .wo-metric-card__header {
@@ -42,9 +42,9 @@
 }
 
 .wo-metric-card__label {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 0.75rem;
-  color: #94A3B8;
+  color: var(--wo-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -57,20 +57,20 @@
 }
 
 .wo-metric-card__badge--up {
-  background: rgba(16, 185, 129, 0.2);
+  background: color-mix(in srgb, var(--wo-success) 20%, transparent);
   color: #10B981;
 }
 
 .wo-metric-card__badge--down {
-  background: rgba(255, 107, 107, 0.2);
-  color: #FF6B6B;
+  background: rgba(var(--wo-danger-rgb, 255, 107, 107), 0.2);
+  color: var(--wo-danger);
 }
 
 .wo-metric-card__value {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 2.2rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--wo-text);
   line-height: 1;
   margin-bottom: 8px;
 }
@@ -81,7 +81,7 @@
 
 .wo-metric-card__subtext {
   font-size: 0.7rem;
-  color: #64748B;
+  color: var(--wo-text-muted);
 }
 
 /* Sparkline dentro de card */
@@ -100,8 +100,8 @@
 
 .wo-chart-card {
   grid-column: span 2;
-  background: rgba(37, 37, 66, 0.6);
-  border: 1px solid rgba(89, 104, 234, 0.3);
+  background: color-mix(in srgb, var(--wo-dark-surface) 60%, transparent);
+  border: 1px solid rgba(var(--wo-accent-secondary-rgb), 0.3);
   border-radius: 12px;
   padding: 20px;
 }
@@ -117,7 +117,7 @@
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--wo-text);
 }
 
 .wo-chart-card__legend {
@@ -130,7 +130,7 @@
   align-items: center;
   gap: 6px;
   font-size: 0.7rem;
-  color: #94A3B8;
+  color: var(--wo-text-secondary);
 }
 
 .wo-chart-card__legend-dot {
@@ -149,8 +149,8 @@
    ═══════════════════════════════════════════════════════════════ */
 
 .wo-funnel-card {
-  background: rgba(37, 37, 66, 0.6);
-  border: 1px solid rgba(89, 104, 234, 0.3);
+  background: color-mix(in srgb, var(--wo-dark-surface) 60%, transparent);
+  border: 1px solid rgba(var(--wo-accent-secondary-rgb), 0.3);
   border-radius: 12px;
   padding: 20px;
 }
@@ -159,7 +159,7 @@
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--wo-text);
   margin-bottom: 16px;
   text-align: center;
 }
@@ -201,7 +201,7 @@
 
 .wo-funnel__stage-label {
   font-size: 0.7rem;
-  color: #fff;
+  color: var(--wo-text);
   font-weight: 500;
 }
 
@@ -209,7 +209,7 @@
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.8rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--wo-text);
 }
 
 .wo-funnel__stage-rate {
@@ -236,7 +236,7 @@
 }
 
 .wo-line-chart__grid {
-  stroke: rgba(89, 104, 234, 0.1);
+  stroke: rgba(var(--wo-accent-secondary-rgb), 0.1);
   stroke-width: 1;
 }
 
@@ -314,7 +314,7 @@
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--wo-text);
 }
 
 .wo-bar-chart__fill {
@@ -324,16 +324,16 @@
 }
 
 .wo-bar-chart__fill--primary {
-  background: linear-gradient(180deg, var(--wo-blue-lab, #5968EA), rgba(89, 104, 234, 0.5));
+  background: linear-gradient(180deg, var(--wo-blue-lab), color-mix(in srgb, var(--wo-blue-lab) 50%, transparent));
 }
 
 .wo-bar-chart__fill--secondary {
-  background: linear-gradient(180deg, var(--wo-yellow-spark, #FFCB00), rgba(255, 203, 0, 0.5));
+  background: linear-gradient(180deg, var(--wo-yellow-spark), rgba(var(--wo-accent-primary-rgb), 0.5));
 }
 
 .wo-bar-chart__label {
   font-size: 0.65rem;
-  color: #64748B;
+  color: var(--wo-text-muted);
 }
 
 /* ═══════════════════════════════════════════════════════════════

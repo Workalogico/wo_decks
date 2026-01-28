@@ -32,18 +32,60 @@ export const config = {
     expo: 'easeOutExpo',
     back: 'easeOutBack'
   },
-  // Colores de marca
+  // Colores de marca (deprecated - usar getTokens() en su lugar)
   colors: {
     yellow: '#FFCB00',
     blue: '#5968EA',
-    dark: '#0F0F1A'
+    dark: '#1a1a1e'
   },
   // Detectar tema actual
   getTheme: () => document.body.dataset.woTheme || 'yellow',
   getPrimaryColor: () => {
+    const tokens = getTokens();
     const theme = document.body.dataset.woTheme || 'yellow';
-    return theme === 'yellow' ? '#FFCB00' : '#5968EA';
+    return theme === 'yellow' ? tokens.yellow : tokens.blue;
   }
+};
+
+/**
+ * Lee las variables CSS del DOM y retorna un objeto con los tokens de diseño
+ * Esta función permite que los componentes JS usen los valores de wo-tokens.css
+ * sin hardcodear valores, permitiendo cambios centralizados en el design system
+ * 
+ * @returns {Object} Objeto con todos los tokens de diseño de Workalógico
+ */
+export const getTokens = () => {
+  // Solo leer del DOM si está disponible (evita errores en SSR o tests)
+  if (typeof document === 'undefined' || !document.documentElement) {
+    // Fallbacks para cuando el DOM no está disponible
+    return {
+      yellow: '#FFCB00',
+      blue: '#5968EA',
+      dark: '#1a1a1e',
+      darkElevated: '#2a2a2f',
+      darkSurface: '#333333',
+      text: '#FFFFFF',
+      textSecondary: '#dadada',
+      textMuted: '#b4b6ba',
+      danger: '#FF6B6B',
+      success: '#10B981'
+    };
+  }
+  
+  const style = getComputedStyle(document.documentElement);
+  
+  return {
+    yellow: style.getPropertyValue('--wo-yellow-spark').trim() || '#FFCB00',
+    blue: style.getPropertyValue('--wo-blue-lab').trim() || '#5968EA',
+    dark: style.getPropertyValue('--wo-dark').trim() || '#1a1a1e',
+    darkElevated: style.getPropertyValue('--wo-dark-elevated').trim() || '#2a2a2f',
+    darkSurface: style.getPropertyValue('--wo-dark-surface').trim() || '#333333',
+    text: style.getPropertyValue('--wo-text').trim() || '#FFFFFF',
+    textSecondary: style.getPropertyValue('--wo-text-secondary').trim() || '#dadada',
+    textMuted: style.getPropertyValue('--wo-text-muted').trim() || '#b4b6ba',
+    danger: style.getPropertyValue('--wo-danger').trim() || '#FF6B6B',
+    success: style.getPropertyValue('--wo-success').trim() || '#10B981'
+  };
 };
 
 // ═══════════════════════════════════════════════════════════════

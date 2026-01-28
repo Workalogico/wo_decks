@@ -1,0 +1,319 @@
+---
+description: Reglas para el sistema de animaciones WoAnime basado en Anime.js - Configuración, componentes y mejores prácticas
+globs: ["**/*.js", "**/deck-wo-*/**/*.html"]
+alwaysApply: false
+---
+
+# WoAnime - Sistema de Animaciones Workalógico
+
+## Arquitectura
+
+WoAnime es un wrapper sobre Anime.js v3.2.2 diseñado específicamente para Reveal.js con el Design System Workalógico.
+
+### Dependencias
+```html
+<!-- Anime.js SIEMPRE antes de wo-anime.js -->
+<script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+<script src="../wo-anime.js"></script>
+```
+
+### Inicialización
+```javascript
+// Después de Reveal.initialize()
+Reveal.initialize({...}).then(() => {
+  WoAnime.init();
+});
+```
+
+---
+
+## Configuración Base
+
+### Duraciones Estándar (OBLIGATORIAS)
+```javascript
+WoAnime.config.duration = {
+  fast: 300,      // Micro-interacciones
+  normal: 600,    // Transiciones estándar
+  slow: 1000,     // Animaciones dramáticas
+  counter: 1500,  // Contadores numéricos
+  cover: 800      // Portadas cinematográficas
+};
+```
+
+### Easings Oficiales
+```javascript
+WoAnime.config.easing = {
+  smooth: 'easeOutQuad',
+  softLanding: 'cubicBezier(0.23, 1, 0.32, 1)',  // Fluidity overhaul
+  bounce: 'easeOutElastic(1, 0.5)',
+  spring: 'spring(1, 80, 10, 0)',
+  expo: 'easeOutExpo',
+  back: 'easeOutBack'
+};
+```
+
+### Colores de Marca
+```javascript
+WoAnime.config.colors = {
+  yellow: '#FFCB00',
+  blue: '#5968EA',
+  dark: '#1a1a1e'
+};
+```
+
+---
+
+## Componentes de Animación
+
+### 1. Counter (Contadores Animados)
+```javascript
+// Uso básico
+WoAnime.counter('.wo-stat__value');
+
+// Con opciones
+WoAnime.counter(element, {
+  from: 0,
+  to: null,           // Auto-detecta del contenido
+  duration: 1500,
+  easing: 'easeOutExpo',
+  preserveFormat: true // Mantiene $, K, M, %
+});
+```
+
+**Formatos Soportados:**
+- Simples: `500`, `70%`, `15+`
+- Con prefijo: `$2.5M`, `€100K`
+- Rangos: `$40K - $60K`, `2-6`
+
+### 2. Stagger (Cascada)
+```javascript
+WoAnime.stagger('.wo-card', {
+  from: 'center',     // 'first', 'last', 'center', index
+  delay: 80,          // Delay entre elementos
+  translateY: [30, 0],
+  opacity: [0, 1],
+  duration: 600,
+  easing: 'spring(1, 80, 10, 0)'
+});
+```
+
+### 3. Cover (Portada Cinematográfica)
+```javascript
+// Se activa automáticamente en slides con .wo-cover
+// Secuencia: Logo → Badge → Título → Accent → Subtítulo → Stats → Author
+
+WoAnime.cover(slideElement, {
+  duration: 800,
+  staggerStats: 120,
+  highlightAccent: true,
+  animateCounters: true
+});
+```
+
+### 4. Section (Título de Sección)
+```javascript
+WoAnime.section(slideElement, {
+  duration: 600
+});
+```
+
+### 5. Cards Entrance
+```javascript
+WoAnime.cardsEntrance('.wo-card', {
+  from: 'center',
+  delay: 100,
+  duration: 650,
+  effect: 'spring',   // 'spring', 'slide', 'scale', 'flip'
+  direction: 'up',    // 'up', 'down', 'left', 'right'
+  staggerGrid: { cols: 2, rows: 3 }  // Para grids 2D
+});
+```
+
+### 6. Steps Timeline
+```javascript
+WoAnime.stepsTimeline(container, {
+  duration: 2500,
+  staggerDelay: 350,
+  lineColor: '#5968EA',
+  pulseOnComplete: true
+});
+```
+
+### 7. CTA Glow (Pulso en CTA)
+```javascript
+WoAnime.ctaGlow('.accent', {
+  color: '#FFCB00',
+  intensity: 20,
+  duration: 2000
+});
+```
+
+### 8. Gauge (Indicadores Circulares)
+```javascript
+WoAnime.gauge(container, {
+  score: 85,
+  duration: 1500
+});
+```
+
+---
+
+## Animaciones Específicas de Slides
+
+### Pilares Animation
+```javascript
+WoAnime.pilarsAnimation(container, {
+  cardSelector: '.wo-card',
+  numberSelector: '.card-number',
+  delay: 150,
+  duration: 600
+});
+```
+
+### Comparison Animation
+```javascript
+WoAnime.comparisonAnimation(container, {
+  negativeSelector: '.wo-comparison__col--negative',
+  positiveSelector: '.wo-comparison__col--positive',
+  duration: 600
+});
+```
+
+### Ascending Reveal (Growth Tesis)
+```javascript
+WoAnime.ascendingReveal(container, {
+  selector: '.ascending-item',
+  direction: 'up',  // 'up', 'spiral', 'diagonal'
+  glowColor: '#5968EA'
+});
+```
+
+---
+
+## Integración con Reveal.js
+
+### Auto-detección de Slides
+WoAnime detecta automáticamente el tipo de slide y aplica la animación apropiada:
+
+1. `.wo-cover` → `cover()`
+2. `.wo-section__title` → `section()`
+3. `.wo-cta` → CTA con `ctaGlow()`
+4. `[data-animate="counter"]` → `counter()`
+5. `[data-animate="timeline"]` → `stepsTimeline()`
+6. `[data-animate="stagger"]` → `cardsEntrance()`
+
+### Data Attributes
+```html
+<!-- Contador animado -->
+<div class="wo-metric__value" data-animate="counter">$2.5M</div>
+
+<!-- Cards con stagger -->
+<div class="wo-card" data-animate="stagger">...</div>
+
+<!-- Steps con timeline -->
+<ul class="wo-steps" data-animate="timeline">...</ul>
+
+<!-- Gauge con score -->
+<div class="wo-gauge" data-animate="gauge" data-score="85">...</div>
+```
+
+---
+
+## Fluidity Overhaul
+
+### Principios
+1. **Sin delays artificiales** - Animaciones inician inmediatamente
+2. **Overlap visual** - Salida del slide anterior superpuesta con entrada
+3. **Aterrizaje suave** - Easing `softLanding` para elementos que "caen"
+4. **Cleanup de will-change** - Resetear después de animaciones
+
+### Exit Animation
+```javascript
+// Se aplica automáticamente al cambiar de slide
+function animateSlideExit(slide) {
+  anime({
+    targets: elements,
+    opacity: [1, 0],
+    translateX: [-20, 0],
+    duration: 250,
+    easing: 'easeInQuad'
+  });
+}
+```
+
+---
+
+## Utilidades
+
+### Format Number
+```javascript
+WoAnime.formatNumber(1500000, { 
+  suffix: '', 
+  prefix: '$', 
+  decimals: 1 
+}); // → "$1.5M"
+```
+
+### Parse Formatted Value
+```javascript
+WoAnime.parseFormattedValue('$2.5M');
+// → { value: 2500000, hasPercent: false, hasPlus: false, hasPrefix: '$', hasSuffix: 'M' }
+```
+
+### Stop All Animations
+```javascript
+WoAnime.stopAllAnimations(); // Detiene todas las animaciones en curso
+```
+
+---
+
+## Mejores Prácticas
+
+### ✅ HACER
+```javascript
+// Usar componentes de WoAnime, no anime() directo
+WoAnime.cardsEntrance('.wo-card');
+
+// Usar configuración centralizada
+WoAnime.config.duration.normal;
+WoAnime.config.easing.spring;
+
+// Usar data-attributes para declarativo
+<div data-animate="counter">500M+</div>
+
+// Cleanup de will-change en complete
+anime({
+  targets: elements,
+  // ...
+  complete: () => {
+    elements.forEach(el => el.style.willChange = 'auto');
+  }
+});
+```
+
+### ❌ EVITAR
+```javascript
+// NO usar anime() directamente para componentes estándar
+anime({ targets: '.wo-stat__value', ... }); // Usar WoAnime.counter()
+
+// NO hardcodear duraciones
+anime({ duration: 600 }); // Usar WoAnime.config.duration.normal
+
+// NO dejar will-change activo
+element.style.willChange = 'transform, opacity'; // Sin cleanup
+
+// NO animar durante transiciones de Reveal.js
+// WoAnime maneja esto automáticamente
+```
+
+---
+
+## Prohibiciones
+
+1. ❌ Usar anime() directamente cuando existe un componente WoAnime
+2. ❌ Duraciones menores a 200ms (imperceptibles)
+3. ❌ Duraciones mayores a 3000ms (frustrantes)
+4. ❌ Easings lineales para UI (usar exponenciales)
+5. ❌ Animaciones que bloqueen la navegación
+6. ❌ Loops infinitos en slides de contenido (solo en CTA)
+7. ❌ Modificar WoAnime.config sin justificación

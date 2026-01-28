@@ -20,7 +20,7 @@
   /* ─────────────────────────────────────────
      MAP BASE (Dark pero no negro puro)
      ───────────────────────────────────────── */
-  --map-background: #0F0F1A;           /* Ratio: base */
+  --map-background: #1a1a1e;           /* Ratio: base */
   --map-water: #0A1628;                /* Ligeramente más oscuro que fondo */
   --map-water-label: rgba(100, 149, 237, 0.7); /* Cornflower blue, más legible */
   
@@ -37,7 +37,7 @@
   /* ─────────────────────────────────────────
      MAP BUILDINGS (Elevación visual)
      ───────────────────────────────────────── */
-  --map-building-fill: #1A1A2E;
+  --map-building-fill: #2a2a2f;
   --map-building-outline: rgba(99, 102, 241, 0.25);
   --map-building-3d-opacity: 0.65;
   --map-building-3d-ambient: rgba(89, 104, 234, 0.1);
@@ -47,7 +47,7 @@
      Más importante = más brillante
      ───────────────────────────────────────── */
   --map-road-path: #1E1E35;            /* Peatonal: más sutil */
-  --map-road-street: #252542;          /* Local */
+  --map-road-street: #333333;          /* Local */
   --map-road-secondary: #2F2F50;       /* Secundaria */
   --map-road-primary: #3A3A65;         /* Primaria */
   --map-road-trunk: rgba(99, 102, 241, 0.45);  /* Troncal */
@@ -84,12 +84,12 @@
      MAP LABELS (WCAG AA Compliant)
      Contraste mínimo 4.5:1 vs fondo
      ───────────────────────────────────────── */
-  --map-label-city: #FFFFFF;           /* 15.3:1 vs #0F0F1A */
+  --map-label-city: #FFFFFF;           /* 15.3:1 vs #1a1a1e */
   --map-label-town: #E2E8F0;           /* 11.7:1 */
   --map-label-neighborhood: #A5B4C8;   /* 6.2:1 - mejorado */
   --map-label-street: #7A8A9E;         /* 4.6:1 - justo AA */
   --map-label-poi: #CBD5E1;            /* 8.5:1 */
-  --map-label-halo: rgba(15, 15, 26, 0.9);  /* Más opaco para mejor legibilidad */
+  --map-label-halo: rgba(26, 26, 30, 0.9);  /* Más opaco para mejor legibilidad */
   --map-label-halo-width: 1.5;         /* Aumentado para mejor separación */
   
   /* ─────────────────────────────────────────
@@ -112,11 +112,11 @@
   
   /* Escala divergente CVD-safe: Cyan ↔ Neutro ↔ Naranja */
   --map-diverge-negative: #06B6D4;     /* Cyan */
-  --map-diverge-neutral: #64748B;      /* Slate */
+  --map-diverge-neutral: #b4b6ba;      /* Slate */
   --map-diverge-positive: #F97316;     /* Orange */
   
   /* Heatmap optimizado */
-  --map-heat-0: rgba(15, 15, 26, 0);
+  --map-heat-0: rgba(26, 26, 30, 0);
   --map-heat-20: rgba(99, 102, 241, 0.25);
   --map-heat-40: rgba(99, 102, 241, 0.50);
   --map-heat-60: rgba(251, 191, 36, 0.65);

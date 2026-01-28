@@ -10,12 +10,12 @@
   width: 100%;
   max-width: 600px;
   height: 480px;
-  background: rgba(15, 15, 26, 0.95);
-  border: 1px solid rgba(89, 104, 234, 0.3);
+  background: color-mix(in srgb, var(--wo-dark) 95%, transparent);
+  border: 1px solid rgba(var(--wo-accent-secondary-rgb), 0.3);
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body);
 }
 
 /* Header del chat */
@@ -24,8 +24,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px 20px;
-  background: rgba(37, 37, 66, 0.8);
-  border-bottom: 1px solid rgba(89, 104, 234, 0.2);
+  background: color-mix(in srgb, var(--wo-dark-surface) 80%, transparent);
+  border-bottom: 1px solid rgba(var(--wo-accent-secondary-rgb), 0.2);
 }
 
 .wo-chat-header__left {
@@ -85,11 +85,11 @@
   align-items: center;
   gap: 8px;
   padding: 8px 14px;
-  background: rgba(89, 104, 234, 0.15);
-  border: 1px solid rgba(89, 104, 234, 0.4);
+  background: rgba(var(--wo-accent-secondary-rgb), 0.15);
+  border: 1px solid color-mix(in srgb, var(--wo-blue-lab) 40%, transparent);
   border-radius: 8px;
   color: var(--wo-text);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 500;
   cursor: pointer;
@@ -97,7 +97,7 @@
 }
 
 .wo-chat-model-btn:hover {
-  background: rgba(89, 104, 234, 0.25);
+  background: rgba(var(--wo-accent-secondary-rgb), 0.25);
   border-color: var(--wo-blue-lab);
 }
 
@@ -122,8 +122,8 @@
   top: calc(100% + 8px);
   right: 0;
   min-width: 200px;
-  background: rgba(15, 15, 26, 0.98);
-  border: 1px solid rgba(89, 104, 234, 0.3);
+  background: color-mix(in srgb, var(--wo-dark) 98%, transparent);
+  border: 1px solid rgba(var(--wo-accent-secondary-rgb), 0.3);
   border-radius: 12px;
   padding: 8px;
   z-index: 100;
@@ -151,11 +151,11 @@
 }
 
 .wo-chat-model-option:hover {
-  background: rgba(89, 104, 234, 0.15);
+  background: rgba(var(--wo-accent-secondary-rgb), 0.15);
 }
 
 .wo-chat-model-option.active {
-  background: rgba(89, 104, 234, 0.2);
+  background: rgba(var(--wo-accent-secondary-rgb), 0.2);
 }
 
 .wo-chat-model-option__icon {
@@ -205,7 +205,7 @@
 }
 
 .wo-chat-messages::-webkit-scrollbar-thumb {
-  background: rgba(89, 104, 234, 0.3);
+  background: rgba(var(--wo-accent-secondary-rgb), 0.3);
   border-radius: 2px;
 }
 
@@ -249,7 +249,7 @@
 }
 
 .wo-chat-message.user .wo-chat-message__avatar {
-  background: rgba(89, 104, 234, 0.3);
+  background: rgba(var(--wo-accent-secondary-rgb), 0.3);
 }
 
 .wo-chat-message__content {
@@ -260,7 +260,7 @@
 }
 
 .wo-chat-message.assistant .wo-chat-message__content {
-  background: rgba(37, 37, 66, 0.8);
+  background: color-mix(in srgb, var(--wo-dark-surface) 80%, transparent);
   color: var(--wo-text);
   border-bottom-left-radius: 4px;
 }
@@ -276,7 +276,7 @@
   display: flex;
   gap: 4px;
   padding: 12px 16px;
-  background: rgba(37, 37, 66, 0.8);
+  background: color-mix(in srgb, var(--wo-dark-surface) 80%, transparent);
   border-radius: 12px;
   border-bottom-left-radius: 4px;
   width: fit-content;
@@ -303,18 +303,18 @@
   display: flex;
   gap: 12px;
   padding: 16px 20px;
-  background: rgba(37, 37, 66, 0.5);
-  border-top: 1px solid rgba(89, 104, 234, 0.2);
+  background: color-mix(in srgb, var(--wo-dark-elevated) 50%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--wo-blue-lab) 20%, transparent);
 }
 
 .wo-chat-input {
   flex: 1;
   padding: 12px 16px;
-  background: rgba(15, 15, 26, 0.8);
-  border: 1px solid rgba(89, 104, 234, 0.3);
+  background: color-mix(in srgb, var(--wo-dark) 80%, transparent);
+  border: 1px solid rgba(var(--wo-accent-secondary-rgb), 0.3);
   border-radius: 12px;
   color: var(--wo-text);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 0.85rem;
   outline: none;
   transition: border-color 0.2s ease;
@@ -364,8 +364,8 @@
 
 .wo-chat-suggestion {
   padding: 8px 14px;
-  background: rgba(89, 104, 234, 0.1);
-  border: 1px solid rgba(89, 104, 234, 0.3);
+  background: rgba(var(--wo-accent-secondary-rgb), 0.1);
+  border: 1px solid rgba(var(--wo-accent-secondary-rgb), 0.3);
   border-radius: 20px;
   color: var(--wo-text-secondary);
   font-size: 0.75rem;
@@ -374,7 +374,7 @@
 }
 
 .wo-chat-suggestion:hover {
-  background: rgba(89, 104, 234, 0.2);
+  background: rgba(var(--wo-accent-secondary-rgb), 0.2);
   border-color: var(--wo-blue-lab);
   color: var(--wo-text);
 }

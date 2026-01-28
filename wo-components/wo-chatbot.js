@@ -499,7 +499,7 @@ class WoChatbot {
     const messageEl = document.createElement('div');
     messageEl.className = 'wo-chat-message system';
     messageEl.innerHTML = `
-      <div class="wo-chat-message__content" style="background: rgba(255, 203, 0, 0.1); border: 1px solid rgba(255, 203, 0, 0.3); font-size: 0.75rem; color: #94A3B8;">
+      <div class="wo-chat-message__content" style="background: var(--wo-accent-primary-dim); border: 1px solid rgba(var(--wo-accent-primary-rgb), 0.3); font-size: 0.75rem; color: var(--wo-text-secondary);">
         ${content}
       </div>
     `;

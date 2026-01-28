@@ -27,13 +27,27 @@ const INTEGRATIONS_DATA = {
   ]
 };
 
-// Colores
-const WO_COLORS = {
-  blue: '#5968EA',
-  yellow: '#FFCB00',
-  success: '#10B981',
-  purple: '#8B5CF6'
+// Función para leer tokens CSS del DOM (evita valores hardcodeados)
+const getTokens = () => {
+  if (typeof document === 'undefined' || !document.documentElement) {
+    return {
+      blue: '#5968EA',
+      yellow: '#FFCB00',
+      success: '#10B981',
+      purple: '#8B5CF6'
+    };
+  }
+  const style = getComputedStyle(document.documentElement);
+  return {
+    blue: style.getPropertyValue('--wo-blue-lab').trim() || '#5968EA',
+    yellow: style.getPropertyValue('--wo-yellow-spark').trim() || '#FFCB00',
+    success: style.getPropertyValue('--wo-success').trim() || '#10B981',
+    purple: '#8B5CF6' // No hay token para purple, mantener hardcodeado
+  };
 };
+
+// Colores (usando tokens CSS dinámicos)
+const WO_COLORS = getTokens();
 
 // Clase principal
 class WoIntegrations {

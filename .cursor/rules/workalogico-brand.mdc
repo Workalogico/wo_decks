@@ -1,0 +1,157 @@
+---
+description: Reglas de marca Workalógico - Colores, tipografía y lineamientos visuales del Brand Guidelines 2026
+globs: ["**/*.css", "**/*.html", "**/*.js"]
+alwaysApply: true
+---
+
+# Workalógico Brand Guidelines 2026
+
+## Identidad de Marca
+
+Workalógico es una **Agencia de Desarrollo de Proyectos** (no agencia tradicional, consultora ni software factory). El concepto central es "El Aliado Estratégico Total" para empresas visionarias.
+
+### Pilares del Brand Concept
+1. **Smart Solution** - Expertise Multi-Industrial comprobada
+2. **Smart Business** - Arquitectura Tecnológica sin límites
+3. **Strategy Studio** - Modelo de Responsabilidad Total
+4. **Comunicación Inteligente** - Partnership Estratégico Auténtico
+
+---
+
+## Paleta de Colores Oficial
+
+### Colores de Marca (OBLIGATORIOS)
+```css
+--wo-yellow-spark: #FFCB00;   /* Amarillo Workalógico - Principal */
+--wo-blue-lab: #5968EA;       /* Azul Workalógico - Secundario */
+--wo-black-core: #2a2a2f;     /* Fondo elevado dark theme */
+--wo-white-focus: #F7F7F7;    /* Texto/logo sobre fondos oscuros */
+--wo-gray-dark: #333333;      /* Texto/logo sobre fondos claros */
+```
+
+### Fondos Dark Theme
+```css
+--wo-dark: #1a1a1e;           /* Fondo principal */
+--wo-dark-elevated: #2a2a2f;  /* Fondo elevado */
+--wo-dark-surface: #333333;   /* Superficie */
+```
+
+### Estados
+```css
+--wo-danger: #FF6B6B;         /* Error/Peligro */
+--wo-success: #10B981;        /* Éxito */
+```
+
+### Reglas de Color
+- **NUNCA** usar colores fuera de la paleta oficial
+- **SIEMPRE** usar variables CSS de `wo-tokens.css`, no valores hex directos
+- **El amarillo (#FFCB00) es SIEMPRE el color protagonista** según Brand Guidelines
+- **El azul (#5968EA) es el color secundario/técnico**
+- Los fondos DEBEN ser dark theme (#1a1a1e base)
+
+---
+
+## Sistema de Temas
+
+### Tema Amarillo (DEFAULT - Brand Guidelines)
+```html
+<body data-wo-theme="yellow">
+```
+- `--wo-accent-primary`: Yellow Spark (#FFCB00)
+- `--wo-accent-secondary`: Blue Lab (#5968EA)
+- Uso: Presentaciones comerciales, branding
+
+### Tema Azul (Técnico)
+```html
+<body data-wo-theme="blue">
+```
+- `--wo-accent-primary`: Blue Lab (#5968EA)
+- `--wo-accent-secondary`: Yellow Spark (#FFCB00)
+- Uso: Presentaciones técnicas, documentación, demos
+
+### Clases Semánticas
+```css
+.accent       /* Color protagonista del tema activo */
+.accent-alt   /* Color secundario del tema activo */
+.accent-yellow /* Amarillo fijo (sin cambiar por tema) */
+.accent-blue   /* Azul fijo (sin cambiar por tema) */
+```
+
+---
+
+## Tipografía Oficial
+
+### Familias Tipográficas (OBLIGATORIAS)
+```css
+--font-heading: 'Space Grotesk';   /* Títulos y headlines */
+--font-body: 'Inter';            /* Texto principal */
+--font-body-alt: 'Inter';          /* Texto alternativo */
+--font-corporate: 'Gotham';        /* Uso corporativo formal */
+```
+
+### Reglas Tipográficas
+- **Títulos (h1-h4)**: SIEMPRE usar `--font-heading` (Space Grotesk)
+- **Cuerpo de texto**: SIEMPRE usar `--font-body` (Inter)
+- **NUNCA** usar Arial, Helvetica, Times u otras fuentes genéricas
+- **NUNCA** usar cursivas excesivas ni decorativas
+- `letter-spacing: -0.02em` en headings para legibilidad
+
+### Tamaños Reveal.js (Viewport 1280x720)
+```css
+h1: 1.3em    /* Títulos principales */
+h2: 1em      /* Subtítulos */
+h3: 0.7em    /* Terciarios */
+h4: 0.6em    /* Cuaternarios */
+p:  0.6em    /* Párrafos */
+```
+
+---
+
+## Logos y Assets
+
+### Ubicación de Logos
+```
+LOGOS/
+├── SVG/WoLogos_2026-01.svg  /* Logo principal amarillo */
+├── SVG/WoLogos_2026-03.svg  /* Logo blanco */
+├── teseracto yellow@3x.png  /* Isotipo amarillo */
+├── teseracto light@3x.png   /* Isotipo blanco */
+└── teseracto black@3x.png   /* Isotipo negro */
+```
+
+### Uso de Logos
+- **Portadas**: Logo SVG con clase `wo-cover__logo`
+- **Favicon**: Usar `teseracto yellow@3x.png`
+- **NUNCA** distorsionar, rotar ni modificar proporciones
+- **NUNCA** usar logos sobre fondos que reduzcan contraste
+
+---
+
+## Arquitectura de Archivos
+
+### Single Source of Truth
+```
+wo-tokens.css          ← Design Tokens (NUNCA duplicar valores)
+    ↓
+wo-design-system.css   ← Componentes (importa tokens)
+    ↓
+deck-wo-*/index.html   ← Presentaciones
+```
+
+### Convenciones de Nomenclatura
+- Presentaciones: `deck-wo-{nombre}/index.html`
+- Componentes: `wo-{nombre}.css`, `wo-{nombre}.js`
+- Clases CSS: Prefijo `wo-` obligatorio para componentes custom
+- Variables CSS: Prefijo `--wo-` para tokens de marca
+
+---
+
+## Prohibiciones Absolutas
+
+1. ❌ Colores fuera de la paleta oficial
+2. ❌ Fuentes no autorizadas
+3. ❌ Logos modificados o distorsionados
+4. ❌ Light themes (el sistema es dark-first)
+5. ❌ Duplicar valores de tokens en archivos individuales
+6. ❌ Usar !important sobre variables de tema
+7. ❌ Modificar `wo-tokens.css` sin actualizar documentación del hub

@@ -1,0 +1,240 @@
+---
+description: Reglas globales del proyecto Workalógico Decks - Sistema de presentaciones comerciales
+globs: ["**/*"]
+alwaysApply: true
+---
+
+# Workalógico Decks - Reglas del Proyecto
+
+## Descripción del Proyecto
+
+**Workalógico Decks** es un portafolio de presentaciones comerciales para Workalógico, una Agencia de Desarrollo de Proyectos. El sistema está construido sobre:
+
+- **Reveal.js 4.x** - Framework de presentaciones HTML
+- **Anime.js 3.2.2** - Sistema de animaciones (wrapper: WoAnime)
+- **tsParticles 2.x** - Efectos de partículas (wrapper: WoParticles)
+- **Design System Workalógico v2.2** - Tokens y componentes propios
+
+---
+
+## Estructura del Proyecto
+
+```
+wo_decks/
+├── index.html                     # Landing page principal
+├── wo-tokens.css                  # 🔑 Single Source of Truth
+├── wo-design-system.css           # Sistema de componentes
+├── wo-anime.js                    # Sistema de animaciones
+├── wo-particles.js                # Sistema de partículas
+├── wo-particles.css
+├── wo-components/                 # Componentes avanzados
+│   ├── wo-teseracto.js/css       # Logo animado
+│   ├── wo-mapbox.js/css          # Tema de mapas
+│   ├── wo-chatbot.js/css         # UI de chat
+│   ├── wo-flow-diagram.js/css    # Diagramas de flujo
+│   ├── wo-dashboard.js/css       # Dashboards
+│   └── wo-scoring-gauge.js/css   # Indicadores
+├── hub/                           # Design System Hub (documentación)
+├── LOGOS/                         # Assets de marca
+│   ├── SVG/                       # Logos vectoriales
+│   └── PNG/                       # Logos raster
+└── deck-wo-*/                     # Presentaciones individuales
+    └── index.html
+```
+
+---
+
+## Principios Fundamentales
+
+### 1. Single Source of Truth
+```
+wo-tokens.css → wo-design-system.css → deck-wo-*/index.html
+```
+**NUNCA** duplicar valores de tokens. Siempre usar variables CSS.
+
+### 2. Dark Theme First
+El sistema está diseñado para fondos oscuros. **NO** crear variantes light.
+
+### 3. Viewport Fijo
+Todas las presentaciones usan **1280x720**. El contenido debe caber sin scroll.
+
+### 4. Prefijo wo-
+Todos los componentes custom usan prefijo `wo-` para evitar colisiones.
+
+---
+
+## Reglas de Edición por Tipo de Archivo
+
+### CSS
+- ✅ Usar variables de `wo-tokens.css`
+- ✅ Seguir convención BEM: `.wo-component__element--modifier`
+- ❌ Valores hex hardcodeados
+- ❌ `!important` sobre variables de tema
+- ❌ Estilos que modifiquen layout de Reveal.js
+
+### HTML (Presentaciones)
+- ✅ Estructura: `<div class="reveal"><div class="slides">...</div></div>`
+- ✅ Slides con `data-background-color` o `data-background-gradient`
+- ✅ Usar componentes `wo-*` del design system
+- ❌ Estilos inline extensivos
+- ❌ Scripts inline complejos (extraer a archivos)
+- ❌ Contenido que desborde viewport
+
+### JavaScript
+- ✅ Usar WoAnime en lugar de anime() directo cuando aplique
+- ✅ Usar WoParticles para efectos de partículas
+- ✅ Usar configuración de `WoAnime.config`
+- ❌ Modificar prototipos de Reveal.js
+- ❌ Event listeners que bloqueen navegación
+
+---
+
+## Tecnologías y Versiones
+
+| Tecnología | Versión | CDN |
+|------------|---------|-----|
+| Reveal.js | 4.x | `cdn.jsdelivr.net/npm/reveal.js@4/` |
+| Anime.js | 3.2.2 | `cdn.jsdelivr.net/npm/animejs@3.2.2/` |
+| tsParticles | 2.x | `cdn.jsdelivr.net/npm/tsparticles@2/` |
+| Mapbox GL JS | 2.x | Para componentes de mapas |
+
+### Google Fonts (Obligatorias)
+```html
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+```
+
+---
+
+## Convenciones de Nomenclatura
+
+### Archivos
+- Presentaciones: `deck-wo-{nombre}/index.html`
+- Componentes: `wo-{nombre}.js`, `wo-{nombre}.css`
+- Assets: Carpeta `LOGOS/` con subcarpetas `SVG/` y `PNG/`
+
+### Clases CSS
+```css
+.wo-{componente}                    /* Componente base */
+.wo-{componente}--{modificador}     /* Variante */
+.wo-{componente}__{elemento}        /* Elemento hijo */
+```
+
+### Variables CSS
+```css
+--wo-{categoria}-{nombre}           /* Token de marca */
+--{categoria}-{nombre}              /* Token genérico */
+```
+
+### Data Attributes
+```html
+data-wo-theme="yellow|blue"         /* Tema activo */
+data-particles="true"               /* Activar partículas */
+data-animate="counter|stagger|..."  /* Tipo de animación */
+data-fragment-index="N"             /* Orden de fragment */
+```
+
+---
+
+## Workflow de Desarrollo
+
+### Crear Nueva Presentación
+1. Copiar estructura de `deck-wo-*` existente
+2. Actualizar metadata (`<title>`, Open Graph)
+3. Seleccionar tema: `data-wo-theme="yellow"` o `"blue"`
+4. Seleccionar variante de partículas en `setupWoParticles()`
+5. Estructurar slides usando templates del design system
+
+### Modificar Design System
+1. Editar tokens en `wo-tokens.css`
+2. Verificar propagación en `wo-design-system.css`
+3. Probar en al menos 2 presentaciones
+4. Actualizar documentación en `/hub/`
+
+### Agregar Nuevo Componente
+1. Crear archivos en `wo-components/`
+2. Usar prefijo `wo-` en clases
+3. Documentar en `/hub/components.html`
+4. Agregar ejemplos de uso
+
+---
+
+## Testing y QA
+
+### Checklist por Presentación
+- [ ] Viewport 1280x720 sin overflow
+- [ ] Tema correcto aplicado
+- [ ] Partículas solo en slides apropiados
+- [ ] Fragments con índices correctos
+- [ ] Speaker notes presentes
+- [ ] Accesibilidad: alt en imágenes, aria-labels
+- [ ] Performance: < 60 partículas, animaciones < 3s
+
+### Navegadores Soportados
+- Chrome/Edge (últimas 2 versiones)
+- Firefox (últimas 2 versiones)
+- Safari (últimas 2 versiones)
+
+---
+
+## Contacto y Recursos
+
+- **Email:** contacto@workalogico.mx
+- **Web:** www.workalogico.com
+- **Hub:** `/hub/index.html` (documentación interna)
+- **Brand Guidelines:** quick guide 2026.pdf
+
+---
+
+## Archivos de Reglas Relacionados
+
+Las siguientes reglas proporcionan guías específicas:
+
+1. **workalogico-brand.mdc** - Colores, tipografía, identidad visual
+2. **workalogico-editorial-voice.mdc** - Voz Wo, tono y vocabulario oficial
+3. **revealjs-presentations.mdc** - Estructura y configuración de slides
+4. **animejs-woanime.mdc** - Sistema de animaciones
+5. **tsparticles-woparticles.mdc** - Sistema de partículas
+6. **components-design-system.mdc** - Componentes UI
+
+## Perfil Editorial (Voz Wo)
+
+Todo contenido generado debe seguir el **Modelo Dual de Voz**:
+
+- **System Mode (80% técnico)**: Pitch decks, cotizaciones, documentos operativos
+- **Organism Mode (70% técnico)**: Storytelling, social media, subtítulos
+
+### Principio Editorial
+El pensamiento avanza. Cada frase aporta progresión. Sin autocorrecciones defensivas.
+
+### Vocabulario Preferido
+```
+Arquitectura | Sistema | Estructura | Criterio | Ejecución | Escala
+```
+
+### Vocabulario PROHIBIDO
+```
+❌ Innovador | Disruptivo | Soluciones | 360 | Experiencia única | Líderes en...
+```
+
+---
+
+## Prohibiciones Generales
+
+### Visuales y Técnicas
+1. ❌ Colores fuera de la paleta oficial
+2. ❌ Fuentes no autorizadas
+3. ❌ Light themes
+4. ❌ Contenido que desborde el viewport
+5. ❌ Duplicar valores de tokens
+6. ❌ Modificar layout core de Reveal.js
+7. ❌ Animaciones > 3 segundos
+8. ❌ Partículas en slides de contenido denso
+9. ❌ Scripts que bloqueen navegación
+10. ❌ Código sin prefijo wo- para componentes custom
+
+### Editoriales (Voz Wo)
+11. ❌ Palabras baneadas: "innovador", "disruptivo", "soluciones", "360", "experiencia única"
+12. ❌ Antropomorfismos: "sentir", "respirar", "latir", "vibrar" como fin
+13. ❌ Frases que no aportan progresión
+14. ❌ Autocorrecciones defensivas en el texto
+15. ❌ Lenguaje aspiracional vacío

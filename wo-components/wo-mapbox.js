@@ -11,15 +11,38 @@ const MAPBOX_TOKEN = 'pk.eyJ1IjoiZmVpcG93ZXIiLCJhIjoiY21ramJnZTB0MTRhMTNpcTJnd2J
 const COLIMA_CENTER = [-103.7250, 19.2433];
 const COLIMA_ZOOM = 12;
 
-// Configuración de colores Workalógico
-const WO_COLORS = {
-  blue: '#5968EA',
-  yellow: '#FFCB00',
-  danger: '#FF6B6B',
-  success: '#10B981',
-  dark: '#0F0F1A',
-  surface: '#252542'
+// Configuración de colores Workalógico - usa getTokens() para leer variables CSS
+const getTokens = () => {
+  if (typeof document === 'undefined' || !document.documentElement) {
+    return {
+      yellow: '#FFCB00',
+      blue: '#5968EA',
+      dark: '#1a1a1e',
+      darkElevated: '#2a2a2f',
+      darkSurface: '#333333',
+      text: '#FFFFFF',
+      textSecondary: '#dadada',
+      textMuted: '#b4b6ba',
+      danger: '#FF6B6B',
+      success: '#10B981'
+    };
+  }
+  const style = getComputedStyle(document.documentElement);
+  return {
+    yellow: style.getPropertyValue('--wo-yellow-spark').trim() || '#FFCB00',
+    blue: style.getPropertyValue('--wo-blue-lab').trim() || '#5968EA',
+    dark: style.getPropertyValue('--wo-dark').trim() || '#1a1a1e',
+    darkElevated: style.getPropertyValue('--wo-dark-elevated').trim() || '#2a2a2f',
+    darkSurface: style.getPropertyValue('--wo-dark-surface').trim() || '#333333',
+    text: style.getPropertyValue('--wo-text').trim() || '#FFFFFF',
+    textSecondary: style.getPropertyValue('--wo-text-secondary').trim() || '#dadada',
+    textMuted: style.getPropertyValue('--wo-text-muted').trim() || '#b4b6ba',
+    danger: style.getPropertyValue('--wo-danger').trim() || '#FF6B6B',
+    success: style.getPropertyValue('--wo-success').trim() || '#10B981'
+  };
 };
+
+const WO_COLORS = getTokens();
 
 // ═══════════════════════════════════════════════════════════════
 // DS-104: SISTEMA DE TEMAS PARA MAPBOX
@@ -29,33 +52,33 @@ const WO_COLORS = {
 const WO_MAP_THEMES = {
   // Tema Brand (Amarillo dominante) - Fondo más claro
   yellow: {
-    background: '#1A1A2E',
+    background: 'var(--wo-dark-elevated)',
     water: '#0A1628',
-    building: '#252542',
+    building: 'var(--wo-dark-surface)',
     roadPrimary: '#3A3A65',
     roadSecondary: '#2F2F50',
     highlight: '#FFCB00',
     accent: '#5968EA',
-    poiPrimary: 'rgba(255, 203, 0, 0.8)',
-    poiSecondary: 'rgba(89, 104, 234, 0.7)',
-    textPrimary: '#FFFFFF',
+    poiPrimary: 'rgba(var(--wo-accent-primary-rgb), 0.8)',
+    poiSecondary: 'rgba(var(--wo-accent-secondary-rgb), 0.7)',
+    textPrimary: 'var(--wo-text)',
     textSecondary: '#CBD5E1',
-    glow: 'rgba(255, 203, 0, 0.4)'
+    glow: 'rgba(var(--wo-accent-primary-rgb), 0.4)'
   },
   // Tema Tech (Azul dominante) - Más oscuro y técnico
   blue: {
-    background: '#0F0F1A',
+    background: 'var(--wo-dark)',
     water: '#050A14',
-    building: '#1A1A2E',
+    building: 'var(--wo-dark-elevated)',
     roadPrimary: '#2A2A55',
     roadSecondary: '#1E1E40',
-    highlight: '#5968EA',
-    accent: '#FFCB00',
-    poiPrimary: 'rgba(89, 104, 234, 0.8)',
-    poiSecondary: 'rgba(255, 203, 0, 0.7)',
+    highlight: 'var(--wo-blue-lab)',
+    accent: 'var(--wo-yellow-spark)',
+    poiPrimary: 'rgba(var(--wo-accent-secondary-rgb), 0.8)',
+    poiSecondary: 'rgba(var(--wo-accent-primary-rgb), 0.7)',
     textPrimary: '#E2E8F0',
-    textSecondary: '#94A3B8',
-    glow: 'rgba(89, 104, 234, 0.4)'
+    textSecondary: 'var(--wo-text-secondary)',
+    glow: 'rgba(var(--wo-accent-secondary-rgb), 0.4)'
   }
 };
 
@@ -422,8 +445,8 @@ const WO_MAPBOX_STYLE = {
         "text-max-width": 10
       },
       paint: { 
-        "text-color": "#FFFFFF",  // 15.3:1 ratio
-        "text-halo-color": "rgba(15, 15, 26, 0.9)", 
+        "text-color": "var(--wo-text)",  // 15.3:1 ratio
+        "text-halo-color": "color-mix(in srgb, var(--wo-dark) 90%, transparent)", 
         "text-halo-width": 2,
         "text-halo-blur": 0.5
       }
@@ -444,7 +467,7 @@ const WO_MAPBOX_STYLE = {
       },
       paint: { 
         "text-color": "#E2E8F0",  // 11.7:1 ratio
-        "text-halo-color": "rgba(15, 15, 26, 0.9)", 
+        "text-halo-color": "color-mix(in srgb, var(--wo-dark) 90%, transparent)", 
         "text-halo-width": 1.5
       }
     },
@@ -464,7 +487,7 @@ const WO_MAPBOX_STYLE = {
       },
       paint: { 
         "text-color": "#A5B4C8",  // 6.2:1 ratio (mejorado)
-        "text-halo-color": "rgba(15, 15, 26, 0.9)", 
+        "text-halo-color": "color-mix(in srgb, var(--wo-dark) 90%, transparent)", 
         "text-halo-width": 1.5
       }
     },
@@ -483,7 +506,7 @@ const WO_MAPBOX_STYLE = {
       },
       paint: { 
         "text-color": "#A5B4C8", 
-        "text-halo-color": "rgba(15, 15, 26, 0.9)", 
+        "text-halo-color": "color-mix(in srgb, var(--wo-dark) 90%, transparent)", 
         "text-halo-width": 1.5
       }
     },
@@ -504,7 +527,7 @@ const WO_MAPBOX_STYLE = {
       },
       paint: { 
         "text-color": "#7A8A9E",  // 4.6:1 ratio (justo AA)
-        "text-halo-color": "rgba(15, 15, 26, 0.9)", 
+        "text-halo-color": "color-mix(in srgb, var(--wo-dark) 90%, transparent)", 
         "text-halo-width": 1.5
       }
     },
@@ -524,7 +547,7 @@ const WO_MAPBOX_STYLE = {
       },
       paint: { 
         "text-color": "#7A8A9E", 
-        "text-halo-color": "rgba(15, 15, 26, 0.9)", 
+        "text-halo-color": "color-mix(in srgb, var(--wo-dark) 90%, transparent)", 
         "text-halo-width": 1.5
       }
     },
@@ -544,7 +567,7 @@ const WO_MAPBOX_STYLE = {
       },
       paint: { 
         "text-color": "#CBD5E1",  // 8.5:1 ratio
-        "text-halo-color": "rgba(15, 15, 26, 0.9)", 
+        "text-halo-color": "color-mix(in srgb, var(--wo-dark) 90%, transparent)", 
         "text-halo-width": 1.5
       }
     },
@@ -604,7 +627,7 @@ const WO_MAP_SCALES = {
   // Escala divergente CVD-safe: Cyan ↔ Neutro ↔ Naranja (para comparaciones)
   divergent: [
     '#06B6D4',  // Negativo/bajo - Cyan
-    '#64748B',  // Neutro - Slate
+    'var(--wo-text-muted)',  // Neutro - Slate
     '#F97316'   // Positivo/alto - Orange
   ],
   
@@ -941,7 +964,7 @@ class WoMapbox {
           'interpolate',
           ['linear'],
           ['heatmap-density'],
-          0,   'rgba(15, 15, 26, 0)',       // Transparente
+          0,   'color-mix(in srgb, var(--wo-dark) 0%, transparent)',       // Transparente
           0.2, 'rgba(99, 102, 241, 0.25)',  // Indigo bajo
           0.4, 'rgba(99, 102, 241, 0.50)',  // Indigo medio
           0.6, 'rgba(251, 191, 36, 0.65)',  // Amber
@@ -971,7 +994,7 @@ class WoMapbox {
         'circle-radius': 12,
         'circle-color': WO_COLORS.yellow,
         'circle-stroke-width': 3,
-        'circle-stroke-color': '#fff'
+        'circle-stroke-color': 'var(--wo-text)'
       }
     });
 
@@ -1053,7 +1076,7 @@ class WoMapbox {
           .setLngLat(e.lngLat)
           .setHTML(`
             <strong>${feature.properties.name}</strong><br>
-            <span style="color: #94A3B8">${feature.properties.type}</span>
+            <span style="color: var(--wo-text-secondary)">${feature.properties.type}</span>
           `)
           .addTo(this.map);
       }
@@ -1154,20 +1177,20 @@ class WoMapbox {
         <div style="
           width: 100%;
           height: 100%;
-          background: linear-gradient(135deg, ${WO_COLORS.dark} 0%, ${WO_COLORS.surface} 100%);
+          background: linear-gradient(135deg, ${WO_COLORS.dark} 0%, ${WO_COLORS.darkSurface} 100%);
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          color: #94A3B8;
-          font-family: 'DM Sans', sans-serif;
+          color: var(--wo-text-secondary);
+          font-family: var(--font-body);
         ">
           <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
             <circle cx="12" cy="9" r="2.5"/>
           </svg>
           <p style="margin-top: 16px; font-size: 0.9rem;">Mapa interactivo de Colima</p>
-          <p style="margin-top: 4px; font-size: 0.75rem; color: #64748B;">Datos de demostración</p>
+          <p style="margin-top: 4px; font-size: 0.75rem; color: var(--wo-text-muted);">Datos de demostración</p>
         </div>
       `;
     }
@@ -1454,7 +1477,7 @@ class WoMapbox {
     if (this.map.getLayer('poblacion-heatmap')) {
       const heatmapColors = theme === 'yellow' ? [
         'interpolate', ['linear'], ['heatmap-density'],
-        0,   'rgba(15, 15, 26, 0)',
+        0,   'color-mix(in srgb, var(--wo-dark) 0%, transparent)',
         0.2, 'rgba(99, 102, 241, 0.25)',
         0.4, 'rgba(99, 102, 241, 0.50)',
         0.6, 'rgba(251, 191, 36, 0.65)',
@@ -1462,7 +1485,7 @@ class WoMapbox {
         1,   '#FFCB00'
       ] : [
         'interpolate', ['linear'], ['heatmap-density'],
-        0,   'rgba(15, 15, 26, 0)',
+        0,   'color-mix(in srgb, var(--wo-dark) 0%, transparent)',
         0.2, 'rgba(67, 56, 202, 0.25)',
         0.4, 'rgba(99, 102, 241, 0.50)',
         0.6, 'rgba(129, 140, 248, 0.65)',
@@ -1614,11 +1637,11 @@ class WoPopup {
         ${data.score !== undefined ? `
           <div class="wo-popup-stat__footer">
             <div class="wo-popup-stat__score">
-              <span style="font-size: 0.7rem; color: #64748B;">Score</span>
+              <span style="font-size: 0.7rem; color: var(--wo-text-muted);">Score</span>
               <div class="wo-popup-stat__score-bar">
                 <div class="wo-popup-stat__score-fill" style="width: ${data.score}%"></div>
               </div>
-              <span style="font-size: 0.8rem; font-weight: 600; color: #fff;">${data.score}</span>
+              <span style="font-size: 0.8rem; font-weight: 600; color: var(--wo-text);">${data.score}</span>
             </div>
           </div>
         ` : ''}
@@ -2318,8 +2341,8 @@ class WoClusters {
       paint: {
         'text-color': [
           'step', ['get', 'point_count'],
-          '#fff', 100,
-          '#1A1A2E'
+          'var(--wo-text)', 100,
+          'var(--wo-dark-elevated)'
         ]
       }
     });
@@ -2334,7 +2357,7 @@ class WoClusters {
         'circle-color': this.colors.sm,
         'circle-radius': 6,
         'circle-stroke-width': 2,
-        'circle-stroke-color': '#fff'
+        'circle-stroke-color': 'var(--wo-text)'
       }
     });
     

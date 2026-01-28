@@ -128,12 +128,12 @@ const WoMockups = {
         name: 'Portada',
         type: 'Cover',
         html: `
-          <div style="width: 100%; height: 100%; background: radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center;">
+          <div style="width: 100%; height: 100%; background: radial-gradient(ellipse at center, #333333 0%, #1a1a1e 70%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center;">
             <img src="../LOGOS/SVG/WoLogos_2026-01.svg" style="width: 150px; margin-bottom: 2rem;">
             <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: 2rem; color: white; margin-bottom: 1rem;">
               Análisis de <span style="color: var(--wo-accent-primary);">Vocación</span>
             </h1>
-            <p style="color: #94A3B8; font-size: 0.9rem;">Inteligencia Geoespacial para tu negocio</p>
+            <p style="color: #dadada; font-size: 0.9rem;">Inteligencia Geoespacial para tu negocio</p>
           </div>
         `
       },
@@ -141,12 +141,12 @@ const WoMockups = {
         name: 'Sección',
         type: 'Section',
         html: `
-          <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #0F0F1A 0%, #252542 100%); display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem;">
+          <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1a1a1e 0%, #333333 100%); display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem;">
             <div>
               <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; color: white; margin-bottom: 0.5rem;">
                 La <span style="color: var(--wo-accent-primary);">Metodología</span>
               </h1>
-              <p style="color: #94A3B8; font-size: 1rem;">Proceso de análisis en 4 pasos</p>
+              <p style="color: #dadada; font-size: 1rem;">Proceso de análisis en 4 pasos</p>
             </div>
           </div>
         `
@@ -155,7 +155,7 @@ const WoMockups = {
         name: 'Contenido con Cards',
         type: 'Content',
         html: `
-          <div style="width: 100%; height: 100%; background: #0F0F1A; padding: 2rem;">
+          <div style="width: 100%; height: 100%; background: #1a1a1e; padding: 2rem;">
             <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; color: white; margin-bottom: 1.5rem;">
               Servicios <span style="color: var(--wo-accent-primary);">Principales</span>
             </h2>
@@ -163,12 +163,12 @@ const WoMockups = {
               <div style="background: rgba(37,37,66,0.5); border: 1px solid rgba(89,104,234,0.3); border-radius: 8px; padding: 1rem;">
                 <div style="font-size: 1.5rem; color: rgba(89,104,234,0.4); font-weight: 700; margin-bottom: 0.25rem;">01</div>
                 <h3 style="font-size: 0.9rem; color: white; margin-bottom: 0.5rem;">Geoanálisis</h3>
-                <p style="font-size: 0.7rem; color: #94A3B8;">Ubicación estratégica</p>
+                <p style="font-size: 0.7rem; color: #dadada;">Ubicación estratégica</p>
               </div>
               <div style="background: rgba(37,37,66,0.5); border: 1px solid rgba(89,104,234,0.3); border-radius: 8px; padding: 1rem;">
                 <div style="font-size: 1.5rem; color: rgba(89,104,234,0.4); font-weight: 700; margin-bottom: 0.25rem;">02</div>
                 <h3 style="font-size: 0.9rem; color: white; margin-bottom: 0.5rem;">Inteligencia</h3>
-                <p style="font-size: 0.7rem; color: #94A3B8;">Datos accionables</p>
+                <p style="font-size: 0.7rem; color: #dadada;">Datos accionables</p>
               </div>
             </div>
           </div>
@@ -178,11 +178,11 @@ const WoMockups = {
         name: 'Call to Action',
         type: 'CTA',
         html: `
-          <div style="width: 100%; height: 100%; background: radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center;">
+          <div style="width: 100%; height: 100%; background: radial-gradient(ellipse at center, #333333 0%, #1a1a1e 70%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center;">
             <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: 2rem; color: white; margin-bottom: 1rem;">
               ¿Listo para <span style="color: var(--wo-accent-primary);">empezar</span>?
             </h1>
-            <p style="color: #94A3B8; margin-bottom: 2rem; font-size: 0.9rem;">Contáctanos hoy</p>
+            <p style="color: #dadada; margin-bottom: 2rem; font-size: 0.9rem;">Contáctanos hoy</p>
             <div style="font-size: 0.85rem; color: white;">
               <p style="margin-bottom: 0.5rem;">bo@workalogico.com</p>
               <p>www.workalogico.com</p>

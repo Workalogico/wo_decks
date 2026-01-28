@@ -1,0 +1,374 @@
+---
+description: Reglas para componentes del Design System Workalógico - Cards, Stats, Badges, Grids y Templates
+globs: ["**/*.css", "**/*.html", "**/wo-design-system.css", "**/wo-components/**"]
+alwaysApply: false
+---
+
+# Componentes del Design System Workalógico
+
+## Arquitectura Atómica
+
+El sistema sigue Atomic Design adaptado para Reveal.js (viewport 1280x720):
+
+```
+Átomos      → Variables CSS (tokens)
+Moléculas   → Utility classes (.accent, .wo-badge)
+Organismos  → Componentes (.wo-card, .wo-stat, .wo-metric)
+Templates   → Layouts de slides (.wo-cover, .wo-section, .wo-cta)
+```
+
+---
+
+## Convención de Nomenclatura
+
+### Prefijo Obligatorio: `wo-`
+```css
+/* ✅ Correcto */
+.wo-card { }
+.wo-stat { }
+.wo-badge { }
+
+/* ❌ Incorrecto */
+.card { }
+.stat { }
+.badge { }
+```
+
+### Modificadores con BEM
+```css
+.wo-card--highlight { }
+.wo-badge--alt { }
+.wo-metric--danger { }
+```
+
+### Elementos Internos
+```css
+.wo-cover__logo { }
+.wo-cover__title { }
+.wo-stat__value { }
+.wo-stat__label { }
+```
+
+---
+
+## Moléculas (Utility Classes)
+
+### Colores de Texto
+```html
+<span class="accent">Texto color primario del tema</span>
+<span class="accent-alt">Texto color secundario del tema</span>
+<span class="accent-yellow">Amarillo fijo</span>
+<span class="accent-blue">Azul fijo</span>
+<span class="danger">Rojo peligro</span>
+<span class="success">Verde éxito</span>
+```
+
+### Badge
+```html
+<!-- Usa colores del tema -->
+<div class="wo-badge">CATEGORÍA</div>
+<div class="wo-badge--alt">ALTERNATIVO</div>
+
+<!-- Colores fijos -->
+<div class="wo-badge--yellow">AMARILLO</div>
+<div class="wo-badge--blue">AZUL</div>
+```
+
+### Grid Background
+```html
+<div class="grid-background"></div>
+<!-- Siempre dentro del <section>, al final -->
+```
+
+---
+
+## Organismos
+
+### wo-card
+```html
+<div class="wo-card">
+  <div class="card-number">01</div>
+  <h3>Título</h3>
+  <p>Descripción del contenido.</p>
+</div>
+
+<!-- Variante destacada -->
+<div class="wo-card wo-card--highlight">
+  <!-- Muestra badge "RECOMENDADO" automáticamente -->
+</div>
+```
+
+**Propiedades:**
+- Background: `rgba(37, 37, 66, 0.5)`
+- Border: `1px solid var(--border-accent)`
+- Padding: `0.6em 0.8em`
+- Hover: translateY(-2px) + glow
+
+### wo-stat (Pequeño)
+```html
+<div class="wo-stat">
+  <div class="wo-stat__value">500M+</div>
+  <div class="wo-stat__label">Data points</div>
+</div>
+```
+
+**Uso:** Stats en portadas, filas de indicadores
+
+### wo-metric (Grande)
+```html
+<div class="wo-metric">
+  <div class="wo-metric__value">$2.5M</div>
+  <div class="wo-metric__label">Revenue anual</div>
+</div>
+
+<!-- Variante danger -->
+<div class="wo-metric wo-metric--danger">
+  <div class="wo-metric__value">-40%</div>
+  <div class="wo-metric__label">Pérdida</div>
+</div>
+```
+
+**Uso:** Métricas destacadas, impacto visual
+
+### wo-quote
+```html
+<div class="wo-quote">
+  <p>"La diferencia entre éxito y fracaso puede ser de 500 metros."</p>
+</div>
+```
+
+**Propiedades:**
+- Background: `var(--wo-yellow-dim)`
+- Border-left: `3px solid var(--wo-yellow-spark)`
+- Centrado, max-width: 700px
+
+### wo-steps
+```html
+<ul class="wo-steps">
+  <li><strong>Paso 1:</strong> Descripción</li>
+  <li><strong>Paso 2:</strong> Descripción</li>
+  <li><strong>Paso 3:</strong> Descripción</li>
+</ul>
+```
+
+**Características:**
+- Números automáticos vía CSS counter
+- Círculos amarillos con número
+- Separadores sutiles entre items
+
+### wo-columns
+```html
+<div class="wo-columns">
+  <div class="wo-column">
+    <h3>Columna 1</h3>
+    <ul>
+      <li>Item</li>
+    </ul>
+  </div>
+  <div class="wo-column">
+    <h3>Columna 2</h3>
+    <ul>
+      <li>Item</li>
+    </ul>
+  </div>
+</div>
+```
+
+---
+
+## Layouts (Grids)
+
+### Grids de Contenido
+```html
+<div class="wo-grid wo-grid--2"><!-- 2 columnas --></div>
+<div class="wo-grid wo-grid--3"><!-- 3 columnas --></div>
+<div class="wo-grid wo-grid--4"><!-- 4 columnas --></div>
+```
+
+**Propiedades:**
+- Gap: `0.5em`
+- Max-width: `95%`
+- Centrado horizontal
+
+### Filas de Stats/Métricas
+```html
+<div class="wo-stats-row">
+  <div class="wo-stat">...</div>
+  <div class="wo-stat">...</div>
+</div>
+
+<div class="wo-metrics-row">
+  <div class="wo-metric">...</div>
+  <div class="wo-metric">...</div>
+</div>
+```
+
+**Propiedades:**
+- Flexbox con wrap
+- Gap: `0.6em`
+- Centrado
+
+---
+
+## Templates de Slides
+
+### wo-cover (Portada)
+```html
+<div class="wo-cover">
+  <img class="wo-cover__logo" src="..." alt="Workalógico">
+  <div class="wo-badge">CATEGORÍA</div>
+  <h1 class="wo-cover__title">Título <span class="accent">Destacado</span></h1>
+  <p class="wo-cover__subtitle">Subtítulo</p>
+  <div class="wo-stats-row"><!-- Stats opcionales --></div>
+  <p class="wo-cover__author">Autor • Fecha</p>
+</div>
+```
+
+### wo-section (Divisor)
+```html
+<h1 class="wo-section__title">Título <span class="accent">Sección</span></h1>
+<p class="wo-section__subtitle">Descripción</p>
+```
+
+### wo-cta (Call to Action)
+```html
+<div class="wo-cta">
+  <h1 class="wo-cta__title">¿Listo para <span class="accent">empezar</span>?</h1>
+  <p class="wo-cta__subtitle">Descripción del siguiente paso</p>
+  <div class="wo-cta__contact">
+    <p>email@workalogico.mx</p>
+    <p>www.workalogico.com</p>
+  </div>
+</div>
+```
+
+---
+
+## Componentes Avanzados (wo-components/)
+
+### wo-teseracto (Logo Animado)
+```javascript
+WoTeseracto.create('#container', {
+  variant: 'architect-pulse',  // 'minimal', 'architect', 'pulse', 'architect-pulse'
+  color: '#FFCB00',
+  autoPlay: true,
+  drawDuration: 2000,
+  pulseDuration: 3000
+});
+```
+
+### wo-flow-diagram (Diagrama de Flujo)
+```javascript
+initWoFlowDiagram('container-id', {
+  preset: 'automation',  // o 'growth', custom
+  autoPlay: true,
+  animationSpeed: 1800,
+  showControls: false
+});
+```
+
+### wo-mapbox (Tema de Mapa)
+Usa los tokens de `wo-tokens.css`:
+```css
+--map-background: #1a1a1e;
+--map-water: #0A1628;
+--map-building-fill: #2a2a2f;
+--map-road-motorway: rgba(99, 102, 241, 0.55);
+/* ... ver wo-tokens.css para lista completa */
+```
+
+### wo-chatbot (UI de Chat)
+```html
+<div class="wo-chatbot" data-variant="compact">
+  <div class="wo-chatbot__messages">...</div>
+  <div class="wo-chatbot__input">...</div>
+</div>
+```
+
+### wo-scoring-gauge (Indicador Circular)
+```javascript
+WoScoringGauge.create('#gauge-container', {
+  score: 85,
+  maxScore: 100,
+  animated: true
+});
+```
+
+---
+
+## Transiciones de Tema
+
+### Variables con Transición
+Todos los componentes tienen transiciones suaves (400ms) para cambio de tema:
+- `color`
+- `background-color`
+- `border-color`
+- `box-shadow`
+
+### Easing Sincronizado
+```css
+transition: [property] 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+```
+
+---
+
+## Mejores Prácticas
+
+### ✅ HACER
+```html
+<!-- Usar componentes existentes -->
+<div class="wo-card">...</div>
+<div class="wo-stat">...</div>
+
+<!-- Usar grids para layouts -->
+<div class="wo-grid wo-grid--3">...</div>
+
+<!-- Usar fragments con animación -->
+<div class="wo-card fragment fade-up">...</div>
+
+<!-- Usar card-number para numeración -->
+<div class="card-number">01</div>
+```
+
+### ❌ EVITAR
+```html
+<!-- NO: Crear componentes sin prefijo wo- -->
+<div class="my-card">...</div>
+
+<!-- NO: Estilos inline para layout -->
+<div style="display: grid; grid-template-columns: 1fr 1fr;">
+
+<!-- NO: Más de 4 columnas -->
+<div class="wo-grid wo-grid--5"><!-- No existe --></div>
+
+<!-- NO: Mezclar sistemas de grid -->
+<div class="wo-grid">
+  <div style="float: left;">...</div>
+</div>
+```
+
+---
+
+## Tamaños de Texto para Componentes
+
+| Componente | Título | Descripción | Value |
+|------------|--------|-------------|-------|
+| wo-card | 0.8em | 0.65em | - |
+| wo-stat | - | 0.5em | 0.85em |
+| wo-metric | - | 0.8em | 1.5em |
+| wo-badge | - | - | 0.45em |
+| wo-quote | - | 0.95em | - |
+| wo-steps | - | 0.75em | - |
+
+---
+
+## Prohibiciones
+
+1. ❌ Componentes sin prefijo `wo-`
+2. ❌ Estilos inline que overriden el sistema
+3. ❌ Grids de más de 4 columnas
+4. ❌ Modificar tamaños base sin usar tokens
+5. ❌ Crear variantes sin documentar en el hub
+6. ❌ Usar `!important` sobre variables de tema
+7. ❌ Contenido que desborde el viewport 1280x720
+8. ❌ Fondos claros (el sistema es dark-first)

@@ -28,16 +28,16 @@
 }
 
 .wo-hub__circle {
-  fill: rgba(37, 37, 66, 0.95);
+  fill: color-mix(in srgb, var(--wo-dark-surface) 95%, transparent);
   stroke: var(--wo-blue-lab, #5968EA);
   stroke-width: 3;
-  filter: drop-shadow(0 0 20px rgba(89, 104, 234, 0.4));
+  filter: drop-shadow(0 0 20px rgba(var(--wo-accent-secondary-rgb), 0.4));
   transition: all 0.3s ease;
 }
 
 .wo-hub:hover .wo-hub__circle {
   stroke: var(--wo-yellow-spark, #FFCB00);
-  filter: drop-shadow(0 0 30px rgba(255, 203, 0, 0.5));
+  filter: drop-shadow(0 0 30px rgba(var(--wo-accent-primary-rgb), 0.5));
 }
 
 .wo-hub__icon {
@@ -50,14 +50,14 @@
   font-family: 'Space Grotesk', sans-serif;
   font-size: 14px;
   font-weight: 700;
-  fill: #fff;
+  fill: var(--wo-text);
   text-anchor: middle;
 }
 
 .wo-hub__sublabel {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 10px;
-  fill: #94A3B8;
+  fill: var(--wo-text-secondary);
   text-anchor: middle;
 }
 
@@ -98,8 +98,8 @@
 }
 
 .wo-spoke__circle {
-  fill: rgba(37, 37, 66, 0.9);
-  stroke: rgba(89, 104, 234, 0.5);
+  fill: color-mix(in srgb, var(--wo-dark-surface) 90%, transparent);
+  stroke: rgba(var(--wo-accent-secondary-rgb), 0.5);
   stroke-width: 2;
   transition: all 0.3s ease;
 }
@@ -111,7 +111,7 @@
 
 .wo-spoke.active .wo-spoke__circle {
   stroke: var(--wo-yellow-spark, #FFCB00);
-  fill: rgba(255, 203, 0, 0.15);
+  fill: var(--wo-accent-primary-dim);
 }
 
 .wo-spoke__icon {
@@ -121,10 +121,10 @@
 }
 
 .wo-spoke__label {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 10px;
   font-weight: 600;
-  fill: #fff;
+  fill: var(--wo-text);
   text-anchor: middle;
 }
 
@@ -134,7 +134,7 @@
 
 .wo-connection {
   fill: none;
-  stroke: rgba(89, 104, 234, 0.3);
+  stroke: rgba(var(--wo-accent-secondary-rgb), 0.3);
   stroke-width: 2;
   stroke-dasharray: 8 4;
   transition: all 0.3s ease;
@@ -151,7 +151,7 @@
 
 .wo-data-particle {
   fill: var(--wo-yellow-spark, #FFCB00);
-  filter: drop-shadow(0 0 4px rgba(255, 203, 0, 0.8));
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--wo-yellow-spark) 80%, transparent));
 }
 
 @keyframes flowToHub {
@@ -190,8 +190,8 @@
   display: flex;
   gap: 24px;
   padding: 16px 24px;
-  background: rgba(15, 15, 26, 0.95);
-  border: 1px solid rgba(89, 104, 234, 0.3);
+  background: color-mix(in srgb, var(--wo-dark) 95%, transparent);
+  border: 1px solid rgba(var(--wo-accent-secondary-rgb), 0.3);
   border-radius: 12px;
   backdrop-filter: blur(8px);
 }
@@ -223,7 +223,7 @@
 
 .wo-spoke[data-category="communication"].active .wo-spoke__circle {
   stroke: #10B981;
-  fill: rgba(16, 185, 129, 0.15);
+  fill: color-mix(in srgb, var(--wo-success) 15%, transparent);
 }
 
 .wo-spoke[data-category="erp"] .wo-spoke__circle {

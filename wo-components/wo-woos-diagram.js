@@ -11,15 +11,31 @@
    });
    ═══════════════════════════════════════════════════════════════ */
 
-// Colores de marca
-const WOOS_COLORS = {
-  blue: '#5968EA',
-  yellow: '#FFCB00',
-  dark: '#0F0F1A',
-  surface: '#252542',
-  text: '#FFFFFF',
-  textMuted: '#94A3B8'
+// Función para leer tokens CSS del DOM (evita valores hardcodeados)
+const getTokens = () => {
+  if (typeof document === 'undefined' || !document.documentElement) {
+    return {
+      blue: '#5968EA',
+      yellow: '#FFCB00',
+      dark: '#1a1a1e',
+      surface: '#333333',
+      text: '#FFFFFF',
+      textMuted: '#dadada'
+    };
+  }
+  const style = getComputedStyle(document.documentElement);
+  return {
+    blue: style.getPropertyValue('--wo-blue-lab').trim() || '#5968EA',
+    yellow: style.getPropertyValue('--wo-yellow-spark').trim() || '#FFCB00',
+    dark: style.getPropertyValue('--wo-dark').trim() || '#1a1a1e',
+    surface: style.getPropertyValue('--wo-dark-surface').trim() || '#333333',
+    text: style.getPropertyValue('--wo-text').trim() || '#FFFFFF',
+    textMuted: style.getPropertyValue('--wo-text-secondary').trim() || '#dadada'
+  };
 };
+
+// Colores de marca (usando tokens CSS dinámicos)
+const WOOS_COLORS = getTokens();
 
 // Configuraciones predefinidas
 const WOOS_PRESETS = {

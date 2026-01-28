@@ -133,12 +133,12 @@
   z-index: 2;
   overflow: visible; /* Permitir badge visible fuera del card */
   background: linear-gradient(180deg, 
-    rgba(255, 203, 0, 0.06) 0%, 
-    rgba(15, 15, 26, 0.95) 100%);
-  border: 1px solid rgba(255, 203, 0, 0.35);
+    rgba(var(--wo-accent-primary-rgb), 0.06) 0%, 
+    color-mix(in srgb, var(--wo-dark) 95%, transparent) 100%);
+  border: 1px solid rgba(var(--wo-accent-primary-rgb), 0.35);
   box-shadow: 
     0 10px 40px rgba(0, 0, 0, 0.4),
-    0 0 20px rgba(255, 203, 0, 0.08);
+    0 0 20px rgba(var(--wo-accent-primary-rgb), 0.08);
   padding-top: 2em; /* Espacio para badge interno */
 }
 
@@ -151,7 +151,7 @@
   transform: translateY(-8px) scale(1.07);
   box-shadow: 
     0 20px 50px rgba(0, 0, 0, 0.5),
-    0 0 30px rgba(255, 203, 0, 0.15);
+    0 0 30px rgba(var(--wo-accent-primary-rgb), 0.15);
 }
 
 /* Título en amarillo para highlight */
@@ -178,8 +178,8 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   box-shadow: 
-    0 2px 8px rgba(255, 203, 0, 0.4),
-    0 0 20px rgba(255, 203, 0, 0.25);
+    0 2px 8px rgba(var(--wo-accent-primary-rgb), 0.4),
+    0 0 20px rgba(var(--wo-accent-primary-rgb), 0.25);
   z-index: 10;
   animation: woPricingBadgePulse 2.5s ease-in-out infinite;
 }
@@ -208,10 +208,10 @@
 .wo-pricing-discount {
   display: inline-block;
   background: linear-gradient(135deg, 
-    rgba(16, 185, 129, 0.2) 0%, 
-    rgba(16, 185, 129, 0.1) 100%);
+    rgba(var(--wo-success-rgb, 16, 185, 129), 0.2) 0%, 
+    rgba(var(--wo-success-rgb, 16, 185, 129), 0.1) 100%);
   color: var(--wo-success);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  border: 1px solid rgba(var(--wo-success-rgb, 16, 185, 129), 0.3);
   font-weight: 600;
   padding: 0.15em 0.5em;
   border-radius: 4px;
@@ -303,14 +303,14 @@
 @keyframes woPricingBadgePulse {
   0%, 100% { 
     box-shadow: 
-      0 2px 8px rgba(255, 203, 0, 0.4),
-      0 0 20px rgba(255, 203, 0, 0.25);
+      0 2px 8px rgba(var(--wo-accent-primary-rgb), 0.4),
+      0 0 20px rgba(var(--wo-accent-primary-rgb), 0.25);
     transform: translateX(-50%) scale(1);
   }
   50% { 
     box-shadow: 
-      0 4px 16px rgba(255, 203, 0, 0.6),
-      0 0 30px rgba(255, 203, 0, 0.4);
+      0 4px 16px rgba(var(--wo-accent-primary-rgb), 0.6),
+      0 0 30px rgba(var(--wo-accent-primary-rgb), 0.4);
     transform: translateX(-50%) scale(1.05);
   }
 }

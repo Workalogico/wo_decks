@@ -57,6 +57,25 @@ const SCORING_DATA = {
   ]
 };
 
+// Función para leer tokens CSS del DOM
+const getTokens = () => {
+  if (typeof document === 'undefined' || !document.documentElement) {
+    return {
+      danger: '#FF6B6B',
+      yellow: '#FFCB00',
+      success: '#10B981',
+      blue: '#5968EA'
+    };
+  }
+  const style = getComputedStyle(document.documentElement);
+  return {
+    danger: style.getPropertyValue('--wo-danger').trim() || '#FF6B6B',
+    yellow: style.getPropertyValue('--wo-yellow-spark').trim() || '#FFCB00',
+    success: style.getPropertyValue('--wo-success').trim() || '#10B981',
+    blue: style.getPropertyValue('--wo-blue-lab').trim() || '#5968EA'
+  };
+};
+
 // Clase principal
 class WoScoringGauge {
   constructor(containerId, options = {}) {
@@ -65,6 +84,7 @@ class WoScoringGauge {
     this.data = options.data || SCORING_DATA;
     this.currentLocation = this.data.locations[0];
     this.animated = false;
+    this.tokens = getTokens();
     
     this.options = {
       gaugeRadius: options.gaugeRadius || 120,
@@ -106,9 +126,9 @@ class WoScoringGauge {
             <svg class="wo-gauge" viewBox="0 0 280 280">
               <defs>
                 <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#FF6B6B" />
-                  <stop offset="50%" stop-color="#FFCB00" />
-                  <stop offset="100%" stop-color="#10B981" />
+                  <stop offset="0%" stop-color="${this.tokens.danger}" />
+                  <stop offset="50%" stop-color="${this.tokens.yellow}" />
+                  <stop offset="100%" stop-color="${this.tokens.success}" />
                 </linearGradient>
               </defs>
               
@@ -281,9 +301,9 @@ class WoScoringGauge {
     tl.add({
       targets: this.scoreElement,
       textShadow: [
-        '0 0 0px rgba(89, 104, 234, 0)',
-        '0 0 25px rgba(89, 104, 234, 0.5)',
-        '0 0 0px rgba(89, 104, 234, 0)'
+        `0 0 0px rgba(${this.tokens.blue.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0)`,
+        `0 0 25px rgba(${this.tokens.blue.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0.5)`,
+        `0 0 0px rgba(${this.tokens.blue.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0)`
       ],
       duration: 800,
       easing: 'easeInOutSine'

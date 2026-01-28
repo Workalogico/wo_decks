@@ -231,12 +231,33 @@ const WoTeseracto4D = (function() {
   // CONFIGURACIÓN
   // ═══════════════════════════════════════════════════════════════
   
+  // Función para leer tokens CSS del DOM
+  const getTokens = () => {
+    if (typeof document === 'undefined' || !document.documentElement) {
+      return {
+        yellow: '#FFCB00',
+        blue: '#5968EA',
+        white: '#F7F7F7',
+        dark: '#1a1a1e'
+      };
+    }
+    const style = getComputedStyle(document.documentElement);
+    return {
+      yellow: style.getPropertyValue('--wo-yellow-spark').trim() || '#FFCB00',
+      blue: style.getPropertyValue('--wo-blue-lab').trim() || '#5968EA',
+      white: style.getPropertyValue('--wo-white-focus').trim() || '#F7F7F7',
+      dark: style.getPropertyValue('--wo-dark').trim() || '#1a1a1e'
+    };
+  };
+  
+  const tokens = getTokens();
+  
   const config = {
     colors: {
-      yellow: '#FFCB00',
-      blue: '#5968EA',
-      white: '#F7F7F7',
-      dark: '#0F0F1A'
+      yellow: tokens.yellow,
+      blue: tokens.blue,
+      white: tokens.white,
+      dark: tokens.dark
     },
     
     // Presets de rotación

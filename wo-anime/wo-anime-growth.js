@@ -234,7 +234,7 @@ export function casesAnimation(cases, options = {}) {
     if (metrics.length > 0) {
       tl.add({
         targets: Array.from(metrics),
-        color: ['#94A3B8', config.getPrimaryColor()],
+        color: [getTokens().textSecondary, config.getPrimaryColor()],
         duration: 400,
         delay: anime.stagger(80),
         easing: 'easeOutQuad'

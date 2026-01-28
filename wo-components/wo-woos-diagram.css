@@ -81,7 +81,7 @@
 
 /* Main circle */
 .wo-woos-phase__circle {
-  fill: rgba(37, 37, 66, 0.9);
+  fill: color-mix(in srgb, var(--wo-dark-surface) 90%, transparent);
   stroke-width: 2;
   transition: all 0.3s ease;
 }
@@ -126,9 +126,9 @@
 
 /* Sublabel text */
 .wo-woos-phase__sublabel {
-  font-family: var(--font-body, 'DM Sans', sans-serif);
+  font-family: var(--font-body, 'Inter', sans-serif);
   font-size: 11px;
-  fill: var(--wo-text-secondary, #94A3B8);
+  fill: var(--wo-text-secondary, #dadada);
   text-anchor: middle;
   pointer-events: none;
 }

@@ -11,8 +11,8 @@
   --knob-margin: 6px;
   --yellow: #FFCB00;
   --blue: #5968EA;
-  --dark: #0F0F1A;
-  --dark-surface: #252542;
+  --dark: #1a1a1e;
+  --dark-surface: #333333;
   
   position: relative;
   width: var(--switch-width);

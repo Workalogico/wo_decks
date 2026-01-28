@@ -3,17 +3,35 @@
    Diagramas de flujo animados para presentaciones de Automatización
    ═══════════════════════════════════════════════════════════════ */
 
-// Colores de marca
-const WO_COLORS = {
-  blue: '#5968EA',
-  yellow: '#FFCB00',
-  danger: '#FF6B6B',
-  success: '#10B981',
-  dark: '#0F0F1A',
-  surface: '#252542',
-  text: '#FFFFFF',
-  textMuted: '#94A3B8'
+// Función para leer tokens CSS del DOM (evita valores hardcodeados)
+const getTokens = () => {
+  if (typeof document === 'undefined' || !document.documentElement) {
+    return {
+      blue: '#5968EA',
+      yellow: '#FFCB00',
+      danger: '#FF6B6B',
+      success: '#10B981',
+      dark: '#1a1a1e',
+      surface: '#333333',
+      text: '#FFFFFF',
+      textMuted: '#dadada'
+    };
+  }
+  const style = getComputedStyle(document.documentElement);
+  return {
+    blue: style.getPropertyValue('--wo-blue-lab').trim() || '#5968EA',
+    yellow: style.getPropertyValue('--wo-yellow-spark').trim() || '#FFCB00',
+    danger: style.getPropertyValue('--wo-danger').trim() || '#FF6B6B',
+    success: style.getPropertyValue('--wo-success').trim() || '#10B981',
+    dark: style.getPropertyValue('--wo-dark').trim() || '#1a1a1e',
+    surface: style.getPropertyValue('--wo-dark-surface').trim() || '#333333',
+    text: style.getPropertyValue('--wo-text').trim() || '#FFFFFF',
+    textMuted: style.getPropertyValue('--wo-text-secondary').trim() || '#dadada'
+  };
 };
+
+// Colores de marca (usando tokens CSS dinámicos)
+const WO_COLORS = getTokens();
 
 // Configuraciones de diagramas predefinidos
 const FLOW_PRESETS = {

@@ -14,7 +14,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   
   <!-- Design Tokens -->
   <link rel="stylesheet" href="../wo-tokens.css">
@@ -49,10 +49,10 @@
     /* Patrón de cuadrícula para colores con transparencia */
     .color-swatch__preview--transparent {
       background-image: 
-        linear-gradient(45deg, #1a1a2e 25%, transparent 25%),
-        linear-gradient(-45deg, #1a1a2e 25%, transparent 25%),
-        linear-gradient(45deg, transparent 75%, #1a1a2e 75%),
-        linear-gradient(-45deg, transparent 75%, #1a1a2e 75%);
+        linear-gradient(45deg, #2a2a2f 25%, transparent 25%),
+        linear-gradient(-45deg, #2a2a2f 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #2a2a2f 75%),
+        linear-gradient(-45deg, transparent 75%, #2a2a2f 75%);
       background-size: 16px 16px;
       background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
       background-color: #0f0f1a;
@@ -206,7 +206,7 @@
             <div class="color-swatch__info">
               <div class="color-swatch__name">Black Core</div>
               <div class="color-swatch__var">--wo-black-core</div>
-              <div class="color-swatch__hex">#1A1A2E</div>
+              <div class="color-swatch__hex">#2a2a2f</div>
             </div>
             <div class="color-swatch__copy">
               <button class="hub-btn hub-btn--small hub-btn--copy">Copiar</button>
@@ -255,9 +255,9 @@
         
         <!-- Comparación visual de la escala de oscuros -->
         <div class="dark-comparison">
-          <div class="dark-comparison__item" style="background: #0F0F1A;">Base</div>
-          <div class="dark-comparison__item" style="background: #1A1A2E;">Elevated</div>
-          <div class="dark-comparison__item" style="background: #252542;">Surface</div>
+          <div class="dark-comparison__item" style="background: #1a1a1e;">Base</div>
+          <div class="dark-comparison__item" style="background: #2a2a2f;">Elevated</div>
+          <div class="dark-comparison__item" style="background: #333333;">Surface</div>
         </div>
         <p style="font-size: 0.8rem; color: var(--wo-text-muted); margin-top: 0.5rem; text-align: center;">
           ← Más oscuro (fondo) | Más claro (elevado) →
@@ -265,11 +265,11 @@
         
         <div class="hub-grid hub-grid--3" style="margin-top: 1.5rem;">
           <div class="color-swatch" data-copy="--wo-dark" onclick="copyColor(this)">
-            <div class="color-swatch__preview color-swatch__preview--dark" style="background: #0F0F1A; border-left: 4px solid #5968EA;"></div>
+            <div class="color-swatch__preview color-swatch__preview--dark" style="background: #1a1a1e; border-left: 4px solid #5968EA;"></div>
             <div class="color-swatch__info">
               <div class="color-swatch__name">Dark (Base)</div>
               <div class="color-swatch__var">--wo-dark</div>
-              <div class="color-swatch__hex">#0F0F1A</div>
+              <div class="color-swatch__hex">#1a1a1e</div>
             </div>
             <div class="color-swatch__copy">
               <button class="hub-btn hub-btn--small hub-btn--copy">Copiar</button>
@@ -277,11 +277,11 @@
           </div>
           
           <div class="color-swatch" data-copy="--wo-dark-elevated" onclick="copyColor(this)">
-            <div class="color-swatch__preview color-swatch__preview--dark" style="background: #1A1A2E; border-left: 4px solid #5968EA;"></div>
+            <div class="color-swatch__preview color-swatch__preview--dark" style="background: #2a2a2f; border-left: 4px solid #5968EA;"></div>
             <div class="color-swatch__info">
               <div class="color-swatch__name">Dark Elevated</div>
               <div class="color-swatch__var">--wo-dark-elevated</div>
-              <div class="color-swatch__hex">#1A1A2E</div>
+              <div class="color-swatch__hex">#2a2a2f</div>
             </div>
             <div class="color-swatch__copy">
               <button class="hub-btn hub-btn--small hub-btn--copy">Copiar</button>
@@ -289,11 +289,11 @@
           </div>
           
           <div class="color-swatch" data-copy="--wo-dark-surface" onclick="copyColor(this)">
-            <div class="color-swatch__preview color-swatch__preview--dark" style="background: #252542; border-left: 4px solid #5968EA;"></div>
+            <div class="color-swatch__preview color-swatch__preview--dark" style="background: #333333; border-left: 4px solid #5968EA;"></div>
             <div class="color-swatch__info">
               <div class="color-swatch__name">Dark Surface</div>
               <div class="color-swatch__var">--wo-dark-surface</div>
-              <div class="color-swatch__hex">#252542</div>
+              <div class="color-swatch__hex">#333333</div>
             </div>
             <div class="color-swatch__copy">
               <button class="hub-btn hub-btn--small hub-btn--copy">Copiar</button>
@@ -353,7 +353,7 @@
             <div class="color-swatch__info">
               <div class="color-swatch__name">Text Secondary</div>
               <div class="color-swatch__var">--wo-text-secondary</div>
-              <div class="color-swatch__hex">#94A3B8</div>
+              <div class="color-swatch__hex">#dadada</div>
             </div>
             <div class="color-swatch__copy">
               <button class="hub-btn hub-btn--small hub-btn--copy">Copiar</button>
@@ -365,7 +365,7 @@
             <div class="color-swatch__info">
               <div class="color-swatch__name">Text Muted</div>
               <div class="color-swatch__var">--wo-text-muted</div>
-              <div class="color-swatch__hex">#64748B</div>
+              <div class="color-swatch__hex">#b4b6ba</div>
             </div>
             <div class="color-swatch__copy">
               <button class="hub-btn hub-btn--small hub-btn--copy">Copiar</button>

@@ -26,15 +26,36 @@ const WoTeseracto = (function() {
   // CONFIGURACIÓN
   // ═══════════════════════════════════════════════════════════════
   
+  // Función para leer tokens CSS del DOM
+  const getTokens = () => {
+    if (typeof document === 'undefined' || !document.documentElement) {
+      return {
+        yellow: '#FFCB00',
+        blue: '#5968EA',
+        white: '#F7F7F7',
+        dark: '#1a1a1e'
+      };
+    }
+    const style = getComputedStyle(document.documentElement);
+    return {
+      yellow: style.getPropertyValue('--wo-yellow-spark').trim() || '#FFCB00',
+      blue: style.getPropertyValue('--wo-blue-lab').trim() || '#5968EA',
+      white: style.getPropertyValue('--wo-white-focus').trim() || '#F7F7F7',
+      dark: style.getPropertyValue('--wo-dark').trim() || '#1a1a1e'
+    };
+  };
+  
+  const tokens = getTokens();
+  
   const config = {
     colors: {
-      yellow: '#FFCB00',
-      yellowGlow: 'rgba(255, 203, 0, 0.8)',
-      yellowDim: 'rgba(255, 203, 0, 0.2)',
-      blue: '#5968EA',
-      blueGlow: 'rgba(89, 104, 234, 0.8)',
-      white: '#F7F7F7',
-      dark: '#0F0F1A'
+      yellow: tokens.yellow,
+      yellowGlow: tokens.yellow.replace('rgb', 'rgba').replace(')', ', 0.8)') || 'rgba(255, 203, 0, 0.8)',
+      yellowDim: tokens.yellow.replace('rgb', 'rgba').replace(')', ', 0.2)') || 'rgba(255, 203, 0, 0.2)',
+      blue: tokens.blue,
+      blueGlow: tokens.blue.replace('rgb', 'rgba').replace(')', ', 0.8)') || 'rgba(89, 104, 234, 0.8)',
+      white: tokens.white,
+      dark: tokens.dark
     },
     
     timing: {

@@ -31,7 +31,7 @@ class WoThemeSwitch {
     this.colors = {
       yellow: '#FFCB00',
       blue: '#5968EA',
-      dark: '#0F0F1A'
+      dark: '#1a1a1e'
     };
     
     // DS-103: Variaciones disponibles

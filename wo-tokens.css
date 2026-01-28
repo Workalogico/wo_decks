@@ -27,7 +27,7 @@
      ═══════════════════════════════════════════════════════════════ */
   --wo-yellow-spark: #FFCB00;    /* Amarillo Workalógico */
   --wo-blue-lab: #5968EA;        /* Azul Workalógico */
-  --wo-black-core: #1A1A2E;      /* Fondo elevado dark theme */
+  --wo-black-core: #2a2a2f;      /* Fondo elevado dark theme */
   --wo-white-focus: #F7F7F7;     /* Texto/logo sobre fondos oscuros */
   --wo-gray-dark: #333333;       /* Texto/logo sobre fondos claros */
   
@@ -45,9 +45,9 @@
   /* ═══════════════════════════════════════════════════════════════
      FONDOS (Dark Theme)
      ═══════════════════════════════════════════════════════════════ */
-  --wo-dark: #0F0F1A;
-  --wo-dark-elevated: #1A1A2E;
-  --wo-dark-surface: #252542;
+  --wo-dark: #1a1a1e;
+  --wo-dark-elevated: #2a2a2f;
+  --wo-dark-surface: #333333;
   --wo-accent-dim: var(--wo-accent-primary-dim);
   --wo-yellow-dim: rgba(255, 203, 0, 0.15);
   --wo-blue-dim: rgba(89, 104, 234, 0.15);
@@ -56,8 +56,8 @@
      TEXTO
      ═══════════════════════════════════════════════════════════════ */
   --wo-text: #FFFFFF;
-  --wo-text-secondary: #94A3B8;
-  --wo-text-muted: #64748B;
+  --wo-text-secondary: #dadada;
+  --wo-text-muted: #b4b6ba;
   
   /* ═══════════════════════════════════════════════════════════════
      ESTADOS
@@ -76,7 +76,7 @@
      TIPOGRAFÍA (Brand Guidelines 2026)
      ═══════════════════════════════════════════════════════════════ */
   --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-body-alt: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-corporate: 'Gotham', 'Space Grotesk', -apple-system, sans-serif;
   
@@ -130,8 +130,8 @@
   /* ═══════════════════════════════════════════════════════════════
      GRADIENTES (Fondos de Slides)
      ═══════════════════════════════════════════════════════════════ */
-  --gradient-cover: radial-gradient(ellipse at center, #252542 0%, #0F0F1A 70%);
-  --gradient-section: linear-gradient(135deg, #0F0F1A 0%, #252542 100%);
+  --gradient-cover: radial-gradient(ellipse at center, #333333 0%, #1a1a1e 70%);
+  --gradient-section: linear-gradient(135deg, #1a1a1e 0%, #333333 100%);
   
   /* ═══════════════════════════════════════════════════════════════
      MAPBOX TOKENS

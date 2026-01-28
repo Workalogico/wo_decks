@@ -40,7 +40,7 @@
 
 .wo-gauge__track {
   fill: none;
-  stroke: rgba(37, 37, 66, 0.8);
+  stroke: color-mix(in srgb, var(--wo-dark-surface) 80%, transparent);
   stroke-width: 20;
 }
 
@@ -68,7 +68,7 @@
   font-family: 'Space Grotesk', sans-serif;
   font-size: 4rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--wo-text);
   line-height: 1;
 }
 
@@ -78,13 +78,13 @@
 
 .wo-gauge__max {
   font-size: 1.2rem;
-  color: #64748B;
+  color: var(--wo-text-muted);
   margin-top: 4px;
 }
 
 .wo-gauge__label {
   font-size: 0.85rem;
-  color: #94A3B8;
+  color: var(--wo-text-muted);
   margin-top: 8px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -93,9 +93,9 @@
 /* Indicadores de rango */
 .wo-gauge__range {
   position: absolute;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 0.7rem;
-  color: #64748B;
+  color: var(--wo-text-muted);
 }
 
 .wo-gauge__range--min {
@@ -122,10 +122,10 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  background: rgba(37, 37, 66, 0.5);
+  background: color-mix(in srgb, var(--wo-dark-surface) 50%, transparent);
   padding: 12px 16px;
   border-radius: 8px;
-  border: 1px solid rgba(89, 104, 234, 0.2);
+  border: 1px solid rgba(var(--wo-accent-secondary-rgb), 0.2);
   transition: all 0.3s ease;
 }
 
@@ -146,14 +146,14 @@
 
 .wo-mini-gauge__label {
   font-size: 0.75rem;
-  color: #94A3B8;
+  color: var(--wo-text-muted);
   margin-bottom: 4px;
 }
 
 .wo-mini-gauge__bar-container {
   width: 140px;
   height: 6px;
-  background: rgba(15, 15, 26, 0.8);
+  background: color-mix(in srgb, var(--wo-dark) 80%, transparent);
   border-radius: 3px;
   overflow: hidden;
 }
@@ -181,7 +181,7 @@
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--wo-text);
   min-width: 35px;
   text-align: right;
 }
@@ -195,20 +195,20 @@
   align-items: center;
   gap: 16px;
   padding: 16px 24px;
-  background: rgba(16, 185, 129, 0.1);
+  background: rgba(var(--wo-success-rgb, 16, 185, 129), 0.1);
   border: 1px solid rgba(16, 185, 129, 0.3);
   border-radius: 12px;
   width: 100%;
 }
 
 .wo-scoring-recommendation.warning {
-  background: rgba(255, 203, 0, 0.1);
-  border-color: rgba(255, 203, 0, 0.3);
+  background: var(--wo-accent-primary-dim);
+  border-color: rgba(var(--wo-accent-primary-rgb), 0.3);
 }
 
 .wo-scoring-recommendation.danger {
-  background: rgba(255, 107, 107, 0.1);
-  border-color: rgba(255, 107, 107, 0.3);
+  background: color-mix(in srgb, var(--wo-danger) 10%, transparent);
+  border-color: color-mix(in srgb, var(--wo-danger) 30%, transparent);
 }
 
 .wo-scoring-recommendation__icon {
@@ -232,7 +232,7 @@
 }
 
 .wo-scoring-recommendation.danger .wo-scoring-recommendation__title {
-  color: #FF6B6B;
+  color: var(--wo-danger);
 }
 
 .wo-scoring-recommendation__desc {
@@ -253,8 +253,8 @@
 
 .wo-location-btn {
   padding: 8px 16px;
-  background: rgba(37, 37, 66, 0.6);
-  border: 1px solid rgba(89, 104, 234, 0.3);
+  background: color-mix(in srgb, var(--wo-dark-surface) 60%, transparent);
+  border: 1px solid rgba(var(--wo-accent-secondary-rgb), 0.3);
   border-radius: 20px;
   color: #94A3B8;
   font-size: 0.75rem;
@@ -263,15 +263,15 @@
 }
 
 .wo-location-btn:hover {
-  background: rgba(89, 104, 234, 0.2);
+  background: color-mix(in srgb, var(--wo-blue-lab) 20%, transparent);
   border-color: var(--wo-blue-lab, #5968EA);
-  color: #fff;
+  color: var(--wo-text);
 }
 
 .wo-location-btn.active {
   background: var(--wo-blue-lab, #5968EA);
   border-color: var(--wo-blue-lab, #5968EA);
-  color: #fff;
+  color: var(--wo-text);
 }
 
 /* ═══════════════════════════════════════════════════════════════
